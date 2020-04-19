@@ -1,0 +1,796 @@
+\documentclass[a4paper, 12pt]{paper}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{titlesec}
+\usepackage{fullpage}
+\usepackage{tikz-cd}
+\usepackage{multicol}
+\usepackage[left=.5in,right=.5in,top=.5in,bottom=.5in]{geometry}
+\usepackage{enumitem}
+\usepackage{bussproofs}
+
+\setitemize{topsep=3pt,parsep=5pt,partopsep=0pt,label=,leftmargin=1.3pc}
+\titleformat{\section}[runin]{\normalfont\bfseries}{\thesection}{0.5em}{}
+\titlespacing{\section}{0pc}{1.5ex plus .1ex minus .2ex}{1pc}
+\titleformat{\subsection}[runin]{\normalfont\bfseries}{\thesubsection}{0.7em}{}
+\titlespacing{\subsection}{0pc}{2ex plus .1ex minus .2ex}{1pc}
+\titleformat{\subsubsection}[runin]{\normalfont\bfseries}{\thesubsubsection}{0.7em}{}
+\titlespacing{\subsubsection}{0pc}{2ex plus .1ex minus .2ex}{1pc}
+\newcommand\eqn{\refstepcounter{equation}\tag{\theequation}}
+\binoppenalty=\maxdimen
+\relpenalty=\maxdimen
+\newcommand{\ul}{\ulcorner}
+\newcommand{\ur}{\urcorner}
+\newcommand{\val}[1]{\ulcorner #1 \urcorner}
+\EnableBpAbbreviations
+
+\begin{document}
+{\noindent
+	v 0.0 \\
+{\large\textbf{The Cut Rule Is Admissible in GSTL}}
+}
+\\
+\input{GSTL}
+
+\subsubsection{Degree} For a formula $\varphi$,
+\[ d(\varphi) = \begin{cases}
+	1 & \quad ; \varphi \in P \cup \{ \bot, \top \} \\
+	max(d(\psi), d(\theta)) + 1 & \quad ; \varphi = \psi \Box \theta, \Box \in \{ \land , \lor, \rightarrow \}
+\end{cases} \]
+For an instance of the cut rule $r$ with cut-formula $\varphi$, $d(r) = d(\varphi)$, $0$ if it's not an instance of the cut rule.
+For a proof tree $\mathbf{D}$, $d(\mathbf{D})$ is the maximum degree of its cut rules, $0$ if $\mathbf{D}$ is cut-free.
+\pagebreak
+
+\section{Theorem}\label{cut-admis} If $\text{GSTL}^-\vdash \mathcal{S} \Rightarrow A$ and $\text{GSTL}^-\vdash \mathcal{T} | \Gamma, A | \mathcal{R} \Rightarrow \Delta$ with proof trees of degrees less than $d(A)$, then
+ $\text{GSTL}^-\vdash [ \mathcal{S} | \epsilon_{l(\mathcal{R})} ] \cup [ \mathcal{T} | \Gamma | \mathcal{R} ] \Rightarrow \Delta$ also with a proof tree of a degree less than $d(A)$.
+ 
+\emph{Proof:}
+Let $\mathbf{D_0}$ and $\mathbf{D_1}$ be proof trees of degrees less than $d(A)$, with conclusions $\mathcal{S} \Rightarrow A$ and $\mathcal{T} | \Gamma, A | \mathcal{R} \Rightarrow \Delta$ and heights $h(\mathbf{D_0})$ and $h(\mathbf{D_1})$ respectively. By induction on $h(\mathbf{D_0}) + h(\mathbf{D_1})$, the induction hypothesis states that for any proof trees $\mathbf{D_0}'$ with conclusion $\mathcal{S}' \Rightarrow A'$ and $\mathbf{D_1}'$ with conclusion $\mathcal{T}' | \Gamma', A' | \mathcal{R}' \Rightarrow \Delta'$ such that $h(\mathbf{D_0}') + h(\mathbf{D_1}') < h(\mathbf{D_0}) + h(\mathbf{D_1})$ and $d(\mathbf{D_0}'),\mathbf{D_1}' < d(A')$, there exists a proof tree $\mathbf{D}'$ with conclusion $[ \mathcal{S}' | \epsilon_{l(\mathcal{R}')} ] \cup [ \mathcal{T}' | \Gamma' | \mathcal{R}' ] \Rightarrow \Delta'$ such that $d(\mathbf{D}') < d(A')$. We proceed by case analysis on the last rule in $\mathbf{D_0}$.
+
+\begin{itemize}
+	\item[($Ax$)] We have $\mathcal{S} = \epsilon | A$, and the desired sequent should be of the form $[ \epsilon | A | \epsilon_{l(\mathcal{R})}] \cup \mathcal{T} | \Gamma | \mathcal{R} \Rightarrow \Delta$. $\mathbf{D_1}$ itself proves such sequent.
+	
+	\item[($Ta$)] $\mathbf{D_0}$ proves $\epsilon \Rightarrow \top$. $\mathcal{T} | \Gamma| \mathcal{R} \Rightarrow \Delta$ is again proved by $\mathbf{D_1}$.
+	
+	\item[($Ex$)] This won't happen. {\em (Will it?)}
+	
+	\item[($Lw$)] $\mathbf{D_0}$ proves $\mathcal{S}' | \Gamma' , A' | \mathcal{R}' \Rightarrow A$ and has a subproof $\mathbf{D_0}'$ of $\mathcal{S}' | \Gamma' | \mathcal{R}' \Rightarrow A$.		\begin{prooftree}
+		\noLine
+		\AXC{$\mathbf{D_0}'$}
+		\UIC{$\mathcal{S}' | \Gamma' | \mathcal{R}' \Rightarrow A$}
+		\RightLabel{$Lw$}
+		\UIC{$\mathcal{S}' | \Gamma' , A' | \mathcal{R}' \Rightarrow A$}
+
+		
+		\noLine
+		\AXC{$\mathbf{D_1}$}
+		\UIC{$\mathcal{T} | \Gamma , A | \mathcal{R} \Rightarrow \Delta$}
+
+		\dashedLine\RightLabel{$Cut$}
+		\BIC{$[\mathcal{S}' | \Gamma' , A' | \mathcal{R}' | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow \Delta$}
+	\end{prooftree}
+	From the induction hypothesis for $\mathbf{D_0}'$ and $\mathbf{D_1}$, we have a proof of $[\mathcal{S}' | \Gamma' | \mathcal{R}' | \epsilon_{\mathcal{R}}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow \Delta$ with degree lower than that of $A$. By applying $Lw$ in the proper place, we have $[\mathcal{S}' | \Gamma' , A' | \mathcal{R}' | \epsilon_{\mathcal{R}}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow \Delta$, without increasing the cut-degree.
+	\begin{prooftree}
+		\noLine
+		\AXC{$\mathbf{D_0}'$}
+		\UIC{$\mathcal{S}' | \Gamma' | \mathcal{R}' \Rightarrow A$}
+		
+		\noLine
+		\AXC{$\mathbf{D_1}$}
+		\UIC{$\mathcal{T} | \Gamma , A | \mathcal{R} \Rightarrow \Delta$}
+		
+		\RightLabel{IH}
+		\BIC{$[\mathcal{S}' | \Gamma' | \mathcal{R}' | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow \Delta$}
+		
+		\RightLabel{$Lw$}
+		\UIC{$[\mathcal{S}' | \Gamma' , A' | \mathcal{R}' | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow \Delta$}
+	\end{prooftree}
+	
+	\item[($Lc$)] $\mathbf{D_0}$ proves $\mathcal{S}' | \Gamma' , A' | \mathcal{R}' \Rightarrow A$ and has a subproof $\mathbf{D_0}'$ of $\mathcal{S}' | \Gamma' , A' , A' | \mathcal{R}' \Rightarrow A$.
+	\begin{prooftree}
+		\noLine
+		\AXC{$\mathbf{D_0}'$}
+		\UIC{$\mathcal{S}' | \Gamma' , A' , A' | \mathcal{R}' \Rightarrow A$}
+		\RightLabel{$Lc$}
+		\UIC{$\mathcal{S}' | \Gamma' , A' | \mathcal{R}' \Rightarrow A$}
+		
+		
+		\noLine
+		\AXC{$\mathbf{D_1}$}
+		\UIC{$\mathcal{T} | \Gamma , A | \mathcal{R} \Rightarrow \Delta$}
+		
+		\dashedLine\RightLabel{$Cut$}
+		\BIC{$[\mathcal{S}' | \Gamma' , A' | \mathcal{R}' | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow \Delta$}
+	\end{prooftree}
+	From the induction hypothesis for $\mathbf{D_0}'$ and $\mathbf{D_1}$, we have a proof of $[\mathcal{S}' | \Gamma' , A' , A' | \mathcal{R}' | \epsilon_{\mathcal{R}}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow \Delta$ with degree lower than that of $A$. By applying $Lc$ in the proper place, we have $[\mathcal{S}' | \Gamma' , A' | \mathcal{R}' | \epsilon_{\mathcal{R}}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow \Delta$, without increasing the cut-degree.
+	\begin{prooftree}
+		\noLine
+		\AXC{$\mathbf{D_0}'$}
+		\UIC{$\mathcal{S}' | \Gamma' , A' , A' | \mathcal{R}' \Rightarrow A$}
+		
+		\noLine
+		\AXC{$\mathbf{D_1}$}
+		\UIC{$\mathcal{T} | \Gamma , A | \mathcal{R} \Rightarrow \Delta$}
+		
+		\RightLabel{IH}
+		\BIC{$[\mathcal{S}' | \Gamma' , A' , A' | \mathcal{R}' | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow \Delta$}
+		
+		\RightLabel{$Lc$}
+		\UIC{$[\mathcal{S}' | \Gamma' , A' | \mathcal{R}' | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow \Delta$}
+	\end{prooftree}
+	
+	\item[($L\land$)] $\mathbf{D_0}$ proves $\mathcal{S}' | \Gamma' , A' \land B' | \mathcal{R}' \Rightarrow A$ and has a subproof $\mathbf{D_0}'$ of $\mathcal{S}' | \Gamma' , A' | \mathcal{R}' \Rightarrow A$.
+	\begin{prooftree}
+		\noLine
+		\AXC{$\mathbf{D_0}'$}
+		\UIC{$\mathcal{S}' | \Gamma' , A' | \mathcal{R}' \Rightarrow A$}
+		\RightLabel{$L\land$}
+		\UIC{$\mathcal{S}' | \Gamma' , A' \land B' | \mathcal{R}' \Rightarrow A$}
+		
+		
+		\noLine
+		\AXC{$\mathbf{D_1}$}
+		\UIC{$\mathcal{T} | \Gamma , A | \mathcal{R} \Rightarrow \Delta$}
+		
+		\dashedLine\RightLabel{$Cut$}
+		\BIC{$[\mathcal{S}' | \Gamma' , A' \land B' | \mathcal{R}' | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow \Delta$}
+	\end{prooftree}
+	From the induction hypothesis for $\mathbf{D_0}'$ and $\mathbf{D_1}$, we have a proof of $[\mathcal{S}' | \Gamma' , A' | \mathcal{R}' | \epsilon_{\mathcal{R}}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow \Delta$ with degree lower than that of $A$. By applying $L\land$ in the proper place, we have $[\mathcal{S}' | \Gamma' , A' \land B' | \mathcal{R}' | \epsilon_{\mathcal{R}}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow \Delta$, without increasing the cut-degree.
+	\begin{prooftree}
+		\noLine
+		\AXC{$\mathbf{D_0}'$}
+		\UIC{$\mathcal{S}' | \Gamma' , A' | \mathcal{R}' \Rightarrow A$}
+		
+		\noLine
+		\AXC{$\mathbf{D_1}$}
+		\UIC{$\mathcal{T} | \Gamma , A | \mathcal{R} \Rightarrow \Delta$}
+		
+		\RightLabel{IH}
+		\BIC{$[\mathcal{S}' | \Gamma' , A' | \mathcal{R}' | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow \Delta$}
+		
+		\RightLabel{$L\land$}
+		\UIC{$[\mathcal{S}' | \Gamma' , A' \land B' | \mathcal{R}' | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow \Delta$}
+	\end{prooftree}
+	The other $L\land$ is the same.
+	
+	\item[($L\lor$)]  $\mathbf{D_0}$ proves $\mathcal{S}' | \Gamma' , A' \lor B' | \mathcal{R}' \Rightarrow A$ and has subproofs $\mathbf{D_0}'$ of $\mathcal{S}' | \Gamma' , A' | \mathcal{R}' \Rightarrow A$ and $\mathbf{D_0}''$ of $\mathcal{S}' | \Gamma' , B' | \mathcal{R}' \Rightarrow A$.
+	\begin{prooftree}
+		\noLine
+		\AXC{$\mathbf{D_0}'$}
+		\UIC{$\mathcal{S}' | \Gamma' , A' | \mathcal{R}' \Rightarrow A$}
+		\noLine
+		\AXC{$\mathbf{D_0}''$}
+		\UIC{$\mathcal{S}' | \Gamma' , B' | \mathcal{R}' \Rightarrow A$}
+		\RightLabel{$L\lor$}
+		\BIC{$\mathcal{S}' | \Gamma' , A' \lor B' | \mathcal{R}' \Rightarrow A$}
+		
+		
+		\noLine
+		\AXC{$\mathbf{D_1}$}
+		\UIC{$\mathcal{T} | \Gamma , A | \mathcal{R} \Rightarrow \Delta$}
+		
+		\dashedLine\RightLabel{$Cut$}
+		\BIC{$[\mathcal{S}' | \Gamma' , A' \lor B' | \mathcal{R}' | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow \Delta$}
+	\end{prooftree}
+	From the induction hypothesis for $\mathbf{D_0}'$ and $\mathbf{D_1}$, we have a proof of $[\mathcal{S}' | \Gamma' , A' | \mathcal{R}' | \epsilon_{\mathcal{R}}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow \Delta$ with degree lower than that of $A$. Also from the induction hypothesis for $\mathbf{D_0}''$ and $\mathbf{D_1}$, we have a proof of $[\mathcal{S}' | \Gamma' , B' | \mathcal{R}' | \epsilon_{\mathcal{R}}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow \Delta$ with degree lower than that of $A$. By applying $L\lor$ in the proper place, we have $[\mathcal{S}' | \Gamma' , A' \lor B' | \mathcal{R}' | \epsilon_{\mathcal{R}}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow \Delta$, without increasing the cut-degree.
+	\begin{prooftree}
+		\noLine
+		\AXC{$\mathbf{D_0}'$}
+		\UIC{$\mathcal{S}' | \Gamma' , A' | \mathcal{R}' \Rightarrow A$}
+		
+		\noLine
+		\AXC{$\mathbf{D_1}$}
+		\UIC{$\mathcal{T} | \Gamma , A | \mathcal{R} \Rightarrow \Delta$}
+		
+		\RightLabel{IH}
+		\BIC{$[\mathcal{S}' | \Gamma' , A' | \mathcal{R}' | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow \Delta$}
+		
+		\noLine
+		\AXC{$\mathbf{D_0}''$}
+		\UIC{$\mathcal{S}' | \Gamma' , B' | \mathcal{R}' \Rightarrow A$}
+		
+		\noLine
+		\AXC{$\mathbf{D_1}$}
+		\UIC{$\mathcal{T} | \Gamma , A | \mathcal{R} \Rightarrow \Delta$}
+		
+		\RightLabel{IH}
+		\BIC{$[\mathcal{S}' | \Gamma' , B' | \mathcal{R}' | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow \Delta$}
+		
+		\RightLabel{$L\lor$}
+		\BIC{$[\mathcal{S}' | \Gamma' , A' \lor B' | \mathcal{R}' | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow \Delta$}
+	\end{prooftree}
+	
+	\item[($L\nabla$)] $\mathbf{D_0}$ proves $\mathcal{S}' | \Gamma' | \Pi' , \nabla A' | \mathcal{R}' \Rightarrow A$ and has a subproof $\mathbf{D_0}'$ of $\mathcal{S}' | \Gamma' , A' | \Pi' | \mathcal{R}' \Rightarrow A$.
+	\begin{prooftree}
+		\noLine
+		\AXC{$\mathbf{D_0}'$}
+		\UIC{$\mathcal{S}' | \Gamma' , A' | \Pi' | \mathcal{R}' \Rightarrow A$}
+		\RightLabel{$L\nabla$}
+		\UIC{$\mathcal{S}' | \Gamma' | \Pi' , \nabla A' | \mathcal{R}' \Rightarrow A$}
+		
+		
+		\noLine
+		\AXC{$\mathbf{D_1}$}
+		\UIC{$\mathcal{T} | \Gamma , A | \mathcal{R} \Rightarrow \Delta$}
+		
+		\dashedLine\RightLabel{$Cut$}
+		\BIC{$[\mathcal{S}' | \Gamma' | \Pi' , \nabla A' | \mathcal{R}' | \epsilon_{\mathcal{R}}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow \Delta$}
+	\end{prooftree}
+	From the induction hypothesis for $\mathbf{D_0}'$ and $\mathbf{D_1}$, we have a proof of $[\mathcal{S}' | \Gamma' , A' | \Pi' | \mathcal{R}' | \epsilon_{\mathcal{R}}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow \Delta$ with degree lower than that of $A$. By applying $L\nabla$ in the proper place, we have $[\mathcal{S}' | \Gamma' | \Pi' , \nabla A' | \mathcal{R}' | \epsilon_{\mathcal{R}}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow \Delta$, without increasing the cut-degree.
+	\begin{prooftree}
+		\noLine
+		\AXC{$\mathbf{D_0}'$}
+		\UIC{$\mathcal{S}' | \Gamma' , A' | \Pi' | \mathcal{R}' \Rightarrow A$}
+		
+		\noLine
+		\AXC{$\mathbf{D_1}$}
+		\UIC{$\mathcal{T} | \Gamma , A | \mathcal{R} \Rightarrow \Delta$}
+		
+		\RightLabel{IH}
+		\BIC{$[\mathcal{S}' | \Gamma' , A' | \Pi' | \mathcal{R}' | \epsilon_{\mathcal{R}}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow \Delta$}
+		
+		\RightLabel{$L\nabla$}
+		\UIC{$[\mathcal{S}' | \Gamma' | \Pi' , \nabla A' | \mathcal{R}' | \epsilon_{\mathcal{R}}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow \Delta$}
+	\end{prooftree}
+	
+	\item[($L\rightarrow$)] {\color{red}\textbf{TODO}} $\mathbf{D_0}$ proves $\mathcal{S}' | \Gamma', A' \rightarrow B' | \Sigma' | \mathcal{R}' \Rightarrow A$ and has subproofs $\mathbf{D_0}'$ of $\mathcal{S}' | \Gamma' | \Sigma' | \mathcal{R}' \Rightarrow A'$ and $\mathbf{D_0}''$ of $\mathcal{S}' | \Gamma' | \Sigma' , B' | \mathcal{R}' \Rightarrow A$.
+	\begin{prooftree}
+		\noLine
+		\AXC{$\mathbf{D_0}'$}
+		\UIC{$\mathcal{S}' | \Gamma' | \Sigma' | \mathcal{R}' \Rightarrow A'$}
+		\noLine
+		\AXC{$\mathbf{D_0}''$}
+		\UIC{$\mathcal{S}' | \Gamma' | \Sigma' , B' | \mathcal{R}' \Rightarrow A$}
+		\RightLabel{$L\nabla$}
+		\BIC{$\mathcal{S}' | \Gamma', A' \rightarrow B' | \Sigma' | \mathcal{R}' \Rightarrow A$}
+		
+		
+		\noLine
+		\AXC{$\mathbf{D_1}$}
+		\UIC{$\mathcal{T} | \Gamma , A | \mathcal{R} \Rightarrow \Delta$}
+		
+		\dashedLine\RightLabel{$Cut$}
+		\BIC{$[\mathcal{S}' | \Gamma' , A' \rightarrow B' | \Sigma' | \mathcal{R}' | \epsilon_{\mathcal{R}}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow \Delta$}
+	\end{prooftree}
+	From the induction hypothesis for $\mathbf{D_0}''$ and $\mathbf{D_1}$, we have a proof of\\
+	$[\mathcal{S}' | \Gamma' | \Sigma' , B' | \mathcal{R}' | \epsilon_{\mathcal{R}}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow \Delta$ with degree lower than that of $A$. Now to apply $L\rightarrow$ with $\mathbb{D_0}'$ in the proper place, we must first shift it's  add $\mathcal{T} | \Gamma | \mathcal{R}$ to it's antecedent using $Lw$. Then applying $R\nabla$ $l(\mathcal{R})$ times gives us $[\mathcal{S}' | \Gamma' | \Sigma' | \mathcal{R}' | \epsilon_{\mathcal{R}}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow \nabla^{l(\mathcal{R})} A'$, from which we can derive $[\mathcal{S}' | \Gamma' , \nabla^{l(\mathcal{R})} A' \rightarrow B' | \Sigma' | \mathcal{R}' | \epsilon_{\mathcal{R}}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow \Delta$, that is of no use. I'm lost.
+	
+	\item[($R*$)] In the case that the last rule in $\mathbf{D_0}$ is any of the right-rules $R*$, its principal formula would be $A$. For each case we will consider two more cases: Whether $A$ is also principal in the last rule of $\mathbf{D_1}$ or not. If it is so, then $R*$ determines a particular left-rule for $\mathbf{D_1}$ (except for $Rw$). If it is not, then we will consider different cases for the last rule of $\mathbf{D_1}$ this time. Note that in this case solution is independent of $R*$.
+	
+	\begin{enumerate}[label=\Roman*]
+		\item First, if $A$ is also principal in the last rule of $\mathbf{D_1}$.
+
+		\begin{itemize}
+
+			\item[($\land$)]‌
+			\begin{prooftree}
+				\noLine
+				\AXC{$\mathbf{D_0}'$}
+				\UIC{$\mathcal{S} \Rightarrow A'$}
+				\AXC{$\mathcal{S} \Rightarrow B'$}
+				\BIC{$\mathcal{S} \Rightarrow A' \land B'$}
+				
+				\noLine
+				\AXC{$\mathbf{D_1}'$}
+				\UIC{$\mathcal{T} | \Gamma , A' | \mathcal{R} \Rightarrow \Delta$}
+				\UIC{$\mathcal{T} | \Gamma, A' \land B' | \mathcal{R} \Rightarrow \Delta$}
+				
+				\noLine
+				\BIC{}
+			\end{prooftree}
+			Induction hypothesis for $\mathbf{D_0}'$ and $\mathbf{D_1}'$ gives us $[ \mathcal{S} | \epsilon_{l(\mathcal{R})} ] \cup [ \mathcal{T} | \Gamma | \mathcal{R} ] \Rightarrow \Delta$ with a lower cut-degree than $d(A)$.
+
+			\begin{prooftree}
+				\AXC{$\mathcal{S} \Rightarrow A'$}
+				\noLine
+				\AXC{$\mathbf{D_0}'$}
+				\UIC{$\mathcal{S} \Rightarrow B'$}
+				\BIC{$\mathcal{S} \Rightarrow A' \land B'$}
+				
+				\noLine
+				\AXC{$\mathbf{D_1}'$}
+				\UIC{$\mathcal{T} | \Gamma , B' | \mathcal{R} \Rightarrow \Delta$}
+				\UIC{$\mathcal{T} | \Gamma, A' \land B' | \mathcal{R} \Rightarrow \Delta$}
+				
+				\noLine
+				\BIC{}
+			\end{prooftree}
+			Induction hypothesis for $\mathbf{D_0}'$ and $\mathbf{D_1}'$ gives us $[ \mathcal{S} | \epsilon_{l(\mathcal{R})} ] \cup [ \mathcal{T} | \Gamma | \mathcal{R} ] \Rightarrow \Delta$ with a lower cut-degree than $d(A)$.
+
+			\item[($\lor$)]‌
+			\begin{prooftree}
+				\noLine
+				\AXC{$\mathbf{D_0}'$}
+				\UIC{$\mathcal{S} \Rightarrow A'$}
+				\UIC{$\mathcal{S} \Rightarrow A' \lor B'$}
+				
+				\noLine
+				\AXC{$\mathbf{D_1}'$}
+				\UIC{$\mathcal{T} | \Gamma , A' | \mathcal{R} \Rightarrow \Delta$}
+				\AXC{$\mathcal{T} | \Gamma , B' | \mathcal{R} \Rightarrow \Delta$}
+				\BIC{$\mathcal{T} | \Gamma , A' \lor B' | \mathcal{R} \Rightarrow \Delta$}
+
+				\noLine
+				\BIC{}
+			\end{prooftree}
+			Induction hypothesis for $\mathbf{D_0}'$ and $\mathbf{D_1}'$ gives us $[ \mathcal{S} | \epsilon_{l(\mathcal{R})} ] \cup [ \mathcal{T} | \Gamma | \mathcal{R} ] \Rightarrow \Delta$ with a lower cut-degree than $d(A)$.
+
+			\begin{prooftree}
+				\noLine
+				\AXC{$\mathbf{D_0}'$}
+				\UIC{$\mathcal{S} \Rightarrow B'$}
+				\UIC{$\mathcal{S} \Rightarrow A' \lor B'$}
+				
+
+				\AXC{$\mathcal{T} | \Gamma , A' | \mathcal{R} \Rightarrow \Delta$}
+				\noLine
+				\AXC{$\mathbf{D_1}'$}
+				\UIC{$\mathcal{T} | \Gamma , B' | \mathcal{R} \Rightarrow \Delta$}
+				\BIC{$\mathcal{T} | \Gamma , A' \lor B' | \mathcal{R} \Rightarrow \Delta$}
+				
+				\noLine
+				\BIC{}
+			\end{prooftree}
+			Induction hypothesis for $\mathbf{D_0}'$ and $\mathbf{D_1}'$ gives us $[ \mathcal{S} | \epsilon_{l(\mathcal{R})} ] \cup [ \mathcal{T} | \Gamma | \mathcal{R} ] \Rightarrow \Delta$ with a lower cut-degree than $d(A)$.
+
+			\item[($\nabla$)] {\color{red}\textbf{TODO}}
+			What we want: $[\mathcal{S} | - | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \Pi | \mathcal{R}] \Rightarrow \Delta$.
+			\begin{prooftree}
+				\noLine
+				\AXC{$\mathbf{D_0}'$}
+				\UIC{$\mathcal{S} \Rightarrow A'$}
+				\UIC{$\mathcal{S} | - \Rightarrow \nabla A'$}
+
+				\noLine
+				\AXC{$\mathbf{D_1}'$}
+				\UIC{$\mathcal{T} | \Gamma , A' | \Pi | \mathcal{R} \Rightarrow \Delta$}
+				\UIC{$\mathcal{T} | \Gamma | \Pi , \nabla A' | \mathcal{R} \Rightarrow \Delta$}
+
+				\noLine
+				\BIC{}
+			\end{prooftree}
+			What we get from induction hypothesis for $\mathbf{D_0}'$ and $\mathbf{D_1}'$: $[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \Pi | \mathcal{R}] \Rightarrow \Delta$.
+
+			\item[($\rightarrow$)] {\color{red}\textbf{TODO}}
+			What we want: $[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \Pi | \mathcal{R}] \Rightarrow \Delta$.
+			\begin{prooftree}
+				\noLine
+				\AXC{$\mathbf{D_0}'$}
+				\UIC{$\mathcal{S} | A' \Rightarrow B'$}
+				\UIC{$\mathcal{S} \Rightarrow A' \rightarrow B'$}
+
+				\noLine
+				\AXC{$\mathbf{D_1}'$}
+				\UIC{$\mathcal{S} | \Gamma | \Sigma | \mathcal{R} \Rightarrow A'$}
+				\noLine
+				\AXC{$\mathbf{D_1}''$}
+				\UIC{$\mathcal{S} | \Gamma | \Sigma , B' | \mathcal{R} \Rightarrow \Delta$}
+				\BIC{$\mathcal{S} | \Gamma, A' \rightarrow B' | \Sigma | \mathcal{R} \Rightarrow \Delta$}
+				
+				\noLine
+				\BIC{}
+			\end{prooftree}
+			From induction hypothesis for $\mathbf{D_0}'$ and $\mathbf{D_1}''$: $[\mathcal{S} | A' | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \Sigma | \mathcal{R}] \Rightarrow \Delta$.\\
+			Again from IH for this and $\mathbf{D_1}'$: $[\mathcal{T} | \Gamma | \Sigma | \mathcal{R} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{S} | - | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \Sigma | \mathcal{R}] \Rightarrow \Delta$.\\
+			We can do this in another order and come to this very same sequent.
+			
+			\item[($Rw$)] {\color{red}\textbf{TODO}} No idea. (This case is handled if the cut-formula is not principal on the other side.)
+		\end{itemize}
+	
+		\item If $A$ is not principal in the last rule of $\mathbf{D_1}$. Consider these cases as $\mathbf{D_1}$'s last rule:
+		
+		\begin{itemize}
+			\item[($Ax$)] $\mathbf{D_0}$ proves the desired sequent.
+			
+			\item[($Ta$)] Won't happen.
+			
+			\item[($Ex$)] This only happens in the case that $\mathbf{D_0}$ ends with $Rw$. So it already proves the desired sequent $\mathcal{S} \Rightarrow$.
+			
+			\item[($Lw$)] We want this\footnote{Misusing the notation just to handle many cases of the principal formula. Probably not the best way to do this.}
+			\begin{prooftree}
+				\noLine
+				\AXC{$\mathbf{D_0}$}
+				\UIC{$\mathcal{S} \Rightarrow A$}
+
+				\noLine
+				\AXC{$\mathbf{D_1}'$}
+				\UIC{$\mathcal{T} | \Gamma , A | \mathcal{R} \Rightarrow \Delta$}
+				\RightLabel{$Lw$}
+				\UIC{$[\mathcal{T} | \Gamma , A | \mathcal{R}] \cup [\epsilon | A' | \epsilon_n]\Rightarrow \Delta$}
+				
+				\dashedLine\RightLabel{$Cut$}
+				\BIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \cup [\epsilon | A' | \epsilon_n] \Rightarrow \Delta$}
+			\end{prooftree}
+			 By induction hypothesis for $\mathbf{D_0}$ and $\mathbf{D_1}'$
+			\begin{prooftree}
+				\noLine
+				\AXC{$\mathbf{D_0}$}
+				\UIC{$\mathcal{S} \Rightarrow A$}
+				
+				\noLine
+				\AXC{$\mathbf{D_1}'$}
+				\UIC{$\mathcal{T} | \Gamma , A | \mathcal{R} \Rightarrow \Delta$}
+				\RightLabel{IH}
+				\BIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow \Delta$}
+				
+				\RightLabel{$Lw$}
+				\UIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \cup [\epsilon | A' | \epsilon_n] \Rightarrow \Delta$}
+			\end{prooftree}
+
+			\item[($Rw$)] We want this
+			\begin{prooftree}
+				\noLine
+				\AXC{$\mathbf{D_0}$}
+				\UIC{$\mathcal{S} \Rightarrow A$}
+				
+				\noLine
+				\AXC{$\mathbf{D_1}'$}
+				\UIC{$\mathcal{T} | \Gamma , A | \mathcal{R} \Rightarrow$}
+				\RightLabel{$Rw$}
+				\UIC{$\mathcal{T} | \Gamma , A | \mathcal{R} \Rightarrow A'$}
+				
+				\dashedLine\RightLabel{$Cut$}
+				\BIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow A'$}
+			\end{prooftree}
+			By induction hypothesis for $\mathbf{D_0}$ and $\mathbf{D_1}'$
+			\begin{prooftree}
+				\noLine
+				\AXC{$\mathbf{D_0}$}
+				\UIC{$\mathcal{S} \Rightarrow A$}
+				
+				\noLine
+				\AXC{$\mathbf{D_1}'$}
+				\UIC{$\mathcal{T} | \Gamma , A | \mathcal{R} \Rightarrow$}
+				\RightLabel{IH}
+				\BIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow$}
+				
+				\RightLabel{$Rw$}
+				\UIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow A'$}
+			\end{prooftree}
+
+			\item[($Lc$)] We want this
+			\begin{prooftree}
+				\noLine
+				\AXC{$\mathbf{D_0}$}
+				\UIC{$\mathcal{S} \Rightarrow A$}
+				
+				\noLine
+				\AXC{$\mathbf{D_1}'$}
+				\UIC{$[\mathcal{T} | \Gamma , A | \mathcal{R}] \cup [\epsilon | A' , A' | \epsilon_n ] \Rightarrow \Delta$}
+				\RightLabel{$Lc$}
+				\UIC{$[\mathcal{T} | \Gamma , A | \mathcal{R}] \cup [\epsilon | A' | \epsilon_n] \Rightarrow \Delta$}
+				
+				\dashedLine\RightLabel{$Cut$}
+				\BIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \cup [\epsilon | A' | \epsilon_n] \Rightarrow \Delta$}
+			\end{prooftree}
+			By induction hypothesis for $\mathbf{D_0}$ and $\mathbf{D_1}'$
+			\begin{prooftree}
+				\noLine
+				\AXC{$\mathbf{D_0}$}
+				\UIC{$\mathcal{S} \Rightarrow A$}
+				
+				\noLine
+				\AXC{$\mathbf{D_1}'$}
+				\UIC{$[\mathcal{T} | \Gamma , A | \mathcal{R}] \cup [\epsilon | A' , A' | \epsilon_n ] \Rightarrow \Delta$}
+				\RightLabel{IH}
+				\BIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \cup [\epsilon | A' , A' | \epsilon_n] \Rightarrow \Delta$}
+				
+				\RightLabel{$Lc$}
+				\UIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \cup [\epsilon | A' | \epsilon_n] \Rightarrow \Delta$}
+			\end{prooftree}
+		
+			\item[($L\land$)] We want this
+			\begin{prooftree}
+				\noLine
+				\AXC{$\mathbf{D_0}$}
+				\UIC{$\mathcal{S} \Rightarrow A$}
+				
+				\noLine
+				\AXC{$\mathbf{D_1}'$}
+				\UIC{$[\mathcal{T} | \Gamma , A | \mathcal{R}] \cup [\epsilon | A' | \epsilon_n ] \Rightarrow \Delta$}
+				\RightLabel{$L\land$}
+				\UIC{$[\mathcal{T} | \Gamma , A | \mathcal{R}] \cup [\epsilon | A' \land B' | \epsilon_n] \Rightarrow \Delta$}
+				
+				\dashedLine\RightLabel{$Cut$}
+				\BIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \cup [\epsilon | A' \land B' | \epsilon_n] \Rightarrow \Delta$}
+			\end{prooftree}
+			By induction hypothesis for $\mathbf{D_0}$ and $\mathbf{D_1}'$
+			\begin{prooftree}
+				\noLine
+				\AXC{$\mathbf{D_0}$}
+				\UIC{$\mathcal{S} \Rightarrow A$}
+				
+				\noLine
+				\AXC{$\mathbf{D_1}'$}
+				\UIC{$[\mathcal{T} | \Gamma , A | \mathcal{R}] \cup [\epsilon | A' | \epsilon_n ] \Rightarrow \Delta$}
+				\RightLabel{IH}
+				\BIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \cup [\epsilon | A' | \epsilon_n] \Rightarrow \Delta$}
+				
+				\RightLabel{$L\land$}
+				\UIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \cup [\epsilon | A' \land B' | \epsilon_n] \Rightarrow \Delta$}
+			\end{prooftree}
+			The other $L\land$ is similar.
+		
+			\item[($R\land$)] We want this
+			\begin{prooftree}
+				\noLine
+				\AXC{$\mathbf{D_0}$}
+				\UIC{$\mathcal{S} \Rightarrow A$}
+				
+				\noLine
+				\AXC{$\mathbf{D_1}'$}
+				\UIC{$\mathcal{T} | \Gamma , A | \mathcal{R} \Rightarrow A'$}
+				\noLine
+				\AXC{$\mathbf{D_1}''$}
+				\UIC{$\mathcal{T} | \Gamma , A | \mathcal{R} \Rightarrow B'$}
+				\RightLabel{$R\land$}
+				\BIC{$\mathcal{T} | \Gamma , A | \mathcal{R}] \Rightarrow A' \land B'$}
+				
+				\dashedLine\RightLabel{$Cut$}
+				\BIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow A' \land B'$}
+			\end{prooftree}
+			By induction hypothesis, once for $\mathbf{D_0}$ and $\mathbf{D_1}'$ and again for $\mathbf{D_0}$ and $\mathbf{D_1}''$
+			\begin{prooftree}
+				\noLine
+				\AXC{$\mathbf{D_0}$}
+				\UIC{$\mathcal{S} \Rightarrow A$}
+				
+				\noLine
+				\AXC{$\mathbf{D_1}'$}
+				\UIC{$\mathcal{T} | \Gamma , A | \mathcal{R} \Rightarrow A'$}
+				
+				\RightLabel{IH}
+				\BIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow A'$}
+				
+				\noLine
+				\AXC{$\mathbf{D_0}$}
+				\UIC{$\mathcal{S} \Rightarrow A$}
+				
+				\noLine
+				\AXC{$\mathbf{D_1}''$}
+				\UIC{$\mathcal{T} | \Gamma , A | \mathcal{R} \Rightarrow B'$}
+				
+				\RightLabel{IH}
+				\BIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow B'$}
+				
+				\RightLabel{$R\land$}
+				\BIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow A' \land B'$}
+			\end{prooftree}
+
+			\item[($L\lor$)] We want this
+			\begin{prooftree}
+				\noLine
+				\AXC{$\mathbf{D_0}$}
+				\UIC{$\mathcal{S} \Rightarrow A$}
+				
+				\noLine
+				\AXC{$\mathbf{D_1}'$}
+				\UIC{$[\mathcal{T} | \Gamma , A | \mathcal{R}] \cup [\epsilon | A' | \epsilon_n] \Rightarrow \Delta$}
+				\noLine
+				\AXC{$\mathbf{D_1}''$}
+				\UIC{$[\mathcal{T} | \Gamma , A | \mathcal{R}] \cup [\epsilon | B' | \epsilon_n] \Rightarrow \Delta$}
+				\RightLabel{$L\lor$}
+				\BIC{$[\mathcal{T} | \Gamma , A | \mathcal{R}] \cup [\epsilon | A' \lor B' | \epsilon_n] \Rightarrow \Delta$}
+				
+				\dashedLine\RightLabel{$Cut$}
+				\BIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \cup [\epsilon | A' \lor B' | \epsilon_n] \Rightarrow \Delta$}
+			\end{prooftree}
+			By induction hypothesis, once for $\mathbf{D_0}$ and $\mathbf{D_1}'$ and again for $\mathbf{D_0}$ and $\mathbf{D_1}''$
+			\begin{prooftree}
+				\noLine
+				\AXC{$\mathbf{D_0}$}
+				\UIC{$\mathcal{S} \Rightarrow A$}
+				
+				\noLine
+				\AXC{$\mathbf{D_1}'$}
+				\UIC{$[\mathcal{T} | \Gamma , A | \mathcal{R}] \cup [\epsilon | A' | \epsilon_n] \Rightarrow \Delta$}
+				
+				\RightLabel{IH}
+				\BIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \cup [\epsilon | A' | \epsilon_n] \Rightarrow \Delta$}
+
+				\noLine
+				\AXC{$\mathbf{D_0}$}
+				\UIC{$\mathcal{S} \Rightarrow A$}
+				
+				\noLine
+				\AXC{$\mathbf{D_1}''$}
+				\UIC{$[\mathcal{T} | \Gamma , A | \mathcal{R}] \cup [\epsilon | B' | \epsilon_n] \Rightarrow \Delta$}
+				
+				\RightLabel{IH}
+				\BIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \cup [\epsilon | B' | \epsilon_n] \Rightarrow \Delta$}
+
+				\RightLabel{$L\lor$}
+				\BIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \cup [\epsilon | A' \lor B' | \epsilon_n] \Rightarrow \Delta$}
+			\end{prooftree}
+
+			\item[($R\lor$)] We want this
+			\begin{prooftree}
+				\noLine
+				\AXC{$\mathbf{D_0}$}
+				\UIC{$\mathcal{S} \Rightarrow A$}
+				
+				\noLine
+				\AXC{$\mathbf{D_1}'$}
+				\UIC{$\mathcal{T} | \Gamma , A | \mathcal{R} \Rightarrow A'$}
+				\RightLabel{$R\lor$}
+				\UIC{$\mathcal{T} | \Gamma , A | \mathcal{R} \Rightarrow A' \lor B'$}
+				
+				\dashedLine\RightLabel{$Cut$}
+				\BIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow A' \lor B'$}
+			\end{prooftree}
+			By induction hypothesis for $\mathbf{D_0}$ and $\mathbf{D_1}'$
+			\begin{prooftree}
+				\noLine
+				\AXC{$\mathbf{D_0}$}
+				\UIC{$\mathcal{S} \Rightarrow A$}
+				
+				\noLine
+				\AXC{$\mathbf{D_1}'$}
+				\UIC{$\mathcal{T} | \Gamma , A | \mathcal{R} \Rightarrow A'$}
+				\RightLabel{IH}
+				\BIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow A'$}
+				
+				\RightLabel{$R\lor$}
+				\UIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow A' \lor B'$}
+			\end{prooftree}
+			The other $R\lor$ is similar.
+
+			\item[($L\rightarrow$)] We want this
+			\begin{prooftree}
+				\noLine
+				\AXC{$\mathbf{D_0}$}
+				\UIC{$\mathcal{S} \Rightarrow A$}
+
+
+				\noLine
+				\AXC{$\mathbf{D_1}'$}
+				\UIC{$\mathcal{T} | \Gamma , A | \mathcal{R} \Rightarrow A'$}
+				
+				\noLine
+				\AXC{$\mathbf{D_1}''$}
+				\UIC{$[\mathcal{T} | \Gamma , A | \mathcal{R}] \cup [\epsilon | B' | \epsilon_n] \Rightarrow \Delta$}
+				
+				\RightLabel{$L\rightarrow$}
+				\BIC{$[\mathcal{T} | \Gamma , A | \mathcal{R}] \cup [\epsilon | A' \rightarrow B' | \epsilon_{n+1}] \Rightarrow \Delta$}
+
+
+				\dashedLine\RightLabel{$Cut$}
+				\BIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \cup [\epsilon | A' \rightarrow B' | \epsilon_{n+1}] \Rightarrow \Delta$}
+			\end{prooftree}
+			By induction hypothesis, once for $\mathbf{D_0}$ and $\mathbf{D_1}'$ and again for $\mathbf{D_0}$ and $\mathbf{D_1}''$
+			\begin{prooftree}
+				\noLine
+				\AXC{$\mathbf{D_0}$}
+				\UIC{$\mathcal{S} \Rightarrow A$}
+				
+				\noLine
+				\AXC{$\mathbf{D_1}'$}
+				\UIC{$\mathcal{T} | \Gamma , A | \mathcal{R} \Rightarrow A'$}
+				
+				\RightLabel{IH}
+				\BIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow A'$}
+				
+				\noLine
+				\AXC{$\mathbf{D_0}$}
+				\UIC{$\mathcal{S} \Rightarrow A$}
+				
+				\noLine
+				\AXC{$\mathbf{D_1}''$}
+				\UIC{$[\mathcal{T} | \Gamma , A | \mathcal{R}] \cup [\epsilon | B' | \epsilon_n] \Rightarrow \Delta$}
+				
+				\RightLabel{IH}
+				\BIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \cup [\epsilon | B' | \epsilon_n] \Rightarrow \Delta$}
+				
+				\RightLabel{$L\rightarrow$}
+				\BIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \cup [\epsilon | A' \rightarrow B' | \epsilon_{n+1}] \Rightarrow \Delta$}
+			\end{prooftree}
+
+			\item[($R\rightarrow$)] We want this
+			\begin{prooftree}
+				\noLine
+				\AXC{$\mathbf{D_0}$}
+				\UIC{$\mathcal{S} \Rightarrow A$}
+				
+				\noLine
+				\AXC{$\mathbf{D_1}'$}
+				\UIC{$\mathcal{T} | \Gamma , A | \mathcal{R} | A' \Rightarrow B'$}
+				\RightLabel{$R\rightarrow$}
+				\UIC{$\mathcal{T} | \Gamma , A | \mathcal{R} \Rightarrow A' \rightarrow B'$}
+				
+				\dashedLine\RightLabel{$Cut$}
+				\BIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow A' \rightarrow B'$}
+			\end{prooftree}
+			By induction hypothesis for $\mathbf{D_0}$ and $\mathbf{D_1}'$
+			\begin{prooftree}
+				\noLine
+				\AXC{$\mathbf{D_0}$}
+				\UIC{$\mathcal{S} \Rightarrow A$}
+				
+				\noLine
+				\AXC{$\mathbf{D_1}'$}
+				\UIC{$\mathcal{T} | \Gamma , A | \mathcal{R} | A' \Rightarrow B'$}
+				\RightLabel{IH}
+				\BIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})+1}] \cup [\mathcal{T} | \Gamma | \mathcal{R} | A'] \Rightarrow B'$}
+				
+				\RightLabel{$R\rightarrow$}
+				\UIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow A' \rightarrow B'$}
+			\end{prooftree}
+		
+			\item[($L\nabla$)] We want this
+			\begin{prooftree}
+				\noLine
+				\AXC{$\mathbf{D_0}$}
+				\UIC{$\mathcal{S} \Rightarrow A$}
+				
+				\noLine
+				\AXC{$\mathbf{D_1}'$}
+				\UIC{$[\mathcal{T} | \Gamma , A | \mathcal{R}] \cup [\epsilon | A' | \epsilon_{n+1}] \Rightarrow \Delta$}
+				\RightLabel{$L\nabla$}
+				\UIC{$[\mathcal{T} | \Gamma , A | \mathcal{R}] \cup [\epsilon | \nabla A' | \epsilon_n] \Rightarrow \Delta$}
+				
+				\dashedLine\RightLabel{$Cut$}
+				\BIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \cup [\epsilon | \nabla A' | \epsilon_n] \Rightarrow \Delta$}
+			\end{prooftree}
+			By induction hypothesis for $\mathbf{D_0}$ and $\mathbf{D_1}'$
+			\begin{prooftree}
+				\noLine
+				\AXC{$\mathbf{D_0}$}
+				\UIC{$\mathcal{S} \Rightarrow A$}
+				
+				\noLine
+				\AXC{$\mathbf{D_1}'$}
+				\UIC{$[\mathcal{T} | \Gamma , A | \mathcal{R}] \cup [\epsilon | A' | \epsilon_{n+1}] \Rightarrow \Delta$}
+				\RightLabel{IH}
+				\BIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \cup [\epsilon | A' | \epsilon_{n+1}] \Rightarrow \Delta$}
+				
+				\RightLabel{$L\nabla$}
+				\UIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \cup [\epsilon | \nabla A' | \epsilon_n] \Rightarrow \Delta$}
+			\end{prooftree}
+
+			\item[($R\nabla$)] We want this
+			\begin{prooftree}
+				\noLine
+				\AXC{$\mathbf{D_0}$}
+				\UIC{$\mathcal{S} \Rightarrow A$}
+				
+				\noLine
+				\AXC{$\mathbf{D_1}'$}
+				\UIC{$\mathcal{T} | \Gamma , A | \mathcal{R} \Rightarrow A'$}
+				\RightLabel{$R\nabla$}
+				\UIC{$\mathcal{T} | \Gamma , A | \mathcal{R} | - \Rightarrow \nabla A'$}
+				
+				\dashedLine\RightLabel{$Cut$}
+				\BIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})+1}] \cup [\mathcal{T} | \Gamma | \mathcal{R} | -] \Rightarrow \nabla A'$}
+			\end{prooftree}
+			By induction hypothesis for $\mathbf{D_0}$ and $\mathbf{D_1}'$
+			\begin{prooftree}
+				\noLine
+				\AXC{$\mathbf{D_0}$}
+				\UIC{$\mathcal{S} \Rightarrow A$}
+				
+				\noLine
+				\AXC{$\mathbf{D_1}'$}
+				\UIC{$\mathcal{T} | \Gamma , A | \mathcal{R} \Rightarrow A'$}
+				\RightLabel{IH}
+				\BIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow A'$}
+				
+				\RightLabel{$R\nabla$}
+				\UIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})+1}] \cup [\mathcal{T} | \Gamma | \mathcal{R} | -] \Rightarrow \nabla A'$}
+			\end{prooftree}
+		\end{itemize}
+	\end{enumerate}
+\end{itemize}
+\pagebreak
+
+\section{Corollary} \emph{Cut Elimination for GSTL: }
+If $\text{GSTL}^- + Cut \vdash \Gamma \Rightarrow \Delta$, then $\text{GSTL}^- \vdash \Gamma \Rightarrow \Delta$.
+
+\emph{Proof:} It suffices to show that for any proof three of $\Gamma \Rightarrow \Delta$ like $\mathbf{D}$, there is another proof of it with a lower cut-degree. Using induction on $h(\mathbf{D})$, the induction hypothesis states that for any proof of $\Gamma' \Rightarrow \Delta'$ like $\mathbf{D'}$ such that $h(\mathbf{D'}) < h(\mathbf{D})$, there is another proof of $\Gamma' \Rightarrow \Delta'$ like $\mathbf{D''}$ such that $d(\mathbf{D''}) < d(\mathbf{D'})$. Particularly for the immediate sub-trees of $\mathbf{D}$, this gives us sub-trees with lower cut-degree, which we call $\mathbf{D}_i$. We now consider two cases for the last rule of $\mathbf{D}$
+
+\begin{enumerate}[label=\Roman*]
+	\item If the last rule of $\mathbf{D}$ is of a lower degree than $d(\mathbf{D})$, i.e. the cut rule with the maximum degree is not the last rule in $\mathbf{D}$, then we can apply the same last rule on $\mathbf{D}_i$s and get a proof of $\Gamma \Rightarrow \Delta$ with a lower cut-degree.
+	
+	\item If the last rule of $\mathbf{D}$ is an instance of cut rule with a cut-formula of degree $d(\mathbf{D})$, then we can apply theorem \ref{cut-admis} to $\mathbf{D_0}$ and $\mathbf{D_1}$ to get the same cut with a lower degree.
+\end{enumerate}
+
+\end{document}

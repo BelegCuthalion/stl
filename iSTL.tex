@@ -1,0 +1,110 @@
+
+\section{iSTL$^-$} ‌\\
+\begin{multicols}{3}
+	\begin{prooftree}
+		\AXC{}
+		\UIC{$A \Rightarrow A$}
+	\end{prooftree}
+\columnbreak
+	\begin{prooftree}
+		\AXC{}
+		\UIC{$\Rightarrow \top$}
+	\end{prooftree}
+\columnbreak
+	\begin{prooftree}
+	\AXC{}
+	\UIC{$\bot \Rightarrow$}
+\end{prooftree}
+\end{multicols}
+‌\\
+\begin{multicols}{3}
+	\begin{prooftree}
+		\RightLabel{$Lw$}
+		\AXC{$\Gamma \Rightarrow \Delta$}
+		\UIC{$\Gamma , A \Rightarrow \Delta$}
+	\end{prooftree}
+	\columnbreak
+	\begin{prooftree}
+		\RightLabel{$Rw$}
+		\AXC{$\Gamma \Rightarrow$}
+		\UIC{$\Gamma \Rightarrow A$}
+	\end{prooftree}
+	\columnbreak
+	\begin{prooftree}
+		\RightLabel{$Lc$}
+		\AXC{$\Gamma , A , A \Rightarrow \Delta$}
+		\UIC{$\Gamma , A \Rightarrow \Delta$}
+	\end{prooftree}
+\end{multicols}
+‌\\
+\begin{multicols}{3}
+	\begin{prooftree}
+		\RightLabel{$L\land$}
+		\AXC{$\Gamma , A \Rightarrow \Delta$}
+		\UIC{$\Gamma , A \land B \Rightarrow \Delta$}
+	\end{prooftree}
+	\columnbreak
+	\begin{prooftree}
+		\RightLabel{$L\land$}
+		\AXC{$\Gamma , B \Rightarrow \Delta$}
+		\UIC{$\Gamma , A \land B \Rightarrow \Delta$}
+	\end{prooftree}
+	\columnbreak
+	\begin{prooftree}
+		\RightLabel{$R\land$}
+		\AXC{$\Gamma \Rightarrow A$}
+		\AXC{$\Gamma \Rightarrow B$}
+		\BIC{$\Gamma \Rightarrow A \land B$}
+	\end{prooftree}
+\end{multicols}
+‌\\
+\begin{multicols}{3}
+	\begin{prooftree}
+		\RightLabel{$L\lor$}
+		\AXC{$\Gamma , A \Rightarrow \Delta$}
+		\AXC{$\Gamma , B \Rightarrow \Delta$}
+		\BIC{$\Gamma , A \lor B \Rightarrow \Delta$}
+	\end{prooftree}
+	\columnbreak
+	\begin{prooftree}
+		\RightLabel{$R\lor$}
+		\AXC{$\Gamma \Rightarrow A$}
+		\UIC{$\Gamma \Rightarrow A \lor B$}
+	\end{prooftree}
+	\columnbreak
+	\begin{prooftree}
+		\RightLabel{$R\lor$}
+		\AXC{$\Gamma \Rightarrow B$}
+		\UIC{$\Gamma \Rightarrow A \lor B$}
+	\end{prooftree}
+\end{multicols}
+‌\\
+\begin{multicols}{2}
+	\begin{prooftree}
+		\RightLabel{$L\rightarrow$}
+		\AXC{$\Gamma \Rightarrow A$}
+		\AXC{$\Gamma , B \Rightarrow \Delta$}
+		\BIC{$\Gamma, \nabla(A \rightarrow B) \Rightarrow \Delta$}
+	\end{prooftree}
+	\columnbreak
+	\begin{prooftree}
+		\RightLabel{$R\rightarrow$}
+		\AXC{$\nabla\Gamma , A \Rightarrow B$}
+		\UIC{$\Gamma \Rightarrow A \rightarrow B$}
+	\end{prooftree}
+\end{multicols}
+‌\\
+\begin{prooftree}
+	\RightLabel{$N$}
+	\AXC{$\Gamma \Rightarrow A$}
+	\UIC{$\nabla\Gamma \Rightarrow \nabla A$}
+\end{prooftree}
+‌\\
+\subsection{Cut}
+\begin{prooftree}
+	\RightLabel{$Cut$}
+	\AXC{$\Gamma \Rightarrow A$}
+	\AXC{$\Gamma' , A \Rightarrow \Delta$}
+	\BIC{$\Gamma , \Gamma' \Rightarrow \Delta$}
+\end{prooftree}
+\pagebreak

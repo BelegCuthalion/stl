@@ -1,0 +1,119 @@
+\section{GSTL$^-$} ‌\\
+\begin{multicols}{3}
+	\begin{prooftree}
+		\RightLabel{$Ax$}
+		\AXC{}
+		\UIC{$\epsilon|A \Rightarrow A$}
+	\end{prooftree}
+	\columnbreak
+	\begin{prooftree}
+		\RightLabel{$Ta$}
+		\AXC{}
+		\UIC{$\epsilon \Rightarrow \top$}
+	\end{prooftree}
+	\columnbreak
+	\begin{prooftree}
+		\RightLabel{$Ex$}
+		\AXC{}
+		\UIC{$\epsilon |‌\bot | \epsilon_n \Rightarrow$}
+	\end{prooftree}
+\end{multicols}
+‌\\
+\begin{multicols}{3}
+	\begin{prooftree}
+		\RightLabel{$Lw$}
+		\AXC{$\mathcal{S} | \Gamma | \mathcal{R} \Rightarrow \Delta$}
+		\UIC{$\mathcal{S} | \Gamma , A | \mathcal{R} \Rightarrow \Delta$}
+	\end{prooftree}
+	\columnbreak
+	\begin{prooftree}
+		\RightLabel{$Rw$}
+		\AXC{$\mathcal{S} \Rightarrow$}
+		\UIC{$\mathcal{S} \Rightarrow A$}
+	\end{prooftree}
+	\columnbreak
+	\begin{prooftree}
+		\RightLabel{$Lc$}
+		\AXC{$\mathcal{S} |‌\Gamma , A , A |‌\mathcal{R} \Rightarrow \Delta$}
+		\UIC{$\mathcal{S} | \Gamma , A | \mathcal{R} \Rightarrow \Delta$}
+	\end{prooftree}
+\end{multicols}
+‌\\
+\begin{multicols}{3}
+	\begin{prooftree}
+		\RightLabel{$L\land$}
+		\AXC{$\mathcal{S} |‌\Gamma , A | \mathcal{R} \Rightarrow \Delta$}
+		\UIC{$\mathcal{S} |‌\Gamma , A \land B |‌\mathcal{R} \Rightarrow \Delta$}
+	\end{prooftree}
+	\columnbreak
+	\begin{prooftree}
+		\RightLabel{$L\land$}
+		\AXC{$\mathcal{S} |‌\Gamma , B | \mathcal{R} \Rightarrow \Delta$}
+		\UIC{$\mathcal{S} |‌\Gamma , A \land B | \mathcal{R} \Rightarrow \Delta$}
+	\end{prooftree}
+	\columnbreak
+	\begin{prooftree}
+		\RightLabel{$R\land$}
+		\AXC{$\mathcal{S} \Rightarrow A$}
+		\AXC{$\mathcal{S} \Rightarrow B$}
+		\BIC{$\mathcal{S} \Rightarrow A \land B$}
+	\end{prooftree}
+\end{multicols}
+‌\\
+\begin{multicols}{3}
+	\begin{prooftree}
+		\RightLabel{$L\lor$}
+		\AXC{$\mathcal{S} |‌\Gamma , A |‌\mathcal{R} \Rightarrow \Delta$}
+		\AXC{$\mathcal{S} |‌\Gamma , B | \mathcal{R} \Rightarrow \Delta$}
+		\BIC{$\mathcal{S} |‌\Gamma , A \lor B | \mathcal{R} \Rightarrow \Delta$}
+	\end{prooftree}
+	\columnbreak
+	\begin{prooftree}
+		\RightLabel{$R\lor$}
+		\AXC{$\mathcal{S} \Rightarrow A$}
+		\UIC{$\mathcal{S} \Rightarrow A \lor B$}
+	\end{prooftree}
+	\columnbreak
+	\begin{prooftree}
+		\RightLabel{$R\lor$}
+		\AXC{$\mathcal{S} \Rightarrow B$}
+		\UIC{$\mathcal{S} \Rightarrow A \lor B$}
+	\end{prooftree}
+\end{multicols}
+‌\\
+\begin{multicols}{2}
+	\begin{prooftree}
+		\RightLabel{$L\rightarrow$}
+		\AXC{$\mathcal{S} |‌\Gamma | \Sigma |‌\mathcal{R} \Rightarrow A$}
+		\AXC{$\mathcal{S} |‌\Gamma | \Sigma , B | \mathcal{R} \Rightarrow \Delta$}
+		\BIC{$\mathcal{S} |‌\Gamma, A \rightarrow B | \Sigma | \mathcal{R} \Rightarrow \Delta$}
+	\end{prooftree}
+	\columnbreak
+	\begin{prooftree}
+		\RightLabel{$R\rightarrow$}
+		\AXC{$\mathcal{S} | A \Rightarrow B$}
+		\UIC{$\mathcal{S} \Rightarrow A \rightarrow B$}
+	\end{prooftree}
+\end{multicols}
+‌\\
+\begin{multicols}{2}
+	\begin{prooftree}
+		\RightLabel{$L\nabla$}
+		\AXC{$\mathcal{S} |‌\Gamma , A | \Pi |‌\mathcal{R} \Rightarrow \Delta$}
+		\UIC{$\mathcal{S} |‌\Gamma | \Pi , \nabla A |‌\mathcal{R} \Rightarrow \Delta$}
+	\end{prooftree}
+	
+	\begin{prooftree}
+		\RightLabel{$R\nabla$}
+		\AXC{$\mathcal{S} \Rightarrow A$}
+		\UIC{$\mathcal{S} | - \Rightarrow \nabla A$}
+	\end{prooftree}
+\end{multicols}
+‌\\
+\subsection{Cut}
+\begin{prooftree}
+	\RightLabel{$Cut$}
+	\AXC{$\mathcal{S} \Rightarrow A$}
+	\AXC{$\mathcal{T} | \Gamma, A | \mathcal{R} \Rightarrow \Delta$}
+	\BIC{$[ \mathcal{S} | \epsilon_{l(\mathcal{R})} ] \cup [ \mathcal{T} | \Gamma | \mathcal{R} ] \Rightarrow \Delta$}
+\end{prooftree}
