@@ -35,6 +35,7 @@
 \subsubsection{Degree} For a formula $\varphi$,
 \[ d(\varphi) = \begin{cases}
 	1 & \quad ; \varphi \in P \cup \{ \bot, \top \} \\
+	d(\psi) + 1 & \quad ; \varphi = \nabla \psi \\
 	max(d(\psi), d(\theta)) + 1 & \quad ; \varphi = \psi \Box \theta, \Box \in \{ \land , \lor, \rightarrow \}
 \end{cases} \]
 For an instance of the cut rule $r$ with cut-formula $\varphi$, $d(r) = d(\varphi)$, $0$ if it's not an instance of the cut rule.
