@@ -26,7 +26,7 @@
 
 \begin{document}
 {\noindent
-	v 0.0 \\
+	v 0.1 \\
 {\large\textbf{The Cut Rule Is Admissible in GSTL}}
 }
 \\
@@ -42,18 +42,31 @@ For an instance of the cut rule $r$ with cut-formula $\varphi$, $d(r) = d(\varph
 For a proof tree $\mathbf{D}$, $d(\mathbf{D})$ is the maximum degree of its cut rules, $0$ if $\mathbf{D}$ is cut-free.
 \pagebreak
 
-\section{Theorem}\label{cut-admis} If $\text{GSTL}^-\vdash \mathcal{S} \Rightarrow A$ and $\text{GSTL}^-\vdash \mathcal{T} | \Gamma, A | \mathcal{R} \Rightarrow \Delta$ with proof trees of degrees less than $d(A)$, then
+\section{Theorem}\label{cut-admis} For any $\mathcal{S}$, $n$, $A$, $\mathcal{T}$, $\Gamma$, $\mathcal{R}$ and $\Delta$, if $\text{GSTL}^-\vdash \mathcal{S} \Rightarrow A$ and $\text{GSTL}^-\vdash \mathcal{T} | \Gamma, A^n | \mathcal{R} \Rightarrow \Delta$ with proof trees of degrees less than $d(A)$, then
  $\text{GSTL}^-\vdash [ \mathcal{S} | \epsilon_{l(\mathcal{R})} ] \cup [ \mathcal{T} | \Gamma | \mathcal{R} ] \Rightarrow \Delta$ also with a proof tree of a degree less than $d(A)$.
  
 \emph{Proof:}
-Let $\mathbf{D_0}$ and $\mathbf{D_1}$ be proof trees of degrees less than $d(A)$, with conclusions $\mathcal{S} \Rightarrow A$ and $\mathcal{T} | \Gamma, A | \mathcal{R} \Rightarrow \Delta$ and heights $h(\mathbf{D_0})$ and $h(\mathbf{D_1})$ respectively. By induction on $h(\mathbf{D_0}) + h(\mathbf{D_1})$, the induction hypothesis states that for any proof trees $\mathbf{D_0}'$ with conclusion $\mathcal{S}' \Rightarrow A'$ and $\mathbf{D_1}'$ with conclusion $\mathcal{T}' | \Gamma', A' | \mathcal{R}' \Rightarrow \Delta'$ such that $h(\mathbf{D_0}') + h(\mathbf{D_1}') < h(\mathbf{D_0}) + h(\mathbf{D_1})$ and $d(\mathbf{D_0}'),d(\mathbf{D_1}') < d(A')$, there exists a proof tree $\mathbf{D}'$ with conclusion $[ \mathcal{S}' | \epsilon_{l(\mathcal{R}')} ] \cup [ \mathcal{T}' | \Gamma' | \mathcal{R}' ] \Rightarrow \Delta'$ such that $d(\mathbf{D}') < d(A')$. We proceed by case analysis on the last rule in $\mathbf{D_0}$.
+Let $\mathbf{D_0}$ and $\mathbf{D_1}$ be proof trees of degrees less than $d(A)$, with conclusions $\mathcal{S} \Rightarrow A$ and $\mathcal{T} | \Gamma, A^n | \mathcal{R} \Rightarrow \Delta$ and heights $h(\mathbf{D_0})$ and $h(\mathbf{D_1})$ respectively.
+\begin{prooftree}
+	\noLine
+	\AXC{$\mathbf{D_0}$}
+	\UIC{$\mathcal{S} \Rightarrow A$}
+	
+	\noLine
+	\AXC{$\mathbf{D_1}$}
+	\UIC{$\mathcal{T} | \Gamma, A^n | \mathcal{R} \Rightarrow \Delta$}
+	
+	\noLine
+	\BIC{}
+\end{prooftree}
+By induction on $h(\mathbf{D_0}) + h(\mathbf{D_1})$, the induction hypothesis states that for any proof trees $\mathbf{D_0}'$ with conclusion $\mathcal{S}' \Rightarrow A'$ and $\mathbf{D_1}'$ with conclusion $\mathcal{T}' | \Gamma', A'^m | \mathcal{R}' \Rightarrow \Delta'$ such that $h(\mathbf{D_0}') + h(\mathbf{D_1}') < h(\mathbf{D_0}) + h(\mathbf{D_1})$ and $d(\mathbf{D_0}'),d(\mathbf{D_1}') < d(A')$, there exists a proof tree $\mathbf{D}'$ with conclusion $[ \mathcal{S}' | \epsilon_{l(\mathcal{R}')} ] \cup [ \mathcal{T}' | \Gamma' | \mathcal{R}' ] \Rightarrow \Delta'$ such that $d(\mathbf{D}') < d(A')$. We proceed by case analysis on the last rule in $\mathbf{D_0}$.
 
 \begin{itemize}
 	\item[($Ax$)] We have $\mathcal{S} = \epsilon | A$, and the desired sequent should be of the form $[ \epsilon | A | \epsilon_{l(\mathcal{R})}] \cup \mathcal{T} | \Gamma | \mathcal{R} \Rightarrow \Delta$. $\mathbf{D_1}$ itself proves such sequent.
 	
 	\item[($Ta$)] $\mathbf{D_0}$ proves $\epsilon \Rightarrow \top$. $\mathcal{T} | \Gamma| \mathcal{R} \Rightarrow \Delta$ is again proved by $\mathbf{D_1}$.
 	
-	\item[($Ex$)] This won't happen. {\em (Will it?)}
+	\item[($Ex$)] This won't happen.
 	
 	\item[($Lw$)] $\mathbf{D_0}$ proves $\mathcal{S}' | \Gamma' , A' | \mathcal{R}' \Rightarrow A$ and has a subproof $\mathbf{D_0}'$ of $\mathcal{S}' | \Gamma' | \mathcal{R}' \Rightarrow A$.		\begin{prooftree}
 		\noLine
@@ -65,7 +78,7 @@ Let $\mathbf{D_0}$ and $\mathbf{D_1}$ be proof trees of degrees less than $d(A)$
 		
 		\noLine
 		\AXC{$\mathbf{D_1}$}
-		\UIC{$\mathcal{T} | \Gamma , A | \mathcal{R} \Rightarrow \Delta$}
+		\UIC{$\mathcal{T} | \Gamma , A^n | \mathcal{R} \Rightarrow \Delta$}
 
 		\dashedLine\RightLabel{$Cut$}
 		\BIC{$[\mathcal{S}' | \Gamma' , A' | \mathcal{R}' | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow \Delta$}
@@ -78,7 +91,7 @@ Let $\mathbf{D_0}$ and $\mathbf{D_1}$ be proof trees of degrees less than $d(A)$
 		
 		\noLine
 		\AXC{$\mathbf{D_1}$}
-		\UIC{$\mathcal{T} | \Gamma , A | \mathcal{R} \Rightarrow \Delta$}
+		\UIC{$\mathcal{T} | \Gamma , A^n | \mathcal{R} \Rightarrow \Delta$}
 		
 		\RightLabel{IH}
 		\BIC{$[\mathcal{S}' | \Gamma' | \mathcal{R}' | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow \Delta$}
@@ -98,7 +111,7 @@ Let $\mathbf{D_0}$ and $\mathbf{D_1}$ be proof trees of degrees less than $d(A)$
 		
 		\noLine
 		\AXC{$\mathbf{D_1}$}
-		\UIC{$\mathcal{T} | \Gamma , A | \mathcal{R} \Rightarrow \Delta$}
+		\UIC{$\mathcal{T} | \Gamma , A^n | \mathcal{R} \Rightarrow \Delta$}
 		
 		\dashedLine\RightLabel{$Cut$}
 		\BIC{$[\mathcal{S}' | \Gamma' , A' | \mathcal{R}' | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow \Delta$}
@@ -111,7 +124,7 @@ Let $\mathbf{D_0}$ and $\mathbf{D_1}$ be proof trees of degrees less than $d(A)$
 		
 		\noLine
 		\AXC{$\mathbf{D_1}$}
-		\UIC{$\mathcal{T} | \Gamma , A | \mathcal{R} \Rightarrow \Delta$}
+		\UIC{$\mathcal{T} | \Gamma , A^n | \mathcal{R} \Rightarrow \Delta$}
 		
 		\RightLabel{IH}
 		\BIC{$[\mathcal{S}' | \Gamma' , A' , A' | \mathcal{R}' | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow \Delta$}
@@ -120,7 +133,7 @@ Let $\mathbf{D_0}$ and $\mathbf{D_1}$ be proof trees of degrees less than $d(A)$
 		\UIC{$[\mathcal{S}' | \Gamma' , A' | \mathcal{R}' | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow \Delta$}
 	\end{prooftree}
 	
-	\item[($L\land$)] $\mathbf{D_0}$ proves $\mathcal{S}' | \Gamma' , A' \land B' | \mathcal{R}' \Rightarrow A$ and has a subproof $\mathbf{D_0}'$ of $\mathcal{S}' | \Gamma' , A' | \mathcal{R}' \Rightarrow A$.
+	\item[($L\land_1$)] $\mathbf{D_0}$ proves $\mathcal{S}' | \Gamma' , A' \land B' | \mathcal{R}' \Rightarrow A$ and has a subproof $\mathbf{D_0}'$ of $\mathcal{S}' | \Gamma' , A' | \mathcal{R}' \Rightarrow A$.
 	\begin{prooftree}
 		\noLine
 		\AXC{$\mathbf{D_0}'$}
@@ -131,7 +144,7 @@ Let $\mathbf{D_0}$ and $\mathbf{D_1}$ be proof trees of degrees less than $d(A)$
 		
 		\noLine
 		\AXC{$\mathbf{D_1}$}
-		\UIC{$\mathcal{T} | \Gamma , A | \mathcal{R} \Rightarrow \Delta$}
+		\UIC{$\mathcal{T} | \Gamma , A^n | \mathcal{R} \Rightarrow \Delta$}
 		
 		\dashedLine\RightLabel{$Cut$}
 		\BIC{$[\mathcal{S}' | \Gamma' , A' \land B' | \mathcal{R}' | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow \Delta$}
@@ -144,7 +157,7 @@ Let $\mathbf{D_0}$ and $\mathbf{D_1}$ be proof trees of degrees less than $d(A)$
 		
 		\noLine
 		\AXC{$\mathbf{D_1}$}
-		\UIC{$\mathcal{T} | \Gamma , A | \mathcal{R} \Rightarrow \Delta$}
+		\UIC{$\mathcal{T} | \Gamma , A^n | \mathcal{R} \Rightarrow \Delta$}
 		
 		\RightLabel{IH}
 		\BIC{$[\mathcal{S}' | \Gamma' , A' | \mathcal{R}' | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow \Delta$}
@@ -152,7 +165,7 @@ Let $\mathbf{D_0}$ and $\mathbf{D_1}$ be proof trees of degrees less than $d(A)$
 		\RightLabel{$L\land$}
 		\UIC{$[\mathcal{S}' | \Gamma' , A' \land B' | \mathcal{R}' | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow \Delta$}
 	\end{prooftree}
-	The other $L\land$ is the same.
+	\item[($L\land_2$)] The other $L\land$ is the same.
 	
 	\item[($L\lor$)]  $\mathbf{D_0}$ proves $\mathcal{S}' | \Gamma' , A' \lor B' | \mathcal{R}' \Rightarrow A$ and has subproofs $\mathbf{D_0}'$ of $\mathcal{S}' | \Gamma' , A' | \mathcal{R}' \Rightarrow A$ and $\mathbf{D_0}''$ of $\mathcal{S}' | \Gamma' , B' | \mathcal{R}' \Rightarrow A$.
 	\begin{prooftree}
@@ -168,7 +181,7 @@ Let $\mathbf{D_0}$ and $\mathbf{D_1}$ be proof trees of degrees less than $d(A)$
 		
 		\noLine
 		\AXC{$\mathbf{D_1}$}
-		\UIC{$\mathcal{T} | \Gamma , A | \mathcal{R} \Rightarrow \Delta$}
+		\UIC{$\mathcal{T} | \Gamma , A^n | \mathcal{R} \Rightarrow \Delta$}
 		
 		\dashedLine\RightLabel{$Cut$}
 		\BIC{$[\mathcal{S}' | \Gamma' , A' \lor B' | \mathcal{R}' | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow \Delta$}
@@ -181,7 +194,7 @@ Let $\mathbf{D_0}$ and $\mathbf{D_1}$ be proof trees of degrees less than $d(A)$
 		
 		\noLine
 		\AXC{$\mathbf{D_1}$}
-		\UIC{$\mathcal{T} | \Gamma , A | \mathcal{R} \Rightarrow \Delta$}
+		\UIC{$\mathcal{T} | \Gamma , A^n | \mathcal{R} \Rightarrow \Delta$}
 		
 		\RightLabel{IH}
 		\BIC{$[\mathcal{S}' | \Gamma' , A' | \mathcal{R}' | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow \Delta$}
@@ -192,7 +205,7 @@ Let $\mathbf{D_0}$ and $\mathbf{D_1}$ be proof trees of degrees less than $d(A)$
 		
 		\noLine
 		\AXC{$\mathbf{D_1}$}
-		\UIC{$\mathcal{T} | \Gamma , A | \mathcal{R} \Rightarrow \Delta$}
+		\UIC{$\mathcal{T} | \Gamma , A^n | \mathcal{R} \Rightarrow \Delta$}
 		
 		\RightLabel{IH}
 		\BIC{$[\mathcal{S}' | \Gamma' , B' | \mathcal{R}' | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow \Delta$}
@@ -212,12 +225,12 @@ Let $\mathbf{D_0}$ and $\mathbf{D_1}$ be proof trees of degrees less than $d(A)$
 		
 		\noLine
 		\AXC{$\mathbf{D_1}$}
-		\UIC{$\mathcal{T} | \Gamma , A | \mathcal{R} \Rightarrow \Delta$}
+		\UIC{$\mathcal{T} | \Gamma , A^n | \mathcal{R} \Rightarrow \Delta$}
 		
 		\dashedLine\RightLabel{$Cut$}
 		\BIC{$[\mathcal{S}' | \Gamma' | \Pi' , \nabla A' | \mathcal{R}' | \epsilon_{\mathcal{R}}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow \Delta$}
 	\end{prooftree}
-	From the induction hypothesis for $\mathbf{D_0}'$ and $\mathbf{D_1}$, we have a proof of $[\mathcal{S}' | \Gamma' , A' | \Pi' | \mathcal{R}' | \epsilon_{\mathcal{R}}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow \Delta$ with degree lower than that of $A$. By applying $L\nabla$ in the proper place, we have $[\mathcal{S}' | \Gamma' | \Pi' , \nabla A' | \mathcal{R}' | \epsilon_{\mathcal{R}}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow \Delta$, without increasing the cut-degree.
+	From the induction hypothesis for $\mathbf{D_0}'$ and $\mathbf{D_1}$, we have a proof of $[\mathcal{S}' | \Gamma' , A' | \Pi' | \mathcal{R}' | \epsilon_{\mathcal{R}}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow \Delta$ with degree lower than that of $A$. By applying $L\nabla$ in the proper place, we have $[\mathcal{S}' | \Gamma' | \Pi' , \nabla A' | \mathcal{R}' | \epsilon_{\mathcal{R}}] \cup$ $[\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow \Delta$, without increasing the cut-degree.
 	\begin{prooftree}
 		\noLine
 		\AXC{$\mathbf{D_0}'$}
@@ -225,7 +238,7 @@ Let $\mathbf{D_0}$ and $\mathbf{D_1}$ be proof trees of degrees less than $d(A)$
 		
 		\noLine
 		\AXC{$\mathbf{D_1}$}
-		\UIC{$\mathcal{T} | \Gamma , A | \mathcal{R} \Rightarrow \Delta$}
+		\UIC{$\mathcal{T} | \Gamma , A^n | \mathcal{R} \Rightarrow \Delta$}
 		
 		\RightLabel{IH}
 		\BIC{$[\mathcal{S}' | \Gamma' , A' | \Pi' | \mathcal{R}' | \epsilon_{\mathcal{R}}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow \Delta$}
@@ -234,11 +247,11 @@ Let $\mathbf{D_0}$ and $\mathbf{D_1}$ be proof trees of degrees less than $d(A)$
 		\UIC{$[\mathcal{S}' | \Gamma' | \Pi' , \nabla A' | \mathcal{R}' | \epsilon_{\mathcal{R}}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow \Delta$}
 	\end{prooftree}
 	
-	\item[($L\rightarrow$)] {\color{red}\textbf{TODO}} $\mathbf{D_0}$ proves $\mathcal{S}' | \Gamma', A' \rightarrow B' | \Sigma' | \mathcal{R}' \Rightarrow A$ and has subproofs $\mathbf{D_0}'$ of $\mathcal{S}' | \Gamma' | \Sigma' | \mathcal{R}' \Rightarrow A'$ and $\mathbf{D_0}''$ of $\mathcal{S}' | \Gamma' | \Sigma' , B' | \mathcal{R}' \Rightarrow A$.
+	\item[($L\rightarrow$)] $\mathbf{D_0}$ proves $\mathcal{S}' | \Gamma', A' \rightarrow B' | \Sigma' | \mathcal{R}' \Rightarrow A$ and has subproofs $\mathbf{D_0}'$ of $\mathcal{S}' | \Gamma' | \Sigma' | \mathcal{R}' \Rightarrow \nabla^{l(\mathcal{R}')} A'$ and $\mathbf{D_0}''$ of $\mathcal{S}' | \Gamma' | \Sigma' , B' | \mathcal{R}' \Rightarrow A$.
 	\begin{prooftree}
 		\noLine
 		\AXC{$\mathbf{D_0}'$}
-		\UIC{$\mathcal{S}' | \Gamma' | \Sigma' | \mathcal{R}' \Rightarrow A'$}
+		\UIC{$\mathcal{S}' | \Gamma' | \Sigma' | \mathcal{R}' \Rightarrow \nabla^{l(\mathcal{R}')} A'$}
 		\noLine
 		\AXC{$\mathbf{D_0}''$}
 		\UIC{$\mathcal{S}' | \Gamma' | \Sigma' , B' | \mathcal{R}' \Rightarrow A$}
@@ -248,93 +261,242 @@ Let $\mathbf{D_0}$ and $\mathbf{D_1}$ be proof trees of degrees less than $d(A)$
 		
 		\noLine
 		\AXC{$\mathbf{D_1}$}
-		\UIC{$\mathcal{T} | \Gamma , A | \mathcal{R} \Rightarrow \Delta$}
+		\UIC{$\mathcal{T} | \Gamma , A^n | \mathcal{R} \Rightarrow \Delta$}
 		
 		\dashedLine\RightLabel{$Cut$}
 		\BIC{$[\mathcal{S}' | \Gamma' , A' \rightarrow B' | \Sigma' | \mathcal{R}' | \epsilon_{\mathcal{R}}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow \Delta$}
 	\end{prooftree}
-	From the induction hypothesis for $\mathbf{D_0}''$ and $\mathbf{D_1}$, we have a proof of\\
-	$[\mathcal{S}' | \Gamma' | \Sigma' , B' | \mathcal{R}' | \epsilon_{\mathcal{R}}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow \Delta$ with degree lower than that of $A$. Now to apply $L\rightarrow$ with $\mathbf{D_0}'$ in the proper place, we must first shift it's  add $\mathcal{T} | \Gamma | \mathcal{R}$ to it's antecedent using $Lw$. Then applying $R\nabla$ $l(\mathcal{R})$ times gives us $[\mathcal{S}' | \Gamma' | \Sigma' | \mathcal{R}' | \epsilon_{\mathcal{R}}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow \nabla^{l(\mathcal{R})} A'$, from which we can derive $[\mathcal{S}' | \Gamma' , \nabla^{l(\mathcal{R})} A' \rightarrow B' | \Sigma' | \mathcal{R}' | \epsilon_{\mathcal{R}}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow \Delta$, that is of no use. I'm lost.
+	From the induction hypothesis for $\mathbf{D_0}''$ and $\mathbf{D_1}$, we have a proof of
+	$[\mathcal{S}' | \Gamma' | \Sigma' , B' | \mathcal{R}' | \epsilon_{\mathcal{R}}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow \Delta$ with degree lower than that of $A$. Now in order to $L\rightarrow$ to be applicable on this and $\mathbf{D_0}'$, we must first identify their contexts, applying $l(\mathcal{R})$ times $R\nabla$ and then $Lw$ with $\mathcal{T} | \Gamma | \mathcal{R}$, which gives us $[\mathcal{S}' | \Gamma' | \Sigma' | \mathcal{R}' | \epsilon_{\mathcal{R}}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow \nabla^{l(\mathcal{R}') + l(\mathcal{R})} A'$, from which we can derive $[\mathcal{S}' | \Gamma' , A' \rightarrow B' | \Sigma' | \mathcal{R}' | \epsilon_{\mathcal{R}}] \cup [\mathcal{T} | \Gamma | \mathcal{R}]$ $\Rightarrow \Delta$, , without increasing the cut-degree.
+	\begin{prooftree}
+		\noLine
+		\AXC{$\mathbf{D_0}'$}
+		\UIC{$\mathcal{S}' | \Gamma' | \Sigma' | \mathcal{R}' \Rightarrow \nabla^{l(\mathcal{R}')} A'$}
+		\doubleLine \RightLabel{$R\nabla$}
+		\UIC{$\mathcal{S}' | \Gamma' | \Sigma' | \mathcal{R}' |‌\epsilon_{l(\mathcal{R})} \Rightarrow \nabla^{l(\mathcal{R}') + l(\mathcal{R})} A'$}
+		\doubleLine \RightLabel{$Lw$}
+		\UIC{$[\mathcal{S}' | \Gamma' | \Sigma' | \mathcal{R}' | \epsilon_{\mathcal{R}}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow \nabla^{l(\mathcal{R}') + l(\mathcal{R})} A'$}
+		
+		\noLine
+		\AXC{$\mathbf{D_0}''$}
+		\UIC{$\mathcal{S}' | \Gamma' | \Sigma' , B' | \mathcal{R}' \Rightarrow A$}
+		\noLine
+		\AXC{$\mathbf{D_1}$}
+		\UIC{$\mathcal{T} | \Gamma , A^n | \mathcal{R} \Rightarrow \Delta$}
+		\RightLabel{IH}
+		\BIC{$[\mathcal{S}' | \Gamma' | \Sigma' , B' | \mathcal{R}' | \epsilon_{\mathcal{R}}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow \Delta$}
+		
+		\RightLabel{$L\rightarrow$}
+		\BIC{$[\mathcal{S}' | \Gamma' , A' \rightarrow B' | \Sigma' | \mathcal{R}' | \epsilon_{\mathcal{R}}] \cup [\mathcal{T} | \Gamma | \mathcal{R}]$ $\Rightarrow \Delta$}
+	\end{prooftree}
 	
-	\item[($R*$)] In the case that the last rule in $\mathbf{D_0}$ is any of the right-rules $R*$, its principal formula would be $A$. For each case we will consider two more cases: Whether $A$ is also principal in the last rule of $\mathbf{D_1}$ or not. If it is so, then $R*$ determines a particular left-rule for $\mathbf{D_1}$ (except for $Rw$). If it is not, then we will consider different cases for the last rule of $\mathbf{D_1}$ this time.
+	\item[($Rw$)] $\mathbf{D_0}$ proves $\mathcal{S} \Rightarrow A$ and has subproofs $\mathbf{D_0}'$ of $\mathcal{S} \Rightarrow$.
+	\begin{prooftree}
+		\noLine
+		\AXC{$\mathbf{D_0}'$}
+		\UIC{$\mathcal{S} \Rightarrow$}
+		\RightLabel{$Rw$}
+		\UIC{$\mathcal{S} \Rightarrow A$}
+		
+		\noLine
+		\AXC{$\mathbf{D_1}$}
+		\UIC{$\mathcal{T} | \Gamma , A^n | \mathcal{R} \Rightarrow \Delta$}
+		
+		\dashedLine \RightLabel{$Cut$}
+		\BIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow \Delta$}
+	\end{prooftree}
+	$l(\mathcal{R})$ times application of $R\nabla$ on $\mathbf{D_0}'$ followed by proper $Lw$ and $Rw$ yields the desired sequent.
+	\begin{prooftree}
+		\noLine
+		\AXC{$\mathbf{D_0}'$}
+		\UIC{$\mathcal{S} \Rightarrow$}
+		\doubleLine \RightLabel{$R\nabla$}
+		\UIC{$\mathcal{S} | \epsilon_{l(\mathcal{R})} \Rightarrow$}
+		\RightLabel{$Lw$}
+		\UIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow$}
+		\RightLabel{$Rw$}
+		\UIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow \Delta$}
+	\end{prooftree}
+	
+	\item[($R*$)] In the cases that the last rule in $\mathbf{D_0}$ is any of the logical right-rules $R*$, its principal formula would be the cut-formula itself. In each case, we will proceed by case analysis on the last rule of $\mathbf{D_1}$, but to avoid repeating similar cases, we will consider all cases in three groups: (I) Cases in which the last rule of $\mathbf{D_1}$ is any of the logical left-rules and (an instance of) $A$ is its principal formula, (II) $A$ is principal in $\mathbf{D_1}$, but the rule is structural and (III) other cases, that is, cases in which the cut-formula is not principal in the last rule of $\mathbf{D_1}$. Note that for any case for $\mathbf{D_0}$'s last rule, there is only one case in (I), but many different cases in (II) and (III). Also note that the cases in (II) and (III) are not dependent on the last rule of $\mathbf{D_0}$. The parens before each case show the last rule of $\mathbf{D_0}$ and $\mathbf{D_1}$ respectively.
 	
 	\begin{enumerate}[label=\Roman*]
-		\item First, if $A$ is also principal in the last rule of $\mathbf{D_1}$.
+		\item First, if the last rule in $\mathbf{D_1}$ is a logical left-rule and $A$ is also principal there.
 
 		\begin{itemize}
 
-			\item[($\land$)]‌
+			\item[$(R\land, L\land_1)$]‌
 			\begin{prooftree}
 				\noLine
 				\AXC{$\mathbf{D_0}'$}
 				\UIC{$\mathcal{S} \Rightarrow A'$}
 				\AXC{$\mathcal{S} \Rightarrow B'$}
+				\RightLabel{$R\land$}
 				\BIC{$\mathcal{S} \Rightarrow A' \land B'$}
 				
 				\noLine
 				\AXC{$\mathbf{D_1}'$}
-				\UIC{$\mathcal{T} | \Gamma , A' | \mathcal{R} \Rightarrow \Delta$}
-				\UIC{$\mathcal{T} | \Gamma, A' \land B' | \mathcal{R} \Rightarrow \Delta$}
+				\UIC{$\mathcal{T} | \Gamma , (A' \land B')^{n-1}, A' | \mathcal{R} \Rightarrow \Delta$}
+				\RightLabel{$L\land_1$}
+				\UIC{$\mathcal{T} | \Gamma, (A' \land B')^n | \mathcal{R} \Rightarrow \Delta$}
 				
-				\noLine
-				\BIC{}
+				\RightLabel{$Cut$} \dashedLine
+				\BIC{$[ \mathcal{S} | \epsilon_{l(\mathcal{R})} ] \cup [ \mathcal{T} | \Gamma | \mathcal{R} ] \Rightarrow \Delta$}
 			\end{prooftree}
-			Induction hypothesis for $\mathbf{D_0}'$ and $\mathbf{D_1}'$ gives us $[ \mathcal{S} | \epsilon_{l(\mathcal{R})} ] \cup [ \mathcal{T} | \Gamma | \mathcal{R} ] \Rightarrow \Delta$ with a lower cut-degree than $d(A)$.
+			Induction hypothesis for $\mathbf{D_0}$ and $\mathbf{D_0}'$ gives us $[ \mathcal{S} | \epsilon_{l(\mathcal{R})} ] \cup [ \mathcal{T} | \Gamma , A' | \mathcal{R} ] \Rightarrow \Delta$ with a lower cut-degree than $d(A)$. Again, applying induction hypothesis on this sequent and $\mathbf{D_1}'$ gives\\
+			$[ \mathcal{S}^2 | \epsilon_{l(\mathcal{R})} ] \cup [ \mathcal{T} | \Gamma | \mathcal{R} ] \Rightarrow \Delta$, which yields the desired sequent with enough applications of $Lc$.
+			\begin{prooftree}
+				\noLine
+				\AXC{$\mathbf{D_0}'$}
+				\UIC{$\mathcal{S} \Rightarrow A'$}
 
+				\noLine
+				\AXC{$\mathbf{D_0}$}
+				\UIC{$\mathcal{S} \Rightarrow A' \land B'$}
+				\noLine
+				\AXC{$\mathbf{D_1}'$}
+				\UIC{$\mathcal{T} | \Gamma , (A' \land B')^{n-1}, A' | \mathcal{R} \Rightarrow \Delta$}
+				
+				\RightLabel{IH}
+				\BIC{$[ \mathcal{S} | \epsilon_{l(\mathcal{R})} ] \cup [ \mathcal{T} | \Gamma, A' | \mathcal{R} ] \Rightarrow \Delta$}
+	
+				\RightLabel{IH}
+				\BIC{$[ \mathcal{S}^2 | \epsilon_{l(\mathcal{R})} ] \cup [ \mathcal{T} | \Gamma | \mathcal{R} ] \Rightarrow \Delta$}
+				
+				\doubleLine \RightLabel{$Lc$}
+				\UIC{$[ \mathcal{S} | \epsilon_{l(\mathcal{R})} ] \cup [ \mathcal{T} | \Gamma | \mathcal{R} ] \Rightarrow \Delta$}
+			\end{prooftree}
+
+			\item[$(R\land, L\land_2)$]‌
 			\begin{prooftree}
 				\AXC{$\mathcal{S} \Rightarrow A'$}
 				\noLine
 				\AXC{$\mathbf{D_0}'$}
 				\UIC{$\mathcal{S} \Rightarrow B'$}
+				\RightLabel{$R\land$}
 				\BIC{$\mathcal{S} \Rightarrow A' \land B'$}
 				
 				\noLine
 				\AXC{$\mathbf{D_1}'$}
-				\UIC{$\mathcal{T} | \Gamma , B' | \mathcal{R} \Rightarrow \Delta$}
-				\UIC{$\mathcal{T} | \Gamma, A' \land B' | \mathcal{R} \Rightarrow \Delta$}
+				\UIC{$\mathcal{T} | \Gamma , (A' \land B')^{n-1}, B' | \mathcal{R} \Rightarrow \Delta$}
+				\RightLabel{$L\land_2$}
+				\UIC{$\mathcal{T} | \Gamma, (A' \land B')^n | \mathcal{R} \Rightarrow \Delta$}
 				
-				\noLine
-				\BIC{}
+				\RightLabel{$Cut$} \dashedLine
+				\BIC{$[ \mathcal{S} | \epsilon_{l(\mathcal{R})} ] \cup [ \mathcal{T} | \Gamma | \mathcal{R} ] \Rightarrow \Delta$}
 			\end{prooftree}
-			Induction hypothesis for $\mathbf{D_0}'$ and $\mathbf{D_1}'$ gives us $[ \mathcal{S} | \epsilon_{l(\mathcal{R})} ] \cup [ \mathcal{T} | \Gamma | \mathcal{R} ] \Rightarrow \Delta$ with a lower cut-degree than $d(A)$.
-
-			\item[($\lor$)]‌
-			\begin{prooftree}
-				\noLine
-				\AXC{$\mathbf{D_0}'$}
-				\UIC{$\mathcal{S} \Rightarrow A'$}
-				\UIC{$\mathcal{S} \Rightarrow A' \lor B'$}
-				
-				\noLine
-				\AXC{$\mathbf{D_1}'$}
-				\UIC{$\mathcal{T} | \Gamma , A' | \mathcal{R} \Rightarrow \Delta$}
-				\AXC{$\mathcal{T} | \Gamma , B' | \mathcal{R} \Rightarrow \Delta$}
-				\BIC{$\mathcal{T} | \Gamma , A' \lor B' | \mathcal{R} \Rightarrow \Delta$}
-
-				\noLine
-				\BIC{}
-			\end{prooftree}
-			Induction hypothesis for $\mathbf{D_0}'$ and $\mathbf{D_1}'$ gives us $[ \mathcal{S} | \epsilon_{l(\mathcal{R})} ] \cup [ \mathcal{T} | \Gamma | \mathcal{R} ] \Rightarrow \Delta$ with a lower cut-degree than $d(A)$.
-
+			Induction hypothesis for $\mathbf{D_0}$ and $\mathbf{D_0}'$ gives us $[ \mathcal{S} | \epsilon_{l(\mathcal{R})} ] \cup [ \mathcal{T} | \Gamma , B' | \mathcal{R} ] \Rightarrow \Delta$ with a lower cut-degree than $d(A)$. Again, applying induction hypothesis on this sequent and $\mathbf{D_0}'$ gives\\
+			$[ \mathcal{S}^2 | \epsilon_{l(\mathcal{R})} ] \cup [ \mathcal{T} | \Gamma | \mathcal{R} ] \Rightarrow \Delta$, which yields the desired sequent with enough applications of $Lc$.
 			\begin{prooftree}
 				\noLine
 				\AXC{$\mathbf{D_0}'$}
 				\UIC{$\mathcal{S} \Rightarrow B'$}
-				\UIC{$\mathcal{S} \Rightarrow A' \lor B'$}
 				
-
-				\AXC{$\mathcal{T} | \Gamma , A' | \mathcal{R} \Rightarrow \Delta$}
+				\noLine
+				\AXC{$\mathbf{D_0}$}
+				\UIC{$\mathcal{S} \Rightarrow A' \land B'$}
 				\noLine
 				\AXC{$\mathbf{D_1}'$}
-				\UIC{$\mathcal{T} | \Gamma , B' | \mathcal{R} \Rightarrow \Delta$}
-				\BIC{$\mathcal{T} | \Gamma , A' \lor B' | \mathcal{R} \Rightarrow \Delta$}
+				\UIC{$\mathcal{T} | \Gamma , (A' \land B')^{n-1}, B' | \mathcal{R} \Rightarrow \Delta$}
 				
-				\noLine
-				\BIC{}
+				\RightLabel{IH}
+				\BIC{$[ \mathcal{S} | \epsilon_{l(\mathcal{R})} ] \cup [ \mathcal{T} | \Gamma, B' | \mathcal{R} ] \Rightarrow \Delta$}
+				
+				\RightLabel{IH}
+				\BIC{$[ \mathcal{S}^2 | \epsilon_{l(\mathcal{R})} ] \cup [ \mathcal{T} | \Gamma | \mathcal{R} ] \Rightarrow \Delta$}
+				
+				\doubleLine \RightLabel{$Lc$}
+				\UIC{$[ \mathcal{S} | \epsilon_{l(\mathcal{R})} ] \cup [ \mathcal{T} | \Gamma | \mathcal{R} ] \Rightarrow \Delta$}
 			\end{prooftree}
-			Induction hypothesis for $\mathbf{D_0}'$ and $\mathbf{D_1}'$ gives us $[ \mathcal{S} | \epsilon_{l(\mathcal{R})} ] \cup [ \mathcal{T} | \Gamma | \mathcal{R} ] \Rightarrow \Delta$ with a lower cut-degree than $d(A)$.
 
-			\item[($\nabla$)]‌
+			\item[$(R\lor_1, L\lor)$]‌
+			\begin{prooftree}
+				\noLine
+				\AXC{$\mathbf{D_0}'$}
+				\UIC{$\mathcal{S} \Rightarrow A'$}
+				\RightLabel{$R\lor_1$}
+				\UIC{$\mathcal{S} \Rightarrow A' \lor B'$}
+
+				\noLine
+				\AXC{$\mathbf{D_1}'$}
+				\UIC{$\mathcal{T} | \Gamma , (A' \lor B')^{n-1} , A' | \mathcal{R} \Rightarrow \Delta$}
+				\AXC{$\mathcal{T} | \Gamma , (A' \lor B')^{n-1} , B' | \mathcal{R} \Rightarrow \Delta$}
+				\RightLabel{$L\lor$}
+				\BIC{$\mathcal{T} | \Gamma , (A' \lor B')^n | \mathcal{R} \Rightarrow \Delta$}
+
+				\RightLabel{$Cut$} \dashedLine
+				\BIC{$[ \mathcal{S} | \epsilon_{l(\mathcal{R})} ] \cup [ \mathcal{T} | \Gamma | \mathcal{R} ] \Rightarrow \Delta$}
+			\end{prooftree}
+			Induction hypothesis for $\mathbf{D_0}$ and $\mathbf{D_1}'$ gives us $[ \mathcal{S} | \epsilon_{l(\mathcal{R})} ] \cup [ \mathcal{T} | \Gamma , A' | \mathcal{R} ] \Rightarrow \Delta$ with a lower cut-degree than $d(A)$. Again, applying induction hypothesis on this sequent and $\mathbf{D_0}'$ gives\\
+			$[ \mathcal{S}^2 | \epsilon_{l(\mathcal{R})} ] \cup [ \mathcal{T} | \Gamma | \mathcal{R} ] \Rightarrow \Delta$, which yields the desired sequent with enough applications of $Lc$.
+			\begin{prooftree}
+				\noLine
+				\AXC{$\mathbf{D_0}'$}
+				\UIC{$\mathcal{S} \Rightarrow A'$}
+
+				\noLine
+				\AXC{$\mathbf{D_0}$}
+				\UIC{$\mathcal{S} \Rightarrow A' \lor B'$}
+
+				\noLine
+				\AXC{$\mathbf{D_1}'$}
+				\UIC{$\mathcal{T} | \Gamma , (A' \lor B')^{n-1} , A' | \mathcal{R} \Rightarrow \Delta$}
+
+				\RightLabel{IH}
+				\BIC{$[ \mathcal{S} | \epsilon_{l(\mathcal{R})} ] \cup [ \mathcal{T} | \Gamma , A' | \mathcal{R} ] \Rightarrow \Delta$}
+				
+				\RightLabel{IH}
+				\BIC{$[ \mathcal{S}^2 | \epsilon_{l(\mathcal{R})} ] \cup [ \mathcal{T} | \Gamma | \mathcal{R} ] \Rightarrow \Delta$}
+				
+				\doubleLine \RightLabel{$Lc$}
+				\UIC{$[ \mathcal{S} | \epsilon_{l(\mathcal{R})} ] \cup [ \mathcal{T} | \Gamma | \mathcal{R} ] \Rightarrow \Delta$}
+			\end{prooftree}
+
+			\item[$(R\lor_2, L\lor)$]‌
+			\begin{prooftree}
+				\noLine
+				\AXC{$\mathbf{D_0}'$}
+				\UIC{$\mathcal{S} \Rightarrow B'$}
+				\RightLabel{$R\lor_2$}
+				\UIC{$\mathcal{S} \Rightarrow A' \lor B'$}
+
+
+				\AXC{$\mathcal{T} | \Gamma , (A' \lor B')^{n-1} , A' | \mathcal{R} \Rightarrow \Delta$}
+				\noLine
+				\AXC{$\mathbf{D_1}'$}
+				\UIC{$\mathcal{T} | \Gamma , (A' \lor B')^{n-1} , B' | \mathcal{R} \Rightarrow \Delta$}
+				\RightLabel{$L\lor$}
+				\BIC{$\mathcal{T} | \Gamma , (A' \lor B')^n | \mathcal{R} \Rightarrow \Delta$}
+				
+				\RightLabel{$Cut$} \dashedLine
+				\BIC{$[ \mathcal{S} | \epsilon_{l(\mathcal{R})} ] \cup [ \mathcal{T} | \Gamma | \mathcal{R} ] \Rightarrow \Delta$}
+			\end{prooftree}
+			Induction hypothesis for $\mathbf{D_0}$ and $\mathbf{D_1}'$ gives us $[ \mathcal{S} | \epsilon_{l(\mathcal{R})} ] \cup [ \mathcal{T} | \Gamma , (A' \lor B')^{n-1} | \mathcal{R} ] \Rightarrow \Delta$ with a lower cut-degree than $d(A)$. Again, applying induction hypothesis on this sequent and $\mathbf{D_0}'$ gives 
+			$[ \mathcal{S}^2 | \epsilon_{l(\mathcal{R})} ] \cup [ \mathcal{T} | \Gamma | \mathcal{R} ] \Rightarrow \Delta$, which yields the desired sequent with enough applications of $Lc$.
+			\begin{prooftree}
+				\noLine
+				\AXC{$\mathbf{D_0}'$}
+				\UIC{$\mathcal{S} \Rightarrow B'$}
+
+				\noLine
+				\AXC{$\mathbf{D_0}$}
+				\UIC{$\mathcal{S} \Rightarrow A' \lor B'$}
+
+				\noLine
+				\AXC{$\mathbf{D_1}'$}
+				\UIC{$\mathcal{T} | \Gamma , (A' \lor B')^{n-1} , B' | \mathcal{R} \Rightarrow \Delta$}
+				
+				\RightLabel{IH}
+				\BIC{$[ \mathcal{S} | \epsilon_{l(\mathcal{R})} ] \cup [ \mathcal{T} | \Gamma , B' | \mathcal{R} ] \Rightarrow \Delta$}
+				
+				\RightLabel{IH}
+				\BIC{$[ \mathcal{S}^2 | \epsilon_{l(\mathcal{R})} ] \cup [ \mathcal{T} | \Gamma | \mathcal{R} ] \Rightarrow \Delta$}
+				
+				\doubleLine \RightLabel{$Lc$}
+				\UIC{$[ \mathcal{S} | \epsilon_{l(\mathcal{R})} ] \cup [ \mathcal{T} | \Gamma | \mathcal{R} ] \Rightarrow \Delta$}
+			\end{prooftree}
+
+			\item[$(R\nabla, L\nabla)$]‌
 			\begin{prooftree}
 				\noLine
 				\AXC{$\mathbf{D_0}'$}
@@ -343,50 +505,190 @@ Let $\mathbf{D_0}$ and $\mathbf{D_1}$ be proof trees of degrees less than $d(A)$
 
 				\noLine
 				\AXC{$\mathbf{D_1}'$}
-				\UIC{$\mathcal{T} | \Gamma , A' | \Pi | \mathcal{R} \Rightarrow \Delta$}
-				\UIC{$\mathcal{T} | \Gamma | \Pi , \nabla A' | \mathcal{R} \Rightarrow \Delta$}
+				\UIC{$\mathcal{T} | \Gamma , A' | \Sigma , (\nabla A')^{n-1} | \mathcal{R} \Rightarrow \Delta$}
+				\UIC{$\mathcal{T} | \Gamma | \Sigma , (\nabla A')^n | \mathcal{R} \Rightarrow \Delta$}
 
-				\noLine
-				\BIC{}
+				\RightLabel{$Cut$} \dashedLine
+				\BIC{$[ \mathcal{S} | - | \epsilon_{l(\mathcal{R})} ] \cup [ \mathcal{T} | \Gamma | \Sigma | \mathcal{R} ] \Rightarrow \Delta$}
 			\end{prooftree}
-			We get from induction hypothesis for $\mathbf{D_0}'$ and $\mathbf{D_1}'$: $[\mathcal{S} | \epsilon_{l(\mathcal{R})+1}] \cup [\mathcal{T} | \Gamma | \Pi | \mathcal{R}] \Rightarrow \Delta$.
+			From induction hypothesis for $\mathbf{D_0}$ and $\mathbf{D_1}'$ we have $[\mathcal{S} | - | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma , A' | \Sigma | \mathcal{R}] \Rightarrow \Delta$. Again, applying induction hypothesis on this sequent and $\mathbf{D_0}'$ gives 
+			$[\mathcal{S} | \epsilon_{l(\mathcal{R}) + 1} ] \cup [ \mathcal{S} | - | \epsilon_{l(\mathcal{R})} ] \cup [ \mathcal{T} | \Gamma | \mathcal{R} ] \Rightarrow \Delta$, which yields the desired sequent with enough applications of $Lc$.
+			\begin{prooftree}
+				\noLine
+				\AXC{$\mathbb{D_0}'$}
+				\UIC{$\mathcal{S} \Rightarrow A'$}
+				
+				\noLine
+				\AXC{$\mathbf{D_0}$}
+				\UIC{$\mathcal{S} | - \Rightarrow \nabla A'$}
+				
+				\noLine
+				\AXC{$\mathbf{D_1}'$}
+				\UIC{$\mathcal{T} | \Gamma , A' | \Sigma , (\nabla A')^{n-1} | \mathcal{R} \Rightarrow \Delta$}
+				
+				\RightLabel{IH}
+				\BIC{$[ \mathcal{S} | - | \epsilon_{l(\mathcal{R})} ] \cup [ \mathcal{T} | \Gamma , A' | \Sigma | \mathcal{R} ] \Rightarrow \Delta$}
+				
+				\RightLabel{IH}
+				\BIC{$[ \mathcal{S} | - | \epsilon_{l(\mathcal{R})} ] \cup [ \mathcal{S} | \epsilon_{l(\mathcal{R})+1} ] \cup [ \mathcal{T} | \Gamma | \Sigma | \mathcal{R} ] \Rightarrow \Delta$}
+				
+				\doubleLine \RightLabel{IH}
+				\UIC{$[ \mathcal{S} | \epsilon_{l(\mathcal{R})+1} ] \cup [ \mathcal{T} | \Gamma | \Sigma | \mathcal{R} ] \Rightarrow \Delta$}
+			\end{prooftree}
 
-			\item[($\rightarrow$)] {\color{red}\textbf{TODO}}
-			What we want: $[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \Pi | \mathcal{R}] \Rightarrow \Delta$.
+			\item[$(R\rightarrow, L\rightarrow)$]
+			What we want: $[\mathcal{S} | \epsilon_{l(\mathcal{R})+1}] \cup [\mathcal{T} | \Gamma | \Sigma | \mathcal{R}] \Rightarrow \Delta$.
 			\begin{prooftree}
 				\noLine
 				\AXC{$\mathbf{D_0}'$}
 				\UIC{$\mathcal{S} | A' \Rightarrow B'$}
+				\RightLabel{$R\rightarrow$}
 				\UIC{$\mathcal{S} \Rightarrow A' \rightarrow B'$}
 
 				\noLine
 				\AXC{$\mathbf{D_1}'$}
-				\UIC{$\mathcal{S} | \Gamma | \Sigma | \mathcal{R} \Rightarrow A'$}
+				\UIC{$\mathcal{T} | \Gamma , (A' \rightarrow B')^{n-1} | \Sigma | \mathcal{R} \Rightarrow \nabla^{l(\mathcal{R})} A'$}
 				\noLine
 				\AXC{$\mathbf{D_1}''$}
-				\UIC{$\mathcal{S} | \Gamma | \Sigma , B' | \mathcal{R} \Rightarrow \Delta$}
-				\BIC{$\mathcal{S} | \Gamma, A' \rightarrow B' | \Sigma | \mathcal{R} \Rightarrow \Delta$}
+				\UIC{$\mathcal{T} | \Gamma , (A' \rightarrow B')^{n-1} | \Sigma , B' | \mathcal{R} \Rightarrow \Delta$}
+				\RightLabel{$L\rightarrow$}
+				\BIC{$\mathcal{T} | \Gamma, (A' \rightarrow B')^n | \Sigma | \mathcal{R} \Rightarrow \Delta$}
+				
+				\RightLabel{$Cut$} \dashedLine
+				\BIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})+1}] \cup [\mathcal{T} | \Gamma | \Sigma | \mathcal{R}] \Rightarrow \Delta$}
+			\end{prooftree}
+			From induction hypothesis for $\mathbf{D_0}$ and $\mathbf{D_1}'$ we have $[\mathcal{S} | \epsilon_{l(\mathcal{R})+1}] \cup [\mathcal{T} | \Gamma | \Sigma | \mathcal{R}] \Rightarrow \nabla^{l(\mathcal{R})} A'$. Call it $\mathbf{D}'$.
+			\begin{prooftree}
+				\noLine
+				\AXC{$\mathbf{D_0}$}
+				\UIC{$\mathcal{S} \Rightarrow A' \rightarrow B'$}
 				
 				\noLine
-				\BIC{}
+				\AXC{$\mathbf{D_1}'$}
+				\UIC{$\mathcal{T} | \Gamma , (A' \rightarrow B')^{n-1} | \Sigma | \mathcal{R} \Rightarrow \nabla^{l(\mathcal{R})} A'$}
+				
+				\LeftLabel{$\mathbf{D}':~$}
+				\RightLabel{IH}
+				\BIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})+1}] \cup [\mathcal{T} | \Gamma | \Sigma | \mathcal{R}] \Rightarrow \nabla^{l(\mathcal{R})} A'$}
 			\end{prooftree}
-			From induction hypothesis for $\mathbf{D_0}'$ and $\mathbf{D_1}''$: $[\mathcal{S} | A' | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \Sigma | \mathcal{R}] \Rightarrow \Delta$.\\
-			Again from IH for this and $\mathbf{D_1}'$: $[\mathcal{T} | \Gamma | \Sigma | \mathcal{R} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{S} | - | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \Sigma | \mathcal{R}] \Rightarrow \Delta$.\\
-			We can do this in another order and come to this very same sequent.
-			
-			\item[($Rw$)] {\color{red}\textbf{TODO}} No idea. (This case is handled if the cut-formula is not principal on the other side.)
+			Again from IH for $\mathbf{D_0}$ and $\mathbf{D_1}''$ we have $[\mathcal{S} | \epsilon_{l(\mathcal{R})+1}] \cup [\mathcal{T} | \Gamma | \Sigma , B' | \mathcal{R}] \Rightarrow \Delta$. Call it $\mathbf{D}''$.
+			\begin{prooftree}
+				\noLine
+				\AXC{$\mathbf{D_0}$}
+				\UIC{$\mathcal{S} \Rightarrow A' \rightarrow B'$}
+				
+				\noLine
+				\AXC{$\mathbf{D_1}''$}
+				\UIC{$\mathcal{T} | \Gamma , (A' \rightarrow B')^{n-1} | \Sigma , B' | \mathcal{R} \Rightarrow \Delta$}
+				
+				\LeftLabel{$\mathbf{D}'':~$}
+				\RightLabel{IH}
+				\BIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})+1}] \cup [\mathcal{T} | \Gamma | \Sigma , B' | \mathcal{R}] \Rightarrow \Delta$}
+			\end{prooftree}
+			Now we use induction hypothesis on $\mathbf{D_0}'$ and $\mathbf{D}''$ to remove $B'$. By $l(\mathcal{R})$ times applications of $L\nabla$ on the resulting sequent and another induction hypothesis with $\mathbf{D}'$, with enough contractions we can derive the desired sequent.
+			\begin{prooftree}
+				\noLine
+				\AXC{$\mathbf{D}'$}
+				\UIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})+1}] \cup [\mathcal{T} | \Gamma | \Sigma | \mathcal{R}] \Rightarrow \nabla^{l(\mathcal{R})} A'$}
+
+
+				\noLine
+				\AXC{$\mathbf{D_0}'$}
+				\UIC{$\mathcal{S} | A' \Rightarrow B'$}
+
+				\noLine
+				\AXC{$\mathbf{D}'':~$}
+				\UIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})+1}] \cup [\mathcal{T} | \Gamma | \Sigma , B' | \mathcal{R}] \Rightarrow \Delta$}
+
+				\RightLabel{IH}
+				\BIC{$[\mathcal{S}^2 | A' | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \Sigma | \mathcal{R}] \Rightarrow \Delta$}
+
+				\doubleLine \RightLabel{$L\nabla$}
+				\UIC{$[\mathcal{S}^2 | \epsilon_{l(\mathcal{R})-1} | \nabla^{l(\mathcal{R})} A'] \cup [\mathcal{T} | \Gamma | \Sigma | \mathcal{R}] \Rightarrow \Delta$}
+
+
+				\RightLabel{IH}
+				\BIC{$[\mathcal{S}^3 | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T}^2 | \Gamma^2 | \Sigma^2 | \mathcal{R}^2] \Rightarrow \Delta$}
+
+
+
+				\doubleLine \RightLabel{$Lc , Rc$}
+				\UIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \Sigma | \mathcal{R}] \Rightarrow \Delta$}
+			\end{prooftree}
+
 		\end{itemize}
-	
+
+		\item If $A$ is principal in the last rule of $\mathbf{D_1}$ and it is structural.
+		\begin{itemize}
+			\item[$(R*, Lw)$]‌
+			\begin{prooftree}
+				\noLine
+				\AXC{$\mathbf{D_0}$}
+				\UIC{$\mathcal{S} \Rightarrow A$}
+				
+				\noLine
+				\AXC{$\mathbf{D_1}'$}
+				\UIC{$\mathcal{T} | \Gamma , A^{n-1} | \mathcal{R} \Rightarrow \Delta$}
+				\RightLabel{$Lw$}
+				\UIC{$\mathcal{T} | \Gamma , A^n | \mathcal{R} \Rightarrow \Delta$}
+				
+				\dashedLine\RightLabel{$Cut$}
+				\BIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow \Delta$}
+			\end{prooftree}
+			By induction hypothesis for $\mathbf{D_0}$ and $\mathbf{D_1}'$ we have
+			\begin{prooftree}
+				\noLine
+				\AXC{$\mathbf{D_0}$}
+				\UIC{$\mathcal{S} \Rightarrow A$}
+				
+				\noLine
+				\AXC{$\mathbf{D_1}'$}
+				\UIC{$\mathcal{T} | \Gamma , A^{n-1} | \mathcal{R} \Rightarrow \Delta$}
+				
+				\RightLabel{IH}
+				\BIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow \Delta$}
+			\end{prooftree}
+		
+			\item[$(R*, Lc)$]‌
+			\begin{prooftree}
+				\noLine
+				\AXC{$\mathbf{D_0}$}
+				\UIC{$\mathcal{S} \Rightarrow A$}
+				
+				\noLine
+				\AXC{$\mathbf{D_1}'$}
+				\UIC{$\mathcal{T} | \Gamma , A^{n+1} | \mathcal{R} \Rightarrow \Delta$}
+				\RightLabel{$Lc$}
+				\UIC{$\mathcal{T} | \Gamma , A^n | \mathcal{R} \Rightarrow \Delta$}
+				
+				\dashedLine\RightLabel{$Cut$}
+				\BIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow \Delta$}
+			\end{prooftree}
+			By induction hypothesis for $\mathbf{D_0}$ and $\mathbf{D_1}'$ we have
+			\begin{prooftree}
+				\noLine
+				\AXC{$\mathbf{D_0}$}
+				\UIC{$\mathcal{S} \Rightarrow A$}
+				
+				\noLine
+				\AXC{$\mathbf{D_1}'$}
+				\UIC{$\mathcal{T} | \Gamma , A^{n+1} | \mathcal{R} \Rightarrow \Delta$}
+				
+				\RightLabel{IH}
+				\BIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow \Delta$}
+			\end{prooftree}
+		\end{itemize}
+
 		\item If $A$ is not principal in the last rule of $\mathbf{D_1}$. Consider these cases as $\mathbf{D_1}$'s last rule:
 		
 		\begin{itemize}
-			\item[($Ax$)] $\mathbf{D_0}$ proves the desired sequent.
+			\item[$(R*, Ax)$] $\mathbf{D_0}$ proves the desired sequent.
 			
-			\item[($Ta$)] Won't happen.
+			\item[$(R*, Ta)$] Won't happen.
 			
-			\item[($Ex$)] This only happens in the case that $\mathbf{D_0}$ ends with $Rw$. So it already proves the desired sequent $\mathcal{S} \Rightarrow$.
+			\item[$(Rw, Ex)$] The last rule in $\mathbf{D_1}$ can be $Ex$ only in the case that $\mathbf{D_0}$ ends with $Rw$. So it already proves the desired sequent $\mathcal{S} \Rightarrow$.
 			
-			\item[($Lw$)] We want this\footnote{Misusing the notation just to handle many cases of the principal formula. Probably not the best way to do this.}
+			\item[$(R*, Lw)$]‌
 			\begin{prooftree}
 				\noLine
 				\AXC{$\mathbf{D_0}$}
@@ -394,14 +696,14 @@ Let $\mathbf{D_0}$ and $\mathbf{D_1}$ be proof trees of degrees less than $d(A)$
 
 				\noLine
 				\AXC{$\mathbf{D_1}'$}
-				\UIC{$\mathcal{T} | \Gamma , A | \mathcal{R} \Rightarrow \Delta$}
+				\UIC{$\mathcal{T} | \Gamma , A^n | \mathcal{R} \Rightarrow \Delta$}
 				\RightLabel{$Lw$}
-				\UIC{$[\mathcal{T} | \Gamma , A | \mathcal{R}] \cup [\epsilon | A' | \epsilon_n]\Rightarrow \Delta$}
+				\UIC{$[\mathcal{T} | \Gamma , A^n | \mathcal{R}] \cup [\epsilon | A' | \epsilon_r]\Rightarrow \Delta$}
 				
 				\dashedLine\RightLabel{$Cut$}
-				\BIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \cup [\epsilon | A' | \epsilon_n] \Rightarrow \Delta$}
+				\BIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \cup [\epsilon | A' | \epsilon_r] \Rightarrow \Delta$}
 			\end{prooftree}
-			 By induction hypothesis for $\mathbf{D_0}$ and $\mathbf{D_1}'$
+			By induction hypothesis for $\mathbf{D_0}$ and $\mathbf{D_1}'$ we have
 			\begin{prooftree}
 				\noLine
 				\AXC{$\mathbf{D_0}$}
@@ -409,15 +711,15 @@ Let $\mathbf{D_0}$ and $\mathbf{D_1}$ be proof trees of degrees less than $d(A)$
 				
 				\noLine
 				\AXC{$\mathbf{D_1}'$}
-				\UIC{$\mathcal{T} | \Gamma , A | \mathcal{R} \Rightarrow \Delta$}
+				\UIC{$\mathcal{T} | \Gamma , A^n | \mathcal{R} \Rightarrow \Delta$}
 				\RightLabel{IH}
 				\BIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow \Delta$}
 				
 				\RightLabel{$Lw$}
-				\UIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \cup [\epsilon | A' | \epsilon_n] \Rightarrow \Delta$}
+				\UIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \cup [\epsilon | A' | \epsilon_r] \Rightarrow \Delta$}
 			\end{prooftree}
 
-			\item[($Rw$)] We want this
+			\item[$(R*, Rw)$]‌
 			\begin{prooftree}
 				\noLine
 				\AXC{$\mathbf{D_0}$}
@@ -425,14 +727,14 @@ Let $\mathbf{D_0}$ and $\mathbf{D_1}$ be proof trees of degrees less than $d(A)$
 				
 				\noLine
 				\AXC{$\mathbf{D_1}'$}
-				\UIC{$\mathcal{T} | \Gamma , A | \mathcal{R} \Rightarrow$}
+				\UIC{$\mathcal{T} | \Gamma , A^n | \mathcal{R} \Rightarrow$}
 				\RightLabel{$Rw$}
-				\UIC{$\mathcal{T} | \Gamma , A | \mathcal{R} \Rightarrow A'$}
+				\UIC{$\mathcal{T} | \Gamma , A^n | \mathcal{R} \Rightarrow A'$}
 				
 				\dashedLine\RightLabel{$Cut$}
 				\BIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow A'$}
 			\end{prooftree}
-			By induction hypothesis for $\mathbf{D_0}$ and $\mathbf{D_1}'$
+			By induction hypothesis for $\mathbf{D_0}$ and $\mathbf{D_1}'$ we have
 			\begin{prooftree}
 				\noLine
 				\AXC{$\mathbf{D_0}$}
@@ -440,7 +742,7 @@ Let $\mathbf{D_0}$ and $\mathbf{D_1}$ be proof trees of degrees less than $d(A)$
 				
 				\noLine
 				\AXC{$\mathbf{D_1}'$}
-				\UIC{$\mathcal{T} | \Gamma , A | \mathcal{R} \Rightarrow$}
+				\UIC{$\mathcal{T} | \Gamma , A^n | \mathcal{R} \Rightarrow$}
 				\RightLabel{IH}
 				\BIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow$}
 				
@@ -448,22 +750,22 @@ Let $\mathbf{D_0}$ and $\mathbf{D_1}$ be proof trees of degrees less than $d(A)$
 				\UIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow A'$}
 			\end{prooftree}
 
-			\item[($Lc$)] We want this
+			\item[$(R*, Lc)$]‌
 			\begin{prooftree}
 				\noLine
 				\AXC{$\mathbf{D_0}$}
 				\UIC{$\mathcal{S} \Rightarrow A$}
-				
+
 				\noLine
 				\AXC{$\mathbf{D_1}'$}
-				\UIC{$[\mathcal{T} | \Gamma , A | \mathcal{R}] \cup [\epsilon | A' , A' | \epsilon_n ] \Rightarrow \Delta$}
+				\UIC{$[\mathcal{T} | \Gamma , A^n | \mathcal{R}] \cup [\epsilon | A' , A' | \epsilon_r ] \Rightarrow \Delta$}
 				\RightLabel{$Lc$}
-				\UIC{$[\mathcal{T} | \Gamma , A | \mathcal{R}] \cup [\epsilon | A' | \epsilon_n] \Rightarrow \Delta$}
-				
+				\UIC{$[\mathcal{T} | \Gamma , A^n | \mathcal{R}] \cup [\epsilon | A' | \epsilon_r] \Rightarrow \Delta$}
+
 				\dashedLine\RightLabel{$Cut$}
-				\BIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \cup [\epsilon | A' | \epsilon_n] \Rightarrow \Delta$}
+				\BIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \cup [\epsilon | A' | \epsilon_r] \Rightarrow \Delta$}
 			\end{prooftree}
-			By induction hypothesis for $\mathbf{D_0}$ and $\mathbf{D_1}'$
+			By induction hypothesis for $\mathbf{D_0}$ and $\mathbf{D_1}'$ we have $\mathbf{D_1}'$
 			\begin{prooftree}
 				\noLine
 				\AXC{$\mathbf{D_0}$}
@@ -471,15 +773,15 @@ Let $\mathbf{D_0}$ and $\mathbf{D_1}$ be proof trees of degrees less than $d(A)$
 				
 				\noLine
 				\AXC{$\mathbf{D_1}'$}
-				\UIC{$[\mathcal{T} | \Gamma , A | \mathcal{R}] \cup [\epsilon | A' , A' | \epsilon_n ] \Rightarrow \Delta$}
+				\UIC{$[\mathcal{T} | \Gamma , A^n | \mathcal{R}] \cup [\epsilon | A' , A' | \epsilon_r ] \Rightarrow \Delta$}
 				\RightLabel{IH}
-				\BIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \cup [\epsilon | A' , A' | \epsilon_n] \Rightarrow \Delta$}
+				\BIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \cup [\epsilon | A' , A' | \epsilon_r] \Rightarrow \Delta$}
 				
 				\RightLabel{$Lc$}
-				\UIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \cup [\epsilon | A' | \epsilon_n] \Rightarrow \Delta$}
+				\UIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \cup [\epsilon | A' | \epsilon_r] \Rightarrow \Delta$}
 			\end{prooftree}
 		
-			\item[($L\land$)] We want this
+			\item[$(R*, L\land_1)$]‌
 			\begin{prooftree}
 				\noLine
 				\AXC{$\mathbf{D_0}$}
@@ -487,14 +789,14 @@ Let $\mathbf{D_0}$ and $\mathbf{D_1}$ be proof trees of degrees less than $d(A)$
 				
 				\noLine
 				\AXC{$\mathbf{D_1}'$}
-				\UIC{$[\mathcal{T} | \Gamma , A | \mathcal{R}] \cup [\epsilon | A' | \epsilon_n ] \Rightarrow \Delta$}
-				\RightLabel{$L\land$}
-				\UIC{$[\mathcal{T} | \Gamma , A | \mathcal{R}] \cup [\epsilon | A' \land B' | \epsilon_n] \Rightarrow \Delta$}
+				\UIC{$[\mathcal{T} | \Gamma , A^n | \mathcal{R}] \cup [\epsilon | A' | \epsilon_r ] \Rightarrow \Delta$}
+				\RightLabel{$L\land_1$}
+				\UIC{$[\mathcal{T} | \Gamma , A^n | \mathcal{R}] \cup [\epsilon | A' \land B' | \epsilon_r] \Rightarrow \Delta$}
 				
 				\dashedLine\RightLabel{$Cut$}
-				\BIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \cup [\epsilon | A' \land B' | \epsilon_n] \Rightarrow \Delta$}
+				\BIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \cup [\epsilon | A' \land B' | \epsilon_r] \Rightarrow \Delta$}
 			\end{prooftree}
-			By induction hypothesis for $\mathbf{D_0}$ and $\mathbf{D_1}'$
+			By induction hypothesis for $\mathbf{D_0}$ and $\mathbf{D_1}'$ we have
 			\begin{prooftree}
 				\noLine
 				\AXC{$\mathbf{D_0}$}
@@ -502,16 +804,15 @@ Let $\mathbf{D_0}$ and $\mathbf{D_1}$ be proof trees of degrees less than $d(A)$
 				
 				\noLine
 				\AXC{$\mathbf{D_1}'$}
-				\UIC{$[\mathcal{T} | \Gamma , A | \mathcal{R}] \cup [\epsilon | A' | \epsilon_n ] \Rightarrow \Delta$}
+				\UIC{$[\mathcal{T} | \Gamma , A^n | \mathcal{R}] \cup [\epsilon | A' | \epsilon_r ] \Rightarrow \Delta$}
 				\RightLabel{IH}
-				\BIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \cup [\epsilon | A' | \epsilon_n] \Rightarrow \Delta$}
+				\BIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \cup [\epsilon | A' | \epsilon_r] \Rightarrow \Delta$}
 				
-				\RightLabel{$L\land$}
-				\UIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \cup [\epsilon | A' \land B' | \epsilon_n] \Rightarrow \Delta$}
+				\RightLabel{$L\land_1$}
+				\UIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \cup [\epsilon | A' \land B' | \epsilon_r] \Rightarrow \Delta$}
 			\end{prooftree}
-			The other $L\land$ is similar.
-		
-			\item[($R\land$)] We want this
+
+			\item[$(R*, L\land_2)$]‌
 			\begin{prooftree}
 				\noLine
 				\AXC{$\mathbf{D_0}$}
@@ -519,12 +820,43 @@ Let $\mathbf{D_0}$ and $\mathbf{D_1}$ be proof trees of degrees less than $d(A)$
 				
 				\noLine
 				\AXC{$\mathbf{D_1}'$}
-				\UIC{$\mathcal{T} | \Gamma , A | \mathcal{R} \Rightarrow A'$}
+				\UIC{$[\mathcal{T} | \Gamma , A^n | \mathcal{R}] \cup [\epsilon | B' | \epsilon_r ] \Rightarrow \Delta$}
+				\RightLabel{$L\land_2$}
+				\UIC{$[\mathcal{T} | \Gamma , A^n | \mathcal{R}] \cup [\epsilon | A' \land B' | \epsilon_r] \Rightarrow \Delta$}
+				
+				\dashedLine\RightLabel{$Cut$}
+				\BIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \cup [\epsilon | A' \land B' | \epsilon_r] \Rightarrow \Delta$}
+			\end{prooftree}
+			By induction hypothesis for $\mathbf{D_0}$ and $\mathbf{D_1}'$ we have
+			\begin{prooftree}
+				\noLine
+				\AXC{$\mathbf{D_0}$}
+				\UIC{$\mathcal{S} \Rightarrow A$}
+				
+				\noLine
+				\AXC{$\mathbf{D_1}'$}
+				\UIC{$[\mathcal{T} | \Gamma , A^n | \mathcal{R}] \cup [\epsilon | B' | \epsilon_r ] \Rightarrow \Delta$}
+				\RightLabel{IH}
+				\BIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \cup [\epsilon | B' | \epsilon_r] \Rightarrow \Delta$}
+				
+				\RightLabel{$L\land_2$}
+				\UIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \cup [\epsilon | A' \land B' | \epsilon_r] \Rightarrow \Delta$}
+			\end{prooftree}
+
+			\item[$(R*, R\land)$]‌
+			\begin{prooftree}
+				\noLine
+				\AXC{$\mathbf{D_0}$}
+				\UIC{$\mathcal{S} \Rightarrow A$}
+				
+				\noLine
+				\AXC{$\mathbf{D_1}'$}
+				\UIC{$\mathcal{T} | \Gamma , A^n | \mathcal{R} \Rightarrow A'$}
 				\noLine
 				\AXC{$\mathbf{D_1}''$}
-				\UIC{$\mathcal{T} | \Gamma , A | \mathcal{R} \Rightarrow B'$}
+				\UIC{$\mathcal{T} | \Gamma , A^n | \mathcal{R} \Rightarrow B'$}
 				\RightLabel{$R\land$}
-				\BIC{$\mathcal{T} | \Gamma , A | \mathcal{R}] \Rightarrow A' \land B'$}
+				\BIC{$\mathcal{T} | \Gamma , A^n | \mathcal{R}] \Rightarrow A' \land B'$}
 				
 				\dashedLine\RightLabel{$Cut$}
 				\BIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow A' \land B'$}
@@ -537,7 +869,7 @@ Let $\mathbf{D_0}$ and $\mathbf{D_1}$ be proof trees of degrees less than $d(A)$
 				
 				\noLine
 				\AXC{$\mathbf{D_1}'$}
-				\UIC{$\mathcal{T} | \Gamma , A | \mathcal{R} \Rightarrow A'$}
+				\UIC{$\mathcal{T} | \Gamma , A^n | \mathcal{R} \Rightarrow A'$}
 				
 				\RightLabel{IH}
 				\BIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow A'$}
@@ -548,7 +880,7 @@ Let $\mathbf{D_0}$ and $\mathbf{D_1}$ be proof trees of degrees less than $d(A)$
 				
 				\noLine
 				\AXC{$\mathbf{D_1}''$}
-				\UIC{$\mathcal{T} | \Gamma , A | \mathcal{R} \Rightarrow B'$}
+				\UIC{$\mathcal{T} | \Gamma , A^n | \mathcal{R} \Rightarrow B'$}
 				
 				\RightLabel{IH}
 				\BIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow B'$}
@@ -557,7 +889,7 @@ Let $\mathbf{D_0}$ and $\mathbf{D_1}$ be proof trees of degrees less than $d(A)$
 				\BIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow A' \land B'$}
 			\end{prooftree}
 
-			\item[($L\lor$)] We want this
+			\item[$(R*, L\lor)$]‌
 			\begin{prooftree}
 				\noLine
 				\AXC{$\mathbf{D_0}$}
@@ -565,15 +897,15 @@ Let $\mathbf{D_0}$ and $\mathbf{D_1}$ be proof trees of degrees less than $d(A)$
 				
 				\noLine
 				\AXC{$\mathbf{D_1}'$}
-				\UIC{$[\mathcal{T} | \Gamma , A | \mathcal{R}] \cup [\epsilon | A' | \epsilon_n] \Rightarrow \Delta$}
+				\UIC{$[\mathcal{T} | \Gamma , A^n | \mathcal{R}] \cup [\epsilon | A' | \epsilon_r] \Rightarrow \Delta$}
 				\noLine
 				\AXC{$\mathbf{D_1}''$}
-				\UIC{$[\mathcal{T} | \Gamma , A | \mathcal{R}] \cup [\epsilon | B' | \epsilon_n] \Rightarrow \Delta$}
+				\UIC{$[\mathcal{T} | \Gamma , A^n | \mathcal{R}] \cup [\epsilon | B' | \epsilon_r] \Rightarrow \Delta$}
 				\RightLabel{$L\lor$}
-				\BIC{$[\mathcal{T} | \Gamma , A | \mathcal{R}] \cup [\epsilon | A' \lor B' | \epsilon_n] \Rightarrow \Delta$}
+				\BIC{$[\mathcal{T} | \Gamma , A^n | \mathcal{R}] \cup [\epsilon | A' \lor B' | \epsilon_r] \Rightarrow \Delta$}
 				
 				\dashedLine\RightLabel{$Cut$}
-				\BIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \cup [\epsilon | A' \lor B' | \epsilon_n] \Rightarrow \Delta$}
+				\BIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \cup [\epsilon | A' \lor B' | \epsilon_r] \Rightarrow \Delta$}
 			\end{prooftree}
 			By induction hypothesis, once for $\mathbf{D_0}$ and $\mathbf{D_1}'$ and again for $\mathbf{D_0}$ and $\mathbf{D_1}''$
 			\begin{prooftree}
@@ -583,10 +915,10 @@ Let $\mathbf{D_0}$ and $\mathbf{D_1}$ be proof trees of degrees less than $d(A)$
 				
 				\noLine
 				\AXC{$\mathbf{D_1}'$}
-				\UIC{$[\mathcal{T} | \Gamma , A | \mathcal{R}] \cup [\epsilon | A' | \epsilon_n] \Rightarrow \Delta$}
+				\UIC{$[\mathcal{T} | \Gamma , A^n | \mathcal{R}] \cup [\epsilon | A' | \epsilon_r] \Rightarrow \Delta$}
 				
 				\RightLabel{IH}
-				\BIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \cup [\epsilon | A' | \epsilon_n] \Rightarrow \Delta$}
+				\BIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \cup [\epsilon | A' | \epsilon_r] \Rightarrow \Delta$}
 
 				\noLine
 				\AXC{$\mathbf{D_0}$}
@@ -594,16 +926,47 @@ Let $\mathbf{D_0}$ and $\mathbf{D_1}$ be proof trees of degrees less than $d(A)$
 				
 				\noLine
 				\AXC{$\mathbf{D_1}''$}
-				\UIC{$[\mathcal{T} | \Gamma , A | \mathcal{R}] \cup [\epsilon | B' | \epsilon_n] \Rightarrow \Delta$}
+				\UIC{$[\mathcal{T} | \Gamma , A^n | \mathcal{R}] \cup [\epsilon | B' | \epsilon_r] \Rightarrow \Delta$}
 				
 				\RightLabel{IH}
-				\BIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \cup [\epsilon | B' | \epsilon_n] \Rightarrow \Delta$}
+				\BIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \cup [\epsilon | B' | \epsilon_r] \Rightarrow \Delta$}
 
 				\RightLabel{$L\lor$}
-				\BIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \cup [\epsilon | A' \lor B' | \epsilon_n] \Rightarrow \Delta$}
+				\BIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \cup [\epsilon | A' \lor B' | \epsilon_r] \Rightarrow \Delta$}
 			\end{prooftree}
 
-			\item[($R\lor$)] We want this
+			\item[$(R*, R\lor_1)$]‌
+			\begin{prooftree}
+				\noLine
+				\AXC{$\mathbf{D_0}$}
+				\UIC{$\mathcal{S} \Rightarrow A$}
+
+				\noLine
+				\AXC{$\mathbf{D_1}'$}
+				\UIC{$\mathcal{T} | \Gamma , A^n | \mathcal{R} \Rightarrow A'$}
+				\RightLabel{$R\lor_1$}
+				\UIC{$\mathcal{T} | \Gamma , A^n | \mathcal{R} \Rightarrow A' \lor B'$}
+
+				\dashedLine\RightLabel{$Cut$}
+				\BIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow A' \lor B'$}
+			\end{prooftree}
+			By induction hypothesis for $\mathbf{D_0}$ and $\mathbf{D_1}'$
+			\begin{prooftree}
+				\noLine
+				\AXC{$\mathbf{D_0}$}
+				\UIC{$\mathcal{S} \Rightarrow A$}
+
+				\noLine
+				\AXC{$\mathbf{D_1}'$}
+				\UIC{$\mathcal{T} | \Gamma , A^n | \mathcal{R} \Rightarrow A'$}
+				\RightLabel{IH}
+				\BIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow A'$}
+
+				\RightLabel{$R\lor_1$}
+				\UIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow A' \lor B'$}
+			\end{prooftree}
+
+			\item[$(R*, R\lor_2)$]‌
 			\begin{prooftree}
 				\noLine
 				\AXC{$\mathbf{D_0}$}
@@ -611,9 +974,9 @@ Let $\mathbf{D_0}$ and $\mathbf{D_1}$ be proof trees of degrees less than $d(A)$
 				
 				\noLine
 				\AXC{$\mathbf{D_1}'$}
-				\UIC{$\mathcal{T} | \Gamma , A | \mathcal{R} \Rightarrow A'$}
-				\RightLabel{$R\lor$}
-				\UIC{$\mathcal{T} | \Gamma , A | \mathcal{R} \Rightarrow A' \lor B'$}
+				\UIC{$\mathcal{T} | \Gamma , A^n | \mathcal{R} \Rightarrow B'$}
+				\RightLabel{$R\lor_2$}
+				\UIC{$\mathcal{T} | \Gamma , A^n | \mathcal{R} \Rightarrow A' \lor B'$}
 				
 				\dashedLine\RightLabel{$Cut$}
 				\BIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow A' \lor B'$}
@@ -626,16 +989,15 @@ Let $\mathbf{D_0}$ and $\mathbf{D_1}$ be proof trees of degrees less than $d(A)$
 				
 				\noLine
 				\AXC{$\mathbf{D_1}'$}
-				\UIC{$\mathcal{T} | \Gamma , A | \mathcal{R} \Rightarrow A'$}
+				\UIC{$\mathcal{T} | \Gamma , A^n | \mathcal{R} \Rightarrow B'$}
 				\RightLabel{IH}
-				\BIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow A'$}
+				\BIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow B'$}
 				
-				\RightLabel{$R\lor$}
+				\RightLabel{$R\lor_2$}
 				\UIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow A' \lor B'$}
 			\end{prooftree}
-			The other $R\lor$ is similar.
 
-			\item[($L\rightarrow$)] We want this
+			\item[$(R*, L\rightarrow)$]‌
 			\begin{prooftree}
 				\noLine
 				\AXC{$\mathbf{D_0}$}
@@ -644,14 +1006,14 @@ Let $\mathbf{D_0}$ and $\mathbf{D_1}$ be proof trees of degrees less than $d(A)$
 
 				\noLine
 				\AXC{$\mathbf{D_1}'$}
-				\UIC{$\mathcal{T} | \Gamma , A | \mathcal{R} \Rightarrow A'$}
+				\UIC{$\mathcal{T} | \Gamma , A^n | \mathcal{R} \Rightarrow \nabla^r A'$}
 				
 				\noLine
 				\AXC{$\mathbf{D_1}''$}
-				\UIC{$[\mathcal{T} | \Gamma , A | \mathcal{R}] \cup [\epsilon | B' | \epsilon_n] \Rightarrow \Delta$}
+				\UIC{$[\mathcal{T} | \Gamma , A^n | \mathcal{R}] \cup [\epsilon | B' | \epsilon_r] \Rightarrow \Delta$}
 				
 				\RightLabel{$L\rightarrow$}
-				\BIC{$[\mathcal{T} | \Gamma , A | \mathcal{R}] \cup [\epsilon | A' \rightarrow B' | \epsilon_{n+1}] \Rightarrow \Delta$}
+				\BIC{$[\mathcal{T} | \Gamma , A^n | \mathcal{R}] \cup [\epsilon | A' \rightarrow B' | \epsilon_{r+1}] \Rightarrow \Delta$}
 
 
 				\dashedLine\RightLabel{$Cut$}
@@ -665,10 +1027,10 @@ Let $\mathbf{D_0}$ and $\mathbf{D_1}$ be proof trees of degrees less than $d(A)$
 				
 				\noLine
 				\AXC{$\mathbf{D_1}'$}
-				\UIC{$\mathcal{T} | \Gamma , A | \mathcal{R} \Rightarrow A'$}
+				\UIC{$\mathcal{T} | \Gamma , A^n | \mathcal{R} \Rightarrow \nabla^r A'$}
 				
 				\RightLabel{IH}
-				\BIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow A'$}
+				\BIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow \nabla^r A'$}
 				
 				\noLine
 				\AXC{$\mathbf{D_0}$}
@@ -676,16 +1038,16 @@ Let $\mathbf{D_0}$ and $\mathbf{D_1}$ be proof trees of degrees less than $d(A)$
 				
 				\noLine
 				\AXC{$\mathbf{D_1}''$}
-				\UIC{$[\mathcal{T} | \Gamma , A | \mathcal{R}] \cup [\epsilon | B' | \epsilon_n] \Rightarrow \Delta$}
+				\UIC{$[\mathcal{T} | \Gamma , A^n | \mathcal{R}] \cup [\epsilon | B' | \epsilon_r] \Rightarrow \Delta$}
 				
 				\RightLabel{IH}
-				\BIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \cup [\epsilon | B' | \epsilon_n] \Rightarrow \Delta$}
+				\BIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \cup [\epsilon | B' | \epsilon_r] \Rightarrow \Delta$}
 				
 				\RightLabel{$L\rightarrow$}
 				\BIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \cup [\epsilon | A' \rightarrow B' | \epsilon_{n+1}] \Rightarrow \Delta$}
 			\end{prooftree}
 
-			\item[($R\rightarrow$)] We want this
+			\item[$(R*, R\rightarrow)$]‌
 			\begin{prooftree}
 				\noLine
 				\AXC{$\mathbf{D_0}$}
@@ -693,9 +1055,9 @@ Let $\mathbf{D_0}$ and $\mathbf{D_1}$ be proof trees of degrees less than $d(A)$
 				
 				\noLine
 				\AXC{$\mathbf{D_1}'$}
-				\UIC{$\mathcal{T} | \Gamma , A | \mathcal{R} | A' \Rightarrow B'$}
+				\UIC{$\mathcal{T} | \Gamma , A^n | \mathcal{R} | A' \Rightarrow B'$}
 				\RightLabel{$R\rightarrow$}
-				\UIC{$\mathcal{T} | \Gamma , A | \mathcal{R} \Rightarrow A' \rightarrow B'$}
+				\UIC{$\mathcal{T} | \Gamma , A^n | \mathcal{R} \Rightarrow A' \rightarrow B'$}
 				
 				\dashedLine\RightLabel{$Cut$}
 				\BIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow A' \rightarrow B'$}
@@ -708,7 +1070,7 @@ Let $\mathbf{D_0}$ and $\mathbf{D_1}$ be proof trees of degrees less than $d(A)$
 				
 				\noLine
 				\AXC{$\mathbf{D_1}'$}
-				\UIC{$\mathcal{T} | \Gamma , A | \mathcal{R} | A' \Rightarrow B'$}
+				\UIC{$\mathcal{T} | \Gamma , A^n | \mathcal{R} | A' \Rightarrow B'$}
 				\RightLabel{IH}
 				\BIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})+1}] \cup [\mathcal{T} | \Gamma | \mathcal{R} | A'] \Rightarrow B'$}
 				
@@ -716,7 +1078,7 @@ Let $\mathbf{D_0}$ and $\mathbf{D_1}$ be proof trees of degrees less than $d(A)$
 				\UIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow A' \rightarrow B'$}
 			\end{prooftree}
 		
-			\item[($L\nabla$)] We want this
+			\item[$(R*, L\nabla)$]‌
 			\begin{prooftree}
 				\noLine
 				\AXC{$\mathbf{D_0}$}
@@ -724,12 +1086,12 @@ Let $\mathbf{D_0}$ and $\mathbf{D_1}$ be proof trees of degrees less than $d(A)$
 				
 				\noLine
 				\AXC{$\mathbf{D_1}'$}
-				\UIC{$[\mathcal{T} | \Gamma , A | \mathcal{R}] \cup [\epsilon | A' | \epsilon_{n+1}] \Rightarrow \Delta$}
+				\UIC{$[\mathcal{T} | \Gamma , A^n | \mathcal{R}] \cup [\epsilon | A' | \epsilon_{r+1}] \Rightarrow \Delta$}
 				\RightLabel{$L\nabla$}
-				\UIC{$[\mathcal{T} | \Gamma , A | \mathcal{R}] \cup [\epsilon | \nabla A' | \epsilon_n] \Rightarrow \Delta$}
+				\UIC{$[\mathcal{T} | \Gamma , A^n | \mathcal{R}] \cup [\epsilon | \nabla A' | \epsilon_r] \Rightarrow \Delta$}
 				
 				\dashedLine\RightLabel{$Cut$}
-				\BIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \cup [\epsilon | \nabla A' | \epsilon_n] \Rightarrow \Delta$}
+				\BIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \cup [\epsilon | \nabla A' | \epsilon_r] \Rightarrow \Delta$}
 			\end{prooftree}
 			By induction hypothesis for $\mathbf{D_0}$ and $\mathbf{D_1}'$
 			\begin{prooftree}
@@ -739,15 +1101,15 @@ Let $\mathbf{D_0}$ and $\mathbf{D_1}$ be proof trees of degrees less than $d(A)$
 				
 				\noLine
 				\AXC{$\mathbf{D_1}'$}
-				\UIC{$[\mathcal{T} | \Gamma , A | \mathcal{R}] \cup [\epsilon | A' | \epsilon_{n+1}] \Rightarrow \Delta$}
+				\UIC{$[\mathcal{T} | \Gamma , A^n | \mathcal{R}] \cup [\epsilon | A' | \epsilon_{r+1}] \Rightarrow \Delta$}
 				\RightLabel{IH}
-				\BIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \cup [\epsilon | A' | \epsilon_{n+1}] \Rightarrow \Delta$}
+				\BIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \cup [\epsilon | A' | \epsilon_{r+1}] \Rightarrow \Delta$}
 				
 				\RightLabel{$L\nabla$}
-				\UIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \cup [\epsilon | \nabla A' | \epsilon_n] \Rightarrow \Delta$}
+				\UIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \cup [\epsilon | \nabla A' | \epsilon_r] \Rightarrow \Delta$}
 			\end{prooftree}
 
-			\item[($R\nabla$)] We want this
+			\item[$(R*, R\nabla)$]‌
 			\begin{prooftree}
 				\noLine
 				\AXC{$\mathbf{D_0}$}
@@ -755,9 +1117,9 @@ Let $\mathbf{D_0}$ and $\mathbf{D_1}$ be proof trees of degrees less than $d(A)$
 				
 				\noLine
 				\AXC{$\mathbf{D_1}'$}
-				\UIC{$\mathcal{T} | \Gamma , A | \mathcal{R} \Rightarrow A'$}
+				\UIC{$\mathcal{T} | \Gamma , A^n | \mathcal{R} \Rightarrow A'$}
 				\RightLabel{$R\nabla$}
-				\UIC{$\mathcal{T} | \Gamma , A | \mathcal{R} | - \Rightarrow \nabla A'$}
+				\UIC{$\mathcal{T} | \Gamma , A^n | \mathcal{R} | - \Rightarrow \nabla A'$}
 				
 				\dashedLine\RightLabel{$Cut$}
 				\BIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})+1}] \cup [\mathcal{T} | \Gamma | \mathcal{R} | -] \Rightarrow \nabla A'$}
@@ -770,7 +1132,7 @@ Let $\mathbf{D_0}$ and $\mathbf{D_1}$ be proof trees of degrees less than $d(A)$
 				
 				\noLine
 				\AXC{$\mathbf{D_1}'$}
-				\UIC{$\mathcal{T} | \Gamma , A | \mathcal{R} \Rightarrow A'$}
+				\UIC{$\mathcal{T} | \Gamma , A^n | \mathcal{R} \Rightarrow A'$}
 				\RightLabel{IH}
 				\BIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \mathcal{R}] \Rightarrow A'$}
 				
@@ -780,7 +1142,6 @@ Let $\mathbf{D_0}$ and $\mathbf{D_1}$ be proof trees of degrees less than $d(A)$
 		\end{itemize}
 	\end{enumerate}
 \end{itemize}
-\pagebreak
 
 \section{Corollary} \emph{Cut Elimination for GSTL: }
 If $\text{GSTL}^- + Cut \vdash \Gamma \Rightarrow \Delta$, then $\text{GSTL}^- \vdash \Gamma \Rightarrow \Delta$.
