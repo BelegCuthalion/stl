@@ -41,13 +41,13 @@
 ‌\\
 \begin{multicols}{3}
 	\begin{prooftree}
-		\RightLabel{$L\land$}
+		\RightLabel{$L\land_1$}
 		\AXC{$\mathcal{S} |‌\Gamma , A | \mathcal{R} \Rightarrow \Delta$}
 		\UIC{$\mathcal{S} |‌\Gamma , A \land B |‌\mathcal{R} \Rightarrow \Delta$}
 	\end{prooftree}
 	\columnbreak
 	\begin{prooftree}
-		\RightLabel{$L\land$}
+		\RightLabel{$L\land_2$}
 		\AXC{$\mathcal{S} |‌\Gamma , B | \mathcal{R} \Rightarrow \Delta$}
 		\UIC{$\mathcal{S} |‌\Gamma , A \land B | \mathcal{R} \Rightarrow \Delta$}
 	\end{prooftree}
@@ -69,13 +69,13 @@
 	\end{prooftree}
 	\columnbreak
 	\begin{prooftree}
-		\RightLabel{$R\lor$}
+		\RightLabel{$R\lor_1$}
 		\AXC{$\mathcal{S} \Rightarrow A$}
 		\UIC{$\mathcal{S} \Rightarrow A \lor B$}
 	\end{prooftree}
 	\columnbreak
 	\begin{prooftree}
-		\RightLabel{$R\lor$}
+		\RightLabel{$R\lor_2$}
 		\AXC{$\mathcal{S} \Rightarrow B$}
 		\UIC{$\mathcal{S} \Rightarrow A \lor B$}
 	\end{prooftree}
@@ -99,8 +99,8 @@
 \begin{multicols}{2}
 	\begin{prooftree}
 		\RightLabel{$L\nabla$}
-		\AXC{$\mathcal{S} |‌\Gamma , A | \Pi |‌\mathcal{R} \Rightarrow \Delta$}
-		\UIC{$\mathcal{S} |‌\Gamma | \Pi , \nabla A |‌\mathcal{R} \Rightarrow \Delta$}
+		\AXC{$\mathcal{S} |‌\Gamma , A | \Sigma |‌\mathcal{R} \Rightarrow \Delta$}
+		\UIC{$\mathcal{S} |‌\Gamma | \Sigma , \nabla A |‌\mathcal{R} \Rightarrow \Delta$}
 	\end{prooftree}
 	
 	\begin{prooftree}
