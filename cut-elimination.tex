@@ -515,7 +515,7 @@ By induction on $h(\mathbf{D_0}) + h(\mathbf{D_1})$, the induction hypothesis st
 			$[\mathcal{S} | \epsilon_{l(\mathcal{R}) + 1} ] \cup [ \mathcal{S} | - | \epsilon_{l(\mathcal{R})} ] \cup [ \mathcal{T} | \Gamma | \mathcal{R} ] \Rightarrow \Delta$, which yields the desired sequent with enough applications of $Lc$.
 			\begin{prooftree}
 				\noLine
-				\AXC{$\mathbb{D_0}'$}
+				\AXC{$\mathbf{D_0}'$}
 				\UIC{$\mathcal{S} \Rightarrow A'$}
 				
 				\noLine
@@ -532,7 +532,7 @@ By induction on $h(\mathbf{D_0}) + h(\mathbf{D_1})$, the induction hypothesis st
 				\RightLabel{IH}
 				\BIC{$[ \mathcal{S} | - | \epsilon_{l(\mathcal{R})} ] \cup [ \mathcal{S} | \epsilon_{l(\mathcal{R})+1} ] \cup [ \mathcal{T} | \Gamma | \Sigma | \mathcal{R} ] \Rightarrow \Delta$}
 				
-				\doubleLine \RightLabel{IH}
+				\doubleLine \RightLabel{$Lc$}
 				\UIC{$[ \mathcal{S} | \epsilon_{l(\mathcal{R})+1} ] \cup [ \mathcal{T} | \Gamma | \Sigma | \mathcal{R} ] \Rightarrow \Delta$}
 			\end{prooftree}
 
@@ -597,7 +597,7 @@ By induction on $h(\mathbf{D_0}) + h(\mathbf{D_1})$, the induction hypothesis st
 				\UIC{$\mathcal{S} | A' \Rightarrow B'$}
 
 				\noLine
-				\AXC{$\mathbf{D}'':~$}
+				\AXC{$\mathbf{D}''$}
 				\UIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})+1}] \cup [\mathcal{T} | \Gamma | \Sigma , B' | \mathcal{R}] \Rightarrow \Delta$}
 
 				\RightLabel{IH}
@@ -612,7 +612,7 @@ By induction on $h(\mathbf{D_0}) + h(\mathbf{D_1})$, the induction hypothesis st
 
 
 
-				\doubleLine \RightLabel{$Lc , Rc$}
+				\doubleLine \RightLabel{$Lc$}
 				\UIC{$[\mathcal{S} | \epsilon_{l(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \Sigma | \mathcal{R}] \Rightarrow \Delta$}
 			\end{prooftree}
 
@@ -1146,7 +1146,7 @@ By induction on $h(\mathbf{D_0}) + h(\mathbf{D_1})$, the induction hypothesis st
 \section{Corollary} \emph{Cut Elimination for GSTL: }
 If $\text{GSTL}^- + Cut \vdash \Gamma \Rightarrow \Delta$, then $\text{GSTL}^- \vdash \Gamma \Rightarrow \Delta$.
 
-\emph{Proof:} It suffices to show that for any proof three of $\Gamma \Rightarrow \Delta$ like $\mathbf{D}$, there is another proof of it with a lower cut-degree. Using induction on $h(\mathbf{D})$, the induction hypothesis states that for any proof of $\Gamma' \Rightarrow \Delta'$ like $\mathbf{D'}$ such that $h(\mathbf{D'}) < h(\mathbf{D})$, there is another proof of $\Gamma' \Rightarrow \Delta'$ like $\mathbf{D''}$ such that $d(\mathbf{D''}) < d(\mathbf{D'})$. Particularly for the immediate sub-trees of $\mathbf{D}$, this gives us sub-trees with lower cut-degree, which we call $\mathbf{D}_i$. We now consider two cases for the last rule of $\mathbf{D}$
+\emph{Proof:} It suffices to show that for any proof tree of $\Gamma \Rightarrow \Delta$ like $\mathbf{D}$, there is another proof of it with a lower cut-degree. Using induction on $h(\mathbf{D})$, the induction hypothesis states that for any proof of $\Gamma' \Rightarrow \Delta'$ like $\mathbf{D'}$ such that $h(\mathbf{D'}) < h(\mathbf{D})$, there is another proof of $\Gamma' \Rightarrow \Delta'$ like $\mathbf{D''}$ such that $d(\mathbf{D''}) < d(\mathbf{D'})$. Particularly for the immediate sub-trees of $\mathbf{D}$, this gives us sub-trees with lower cut-degree, which we call $\mathbf{D}_i$. We now consider two cases for the last rule of $\mathbf{D}$
 
 \begin{enumerate}[label=\Roman*]
 	\item If the last rule of $\mathbf{D}$ is of a lower degree than $d(\mathbf{D})$, i.e. the cut rule with the maximum degree is not the last rule in $\mathbf{D}$, then we can apply the same last rule on $\mathbf{D}_i$s and get a proof of $\Gamma \Rightarrow \Delta$ with a lower cut-degree.
