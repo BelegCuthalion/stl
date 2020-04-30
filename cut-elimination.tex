@@ -62,7 +62,7 @@ Let $\mathbf{D_0}$ and $\mathbf{D_1}$ be proof trees of degrees less than $d(A)$
 By induction on $h(\mathbf{D_0}) + h(\mathbf{D_1})$, the induction hypothesis states that for any proof trees $\mathbf{D_0}'$ with conclusion $\mathcal{S}' \Rightarrow A'$ and $\mathbf{D_1}'$ with conclusion $\mathcal{T}' | \Gamma', A'^m | \mathcal{R}' \Rightarrow \Delta'$ such that $h(\mathbf{D_0}') + h(\mathbf{D_1}') < h(\mathbf{D_0}) + h(\mathbf{D_1})$ and $d(\mathbf{D_0}'),d(\mathbf{D_1}') < d(A')$, there exists a proof tree $\mathbf{D}'$ with conclusion $[ \mathcal{S}' | \epsilon_{l(\mathcal{R}')} ] \cup [ \mathcal{T}' | \Gamma' | \mathcal{R}' ] \Rightarrow \Delta'$ such that $d(\mathbf{D}') < d(A')$. We proceed by case analysis on the last rule in $\mathbf{D_0}$.
 
 \begin{itemize}
-	\item[($Ax$)] We have $\mathcal{S} = \epsilon | A$, and the desired sequent should be of the form $[ \epsilon | A | \epsilon_{l(\mathcal{R})}] \cup \mathcal{T} | \Gamma | \mathcal{R} \Rightarrow \Delta$. $\mathbf{D_1}$ itself proves such sequent.
+	\item[($Ax$)] We have $\mathcal{S} = \epsilon | A$, and the desired sequent should be of the form $[ \epsilon | A | \epsilon_{l(\mathcal{R})}] \cup \mathcal{T} | \Gamma | \mathcal{R} \Rightarrow \Delta$. $n-1$ applications of $Lc$ on $\mathbf{D_1}$ proves such sequent.
 	
 	\item[($Ta$)] $\mathbf{D_0}$ proves $\epsilon \Rightarrow \top$. $\mathcal{T} | \Gamma| \mathcal{R} \Rightarrow \Delta$ is again proved by $\mathbf{D_1}$.
 	
@@ -682,7 +682,7 @@ By induction on $h(\mathbf{D_0}) + h(\mathbf{D_1})$, the induction hypothesis st
 		\item If $A$ is not principal in the last rule of $\mathbf{D_1}$. Consider these cases as $\mathbf{D_1}$'s last rule:
 		
 		\begin{itemize}
-			\item[$(R*, Ax)$] $\mathbf{D_0}$ proves the desired sequent.
+			\item[$(R*, Ax)$] $n-1$ applications of $Lc$ on $\mathbf{D_0}$ proves the desired sequent.
 			
 			\item[$(R*, Ta)$] Won't happen.
 			
