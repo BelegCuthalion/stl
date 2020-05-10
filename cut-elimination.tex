@@ -30,23 +30,15 @@
 {\large\textbf{The Cut Rule Is Admissible in GSTL}}
 }
 \\
+\setcounter{section}{-1}
+
 \input{GSTL}
 
-\subsubsection{Degree} For a formula $\varphi$,
-\[ d(\varphi) = \begin{cases}
-	1 & \quad ; \varphi \in P \cup \{ \bot, \top \} \\
-	d(\psi) + 1 & \quad ; \varphi = \nabla \psi \\
-	max(d(\psi), d(\theta)) + 1 & \quad ; \varphi = \psi \Box \theta, \Box \in \{ \land , \lor, \rightarrow \}
-\end{cases} \]
-For an instance of the cut rule $r$ with cut-formula $\varphi$, $d(r) = d(\varphi)$, $0$ if it's not an instance of the cut rule.
-For a proof tree $\mathbf{D}$, $d(\mathbf{D})$ is the maximum degree of its cut rules, $0$ if $\mathbf{D}$ is cut-free.
-\pagebreak
-
-\section{Theorem}\label{cut-admis} For any $\mathcal{S}$, $n$, $A$, $\mathcal{T}$, $k$, $l$ and $\Delta$, if $\text{GSTL}^-\vdash \mathcal{S} \Rightarrow \nabla^k A$ and $\text{GSTL}^-\vdash \mathcal{T} \cup [A^n | \epsilon_{k+l}] \Rightarrow \Delta$ with proof trees of degrees less than $d(A)$, then
- $\text{GSTL}^-\vdash [ \mathcal{S} | \epsilon_l ] \cup \mathcal{T} \Rightarrow \Delta$ also with a proof tree of a degree less than $d(A)$.
+\section{Theorem}\label{cut-admis} For any $\mathcal{S}$, $n$, $A$, $\mathcal{T}$, $k$, $l$ and $\Delta$, if $\text{GSTL}^-\vdash \mathcal{S} \Rightarrow \nabla^k A$ and $\text{GSTL}^-\vdash \mathcal{T} \cup [A^n | \epsilon_{k+l}] \Rightarrow \Delta$ with proof trees of ranks less than $\rho(A)$, then
+ $\text{GSTL}^-\vdash [ \mathcal{S} | \epsilon_l ] \cup \mathcal{T} \Rightarrow \Delta$ also with a proof tree of a rank less than $\rho(A)$.
  
 \emph{Proof:}
-Let $\mathbf{D_0}$ and $\mathbf{D_1}$ be proof trees of degrees less than $d(A)$, with conclusions $\mathcal{S} \Rightarrow \nabla^k A$ and $\mathcal{T} \cup [A^n | \epsilon_{k+l}] \Rightarrow \Delta$ and heights $h(\mathbf{D_0})$ and $h(\mathbf{D_1})$ respectively.
+Let $\mathbf{D_0}$ and $\mathbf{D_1}$ be proof trees of ranks less than $\rho(A)$, with conclusions $\mathcal{S} \Rightarrow \nabla^k A$ and $\mathcal{T} \cup [A^n | \epsilon_{k+l}] \Rightarrow \Delta$ and heights $h(\mathbf{D_0})$ and $h(\mathbf{D_1})$ respectively.
 \begin{prooftree}
 	\noLine
 	\AXC{$\mathbf{D_0}$}
@@ -59,7 +51,7 @@ Let $\mathbf{D_0}$ and $\mathbf{D_1}$ be proof trees of degrees less than $d(A)$
 	\dashedLine \RightLabel{$Cut$}
 	\BIC{$[ \mathcal{S} | \epsilon_l ] \cup \mathcal{T} \Rightarrow \Delta$}
 \end{prooftree}
-By induction on $h(\mathbf{D_0}) + h(\mathbf{D_1})$ and $d(A)$, the induction hypothesis states that for any proof trees $\mathbf{D_0}'$ with conclusion $\mathcal{S}' \Rightarrow \nabla^{k'} A'$ and $\mathbf{D_1}'$ with conclusion $\mathcal{T}' \cup [A'^m | \epsilon_{k'+l'}] \Rightarrow \Delta'$ such that either $h(\mathbf{D_0}') + h(\mathbf{D_1}') < h(\mathbf{D_0}) + h(\mathbf{D_1})$ or $d(A') < d(A)$, if $d(\mathbf{D_0}'),d(\mathbf{D_1}') < d(A')$, then there exists a proof tree $\mathbf{D}'$ with conclusion $[ \mathcal{S}' | \epsilon_{l'} ] \cup \mathcal{T}' \Rightarrow \Delta'$ such that $d(\mathbf{D}') < d(A')$.
+By induction on $h(\mathbf{D_0}) + h(\mathbf{D_1})$ and $\rho(A)$, the induction hypothesis states that for any proof trees $\mathbf{D_0}'$ with conclusion $\mathcal{S}' \Rightarrow \nabla^{k'} A'$ and $\mathbf{D_1}'$ with conclusion $\mathcal{T}' \cup [A'^m | \epsilon_{k'+l'}] \Rightarrow \Delta'$ such that either $h(\mathbf{D_0}') + h(\mathbf{D_1}') < h(\mathbf{D_0}) + h(\mathbf{D_1})$ or $\rho(A') < \rho(A)$, if $\rho(\mathbf{D_0}'),\rho(\mathbf{D_1}') < \rho(A')$, then there exists a proof tree $\mathbf{D}'$ with conclusion $[ \mathcal{S}' | \epsilon_{l'} ] \cup \mathcal{T}' \Rightarrow \Delta'$ such that $\rho(\mathbf{D}') < \rho(A')$.
 
 We proceed by case analysis on the last rule in $\mathbf{D_0}$.
 
@@ -86,7 +78,7 @@ We proceed by case analysis on the last rule in $\mathbf{D_0}$.
 		\dashedLine\RightLabel{$Cut$}
 		\BIC{$[\mathcal{S} | \Gamma , B | \mathcal{R} | \epsilon_l] \cup \mathcal{T} \Rightarrow \Delta$}
 	\end{prooftree}
-	From the induction hypothesis for $\mathbf{D_0}'$ and $\mathbf{D_1}$, we have a proof of $[\mathcal{S} | \Gamma | \mathcal{R} | \epsilon_l] \cup \mathcal{T} \Rightarrow \Delta$ with degree lower than that of $A$. By applying $Lw$ in the proper place, we have $[\mathcal{S} | \Gamma , B | \mathcal{R} | \epsilon_l] \cup \mathcal{T} \Rightarrow \Delta$, without increasing the cut-degree.
+	From the induction hypothesis for $\mathbf{D_0}'$ and $\mathbf{D_1}$, we have a proof of $[\mathcal{S} | \Gamma | \mathcal{R} | \epsilon_l] \cup \mathcal{T} \Rightarrow \Delta$ with rank lower than that of $A$. By applying $Lw$ in the proper place, we have $[\mathcal{S} | \Gamma , B | \mathcal{R} | \epsilon_l] \cup \mathcal{T} \Rightarrow \Delta$, without increasing the cut-rank.
 	\begin{prooftree}
 		\noLine
 		\AXC{$\mathbf{D_0}'$}
@@ -119,7 +111,7 @@ We proceed by case analysis on the last rule in $\mathbf{D_0}$.
 		\dashedLine\RightLabel{$Cut$}
 		\BIC{$[\mathcal{S} | \Gamma , B | \mathcal{R} | \epsilon_l] \cup \mathcal{T} \Rightarrow \Delta$}
 	\end{prooftree}
-	From the induction hypothesis for $\mathbf{D_0}'$ and $\mathbf{D_1}$, we have a proof of $[\mathcal{S} | \Gamma , B , B | \mathcal{R} | \epsilon_l] \cup \mathcal{T} \Rightarrow \Delta$ with degree lower than that of $A$. By applying $Lc$ in the proper place, we have $[\mathcal{S} | \Gamma , B | \mathcal{R} | \epsilon_l] \cup \mathcal{T} \Rightarrow \Delta$, without increasing the cut-degree.
+	From the induction hypothesis for $\mathbf{D_0}'$ and $\mathbf{D_1}$, we have a proof of $[\mathcal{S} | \Gamma , B , B | \mathcal{R} | \epsilon_l] \cup \mathcal{T} \Rightarrow \Delta$ with rank lower than that of $A$. By applying $Lc$ in the proper place, we have $[\mathcal{S} | \Gamma , B | \mathcal{R} | \epsilon_l] \cup \mathcal{T} \Rightarrow \Delta$, without increasing the cut-rank.
 	\begin{prooftree}
 		\noLine
 		\AXC{$\mathbf{D_0}'$}
@@ -151,7 +143,7 @@ We proceed by case analysis on the last rule in $\mathbf{D_0}$.
 		\dashedLine\RightLabel{$Cut$}
 		\BIC{$[\mathcal{S} | \Gamma , B \land C | \mathcal{R} | \epsilon_l] \cup \mathcal{T} \Rightarrow \Delta$}
 	\end{prooftree}
-	From the induction hypothesis for $\mathbf{D_0}'$ and $\mathbf{D_1}$, we have a proof of $[\mathcal{S} | \Gamma , B | \mathcal{R} | \epsilon_l] \cup \mathcal{T} \Rightarrow \Delta$ with degree lower than that of $A$. By applying $L\land$ in the proper place, we have $[\mathcal{S} | \Gamma , B \land C | \mathcal{R} | \epsilon_l] \cup \mathcal{T} \Rightarrow \Delta$, without increasing the cut-degree.
+	From the induction hypothesis for $\mathbf{D_0}'$ and $\mathbf{D_1}$, we have a proof of $[\mathcal{S} | \Gamma , B | \mathcal{R} | \epsilon_l] \cup \mathcal{T} \Rightarrow \Delta$ with rank lower than that of $A$. By applying $L\land$ in the proper place, we have $[\mathcal{S} | \Gamma , B \land C | \mathcal{R} | \epsilon_l] \cup \mathcal{T} \Rightarrow \Delta$, without increasing the cut-rank.
 	\begin{prooftree}
 		\noLine
 		\AXC{$\mathbf{D_0}'$}
@@ -188,7 +180,7 @@ We proceed by case analysis on the last rule in $\mathbf{D_0}$.
 		\dashedLine\RightLabel{$Cut$}
 		\BIC{$[\mathcal{S} | \Gamma , B \lor C | \mathcal{R} | \epsilon_l] \cup \mathcal{T} \Rightarrow \Delta$}
 	\end{prooftree}
-	From the induction hypothesis for $\mathbf{D_0}'$ and $\mathbf{D_1}$, we have a proof of $[\mathcal{S} | \Gamma , B | \mathcal{R} | \epsilon_l] \cup \mathcal{T} \Rightarrow \Delta$ with degree lower than that of $A$. Also from the induction hypothesis for $\mathbf{D_0}''$ and $\mathbf{D_1}$, we have a proof of $[\mathcal{S} | \Gamma , C | \mathcal{R} | \epsilon_l] \cup \mathcal{T} \Rightarrow \Delta$ with degree lower than that of $A$. By applying $L\lor$ in the proper place, we have $[\mathcal{S} | \Gamma , B \lor C | \mathcal{R} | \epsilon_l] \cup \mathcal{T} \Rightarrow \Delta$, without increasing the cut-degree.
+	From the induction hypothesis for $\mathbf{D_0}'$ and $\mathbf{D_1}$, we have a proof of $[\mathcal{S} | \Gamma , B | \mathcal{R} | \epsilon_l] \cup \mathcal{T} \Rightarrow \Delta$ with rank lower than that of $A$. Also from the induction hypothesis for $\mathbf{D_0}''$ and $\mathbf{D_1}$, we have a proof of $[\mathcal{S} | \Gamma , C | \mathcal{R} | \epsilon_l] \cup \mathcal{T} \Rightarrow \Delta$ with rank lower than that of $A$. By applying $L\lor$ in the proper place, we have $[\mathcal{S} | \Gamma , B \lor C | \mathcal{R} | \epsilon_l] \cup \mathcal{T} \Rightarrow \Delta$, without increasing the cut-rank.
 	\begin{prooftree}
 		\noLine
 		\AXC{$\mathbf{D_0}'$}
@@ -231,7 +223,7 @@ We proceed by case analysis on the last rule in $\mathbf{D_0}$.
 		\dashedLine\RightLabel{$Cut$}
 		\BIC{$[\mathcal{S} | \Gamma | \Sigma , \nabla B | \mathcal{R} | \epsilon_l] \cup \mathcal{T} \Rightarrow \Delta$}
 	\end{prooftree}
-	From the induction hypothesis for $\mathbf{D_0}'$ and $\mathbf{D_1}$, we have a proof of $[\mathcal{S} | \Gamma , B | \Sigma | \mathcal{R} | \epsilon_l] \cup \mathcal{T} \Rightarrow \Delta$ with degree lower than that of $A$. By applying $L\nabla$ in the proper place, we have $[\mathcal{S} | \Gamma | \Sigma , \nabla B | \mathcal{R} | \epsilon_l] \cup \mathcal{T} \Rightarrow \Delta$, without increasing the cut-degree.
+	From the induction hypothesis for $\mathbf{D_0}'$ and $\mathbf{D_1}$, we have a proof of $[\mathcal{S} | \Gamma , B | \Sigma | \mathcal{R} | \epsilon_l] \cup \mathcal{T} \Rightarrow \Delta$ with rank lower than that of $A$. By applying $L\nabla$ in the proper place, we have $[\mathcal{S} | \Gamma | \Sigma , \nabla B | \mathcal{R} | \epsilon_l] \cup \mathcal{T} \Rightarrow \Delta$, without increasing the cut-rank.
 	\begin{prooftree}
 		\noLine
 		\AXC{$\mathbf{D_0}'$}
@@ -268,7 +260,7 @@ We proceed by case analysis on the last rule in $\mathbf{D_0}$.
 		\BIC{$[\mathcal{S} | \Gamma , B \rightarrow C | \Sigma | \mathcal{R} | \epsilon_l] \cup \mathcal{T} \Rightarrow \Delta$}
 	\end{prooftree}
 	From the induction hypothesis for $\mathbf{D_0}''$ and $\mathbf{D_1}$, we have a proof of
-	$[\mathcal{S} | \Gamma | \Sigma , C | \mathcal{R} | \epsilon_l] \cup \mathcal{T} \Rightarrow \Delta$ with degree lower than that of $A$. Now in order to $L\rightarrow$ to be applicable on the resulting sequent and $\mathbf{D_0}'$, we must first identify their contexts. By $l$ times applications of $R\nabla$ and then $Lw$ with $\mathcal{T}$, we have $[\mathcal{S} | \Gamma | \Sigma | \mathcal{R} | \epsilon_l] \cup \mathcal{T} \Rightarrow \nabla^{\#(\mathcal{R})+l} B$. Then we can derive $[\mathcal{S} | \Gamma , B \rightarrow C | \Sigma | \mathcal{R} | \epsilon_l] \cup \mathcal{T} \Rightarrow \Delta$, from $L\rightarrow$ without increasing the cut-degree.
+	$[\mathcal{S} | \Gamma | \Sigma , C | \mathcal{R} | \epsilon_l] \cup \mathcal{T} \Rightarrow \Delta$ with rank lower than that of $A$. Now in order to $L\rightarrow$ to be applicable on the resulting sequent and $\mathbf{D_0}'$, we must first identify their contexts. By $l$ times applications of $R\nabla$ and then $Lw$ with $\mathcal{T}$, we have $[\mathcal{S} | \Gamma | \Sigma | \mathcal{R} | \epsilon_l] \cup \mathcal{T} \Rightarrow \nabla^{\#(\mathcal{R})+l} B$. Then we can derive $[\mathcal{S} | \Gamma , B \rightarrow C | \Sigma | \mathcal{R} | \epsilon_l] \cup \mathcal{T} \Rightarrow \Delta$, from $L\rightarrow$ without increasing the cut-rank.
 	\begin{prooftree}
 		\noLine
 		\AXC{$\mathbf{D_0}'$}
@@ -344,7 +336,7 @@ We proceed by case analysis on the last rule in $\mathbf{D_0}$.
 				\RightLabel{$Cut$} \dashedLine
 				\BIC{$[ \mathcal{S} | \epsilon_{\#(\mathcal{R})} ] \cup [ \mathcal{T} | \Gamma | \mathcal{R} ] \Rightarrow \Delta$}
 			\end{prooftree}
-			Induction hypothesis for $\mathbf{D_0}$ and $\mathbf{D_0}'$ gives us $[ \mathcal{S} | \epsilon_{\#(\mathcal{R})} ] \cup [ \mathcal{T} | \Gamma , B | \mathcal{R} ] \Rightarrow \Delta$ with a lower cut-degree than $d(A)$. Again, applying induction hypothesis on this sequent and $\mathbf{D_1}'$ gives\\
+			Induction hypothesis for $\mathbf{D_0}$ and $\mathbf{D_0}'$ gives us $[ \mathcal{S} | \epsilon_{\#(\mathcal{R})} ] \cup [ \mathcal{T} | \Gamma , B | \mathcal{R} ] \Rightarrow \Delta$ with a lower cut-rank than $\rho(A)$. Again, applying induction hypothesis on this sequent and $\mathbf{D_1}'$ gives\\
 			$[ \mathcal{S}^2 | \epsilon_{\#(\mathcal{R})} ] \cup [ \mathcal{T} | \Gamma | \mathcal{R} ] \Rightarrow \Delta$, which yields the desired sequent with enough applications of $Lc$.
 			\begin{prooftree}
 				\noLine
@@ -386,7 +378,7 @@ We proceed by case analysis on the last rule in $\mathbf{D_0}$.
 				\RightLabel{$Cut$} \dashedLine
 				\BIC{$[ \mathcal{S} | \epsilon_{\#(\mathcal{R})} ] \cup [ \mathcal{T} | \Gamma | \mathcal{R} ] \Rightarrow \Delta$}
 			\end{prooftree}
-			Induction hypothesis for $\mathbf{D_0}$ and $\mathbf{D_0}'$ gives us $[ \mathcal{S} | \epsilon_{\#(\mathcal{R})} ] \cup [ \mathcal{T} | \Gamma , C | \mathcal{R} ] \Rightarrow \Delta$ with a lower cut-degree than $d(A)$. Again, applying induction hypothesis on this sequent and $\mathbf{D_0}'$ gives\\
+			Induction hypothesis for $\mathbf{D_0}$ and $\mathbf{D_0}'$ gives us $[ \mathcal{S} | \epsilon_{\#(\mathcal{R})} ] \cup [ \mathcal{T} | \Gamma , C | \mathcal{R} ] \Rightarrow \Delta$ with a lower cut-rank than $\rho(A)$. Again, applying induction hypothesis on this sequent and $\mathbf{D_0}'$ gives\\
 			$[ \mathcal{S}^2 | \epsilon_{\#(\mathcal{R})} ] \cup [ \mathcal{T} | \Gamma | \mathcal{R} ] \Rightarrow \Delta$, which yields the desired sequent with enough applications of $Lc$.
 			\begin{prooftree}
 				\noLine
@@ -428,7 +420,7 @@ We proceed by case analysis on the last rule in $\mathbf{D_0}$.
 				\RightLabel{$Cut$} \dashedLine
 				\BIC{$[ \mathcal{S} | \epsilon_{\#(\mathcal{R})} ] \cup [ \mathcal{T} | \Gamma | \mathcal{R} ] \Rightarrow \Delta$}
 			\end{prooftree}
-			Induction hypothesis for $\mathbf{D_0}$ and $\mathbf{D_1}'$ gives us $[ \mathcal{S} | \epsilon_{\#(\mathcal{R})} ] \cup [ \mathcal{T} | \Gamma , B | \mathcal{R} ] \Rightarrow \Delta$ with a lower cut-degree than $d(A)$. Again, applying induction hypothesis on this sequent and $\mathbf{D_0}'$ gives\\
+			Induction hypothesis for $\mathbf{D_0}$ and $\mathbf{D_1}'$ gives us $[ \mathcal{S} | \epsilon_{\#(\mathcal{R})} ] \cup [ \mathcal{T} | \Gamma , B | \mathcal{R} ] \Rightarrow \Delta$ with a lower cut-rank than $\rho(A)$. Again, applying induction hypothesis on this sequent and $\mathbf{D_0}'$ gives\\
 			$[ \mathcal{S}^2 | \epsilon_{\#(\mathcal{R})} ] \cup [ \mathcal{T} | \Gamma | \mathcal{R} ] \Rightarrow \Delta$, which yields the desired sequent with enough applications of $Lc$.
 			\begin{prooftree}
 				\noLine
@@ -472,7 +464,7 @@ We proceed by case analysis on the last rule in $\mathbf{D_0}$.
 				\RightLabel{$Cut$} \dashedLine
 				\BIC{$[ \mathcal{S} | \epsilon_{\#(\mathcal{R})} ] \cup [ \mathcal{T} | \Gamma | \mathcal{R} ] \Rightarrow \Delta$}
 			\end{prooftree}
-			Induction hypothesis for $\mathbf{D_0}$ and $\mathbf{D_1}'$ gives us $[ \mathcal{S} | \epsilon_{\#(\mathcal{R})} ] \cup [ \mathcal{T} | \Gamma , (B \lor C)^{n-1} | \mathcal{R} ] \Rightarrow \Delta$ with a lower cut-degree than $d(A)$. Again, applying induction hypothesis on this sequent and $\mathbf{D_0}'$ gives 
+			Induction hypothesis for $\mathbf{D_0}$ and $\mathbf{D_1}'$ gives us $[ \mathcal{S} | \epsilon_{\#(\mathcal{R})} ] \cup [ \mathcal{T} | \Gamma , (B \lor C)^{n-1} | \mathcal{R} ] \Rightarrow \Delta$ with a lower cut-rank than $\rho(A)$. Again, applying induction hypothesis on this sequent and $\mathbf{D_0}'$ gives 
 			$[ \mathcal{S}^2 | \epsilon_{\#(\mathcal{R})} ] \cup [ \mathcal{T} | \Gamma | \mathcal{R} ] \Rightarrow \Delta$, which yields the desired sequent with enough applications of $Lc$.
 			\begin{prooftree}
 				\noLine
@@ -501,7 +493,7 @@ We proceed by case analysis on the last rule in $\mathbf{D_0}$.
 			\begin{prooftree}
 				\noLine
 				\AXC{$\mathbf{D_0}$}
-				\UIC{$\mathcal{S} | - \Rightarrow \nabla^{k+1} B$}
+				\UIC{$\mathcal{S} | \epsilon_1 \Rightarrow \nabla^{k+1} B$}
 				
 				\noLine
 				\AXC{$\mathbf{D_1}'$}
@@ -510,33 +502,33 @@ We proceed by case analysis on the last rule in $\mathbf{D_0}$.
 				\UIC{$\mathcal{T} \cup [(\nabla B)^n | \epsilon_{l+k}] \Rightarrow \Delta$}
 				
 				\RightLabel{$Cut$} \dashedLine
-				\BIC{$[ \mathcal{S} | - | \epsilon_l ] \cup \mathcal{T} \Rightarrow \Delta$}
+				\BIC{$[ \mathcal{S} | \epsilon_{l+1} ] \cup \mathcal{T} \Rightarrow \Delta$}
 			\end{prooftree}
 			First apply induction hypothesis for $\mathbf{D_0}$ and $\mathbf{D_1}'$ with $A' := \nabla B$. Again apply the induction hypothesis on $\mathbf{D_0}$ and the resulting sequent, this time with $A' := B$.
 			
 			\begin{prooftree}
 				\noLine
 				\AXC{$\mathbf{D_0}$}
-				\UIC{$\mathcal{S} | - \Rightarrow \nabla^{k+1} B$}
+				\UIC{$\mathcal{S} | \epsilon_1 \Rightarrow \nabla^{k+1} B$}
 				
 				
 				\noLine
 				\AXC{$\mathbf{D_0}$}
-				\UIC{$\mathcal{S} | - \Rightarrow \nabla^{k+1} B$}
+				\UIC{$\mathcal{S} | \epsilon_1 \Rightarrow \nabla^{k+1} B$}
 				
 				\noLine
 				\AXC{$\mathbf{D_1}'$}
 				\UIC{$\mathcal{T} \cup [B | (\nabla B)^{n-1} | \epsilon_{l+k}] \Rightarrow \Delta$}
 				
 				\RightLabel{IH}
-				\BIC{$[\mathcal{S} | - | \epsilon_l] \cup \mathcal{T} \cup [B | \epsilon_{l+k+1}] \Rightarrow \Delta$}
+				\BIC{$[\mathcal{S} | \epsilon_{l+1}] \cup \mathcal{T} \cup [B | \epsilon_{l+k+1}] \Rightarrow \Delta$}
 				
 				
 				\RightLabel{IH}
-				\BIC{$[\mathcal{S}^2 | - | \epsilon_l] \cup \mathcal{T} \Rightarrow \Delta$}
+				\BIC{$[\mathcal{S}^2 | \epsilon_{l+1}] \cup \mathcal{T} \Rightarrow \Delta$}
 				
 				\RightLabel{$Lc$}
-				\UIC{$[\mathcal{S} | - | \epsilon_l] \cup \mathcal{T} \Rightarrow \Delta$}
+				\UIC{$[\mathcal{S} | \epsilon_{l+1}] \cup \mathcal{T} \Rightarrow \Delta$}
 			\end{prooftree}
 
 
@@ -1121,10 +1113,10 @@ We proceed by case analysis on the last rule in $\mathbf{D_0}$.
 				\AXC{$\mathbf{D_1}'$}
 				\UIC{$\mathcal{T} \cup [A^n | \epsilon_{l+k}] \Rightarrow B$}
 				\RightLabel{$R\nabla$}
-				\UIC{$[\mathcal{T | -}] \cup [A^n | \epsilon_{l+k+1}] \Rightarrow \nabla B$}
+				\UIC{$[\mathcal{T} | \epsilon_1] \cup [A^n | \epsilon_{l+k+1}] \Rightarrow \nabla B$}
 
 				\dashedLine\RightLabel{$Cut$}
-				\BIC{$[\mathcal{S} | \epsilon_{l+1}] \cup [\mathcal{T} | -] \Rightarrow \nabla B$}
+				\BIC{$[\mathcal{S} | \epsilon_{l+1}] \cup [\mathcal{T} | \epsilon_1] \Rightarrow \nabla B$}
 			\end{prooftree}
 			By induction hypothesis for $\mathbf{D_0}$ and $\mathbf{D_1}'$
 			\begin{prooftree}
@@ -1141,7 +1133,7 @@ We proceed by case analysis on the last rule in $\mathbf{D_0}$.
 
 
 				\RightLabel{$R\nabla$}
-				\UIC{$[\mathcal{S} | \epsilon_{l+1}] \cup [\mathcal{T} | -] \Rightarrow \nabla B$}
+				\UIC{$[\mathcal{S} | \epsilon_{l+1}] \cup [\mathcal{T} | \epsilon_1] \Rightarrow \nabla B$}
 			\end{prooftree}
 		\end{itemize}
 	\end{enumerate}
@@ -1150,12 +1142,12 @@ We proceed by case analysis on the last rule in $\mathbf{D_0}$.
 \section{Corollary} \emph{Cut Elimination for GSTL: }
 If $\text{GSTL}^- + Cut \vdash \Gamma \Rightarrow \Delta$, then $\text{GSTL}^- \vdash \Gamma \Rightarrow \Delta$.
 
-\emph{Proof:} It suffices to show that for any proof tree of $\Gamma \Rightarrow \Delta$ like $\mathbf{D}$, there is another proof of it with a lower cut-degree. Using induction on $h(\mathbf{D})$, the induction hypothesis states that for any proof of $\Gamma' \Rightarrow \Delta'$ like $\mathbf{D'}$ such that $h(\mathbf{D'}) < h(\mathbf{D})$, there is another proof of $\Gamma' \Rightarrow \Delta'$ like $\mathbf{D''}$ such that $d(\mathbf{D''}) < d(\mathbf{D'})$. Particularly for the immediate sub-trees of $\mathbf{D}$, this gives us sub-trees with lower cut-degree, which we call $\mathbf{D}_i$. We now consider two cases for the last rule of $\mathbf{D}$
+\emph{Proof:} It suffices to show that for any proof tree of $\Gamma \Rightarrow \Delta$ like $\mathbf{D}$, there is another proof of it with a lower cut-rank. Using induction on $h(\mathbf{D})$, the induction hypothesis states that for any proof of $\Gamma' \Rightarrow \Delta'$ like $\mathbf{D'}$ such that $h(\mathbf{D'}) < h(\mathbf{D})$, there is another proof of $\Gamma' \Rightarrow \Delta'$ like $\mathbf{D''}$ such that $\rho(\mathbf{D''}) < \rho(\mathbf{D'})$. Particularly for the immediate sub-trees of $\mathbf{D}$, this gives us sub-trees with lower cut-rank, which we call $\mathbf{D}_i$. We now consider two cases for the last rule of $\mathbf{D}$
 
 \begin{enumerate}[label=\Roman*]
-	\item If the last rule of $\mathbf{D}$ is of a lower degree than $d(\mathbf{D})$, i.e. the cut rule with the maximum degree is not the last rule in $\mathbf{D}$, then we can apply the same last rule on $\mathbf{D}_i$s and get a proof of $\Gamma \Rightarrow \Delta$ with a lower cut-degree.
+	\item If the last rule of $\mathbf{D}$ is of a lower rank than $\rho(\mathbf{D})$, i.e. the cut rule with the maximum rank is not the last rule in $\mathbf{D}$, then we can apply the same last rule on $\mathbf{D}_i$s and get a proof of $\Gamma \Rightarrow \Delta$ with a lower cut-rank.
 	
-	\item If the last rule of $\mathbf{D}$ is an instance of cut rule with a cut-formula of degree $d(\mathbf{D})$, then we can apply theorem \ref{cut-admis} to $\mathbf{D_0}$ and $\mathbf{D_1}$ to get the same cut with a lower degree.
+	\item If the last rule of $\mathbf{D}$ is an instance of cut rule with a cut-formula of rank $\rho(\mathbf{D})$, then we can apply theorem \ref{cut-admis} to $\mathbf{D_0}$ and $\mathbf{D_1}$ to get the same cut with a lower rank.
 \end{enumerate}
 
 \end{document}
