@@ -121,3 +121,12 @@
 	\AXC{$\mathcal{T} | \Gamma, A | \mathcal{R} \Rightarrow \Delta$}
 	\BIC{$[ \mathcal{S} | \epsilon_{l(\mathcal{R})} ] \cup [ \mathcal{T} | \Gamma | \mathcal{R} ] \Rightarrow \Delta$}
 \end{prooftree}
+
+\subsubsection{Rank} For a formula $\varphi$,
+\[ \rho(\varphi) = \begin{cases}
+1 & \quad ; \varphi \in P \cup \{ \bot, \top \} \\
+\rho(\psi) + 1 & \quad ; \varphi = \nabla \psi \\
+max(\rho(\psi), \rho(\theta)) + 1 & \quad ; \varphi = \psi \Box \theta, \Box \in \{ \land , \lor, \rightarrow \}
+\end{cases} \]
+For an instance of the cut rule $c$ with cut-formula $\varphi$, $\rho(c) = \rho(\varphi)$, $0$ if it's not an instance of the cut rule.
+For a proof tree $\mathbf{D}$, $\rho(\mathbf{D})$ is the maximum rank of its cut rules, $0$ if $\mathbf{D}$ is cut-free.
