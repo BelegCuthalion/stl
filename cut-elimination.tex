@@ -26,7 +26,7 @@
 
 \begin{document}
 {\noindent
-	v 0.3 \\
+	v 0.3.1 \\
 {\large\textbf{The Cut Rule Is Admissible in GSTL}}
 }
 \\
@@ -77,7 +77,7 @@ We proceed by case analysis on the last rule in $\mathbf{D_0}$. We can either ap
 		
 		\noLine
 		\AXC{$\mathbf{D_1}$}
-		\UIC{$\mathcal{T} \cup [A^n | \epsilon_{k+l}] \Rightarrow \Delta$}
+		\UIC{$\mathcal{T} \cup [A^n | \epsilon_{l+k}] \Rightarrow \Delta$}
 
 		\dashedLine\RightLabel{$\nabla Cut$}
 		\BIC{$[\mathcal{S} | \Gamma , B | \mathcal{R} | \epsilon_l] \cup \mathcal{T} \Rightarrow \Delta$}
@@ -90,7 +90,7 @@ We proceed by case analysis on the last rule in $\mathbf{D_0}$. We can either ap
 		
 		\noLine
 		\AXC{$\mathbf{D_1}$}
-		\UIC{$\mathcal{T} \cup [A^n | \epsilon_{k+l}] \Rightarrow \Delta$}
+		\UIC{$\mathcal{T} \cup [A^n | \epsilon_{l+k}] \Rightarrow \Delta$}
 		
 		\RightLabel{IH}
 		\BIC{$[\mathcal{S} | \Gamma | \mathcal{R} | \epsilon_l] \cup \mathcal{T} \Rightarrow \Delta$}
@@ -131,7 +131,50 @@ We proceed by case analysis on the last rule in $\mathbf{D_0}$. We can either ap
 		\RightLabel{$Lc$}
 		\UIC{$[\mathcal{S} | \Gamma , B | \mathcal{R} | \epsilon_l] \cup \mathcal{T} \Rightarrow \Delta$}
 	\end{prooftree}
-	
+
+	\item ($\nabla Cut$) Assume $\mathbf{D_0}$ ends with a $\nabla Cut$ on $A'$, which by assumption must be of a lower rank than $A$.
+	\begin{prooftree}
+		\noLine
+		\AXC{$\mathbf{D_0}'$}
+		\UIC{$\mathcal{S}' \Rightarrow \nabla^{k'} A'$}
+		
+		\noLine
+		\AXC{$\mathbf{D_0}''$}
+		\UIC{$\mathcal{T}' \cup [A'^{n'} | \epsilon_{l'+k'}] \Rightarrow \nabla^k A$}
+		
+		\RightLabel{$\nabla Cut$}
+		\BIC{$[\mathcal{S}' | \epsilon_{l'}] \cup \mathcal{T}' \Rightarrow \nabla^k A$}
+		
+		
+		\noLine
+		\AXC{$\mathbf{D_1}$}
+		\UIC{$\mathcal{T} \cup [A^n | \epsilon_{l+k}] \Rightarrow \Delta$}
+		
+		\dashedLine\RightLabel{$\nabla Cut$}
+		\BIC{$[\mathcal{S}' | \epsilon_{l' + l}] \cup [\mathcal{T}' | \epsilon_l] \cup \mathcal{T} \Rightarrow \Delta$}
+	\end{prooftree}
+	We can use the induction hypothesis to remove $A$ first, then cut $A'$.
+	\begin{prooftree}
+		\noLine
+		\AXC{$\mathbf{D_0}'$}
+		\UIC{$\mathcal{S}' \Rightarrow \nabla^{k'} A'$}
+		
+		\noLine
+		\AXC{$\mathbf{D_0}''$}
+		\UIC{$\mathcal{T}' \cup [A'^{n'} | \epsilon_{l'+k'}] \Rightarrow \nabla^k A$}
+
+		\noLine
+		\AXC{$\mathbf{D_1}$}
+		\UIC{$\mathcal{T} \cup [A^n | \epsilon_{l+k}] \Rightarrow \Delta$}
+
+		\RightLabel{IH}
+		\BIC{$[\mathcal{T}' | \epsilon_l] \cup [A'^{k'} | \epsilon_{l'+k'+l}] \cup \mathcal{T} \Rightarrow \nabla^k A$}
+		
+
+		\RightLabel{$\nabla Cut$}
+		\BIC{$[\mathcal{S}' | \epsilon_{l' + l}] \cup [\mathcal{T}' | \epsilon_l] \cup \mathcal{T} \Rightarrow \Delta$}
+	\end{prooftree}
+
 	\item ($L\land_1$) $\mathbf{D_0}$ proves $\mathcal{S} | \Gamma , B \land C | \mathcal{R} \Rightarrow \nabla^k A$ and has a subproof $\mathbf{D_0}'$ of $\mathcal{S} | \Gamma , B | \mathcal{R} \Rightarrow \nabla^k A$.
 	\begin{prooftree}
 		\noLine
@@ -316,7 +359,7 @@ We proceed by case analysis on the last rule in $\mathbf{D_0}$. We can either ap
 	\end{prooftree}
 
 
-	\item[12-16.] ($R*$) In the cases that the last rule in $\mathbf{D_0}$ is any of the logical right-rules $R*$, its principal formula would be $\nabla^k A$. The only admissible rule where $k > 0$ would be $R\nabla$. For the other rules, this forces $k = 0$, plus a particular construction for $A$ based on the last rule. In each case, we will proceed by case analysis on the last rule of $\mathbf{D_1}$, but to avoid repeating similar cases, we will separate cases by whether the last rule of $\mathbf{D_1}$ is logical, and if $A$ is also the principal formula there or not. So we have the following groups of cases:
+	\item[13-17.] ($R*$) In the cases that the last rule in $\mathbf{D_0}$ is any of the logical right-rules $R*$, its principal formula would be $\nabla^k A$. The only admissible rule where $k > 0$ would be $R\nabla$. For the other rules, this forces $k = 0$, plus a particular construction for $A$ based on the last rule. In each case, we will proceed by case analysis on the last rule of $\mathbf{D_1}$, but to avoid repeating similar cases, we will separate cases by whether the last rule of $\mathbf{D_1}$ is logical, and if $A$ is also the principal formula there or not. So we have the following groups of cases:
 	(I) Cases in which $A$ is not principal in $\mathbf{D_1}$,
 	(II) cases in which the last rule of $\mathbf{D_1}$ is any of the logical left-rules and (an instance of) $A$ is its principal formula, and (III) $A$ is principal in $\mathbf{D_1}$, but the rule is structural. Notice that the solution for the different cases of $\mathbf{D_1}$ in (I) and (III) is shared by all cases of $\mathbf{D_0}$, since it does not depend on the last rule of $\mathbf{D_0}$. This may seem like we have commuted the case analysis on $\mathbf{D_1}$ with the one on $\mathbf{D_0}$, which is not true. So each item in (I) or (III) handles many different cases with similar solutions.
 	On the other hand, each case of $\mathbf{D_0}$ in (II) determines a single case for $\mathbf{D_1}$. The parens before each case show the last rule of $\mathbf{D_0}$ and $\mathbf{D_1}$ respectively.
@@ -423,7 +466,49 @@ We proceed by case analysis on the last rule in $\mathbf{D_0}$. We can either ap
 			\RightLabel{$Lc$}
 			\UIC{$[\mathcal{S} | \epsilon_l] \cup \mathcal{T} \cup [B | \epsilon_r] \Rightarrow \Delta$}
 		\end{prooftree}
+
+	\item ($R*, \nabla Cut$) Assume $\mathbf{D_1}$ ends with a $\nabla Cut$ on $A'$, which by assumption must be of a lower rank than $A$.
+	\begin{prooftree}
+		\noLine
+		\AXC{$\mathbf{D_0}$}
+		\UIC{$\mathcal{S} \Rightarrow \nabla^k A$}
+
+		\noLine
+		\AXC{$\mathbf{D_1}'$}
+		\UIC{$\mathcal{T} \cup [A^n | \epsilon_{l+k}] \Rightarrow \nabla^{k'} A'$}
+
+		\noLine
+		\AXC{$\mathbf{D_1}''$}
+		\UIC{$\mathcal{T}' \cup [A'^{n'} | \epsilon_{l'+k'}] \Rightarrow \Delta$}
+
+		\RightLabel{$\nabla Cut$}
+		\BIC{$[\mathcal{T} | \epsilon_{l'}] \cup [A^n | \epsilon_{l+k+l'}] \cup \mathcal{T}' \Rightarrow \Delta$}
+
+		\dashedLine\RightLabel{$\nabla Cut$}
+		\BIC{$[\mathcal{S} | \epsilon_{l + l'}] \cup [\mathcal{T} | \epsilon_{l'}] \cup \mathcal{T}' \Rightarrow \Delta$}
+	\end{prooftree}
+	We can use the induction hypothesis to remove $A$ first, then cut $A'$.
+	\begin{prooftree}
+		\noLine
+		\AXC{$\mathbf{D_0}$}
+		\UIC{$\mathcal{S} \Rightarrow \nabla^k A$}
 		
+		\noLine
+		\AXC{$\mathbf{D_1}'$}
+		\UIC{$\mathcal{T} \cup [A^n | \epsilon_{l+k}] \Rightarrow \nabla^{k'} A'$}
+
+		\RightLabel{IH}
+		\BIC{$[\mathcal{S} | \epsilon_l] \cup \mathcal{T} \Rightarrow \nabla^{k'} A'$}
+		
+		\noLine
+		\AXC{$\mathbf{D_1}''$}
+		\UIC{$\mathcal{T}' \cup [A'^{n'} | \epsilon_{l'+k'}] \Rightarrow \Delta$}
+		
+		\RightLabel{$\nabla Cut$}
+		\BIC{$[\mathcal{S} | \epsilon_{l + l'}] \cup [\mathcal{T} | \epsilon_{l'}] \cup \mathcal{T}' \Rightarrow \Delta$}
+	\end{prooftree}
+
+
 		\item ($R*, L\land_1$)
 		\begin{prooftree}
 			\noLine
