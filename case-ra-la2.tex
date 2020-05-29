@@ -1,0 +1,40 @@
+($R\land, L\land_2$)
+		\begin{prooftree}
+			\AXC{$\mathcal{S} \Rightarrow B$}
+			\noLine
+			\AXC{$\mathbf{D_0}'$}
+			\UIC{$\mathcal{S} \Rightarrow C$}
+			\RightLabel{$R\land$}
+			\BIC{$\mathcal{S} \Rightarrow B \land C$}
+			
+			\noLine
+			\AXC{$\mathbf{D_1}'$}
+			\UIC{$\mathcal{T} | \Gamma , (B \land C)^{n-1}, C | \mathcal{R} \Rightarrow \Delta$}
+			\RightLabel{$L\land_2$}
+			\UIC{$\mathcal{T} | \Gamma, (B \land C)^n | \mathcal{R} \Rightarrow \Delta$}
+			
+			\RightLabel{$\nabla Cut$} \dashedLine
+			\BIC{$[ \mathcal{S} | \epsilon_{len(\mathcal{R})} ] \cup [ \mathcal{T} | \Gamma | \mathcal{R} ] \Rightarrow \Delta$}
+		\end{prooftree}
+		Induction hypothesis for $\mathbf{D_0}$ and $\mathbf{D_1}'$ gives us $[ \mathcal{S} | \epsilon_{len(\mathcal{R})} ] \cup [ \mathcal{T} | \Gamma , C | \mathcal{R} ] \Rightarrow \Delta$. Now removing $C$ with a low rank $\nabla Cut$ on this sequent and $\mathbf{D_0}'$ gives $[ \mathcal{S}^2 | \epsilon_{len(\mathcal{R})} ] \cup [ \mathcal{T} | \Gamma | \mathcal{R} ] \Rightarrow \Delta$, which yields the desired sequent with enough applications of $Lc$.
+		\begin{prooftree}
+			\noLine
+			\AXC{$\mathbf{D_0}'$}
+			\UIC{$\mathcal{S} \Rightarrow C$}
+			
+			\noLine
+			\AXC{$\mathbf{D_0}$}
+			\UIC{$\mathcal{S} \Rightarrow B \land C$}
+			\noLine
+			\AXC{$\mathbf{D_1}'$}
+			\UIC{$\mathcal{T} | \Gamma , (B \land C)^{n-1}, C | \mathcal{R} \Rightarrow \Delta$}
+			
+			\RightLabel{IH}
+			\BIC{$[ \mathcal{S} | \epsilon_{len(\mathcal{R})} ] \cup [ \mathcal{T} | \Gamma, C | \mathcal{R} ] \Rightarrow \Delta$}
+			
+			\RightLabel{$\nabla Cut$}
+			\BIC{$[ \mathcal{S}^2 | \epsilon_{len(\mathcal{R})} ] \cup [ \mathcal{T} | \Gamma | \mathcal{R} ] \Rightarrow \Delta$}
+			
+			\doubleLine \RightLabel{$Lc$}
+			\UIC{$[ \mathcal{S} | \epsilon_{len(\mathcal{R})} ] \cup [ \mathcal{T} | \Gamma | \mathcal{R} ] \Rightarrow \Delta$}
+		\end{prooftree}

@@ -1,0 +1,77 @@
+($R\rightarrow, L\rightarrow$)
+		What we want: $[\mathcal{S} | \epsilon_{len(\mathcal{R})+1}] \cup [\mathcal{T} | \Gamma | \Sigma | \mathcal{R}] \Rightarrow \Delta$.
+		\begin{prooftree}
+			\noLine
+			\AXC{$\mathbf{D_0}'$}
+			\UIC{$\mathcal{S} | B \Rightarrow C$}
+			\RightLabel{$R\rightarrow$}
+			\UIC{$\mathcal{S} \Rightarrow B \rightarrow C$}
+
+			\noLine
+			\AXC{$\mathbf{D_1}'$}
+			\UIC{$\mathcal{T} | \Gamma , (B \rightarrow C)^{n-1} | \Sigma | \mathcal{R} \Rightarrow \nabla^{len(\mathcal{R})} B$}
+			\noLine
+			\AXC{$\mathbf{D_1}''$}
+			\UIC{$\mathcal{T} | \Gamma , (B \rightarrow C)^{n-1} | \Sigma , C | \mathcal{R} \Rightarrow \Delta$}
+			\RightLabel{$L\rightarrow$}
+			\BIC{$\mathcal{T} | \Gamma, (B \rightarrow C)^n | \Sigma | \mathcal{R} \Rightarrow \Delta$}
+			
+			\RightLabel{$\nabla Cut$} \dashedLine
+			\BIC{$[\mathcal{S} | \epsilon_{len(\mathcal{R})+1}] \cup [\mathcal{T} | \Gamma | \Sigma | \mathcal{R}] \Rightarrow \Delta$}
+		\end{prooftree}
+		From induction hypothesis for $\mathbf{D_0}$ and $\mathbf{D_1}'$ we have $[\mathcal{S} | \epsilon_{len(\mathcal{R})+1}] \cup [\mathcal{T} | \Gamma | \Sigma | \mathcal{R}] \Rightarrow \nabla^{len(\mathcal{R})} B$. Call it $\mathbf{D}'$.
+		\begin{prooftree}
+			\noLine
+			\AXC{$\mathbf{D_0}$}
+			\UIC{$\mathcal{S} \Rightarrow B \rightarrow C$}
+			
+			\noLine
+			\AXC{$\mathbf{D_1}'$}
+			\UIC{$\mathcal{T} | \Gamma , (B \rightarrow C)^{n-1} | \Sigma | \mathcal{R} \Rightarrow \nabla^{len(\mathcal{R})} B$}
+			
+			\LeftLabel{$\mathbf{D}':~$}
+			\RightLabel{IH}
+			\BIC{$[\mathcal{S} | \epsilon_{len(\mathcal{R})+1}] \cup [\mathcal{T} | \Gamma | \Sigma | \mathcal{R}] \Rightarrow \nabla^{len(\mathcal{R})} B$}
+		\end{prooftree}
+		Again from IH for $\mathbf{D_0}$ and $\mathbf{D_1}''$ we have $[\mathcal{S} | \epsilon_{len(\mathcal{R})+1}] \cup [\mathcal{T} | \Gamma | \Sigma , C | \mathcal{R}] \Rightarrow \Delta$. Call it $\mathbf{D}''$.
+		\begin{prooftree}
+			\noLine
+			\AXC{$\mathbf{D_0}$}
+			\UIC{$\mathcal{S} \Rightarrow B \rightarrow C$}
+			
+			\noLine
+			\AXC{$\mathbf{D_1}''$}
+			\UIC{$\mathcal{T} | \Gamma , (B \rightarrow C)^{n-1} | \Sigma , C | \mathcal{R} \Rightarrow \Delta$}
+			
+			\LeftLabel{$\mathbf{D}'':~$}
+			\RightLabel{IH}
+			\BIC{$[\mathcal{S} | \epsilon_{len(\mathcal{R})+1}] \cup [\mathcal{T} | \Gamma | \Sigma , C | \mathcal{R}] \Rightarrow \Delta$}
+		\end{prooftree}
+		Now we use $\nabla Cut$ on $\mathbf{D_0}'$ and $\mathbf{D}''$ to remove $C$, and another $\nabla Cut$ with $\mathbf{D}'$, this time with $k = len(R)$, to remove $B$. Applying enough contractions, we can derive the desired sequent.
+		\begin{prooftree}
+			\noLine
+			\AXC{$\mathbf{D}'$}
+			\UIC{$[\mathcal{S} | \epsilon_{len(\mathcal{R})+1}] \cup [\mathcal{T} | \Gamma | \Sigma | \mathcal{R}] \Rightarrow \nabla^{len(\mathcal{R})} B$}
+
+
+			\noLine
+			\AXC{$\mathbf{D_0}'$}
+			\UIC{$\mathcal{S} | B \Rightarrow C$}
+
+			\noLine
+			\AXC{$\mathbf{D}''$}
+			\UIC{$[\mathcal{S} | \epsilon_{len(\mathcal{R})+1}] \cup [\mathcal{T} | \Gamma | \Sigma , C | \mathcal{R}] \Rightarrow \Delta$}
+
+			\RightLabel{$\nabla Cut$}
+			\BIC{$[\mathcal{S}^2 | B | \epsilon_{len(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \Sigma | \mathcal{R}] \Rightarrow \Delta$}
+
+
+
+			\RightLabel{$\nabla Cut$}
+			\BIC{$[\mathcal{S}^3 | \epsilon_{len(\mathcal{R})}] \cup [\mathcal{T}^2 | \Gamma^2 | \Sigma^2 | \mathcal{R}^2] \Rightarrow \Delta$}
+
+
+
+			\doubleLine \RightLabel{$Lc$}
+			\UIC{$[\mathcal{S} | \epsilon_{len(\mathcal{R})}] \cup [\mathcal{T} | \Gamma | \Sigma | \mathcal{R}] \Rightarrow \Delta$}
+		\end{prooftree}

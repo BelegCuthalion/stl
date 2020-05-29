@@ -1,0 +1,68 @@
+($R*, R\nabla$) By the structure of $R \nabla$, since the cut-formula can not be in the $0$'th place in $\mathbf{D_1}$, we must have $l + k > 0$. Consider different cases for $l$.
+		
+		If $l = 0$, then $k = k' + 1$ for some $k'$. Hence, the only possible right-rule as the last rule of $\mathbf{D_0}$ would be $R \nabla$.
+		\begin{prooftree}
+			\noLine
+			\AXC{$\mathbf{D_0}'$}
+			\UIC{$\mathcal{S}' \Rightarrow \nabla^{k'} A$}
+			\RightLabel{$R \nabla$}
+			\UIC{$\mathcal{S}' | \epsilon_1 \Rightarrow \nabla^{k'+1} A$}
+			
+			\noLine
+			\AXC{$\mathbf{D_1}'$}
+			\UIC{$\mathcal{T} \cup [A^n | \epsilon_{k'}] \Rightarrow \Delta$}
+			\RightLabel{$R\nabla$}
+			\UIC{$[\mathcal{T} | \epsilon_1] \cup [A^n | \epsilon_{k'+1}] \Rightarrow \nabla \Delta$}
+			
+			\dashedLine\RightLabel{$\nabla Cut$}
+			\BIC{$[\mathcal{S}' | \epsilon_1] \cup [\mathcal{T} | \epsilon_1] \Rightarrow \nabla \Delta$}
+		\end{prooftree}
+		By induction hypothesis for $\mathbf{D_0}'$ and $\mathbf{D_1}'$
+		\begin{prooftree}
+			\noLine
+			\AXC{$\mathbf{D_0}'$}
+			\UIC{$\mathcal{S}' \Rightarrow \nabla^{k'} A$}
+
+			\noLine
+			\AXC{$\mathbf{D_1}'$}
+			\UIC{$\mathcal{T} \cup [A^n | \epsilon_{k'}] \Rightarrow \Delta$}
+
+			\RightLabel{IH}
+			\BIC{$\mathcal{S}' \cup \mathcal{T} \Rightarrow \Delta$}
+			
+			\RightLabel{$R \nabla$}
+			\UIC{$[\mathcal{S}' | \epsilon_1] \cup [\mathcal{T} | \epsilon_1] \Rightarrow \nabla \Delta$}
+		\end{prooftree}
+		Otherwise, if $l = l' + 1$ for some $l'$
+		\begin{prooftree}
+			\noLine
+			\AXC{$\mathbf{D_0}$}
+			\UIC{$\mathcal{S} \Rightarrow \nabla^k A$}
+			
+			\noLine
+			\AXC{$\mathbf{D_1}'$}
+			\UIC{$\mathcal{T} \cup [A^n | \epsilon_{l'+k}] \Rightarrow \Delta$}
+			\RightLabel{$R\nabla$}
+			\UIC{$[\mathcal{T} | \epsilon_1] \cup [A^n | \epsilon_{l'+k+1}] \Rightarrow \nabla \Delta$}
+			
+			\dashedLine\RightLabel{$\nabla Cut$}
+			\BIC{$[\mathcal{S} | \epsilon_{l'+1}] \cup [\mathcal{T} | \epsilon_1] \Rightarrow \nabla \Delta$}
+		\end{prooftree}
+		then by the induction hypothesis for $\mathbf{D_0}$ and $\mathbf{D_1}'$
+		\begin{prooftree}
+			\noLine
+			\AXC{$\mathbf{D_0}$}
+			\UIC{$\mathcal{S} \Rightarrow \nabla^k A$}
+			
+			\noLine
+			\AXC{$\mathbf{D_1}'$}
+			\UIC{$\mathcal{T} \cup [A^n | \epsilon_{l'+k}] \Rightarrow B$}
+			
+			\RightLabel{IH}
+			\BIC{$[\mathcal{S} | \epsilon_{l'}] \cup \mathcal{T} \Rightarrow B$}
+			
+			
+			\RightLabel{$R\nabla$}
+			\UIC{$[\mathcal{S} | \epsilon_{l'+1}] \cup [\mathcal{T} | \epsilon_1] \Rightarrow \nabla B$}
+		\end{prooftree}
+	\end{enumerate}

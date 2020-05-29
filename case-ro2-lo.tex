@@ -1,0 +1,42 @@
+($R\lor_2, L\lor$)
+		\begin{prooftree}
+			\noLine
+			\AXC{$\mathbf{D_0}'$}
+			\UIC{$\mathcal{S} \Rightarrow C$}
+			\RightLabel{$R\lor_2$}
+			\UIC{$\mathcal{S} \Rightarrow B \lor C$}
+
+
+			\AXC{$\mathcal{T} | \Gamma , (B \lor C)^{n-1} , B | \mathcal{R} \Rightarrow \Delta$}
+			\noLine
+			\AXC{$\mathbf{D_1}'$}
+			\UIC{$\mathcal{T} | \Gamma , (B \lor C)^{n-1} , C | \mathcal{R} \Rightarrow \Delta$}
+			\RightLabel{$L\lor$}
+			\BIC{$\mathcal{T} | \Gamma , (B \lor C)^n | \mathcal{R} \Rightarrow \Delta$}
+			
+			\RightLabel{$\nabla Cut$} \dashedLine
+			\BIC{$[ \mathcal{S} | \epsilon_{len(\mathcal{R})} ] \cup [ \mathcal{T} | \Gamma | \mathcal{R} ] \Rightarrow \Delta$}
+		\end{prooftree}
+		Induction hypothesis for $\mathbf{D_0}$ and $\mathbf{D_1}'$ gives us $[ \mathcal{S} | \epsilon_{len(\mathcal{R})} ] \cup [ \mathcal{T} | \Gamma , (B \lor C)^{n-1} | \mathcal{R} ] \Rightarrow \Delta$. Now removing $C$ with a low rank $\nabla Cut$ on this sequent and $\mathbf{D_0}'$ gives $[ \mathcal{S}^2 | \epsilon_{len(\mathcal{R})} ] \cup [ \mathcal{T} | \Gamma | \mathcal{R} ] \Rightarrow \Delta$, which yields the desired sequent with enough applications of $Lc$.
+		\begin{prooftree}
+			\noLine
+			\AXC{$\mathbf{D_0}'$}
+			\UIC{$\mathcal{S} \Rightarrow C$}
+
+			\noLine
+			\AXC{$\mathbf{D_0}$}
+			\UIC{$\mathcal{S} \Rightarrow B \lor C$}
+
+			\noLine
+			\AXC{$\mathbf{D_1}'$}
+			\UIC{$\mathcal{T} | \Gamma , (B \lor C)^{n-1} , C | \mathcal{R} \Rightarrow \Delta$}
+			
+			\RightLabel{IH}
+			\BIC{$[ \mathcal{S} | \epsilon_{len(\mathcal{R})} ] \cup [ \mathcal{T} | \Gamma , C | \mathcal{R} ] \Rightarrow \Delta$}
+			
+			\RightLabel{$\nabla Cut$}
+			\BIC{$[ \mathcal{S}^2 | \epsilon_{len(\mathcal{R})} ] \cup [ \mathcal{T} | \Gamma | \mathcal{R} ] \Rightarrow \Delta$}
+			
+			\doubleLine \RightLabel{$Lc$}
+			\UIC{$[ \mathcal{S} | \epsilon_{len(\mathcal{R})} ] \cup [ \mathcal{T} | \Gamma | \mathcal{R} ] \Rightarrow \Delta$}
+		\end{prooftree}

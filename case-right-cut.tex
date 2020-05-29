@@ -1,0 +1,40 @@
+($R*, \nabla Cut$) Assume $\mathbf{D_1}$ ends with a $\nabla Cut$ on $A'$, which by assumption must be of a lower rank than $A$.
+	\begin{prooftree}
+		\noLine
+		\AXC{$\mathbf{D_0}$}
+		\UIC{$\mathcal{S} \Rightarrow \nabla^k A$}
+
+		\noLine
+		\AXC{$\mathbf{D_1}'$}
+		\UIC{$\mathcal{T} \cup [A^n | \epsilon_{l+k}] \Rightarrow \nabla^{k'} A'$}
+
+		\noLine
+		\AXC{$\mathbf{D_1}''$}
+		\UIC{$\mathcal{T}' \cup [A'^{n'} | \epsilon_{l'+k'}] \Rightarrow \Delta$}
+
+		\RightLabel{$\nabla Cut$}
+		\BIC{$[\mathcal{T} | \epsilon_{l'}] \cup [A^n | \epsilon_{l+k+l'}] \cup \mathcal{T}' \Rightarrow \Delta$}
+
+		\dashedLine\RightLabel{$\nabla Cut$}
+		\BIC{$[\mathcal{S} | \epsilon_{l + l'}] \cup [\mathcal{T} | \epsilon_{l'}] \cup \mathcal{T}' \Rightarrow \Delta$}
+	\end{prooftree}
+	We can use the induction hypothesis to remove $A$ first, then cut $A'$.
+	\begin{prooftree}
+		\noLine
+		\AXC{$\mathbf{D_0}$}
+		\UIC{$\mathcal{S} \Rightarrow \nabla^k A$}
+		
+		\noLine
+		\AXC{$\mathbf{D_1}'$}
+		\UIC{$\mathcal{T} \cup [A^n | \epsilon_{l+k}] \Rightarrow \nabla^{k'} A'$}
+
+		\RightLabel{IH}
+		\BIC{$[\mathcal{S} | \epsilon_l] \cup \mathcal{T} \Rightarrow \nabla^{k'} A'$}
+		
+		\noLine
+		\AXC{$\mathbf{D_1}''$}
+		\UIC{$\mathcal{T}' \cup [A'^{n'} | \epsilon_{l'+k'}] \Rightarrow \Delta$}
+		
+		\RightLabel{$\nabla Cut$}
+		\BIC{$[\mathcal{S} | \epsilon_{l + l'}] \cup [\mathcal{T} | \epsilon_{l'}] \cup \mathcal{T}' \Rightarrow \Delta$}
+	\end{prooftree}

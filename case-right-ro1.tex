@@ -1,0 +1,30 @@
+($R*, R\lor_1$)
+		\begin{prooftree}
+			\noLine
+			\AXC{$\mathbf{D_0}$}
+			\UIC{$\mathcal{S} \Rightarrow \nabla^k A$}
+			
+			\noLine
+			\AXC{$\mathbf{D_1}'$}
+			\UIC{$\mathcal{T} \cup [A^n | \epsilon_{l+k}] \Rightarrow B$}
+			\RightLabel{$R\lor_1$}
+			\UIC{$\mathcal{T} \cup [A^n | \epsilon_{l+k}] \Rightarrow B \lor C$}
+			
+			\dashedLine\RightLabel{$\nabla Cut$}
+			\BIC{$[\mathcal{S} | \epsilon_l] \cup \mathcal{T} \Rightarrow B \lor C$}
+		\end{prooftree}
+		By induction hypothesis for $\mathbf{D_0}$ and $\mathbf{D_1}'$
+		\begin{prooftree}
+			\noLine
+			\AXC{$\mathbf{D_0}$}
+			\UIC{$\mathcal{S} \Rightarrow \nabla^k A$}
+			
+			\noLine
+			\AXC{$\mathbf{D_1}'$}
+			\UIC{$\mathcal{T} \cup [A^n | \epsilon_{l+k}] \Rightarrow B$}
+			\RightLabel{IH}
+			\BIC{$[\mathcal{S} | \epsilon_l] \cup \mathcal{T} \Rightarrow B$}
+			
+			\RightLabel{$R\lor_1$}
+			\UIC{$[\mathcal{S} | \epsilon_l] \cup \mathcal{T} \Rightarrow B \lor C$}
+		\end{prooftree}

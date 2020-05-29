@@ -1,0 +1,42 @@
+($L\rightarrow$) $\mathbf{D_0}$ proves $\mathcal{S} | \Gamma, B \rightarrow C | \Sigma | \mathcal{R} \Rightarrow \nabla^k A$ and has subproofs $\mathbf{D_0}'$ of $\mathcal{S} | \Gamma | \Sigma | \mathcal{R} \Rightarrow \nabla^{len(\mathcal{R})} B$ and $\mathbf{D_0}''$ of $\mathcal{S} | \Gamma | \Sigma , C | \mathcal{R} \Rightarrow \nabla^k A$.
+	\begin{prooftree}
+		\noLine
+		\AXC{$\mathbf{D_0}'$}
+		\UIC{$\mathcal{S} | \Gamma | \Sigma | \mathcal{R} \Rightarrow \nabla^{len(\mathcal{R})} B$}
+		\noLine
+		\AXC{$\mathbf{D_0}''$}
+		\UIC{$\mathcal{S} | \Gamma | \Sigma , C | \mathcal{R} \Rightarrow \nabla^k A$}
+		\RightLabel{$L\nabla$}
+		\BIC{$\mathcal{S} | \Gamma, B \rightarrow C | \Sigma | \mathcal{R} \Rightarrow \nabla^k A$}
+		
+		
+		\noLine
+		\AXC{$\mathbf{D_1}$}
+		\UIC{$\mathcal{T} \cup [A^n | \epsilon_{l+k}] \Rightarrow \Delta$}
+		
+		\dashedLine\RightLabel{$\nabla Cut$}
+		\BIC{$[\mathcal{S} | \Gamma , B \rightarrow C | \Sigma | \mathcal{R} | \epsilon_l] \cup \mathcal{T} \Rightarrow \Delta$}
+	\end{prooftree}
+	From the induction hypothesis for $\mathbf{D_0}''$ and $\mathbf{D_1}$, we have a proof of
+	$[\mathcal{S} | \Gamma | \Sigma , C | \mathcal{R} | \epsilon_l] \cup \mathcal{T} \Rightarrow \Delta$ with rank lower than that of $A$. Now in order to $L\rightarrow$ to be applicable on the resulting sequent and $\mathbf{D_0}'$, we must first identify their contexts. By $l$ times applications of $R\nabla$ and then $Lw$ with $\mathcal{T}$, we have $[\mathcal{S} | \Gamma | \Sigma | \mathcal{R} | \epsilon_l] \cup \mathcal{T} \Rightarrow \nabla^{len(\mathcal{R})+l} B$. Then we can derive $[\mathcal{S} | \Gamma , B \rightarrow C | \Sigma | \mathcal{R} | \epsilon_l] \cup \mathcal{T} \Rightarrow \Delta$, from $L\rightarrow$ without increasing the cut-rank.
+	\begin{prooftree}
+		\noLine
+		\AXC{$\mathbf{D_0}'$}
+		\UIC{$\mathcal{S} | \Gamma | \Sigma | \mathcal{R} \Rightarrow \nabla^{len(\mathcal{R})} B$}
+		\doubleLine \RightLabel{$R\nabla$}
+		\UIC{$\mathcal{S} | \Gamma | \Sigma | \mathcal{R} | \epsilon_l \Rightarrow \nabla^{len(\mathcal{R})+l} B$}
+		\doubleLine \RightLabel{$Lw$}
+		\UIC{$[\mathcal{S} | \Gamma | \Sigma | \mathcal{R} | \epsilon_l] \cup \mathcal{T} \Rightarrow \nabla^{len(\mathcal{R})+l} B$}
+		
+		\noLine
+		\AXC{$\mathbf{D_0}''$}
+		\UIC{$\mathcal{S} | \Gamma | \Sigma , C | \mathcal{R} \Rightarrow \nabla^k A$}
+		\noLine
+		\AXC{$\mathbf{D_1}$}
+		\UIC{$\mathcal{T} \cup [A^n | \epsilon_{l+k}] \Rightarrow \Delta$}
+		\RightLabel{IH}
+		\BIC{$[\mathcal{S} | \Gamma | \Sigma , C | \mathcal{R} | \epsilon_l] \cup \mathcal{T} \Rightarrow \Delta$}
+		
+		\RightLabel{$L\rightarrow$}
+		\BIC{$[\mathcal{S} | \Gamma , B \rightarrow C | \Sigma | \mathcal{R} | \epsilon_l] \cup \mathcal{T} \Rightarrow \Delta$}
+	\end{prooftree}

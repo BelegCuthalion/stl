@@ -1,0 +1,30 @@
+($R*, L\land_2$)
+		\begin{prooftree}
+			\noLine
+			\AXC{$\mathbf{D_0}$}
+			\UIC{$\mathcal{S} \Rightarrow \nabla^k A$}
+			
+			\noLine
+			\AXC{$\mathbf{D_1}'$}
+			\UIC{$\mathcal{T} [A^n | \epsilon_{l+k}] \cup [C | \epsilon_r] \Rightarrow \Delta$}
+			\RightLabel{$L\land_2$}
+			\UIC{$\mathcal{T} \cup [A^n | \epsilon_{l+k}] \cup [B \land C | \epsilon_r] \Rightarrow \Delta$}
+			
+			\dashedLine\RightLabel{$\nabla Cut$}
+			\BIC{$[\mathcal{S} | \epsilon_l] \cup \mathcal{T} \cup [B \land C | \epsilon_r] \Rightarrow \Delta$}
+		\end{prooftree}
+		By induction hypothesis for $\mathbf{D_0}$ and $\mathbf{D_1}'$ we have
+		\begin{prooftree}
+			\noLine
+			\AXC{$\mathbf{D_0}$}
+			\UIC{$\mathcal{S} \Rightarrow \nabla^k A$}
+			
+			\noLine
+			\AXC{$\mathbf{D_1}'$}
+			\UIC{$\mathcal{T} [A^n | \epsilon_{l+k}] \cup [C | \epsilon_r] \Rightarrow \Delta$}
+			\RightLabel{IH}
+			\BIC{$[\mathcal{S} | \epsilon_l] \cup \mathcal{T} \cup [C | \epsilon_r] \Rightarrow \Delta$}
+			
+			\RightLabel{$L\land_2$}
+			\UIC{$[\mathcal{S} | \epsilon_l] \cup \mathcal{T} \cup [B \land C | \epsilon_r] \Rightarrow \Delta$}
+		\end{prooftree}

@@ -1,0 +1,27 @@
+($Rw$) $\mathbf{D_0}$ proves $\mathcal{S} \Rightarrow \nabla^k A$ and has subproofs $\mathbf{D_0}'$ of $\mathcal{S} \Rightarrow$.
+	\begin{prooftree}
+		\noLine
+		\AXC{$\mathbf{D_0}'$}
+		\UIC{$\mathcal{S} \Rightarrow$}
+		\RightLabel{$Rw$}
+		\UIC{$\mathcal{S} \Rightarrow \nabla^k A$}
+		
+		\noLine
+		\AXC{$\mathbf{D_1}$}
+		\UIC{$\mathcal{T} \cup [A^n | \epsilon_{l+k}] \Rightarrow \Delta$}
+		
+		\dashedLine \RightLabel{$\nabla Cut$}
+		\BIC{$[\mathcal{S} | \epsilon_l] \cup \mathcal{T} \Rightarrow \Delta$}
+	\end{prooftree}
+	$l$ times applications of $R\nabla$ on $\mathbf{D_0}'$ followed by proper $Lw$ and $Rw$ yields the desired sequent.
+	\begin{prooftree}
+		\noLine
+		\AXC{$\mathbf{D_0}'$}
+		\UIC{$\mathcal{S} \Rightarrow$}
+		\doubleLine \RightLabel{$R\nabla$}
+		\UIC{$\mathcal{S} | \epsilon_l \Rightarrow$}
+		\RightLabel{$Lw$}
+		\UIC{$[\mathcal{S} | \epsilon_l] \cup \mathcal{T} \Rightarrow$}
+		\RightLabel{$Rw$}
+		\UIC{$[\mathcal{S} | \epsilon_l] \cup \mathcal{T} \Rightarrow \Delta$}
+	\end{prooftree}

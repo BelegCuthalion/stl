@@ -1,0 +1,45 @@
+($R*, R\land$)
+		\begin{prooftree}
+			\noLine
+			\AXC{$\mathbf{D_0}$}
+			\UIC{$\mathcal{S} \Rightarrow \nabla^k A$}
+			
+			\noLine
+			\AXC{$\mathbf{D_1}'$}
+			\UIC{$\mathcal{T} \cup [A^n | \epsilon_{l+k}] \Rightarrow B$}
+			\noLine
+			\AXC{$\mathbf{D_1}''$}
+			\UIC{$\mathcal{T} \cup [A^n | \epsilon_{l+k}] \Rightarrow C$}
+			\RightLabel{$R\land$}
+			\BIC{$\mathcal{T} \cup [A^n | \epsilon_{l+k}] \Rightarrow B \land C$}
+			
+			\dashedLine\RightLabel{$\nabla Cut$}
+			\BIC{$[\mathcal{S} | \epsilon_l] \cup \mathcal{T} \Rightarrow B \land C$}
+		\end{prooftree}
+		By induction hypothesis, once for $\mathbf{D_0}$ and $\mathbf{D_1}'$ and again for $\mathbf{D_0}$ and $\mathbf{D_1}''$
+		\begin{prooftree}
+			\noLine
+			\AXC{$\mathbf{D_0}$}
+			\UIC{$\mathcal{S} \Rightarrow \nabla^k A$}
+			
+			\noLine
+			\AXC{$\mathbf{D_1}'$}
+			\UIC{$\mathcal{T} \cup [A^n | \epsilon_{l+k}] \Rightarrow B$}
+			
+			\RightLabel{IH}
+			\BIC{$[\mathcal{S} | \epsilon_l] \cup \mathcal{T} \Rightarrow B$}
+			
+			\noLine
+			\AXC{$\mathbf{D_0}$}
+			\UIC{$\mathcal{S} \Rightarrow A$}
+			
+			\noLine
+			\AXC{$\mathbf{D_1}''$}
+			\UIC{$\mathcal{T} \cup [A^n | \epsilon_{l+k}] \Rightarrow C$}
+			
+			\RightLabel{IH}
+			\BIC{$[\mathcal{S} | \epsilon_l] \cup \mathcal{T} \Rightarrow C$}
+			
+			\RightLabel{$R\land$}
+			\BIC{$[\mathcal{S} | \epsilon_l] \cup \mathcal{T} \Rightarrow B \land C$}
+		\end{prooftree}

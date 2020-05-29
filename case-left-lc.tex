@@ -1,0 +1,32 @@
+$\mathbf{D_0}$ proves $\mathcal{S} | \Gamma , B | \mathcal{R} \Rightarrow \nabla^k A$ and has a subproof $\mathbf{D_0}'$ of $\mathcal{S} | \Gamma , B , B | \mathcal{R} \Rightarrow \nabla^k A$.
+\begin{prooftree}
+	\noLine
+	\AXC{$\mathbf{D_0}'$}
+	\UIC{$\mathcal{S} | \Gamma , B , B | \mathcal{R} \Rightarrow \nabla^k A$}
+	\RightLabel{$Lc$}
+	\UIC{$\mathcal{S} | \Gamma , B | \mathcal{R} \Rightarrow \nabla^k A$}
+	
+	
+	\noLine
+	\AXC{$\mathbf{D_1}$}
+	\UIC{$\mathcal{T} \cup [A^n | \epsilon_{l+k}] \Rightarrow \Delta$}
+	
+	\dashedLine\RightLabel{$\nabla Cut$}
+	\BIC{$[\mathcal{S} | \Gamma , B | \mathcal{R} | \epsilon_l] \cup \mathcal{T} \Rightarrow \Delta$}
+\end{prooftree}
+From the induction hypothesis for $\mathbf{D_0}'$ and $\mathbf{D_1}$, we have a proof of $[\mathcal{S} | \Gamma , B , B | \mathcal{R} | \epsilon_l] \cup \mathcal{T} \Rightarrow \Delta$ with rank lower than that of $A$. By applying $Lc$ in the proper place, we have $[\mathcal{S} | \Gamma , B | \mathcal{R} | \epsilon_l] \cup \mathcal{T} \Rightarrow \Delta$, without increasing the cut-rank.
+\begin{prooftree}
+	\noLine
+	\AXC{$\mathbf{D_0}'$}
+	\UIC{$\mathcal{S} | \Gamma , B , B | \mathcal{R} \Rightarrow \nabla^k A$}
+	
+	\noLine
+	\AXC{$\mathbf{D_1}$}
+	\UIC{$\mathcal{T} \cup [A^n | \epsilon_{l+k}] \Rightarrow \Delta$}
+	
+	\RightLabel{IH}
+	\BIC{$[\mathcal{S} | \Gamma , B , B | \mathcal{R} | \epsilon_l] \cup \mathcal{T} \Rightarrow \Delta$}
+	
+	\RightLabel{$Lc$}
+	\UIC{$[\mathcal{S} | \Gamma , B | \mathcal{R} | \epsilon_l] \cup \mathcal{T} \Rightarrow \Delta$}
+\end{prooftree}
