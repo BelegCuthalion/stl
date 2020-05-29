@@ -136,7 +136,7 @@ A sequent $\mathcal{S} \Rightarrow \Delta$ is a relation between $\mathcal{S}$, 
 	\BIC{$[ \mathcal{S} | \epsilon_l ] \cup \mathcal{T} \Rightarrow \Delta$}
 \end{prooftree}
 $A$ is called the \textit{cut-formula}.
-
+By $\text{GSTL}$ we mean $\text{GSTL}^- + Cut$
 \subsubsection{Rank} Rank of a formula $\varphi$ is defined as
 \[ \rho(\varphi) = \begin{cases}
 1 & \quad ; \varphi \in P \cup \{ \bot, \top \} \\
@@ -146,6 +146,6 @@ max(\rho(\psi), \rho(\theta)) + 1 & \quad ; \varphi = \psi \Box \theta, \Box \in
 We also define rank for rule instances and proof trees as follows. For an instance of the $\nabla Cut$ rule $c$ with cut-formula $\varphi$, $\rho(c) = \rho(\varphi)$, $0$ if it's not an instance of the $\nabla Cut$ rule.
 For a proof tree $\mathbf{D}$, $\rho(\mathbf{D})$ is the maximum rank of its rule instances.
 
-\subsection{Theorem} For any $\Gamma$ and $\Delta$, if $\small\text{GSTL}^- + Cut \vdash \Gamma \Rightarrow \Delta$ then $\small\text{GSTL}^- + \nabla Cut \vdash \Gamma \Rightarrow \Delta$.
+\subsection{Theorem} For any $\Gamma$ and $\Delta$, if $\small\text{GSTL} \vdash \Gamma \Rightarrow \Delta$ then $\small\text{GSTL}^- + \nabla Cut \vdash \Gamma \Rightarrow \Delta$.
 
 \textit{Proof}: Just replace any occurrence of $Cut$ with $\nabla Cut$, with $k := 0$ and $n := 1$.
