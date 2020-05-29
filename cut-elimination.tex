@@ -1,46 +1,3 @@
-\documentclass[a4paper, 12pt]{paper}
-\usepackage{amsmath}
-\usepackage{amssymb}
-\usepackage{titlesec}
-\usepackage{fullpage}
-\usepackage{tikz-cd}
-\usepackage{rotating}
-\usepackage{pdflscape}
-\usepackage{multicol}
-\usepackage{multirow}
-\usepackage{diagbox}
-\usepackage[left=.5in,right=.5in,top=.5in,bottom=.5in]{geometry}
-\usepackage{enumitem}
-\usepackage[colorlinks]{hyperref}
-\usepackage{bussproofs}
-
-\setitemize{topsep=3pt,parsep=5pt,partopsep=0pt,label=,leftmargin=1.3pc}
-\titleformat{\section}[runin]{\normalfont\bfseries}{\thesection}{0.5em}{}
-\titlespacing{\section}{0pc}{1.5ex plus .1ex minus .2ex}{1pc}
-\titleformat{\subsection}[runin]{\normalfont\bfseries}{\thesubsection}{0.7em}{}
-\titlespacing{\subsection}{0pc}{2ex plus .1ex minus .2ex}{1pc}
-\titleformat{\subsubsection}[runin]{\normalfont\bfseries}{\thesubsubsection}{0.7em}{}
-\titlespacing{\subsubsection}{0pc}{2ex plus .1ex minus .2ex}{1pc}
-\newcommand\eqn{\refstepcounter{equation}\tag{\theequation}}
-\binoppenalty=\maxdimen
-\relpenalty=\maxdimen
-\newcommand{\ul}{\ulcorner}
-\newcommand{\ur}{\urcorner}
-\newcommand{\val}[1]{\ulcorner len1 \urcorner}
-\newcommand{\caseref}[1]{\hyperref[#1]{\ref{#1}}}
-\newcommand{\rot}{\rotatebox{90}}
-\EnableBpAbbreviations
-
-\begin{document}
-{\noindent
-	v 0.3.2 \\
-{\large\textbf{The Cut Rule Is Admissible in GSTL}}
-}
-\\
-\setcounter{section}{-1}
-
-\input{GSTL}
-
 \section{Lemma}\label{true-assum} If $~\small\text{GSTL}^- + \nabla Cut \vdash \mathcal{S} \cup [\top^n | \epsilon_r] \Rightarrow \Delta$ then $\small\text{GSTL}^- + \nabla Cut \vdash \mathcal{S} \Rightarrow \Delta$ with a proof of at most the same rank.
 
 \textit{Proof:} Suppose $\mathbf{D}$ is a proof tree for $\mathcal{S} \cup [\top^n | \epsilon_r] \Rightarrow \Delta$. By induction on $h(\mathbf{D})$, induction hypothesis states that for any proof tree $\mathbf{D}'$ with conclusion $\mathcal{S'} \cup [\top^{n'} | \epsilon_{r'}] \Rightarrow \Delta'$ such that $h(\mathbf{D}') < h(\mathbf{D})$, there is a proof $\mathbf{D}''$ of $\mathcal{S}' \Rightarrow \Delta'$ such that $\rho(\mathbf{D}'') \leq \rho(\mathbf{D}')$.
@@ -170,5 +127,3 @@ If $\small\text{GSTL}^- + \nabla Cut \vdash \Gamma \Rightarrow \Delta$, then $\s
 	
 	\item If the last rule of $\mathbf{D}$ is an instance of $\nabla Cut$ rule with a cut-formula of rank $\rho(\mathbf{D})$, then we can apply theorem \ref{cut-admis} to $\mathbf{D_0}$ and $\mathbf{D_1}$ to get the same $\nabla Cut$ with a lower rank.
 \end{enumerate}
-
-\end{document}
