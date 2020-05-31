@@ -42,13 +42,13 @@
 ‌\\
 \begin{multicols}{3}
 	\begin{prooftree}
-		\RightLabel{$L\land$}
+		\RightLabel{$L\land_1$}
 		\AXC{$\Gamma , A \Rightarrow \Delta$}
 		\UIC{$\Gamma , A \land B \Rightarrow \Delta$}
 	\end{prooftree}
 	\columnbreak
 	\begin{prooftree}
-		\RightLabel{$L\land$}
+		\RightLabel{$L\land_2$}
 		\AXC{$\Gamma , B \Rightarrow \Delta$}
 		\UIC{$\Gamma , A \land B \Rightarrow \Delta$}
 	\end{prooftree}
@@ -70,13 +70,13 @@
 	\end{prooftree}
 	\columnbreak
 	\begin{prooftree}
-		\RightLabel{$R\lor$}
+		\RightLabel{$R\lor_1$}
 		\AXC{$\Gamma \Rightarrow A$}
 		\UIC{$\Gamma \Rightarrow A \lor B$}
 	\end{prooftree}
 	\columnbreak
 	\begin{prooftree}
-		\RightLabel{$R\lor$}
+		\RightLabel{$R\lor_2$}
 		\AXC{$\Gamma \Rightarrow B$}
 		\UIC{$\Gamma \Rightarrow A \lor B$}
 	\end{prooftree}
@@ -111,4 +111,55 @@
 	\BIC{$\Gamma , \Gamma' \Rightarrow \Delta$}
 \end{prooftree}
 By $\text{iSTL}$ we mean $\text{iSTLL}^- + Cut$
-\pagebreak
+
+\subsection{Lemma} iSTL proves
+
+\subsubsection{}\label{lem:i-nabla-dist-and} $\nabla^n (A \land B) \Rightarrow \nabla^n A \land \nabla^n B$
+
+\textit{Proof}:
+\begin{prooftree}
+	\AXC{}
+	\RightLabel{$Id$}
+	\UIC{$A \Rightarrow A$}
+	\RightLabel{$L\land_1$}
+	\UIC{$A \land B \Rightarrow A$}
+	\RightLabel{$N$} \doubleLine
+	\UIC{$\nabla^n (A \land B) \Rightarrow \nabla^n A$}
+
+	\AXC{}
+	\RightLabel{$Id$}
+	\UIC{$B \Rightarrow B$}
+	\RightLabel{$L\land_2$}
+	\UIC{$A \land B \Rightarrow B$}
+	\RightLabel{$N$} \doubleLine	
+	\UIC{$\nabla^n (A \land B) \Rightarrow \nabla^n B$}
+	
+	\RightLabel{$R\land$}
+	\BIC{$\nabla^n (A \land B) \Rightarrow \nabla^n A \land \nabla^n B$}
+\end{prooftree}
+
+\subsubsection{}\label{lem:i-nabla-dist-or} $\nabla^n (A \lor B) \Rightarrow \nabla^n A \lor \nabla^n B$ \todo{}
+
+\subsubsection{}\label{lem:i-nabla-dist-imp} $\nabla^n (A \rightarrow B) \Rightarrow \nabla^n A \rightarrow \nabla^n B$
+
+\textit{Proof}:
+\begin{prooftree}
+	\AXC{}
+	\RightLabel{$Id$}
+	\UIC{$A \Rightarrow A$}
+	
+	\AXC{}
+	\RightLabel{$Id$}
+	\UIC{$B \Rightarrow B$}
+	\RightLabel{$Lw$}
+	\UIC{$A , B \Rightarrow B$}
+	
+	\RightLabel{$L\rightarrow$}
+	\BIC{$\nabla (A \rightarrow B) , A \Rightarrow B$}
+	\RightLabel{$N$} \doubleLine
+	\UIC{$\nabla^{n+1} (A \rightarrow B) , \nabla^n A \Rightarrow \nabla^n B$}
+	\RightLabel{$R\rightarrow$}
+	\UIC{$\nabla^n (A \rightarrow B) \Rightarrow \nabla^n A \rightarrow \nabla^n B$}
+\end{prooftree}
+
+\subsubsection{}\label{lem:i-nabla-fact-imp} $\nabla^n A \rightarrow \nabla^n B \Rightarrow \nabla^n (A \rightarrow B)$ \todo{is this even possible?}

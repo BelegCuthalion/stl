@@ -1,13 +1,13 @@
 \section{Lemma}\label{true-assum} If $~\small\text{GSTL}^- + \nabla Cut \vdash \mathcal{S} , \p^r \top^n \Rightarrow \Delta$ then $\small\text{GSTL}^- + \nabla Cut \vdash \mathcal{S} \Rightarrow \Delta$ with a proof of at most the same rank.
 
-\textit{Proof:} Suppose $\mathbf{D}$ is a proof tree for $\mathcal{S} , \p^r \top^n \Rightarrow \Delta$. By induction on $h(\mathbf{D})$, induction hypothesis states that for any proof tree $\mathbf{D}'$ with conclusion $\mathcal{S'} , \p^{r'} \top^{n'} \Rightarrow \Delta'$ such that $h(\mathbf{D}') < h(\mathbf{D})$, there is a proof $\mathbf{D}''$ of $\mathcal{S}' \Rightarrow \Delta'$ such that $\rho(\mathbf{D}'') \leq \rho(\mathbf{D}')$.
+\textit{Proof}: Suppose $\mathbf{D}$ is a proof tree for $\mathcal{S} , \p^r \top^n \Rightarrow \Delta$. By induction on $h(\mathbf{D})$, induction hypothesis states that for any proof tree $\mathbf{D}'$ with conclusion $\mathcal{S'} , \p^{r'} \top^{n'} \Rightarrow \Delta'$ such that $h(\mathbf{D}') < h(\mathbf{D})$, there is a proof $\mathbf{D}''$ of $\mathcal{S}' \Rightarrow \Delta'$ such that $\rho(\mathbf{D}'') \leq \rho(\mathbf{D}')$.
 
 Consider different cases for the last rule of $\mathbf{D}$, with possible sub-trees $\mathbf{D_0}$ and $\mathbf{D_1}$. $Ta$ and $Ex$ cases are trivially ruled out. In $Id$ case (which implies $n = 1$ and $r = 0$), we have $\Rightarrow \top$ by $Ta$. In $Lw$ case, where an instance of $\top$ is principal and $n = 1$, $\mathbf{D_0}$ itself proves the desired sequent. If $n > 1$, then the induction hypothesis with $n' = n - 1$ gives the desired sequent. $Lc$ on an instance of $\top$ is similar, with $n' = n + 1$. In all other cases, just apply induction hypothesis on $\mathbf{D_0}$ (and possibly $\mathbf{D_1}$), then the same last rule. Notice in all cases we must apply induction hypothesis with $n' = n$ and $r' = r$, except for $R\rightarrow$ and $R\nabla$, in which we apply it with $r' = r + 1$ and $r' = r - 1$ respectively. Also notice that $\nabla Cut$ is not used except in $\nabla Cut$ case, where it is applied with the same cut-formula, so the resulting proof tree is not of a higher rank than $\mathbf{D}$.
 
 \section{Theorem}\label{cut-admis} \emph{Cut Reduction for GSTL: } For any $\mathcal{S}$, $n>0$, $A$, $\mathcal{T}$, $k$, $l$ and $\Delta$, if $~\small\text{GSTL}^- + \nabla Cut \vdash \mathcal{S} \Rightarrow \nabla^k A$ and $\small\text{GSTL}^- + \nabla Cut \vdash$ $\mathcal{T} , \p^{l+k} A^n \Rightarrow \Delta$ with proof trees of ranks less than $\rho(A)$, then
  $\small\text{GSTL}^- + \nabla Cut \vdash \p^l \mathcal{S} , \mathcal{T}$ $\Rightarrow \Delta$ also with a proof tree of a rank less than $\rho(A)$.
  
-\emph{Proof:}
+\textit{Proof}:
 Let $\mathbf{D_0}$ and $\mathbf{D_1}$ be proof trees of ranks less than $\rho(A)$, with conclusions $\mathcal{S} \Rightarrow \nabla^k A$ and $\mathcal{T} , \p^{l+k} A^n \Rightarrow \Delta$ and heights $h(\mathbf{D_0})$ and $h(\mathbf{D_1})$ respectively.
 \begin{prooftree}
 	\noLine
@@ -120,7 +120,7 @@ We proceed by case analysis on the last rule in $\mathbf{D_0}$. We can either ap
 \section{Corollary} \emph{$\nabla$Cut Elimination for GSTL: }
 If $\small\text{GSTL}^- + \nabla Cut \vdash \Gamma \Rightarrow \Delta$, then $\small\text{GSTL}^- \vdash \Gamma \Rightarrow \Delta$.
 
-\emph{Proof:} It suffices to show that for any proof tree of $\Gamma \Rightarrow \Delta$ like $\mathbf{D}$, there is another proof of it with a lower rank. Using induction on $h(\mathbf{D})$, the induction hypothesis states that for any proof of $\Gamma' \Rightarrow \Delta'$ like $\mathbf{D'}$ such that $h(\mathbf{D'}) < h(\mathbf{D})$, there is another proof of $\Gamma' \Rightarrow \Delta'$ like $\mathbf{D''}$ such that $\rho(\mathbf{D''}) < \rho(\mathbf{D'})$. Particularly for the immediate sub-trees of $\mathbf{D}$, this gives us sub-trees with lower cut-rank, which we call $\mathbf{D}_i$. We now consider two cases for the last rule of $\mathbf{D}$
+\textit{Proof}: It suffices to show that for any proof tree of $\Gamma \Rightarrow \Delta$ like $\mathbf{D}$, there is another proof of it with a lower rank. Using induction on $h(\mathbf{D})$, the induction hypothesis states that for any proof of $\Gamma' \Rightarrow \Delta'$ like $\mathbf{D'}$ such that $h(\mathbf{D'}) < h(\mathbf{D})$, there is another proof of $\Gamma' \Rightarrow \Delta'$ like $\mathbf{D''}$ such that $\rho(\mathbf{D''}) < \rho(\mathbf{D'})$. Particularly for the immediate sub-trees of $\mathbf{D}$, this gives us sub-trees with lower cut-rank, which we call $\mathbf{D}_i$. We now consider two cases for the last rule of $\mathbf{D}$
 
 \begin{enumerate}[label=\Roman*]
 	\item If the last rule of $\mathbf{D}$ is of a lower rank than $\rho(\mathbf{D})$, i.e. the $\nabla Cut$ rule with the maximum rank is not the last rule in $\mathbf{D}$, then we can apply the same last rule on $\mathbf{D}_i$s and get a proof of $\Gamma \Rightarrow \Delta$ with a lower rank.
