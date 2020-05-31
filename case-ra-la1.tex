@@ -9,14 +9,14 @@
 			
 			\noLine
 			\AXC{$\mathbf{D_1}'$}
-			\UIC{$\mathcal{T} | \Gamma , (B \land C)^{n-1}, B | \mathcal{R} \Rightarrow \Delta$}
+			\UIC{$\mathcal{T} , \p^l (B \land C)^{n-1}, \p^l B \Rightarrow \Delta$}
 			\RightLabel{$L\land_1$}
-			\UIC{$\mathcal{T} | \Gamma, (B \land C)^n | \mathcal{R} \Rightarrow \Delta$}
+			\UIC{$\mathcal{T} , \p^l (B \land C)^n \Rightarrow \Delta$}
 			
 			\RightLabel{$\nabla Cut$} \dashedLine
-			\BIC{$[ \mathcal{S} | \epsilon_{len(\mathcal{R})} ] \cup [ \mathcal{T} | \Gamma | \mathcal{R} ] \Rightarrow \Delta$}
+			\BIC{$\p^l \mathcal{S} , \mathcal{T} \Rightarrow \Delta$}
 		\end{prooftree}
-		Induction hypothesis for $\mathbf{D_0}$ and $\mathbf{D_1}'$ gives us $[ \mathcal{S} | \epsilon_{len(\mathcal{R})} ] \cup [ \mathcal{T} | \Gamma , B | \mathcal{R} ] \Rightarrow \Delta$. Now removing $B$ with a low rank $\nabla Cut$ on this sequent and $\mathbf{D_0}'$ gives $[ \mathcal{S}^2 | \epsilon_{len(\mathcal{R})} ] \cup [ \mathcal{T} | \Gamma | \mathcal{R} ] \Rightarrow \Delta$, which yields the desired sequent with enough applications of $Lc$.
+		Induction hypothesis for $\mathbf{D_0}$ and $\mathbf{D_1}'$ gives us $\p^l \mathcal{S} , \mathcal{T} , \p^l B \Rightarrow \Delta$. Then we remove $B$ by a low rank $\nabla Cut$ on this sequent and $\mathbf{D_0}'$ to get $\p^l \mathcal{S}^2 , \mathcal{T} \Rightarrow \Delta$, which yields the desired sequent after enough applications of $Lc$.
 		\begin{prooftree}
 			\noLine
 			\AXC{$\mathbf{D_0}'$}
@@ -27,14 +27,14 @@
 			\UIC{$\mathcal{S} \Rightarrow B \land C$}
 			\noLine
 			\AXC{$\mathbf{D_1}'$}
-			\UIC{$\mathcal{T} | \Gamma , (B \land C)^{n-1}, B | \mathcal{R} \Rightarrow \Delta$}
+			\UIC{$\mathcal{T} , \p^l (B \land C)^{n-1}, \p^l B \Rightarrow \Delta$}
 			
 			\RightLabel{IH}
-			\BIC{$[ \mathcal{S} | \epsilon_{len(\mathcal{R})} ] \cup [ \mathcal{T} | \Gamma, B | \mathcal{R} ] \Rightarrow \Delta$}
+			\BIC{$\p^l \mathcal{S} , \mathcal{T} , \p^l B \Rightarrow \Delta$}
 
 			\RightLabel{$\nabla Cut$}
-			\BIC{$[ \mathcal{S}^2 | \epsilon_{len(\mathcal{R})} ] \cup [ \mathcal{T} | \Gamma | \mathcal{R} ] \Rightarrow \Delta$}
+			\BIC{$\p^l \mathcal{S}^2 , \mathcal{T} \Rightarrow \Delta$}
 			
 			\doubleLine \RightLabel{$Lc$}
-			\UIC{$[ \mathcal{S} | \epsilon_{len(\mathcal{R})} ] \cup [ \mathcal{T} | \Gamma | \mathcal{R} ] \Rightarrow \Delta$}
+			\UIC{$\p^l \mathcal{S} , \mathcal{T} \Rightarrow \Delta$}
 		\end{prooftree}

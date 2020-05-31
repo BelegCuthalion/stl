@@ -3,43 +3,43 @@
 			\noLine
 			\AXC{$\mathbf{D_0}$}
 			\UIC{$\mathcal{S} \Rightarrow \nabla^k A$}
-			
+
 			\noLine
 			\AXC{$\mathbf{D_1}'$}
-			\UIC{$\mathcal{T} \cup [A^n | \epsilon_{l+k}] \Rightarrow B$}
+			\UIC{$\mathcal{T} , \p^{l+k} A^n \Rightarrow B$}
 			\noLine
 			\AXC{$\mathbf{D_1}''$}
-			\UIC{$\mathcal{T} \cup [A^n | \epsilon_{l+k}] \Rightarrow C$}
+			\UIC{$\mathcal{T} , \p^{l+k} A^n \Rightarrow C$}
 			\RightLabel{$R\land$}
-			\BIC{$\mathcal{T} \cup [A^n | \epsilon_{l+k}] \Rightarrow B \land C$}
-			
+			\BIC{$\mathcal{T} , \p^{l+k} A^n \Rightarrow B \land C$}
+
 			\dashedLine\RightLabel{$\nabla Cut$}
-			\BIC{$[\mathcal{S} | \epsilon_l] \cup \mathcal{T} \Rightarrow B \land C$}
+			\BIC{$\p^l \mathcal{S} , \mathcal{T} \Rightarrow B \land C$}
 		\end{prooftree}
 		By induction hypothesis, once for $\mathbf{D_0}$ and $\mathbf{D_1}'$ and again for $\mathbf{D_0}$ and $\mathbf{D_1}''$
 		\begin{prooftree}
 			\noLine
 			\AXC{$\mathbf{D_0}$}
 			\UIC{$\mathcal{S} \Rightarrow \nabla^k A$}
-			
+
 			\noLine
 			\AXC{$\mathbf{D_1}'$}
-			\UIC{$\mathcal{T} \cup [A^n | \epsilon_{l+k}] \Rightarrow B$}
-			
+			\UIC{$\mathcal{T} , \p^{l+k} A^n \Rightarrow B$}
+
 			\RightLabel{IH}
-			\BIC{$[\mathcal{S} | \epsilon_l] \cup \mathcal{T} \Rightarrow B$}
-			
+			\BIC{$\p^l \mathcal{S} , \mathcal{T} \Rightarrow B$}
+
 			\noLine
 			\AXC{$\mathbf{D_0}$}
-			\UIC{$\mathcal{S} \Rightarrow A$}
-			
+			\UIC{$\mathcal{S} \Rightarrow \nabla^k A$}
+
 			\noLine
 			\AXC{$\mathbf{D_1}''$}
-			\UIC{$\mathcal{T} \cup [A^n | \epsilon_{l+k}] \Rightarrow C$}
-			
+			\UIC{$\mathcal{T} , \p^{l+k} A^n \Rightarrow C$}
+
 			\RightLabel{IH}
-			\BIC{$[\mathcal{S} | \epsilon_l] \cup \mathcal{T} \Rightarrow C$}
-			
+			\BIC{$\p^l \mathcal{S} , \mathcal{T} \Rightarrow C$}
+
 			\RightLabel{$R\land$}
-			\BIC{$[\mathcal{S} | \epsilon_l] \cup \mathcal{T} \Rightarrow B \land C$}
+			\BIC{$\p^l \mathcal{S} , \mathcal{T} \Rightarrow B \land C$}
 		\end{prooftree}

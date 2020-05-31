@@ -1,16 +1,11 @@
 \section{GSTL}‌\\
 
-\subsection{Notation} In the following, $\mathcal{S}$ and $\mathcal{T}$ are names for sequences of finite multi-sets, of which at most finitely many are non-empty; $\mathcal{R}$ for a finite sequence, possibly of length $0$; $len(\mathcal{R})$ for its length; $\epsilon_n$ for the sequence of empty multi-sets, of length $n$; $\epsilon$ for the sequence of empty multi-sets, $\Gamma$, $\Sigma$ for finite multi-sets, $\Delta$ for sub-singleton of some formula, $A$, $B$ and $C$ for formulas and $n$, $l$, $r$ and $k$ for natural numbers.
+\subsection{$\p$-formula}
+A $\p$-formula is a regular proposition with zero or more ``$\p$'' operators applied. More precisely, if $\Phi$ is the set of all formulas, then the set of $\p$-formulas $P$ is a super-set of $\Phi$, defined recursively as follows:
+\[ P ~~::=~~ \Phi ~|~ \p P \]
+So if $A$ and $B$ are formulas, then $A$, $A \land B$, $\p A$, $\p \p ~ A$, $\p \p \p ~ \nabla A$ or $\p A \land B$ are all examples of $\p$-formulas. $\p^0 A$ means $A$ and $\p^{n+1} A$ means $\p \p^n A$. $\p \mathcal{S}$ means $\{\p^{m+1} A : \p^m A \in \mathcal{S}\}$. We also write $\p^m A$ for $\{ \p^m A \}$ and $\p^m A^{n+1}$ for $\p^m A^n,\p^m A$. $\mathcal{S}^n$ means $\{ \p^m A^n : \p^m A \in \mathcal{S} \}$.
 
-We will write $A$ for the singleton $\{A\}$ and $\Gamma$ for the finite sequence $\langle\Gamma\rangle$ of length one where ever it is inferable from the context.
-``$,$'' is the multi-set union.
-$A^1$ is $\{A\}$ and $A^{n+1}$ is $A^n, A$.
-``$\cup$'' is the point-wise union of sequences.
-``$|$'' is a right-associative binary operator, overloaded and used for two functions: concatenation of finite sequences, making a finite sequence out of two; and concatenation of an infinite sequence on the left, to a finite sequence on the right, making an infinite sequence. Notice that $\epsilon_0$ is the right-identity element for both functions. Also notice that for any $\mathcal{S}$, since only finitely many multi-sets in $\mathcal{S}$ are non-empty, we can write $\mathcal{S}$ as $\epsilon | \mathcal{R}$ for some finite sequence $\mathcal{R}$.
-
-A sequent $\mathcal{S} \Rightarrow \Delta$ is a relation between $\mathcal{S}$, a sequence of multi-sets of formulas, and $\Delta$, a sub-singleton of some formula. We also write $\mathcal{R} \Rightarrow \Delta$ for $\epsilon | \mathcal{R} \Rightarrow \Delta$
-
-\subsection{GSTL$^-$}
+\subsection{GSTL$^-$} A GSTL sequent $\mathcal{S} \Rightarrow \Delta$ is a binary relation between $\mathcal{S}$, a multi-set of $\p$-formulas, and $\Delta$, a sub-singleton of some formula, defined inductively by the following rules.
 
 \begin{multicols}{3}
 	\begin{prooftree}
@@ -22,21 +17,21 @@ A sequent $\mathcal{S} \Rightarrow \Delta$ is a relation between $\mathcal{S}$, 
 	\begin{prooftree}
 		\RightLabel{$Ta$}
 		\AXC{}
-		\UIC{$\epsilon \Rightarrow \top$}
+		\UIC{$\Rightarrow \top$}
 	\end{prooftree}
 	\columnbreak
 	\begin{prooftree}
 		\RightLabel{$Ex$}
 		\AXC{}
-		\UIC{$\bot | \epsilon_n \Rightarrow$}
+		\UIC{$\p^n \bot \Rightarrow$}
 	\end{prooftree}
 \end{multicols}
 ‌\\
 \begin{multicols}{3}
 	\begin{prooftree}
 		\RightLabel{$Lw$}
-		\AXC{$\mathcal{S} | \Gamma | \mathcal{R} \Rightarrow \Delta$}
-		\UIC{$\mathcal{S} | \Gamma , A | \mathcal{R} \Rightarrow \Delta$}
+		\AXC{$\mathcal{S} \Rightarrow \Delta$}
+		\UIC{$\mathcal{S}, \p^n A \Rightarrow \Delta$}
 	\end{prooftree}
 	\columnbreak
 	\begin{prooftree}
@@ -47,22 +42,22 @@ A sequent $\mathcal{S} \Rightarrow \Delta$ is a relation between $\mathcal{S}$, 
 	\columnbreak
 	\begin{prooftree}
 		\RightLabel{$Lc$}
-		\AXC{$\mathcal{S} |‌\Gamma , A , A |‌\mathcal{R} \Rightarrow \Delta$}
-		\UIC{$\mathcal{S} | \Gamma , A | \mathcal{R} \Rightarrow \Delta$}
+		\AXC{$\mathcal{S} , \p^n A , \p^n A \Rightarrow \Delta$}
+		\UIC{$\mathcal{S} , \p^n A \Rightarrow \Delta$}
 	\end{prooftree}
 \end{multicols}
 ‌\\
 \begin{multicols}{3}
 	\begin{prooftree}
 		\RightLabel{$L\land_1$}
-		\AXC{$\mathcal{S} |‌\Gamma , A | \mathcal{R} \Rightarrow \Delta$}
-		\UIC{$\mathcal{S} |‌\Gamma , A \land B |‌\mathcal{R} \Rightarrow \Delta$}
+		\AXC{$\mathcal{S} , \p^n A \Rightarrow \Delta$}
+		\UIC{$\mathcal{S} , \p^n A \land B \Rightarrow \Delta$}
 	\end{prooftree}
 	\columnbreak
 	\begin{prooftree}
 		\RightLabel{$L\land_2$}
-		\AXC{$\mathcal{S} |‌\Gamma , B | \mathcal{R} \Rightarrow \Delta$}
-		\UIC{$\mathcal{S} |‌\Gamma , A \land B | \mathcal{R} \Rightarrow \Delta$}
+		\AXC{$\mathcal{S} , \p^n B \Rightarrow \Delta$}
+		\UIC{$\mathcal{S} , \p^n A \land B \Rightarrow \Delta$}
 	\end{prooftree}
 	\columnbreak
 	\begin{prooftree}
@@ -76,9 +71,9 @@ A sequent $\mathcal{S} \Rightarrow \Delta$ is a relation between $\mathcal{S}$, 
 \begin{multicols}{3}
 	\begin{prooftree}
 		\RightLabel{$L\lor$}
-		\AXC{$\mathcal{S} |‌\Gamma , A |‌\mathcal{R} \Rightarrow \Delta$}
-		\AXC{$\mathcal{S} |‌\Gamma , B | \mathcal{R} \Rightarrow \Delta$}
-		\BIC{$\mathcal{S} |‌\Gamma , A \lor B | \mathcal{R} \Rightarrow \Delta$}
+		\AXC{$\mathcal{S} , \p^n A \Rightarrow \Delta$}
+		\AXC{$\mathcal{S} , \p^n B \Rightarrow \Delta$}
+		\BIC{$\mathcal{S} , \p^n A \lor B \Rightarrow \Delta$}
 	\end{prooftree}
 	\columnbreak
 	\begin{prooftree}
@@ -97,14 +92,14 @@ A sequent $\mathcal{S} \Rightarrow \Delta$ is a relation between $\mathcal{S}$, 
 \begin{multicols}{2}
 	\begin{prooftree}
 		\RightLabel{$L\rightarrow$}
-		\AXC{$\mathcal{S} | \Gamma | \Sigma | \mathcal{R} \Rightarrow \nabla^{len(\mathcal{R})} A$}
-		\AXC{$\mathcal{S} | \Gamma | \Sigma , B | \mathcal{R} \Rightarrow \Delta$}
-		\BIC{$\mathcal{S} | \Gamma, A \rightarrow B | \Sigma | \mathcal{R} \Rightarrow \Delta$}
+		\AXC{$\mathcal{S} \Rightarrow \nabla^n A$}
+		\AXC{$\mathcal{S} , \p^n B \Rightarrow \Delta$}
+		\BIC{$\mathcal{S} , \p^{n+1} A \rightarrow B \Rightarrow \Delta$}
 	\end{prooftree}
 	\columnbreak
 	\begin{prooftree}
 		\RightLabel{$R\rightarrow$}
-		\AXC{$\mathcal{S} | A \Rightarrow B$}
+		\AXC{$\p \mathcal{S} , A \Rightarrow B$}
 		\UIC{$\mathcal{S} \Rightarrow A \rightarrow B$}
 	\end{prooftree}
 \end{multicols}
@@ -112,33 +107,33 @@ A sequent $\mathcal{S} \Rightarrow \Delta$ is a relation between $\mathcal{S}$, 
 \begin{multicols}{2}
 	\begin{prooftree}
 		\RightLabel{$L\nabla$}
-		\AXC{$\mathcal{S} |‌\Gamma , A | \Sigma |‌\mathcal{R} \Rightarrow \Delta$}
-		\UIC{$\mathcal{S} |‌\Gamma | \Sigma , \nabla A |‌\mathcal{R} \Rightarrow \Delta$}
+		\AXC{$\mathcal{S} , \p^{n+1} A \Rightarrow \Delta$}
+		\UIC{$\mathcal{S} , \p^n \nabla A \Rightarrow \Delta$}
 	\end{prooftree}
 	
 	\begin{prooftree}
 		\RightLabel{$R\nabla$}
 		\AXC{$\mathcal{S} \Rightarrow \Delta$}
-		\UIC{$\mathcal{S} | \epsilon_1 \Rightarrow \nabla \Delta$}
+		\UIC{$\p \mathcal{S} \Rightarrow \nabla \Delta$}
 	\end{prooftree}
 \end{multicols}
-‌\\
+$\p \mathcal{S}$ in the premise of $R \rightarrow$ means that this rule is applicable only if all $\p$-formulas in the antecedent, except $A$, have at least one $\p$, which is removed after applying $R \rightarrow$. Also notice that $A$ and $B$ are names for formulas, not $\p$-formulas.
 \subsection{$Cut$}
 \begin{prooftree}
 	\RightLabel{$Cut$}
 	\AXC{$\mathcal{S} \Rightarrow A$}
-	\AXC{$\mathcal{T} | \Gamma, A | \mathcal{R} \Rightarrow \Delta$}
-	\BIC{$[ \mathcal{S} | \epsilon_{len(\mathcal{R})} ] \cup [ \mathcal{T} | \Gamma | \mathcal{R} ] \Rightarrow \Delta$}
+	\AXC{$\mathcal{T} , \p^{l} A \Rightarrow \Delta$}
+	\BIC{$\mathcal{S} , \mathcal{T} \Rightarrow \Delta$}
 \end{prooftree}
 
 \subsection{$\nabla Cut$} For any $l,k \ge 0$ and $n \ge 1$
 \begin{prooftree}
 	\AXC{$\mathcal{S} \Rightarrow \nabla^k A$}
-	\AXC{$\mathcal{T} \cup [A^n | \epsilon_{k+l}] \Rightarrow \Delta$}
+	\AXC{$\mathcal{T} , \p^{l+k} A^n \Rightarrow \Delta$}
 	\RightLabel{$\nabla Cut$}
-	\BIC{$[ \mathcal{S} | \epsilon_l ] \cup \mathcal{T} \Rightarrow \Delta$}
+	\BIC{$\p^l \mathcal{S} , \mathcal{T} \Rightarrow \Delta$}
 \end{prooftree}
-$A$ is called the \textit{cut-formula}.
+$A$ (as a formula, not a $\p$-formula) is called the \textit{cut-formula}.
 By $\text{GSTL}$ we mean $\text{GSTL}^- + Cut$
 \subsubsection{Rank} Rank of a formula $\varphi$ is defined as
 \[ \rho(\varphi) = \begin{cases}
@@ -146,18 +141,25 @@ By $\text{GSTL}$ we mean $\text{GSTL}^- + Cut$
 \rho(\psi) + 1 & \quad ; \varphi = \nabla \psi \\
 max(\rho(\psi), \rho(\theta)) + 1 & \quad ; \varphi = \psi \Box \theta, \Box \in \{ \land , \lor, \rightarrow \}
 \end{cases} \]
-We also define rank for rule instances and proof trees as follows. For an instance of the $\nabla Cut$ rule $c$ with cut-formula $\varphi$, $\rho(c) = \rho(\varphi)$, $0$ if it's not an instance of the $\nabla Cut$ rule.
+We also define rank for rule instances and proof trees. For an instance of the $\nabla Cut$ rule $c$ with cut-formula $\varphi$, $\rho(c) = \rho(\varphi)$, $0$ if it's not an instance of the $\nabla Cut$ rule.
 For a proof tree $\mathbf{D}$, $\rho(\mathbf{D})$ is the maximum rank of its rule instances.
 
-\subsection{Theorem} For any $\Gamma$ and $\Delta$, if $\small\text{GSTL} \vdash \Gamma \Rightarrow \Delta$ then $\small\text{GSTL}^- + \nabla Cut \vdash \Gamma \Rightarrow \Delta$.
+\subsection{Theorem} For any $\mathcal{S}$ and $\Delta$, if $\small\text{GSTL} \vdash \mathcal{S} \Rightarrow \Delta$ then $\small\text{GSTL}^- + \nabla Cut \vdash \mathcal{S} \Rightarrow \Delta$.
 
 \textit{Proof}: Just replace any occurrence of $Cut$ with $\nabla Cut$, with $k := 0$ and $n := 1$.
 
-\section{Theorem} For any $\langle \Gamma_n \rangle_{n=0}^\infty$ and $\Delta$, $\text{GSTL} \vdash \langle \Gamma_n \rangle_{n=0}^\infty \Rightarrow \Delta$ if and only if $\text{iSTL} \vdash \{ \nabla^n \Gamma_n \}_{n=0}^\infty \Rightarrow \Delta$.
+\section{Translation} For any $\p$-formula $A$, $\tau : P \mapsto \Phi$ gives its translation as a formula.
+\[ \tau(A) = \begin{cases}
+	A & \quad ; A \in \Phi \\
+	\nabla \tau(B) & \quad ; A = \p B
+\end{cases} \]
+We also use a natural extension of this translation from multi-sets of $\p$-formulas to multi-sets of formulas: $\tau(\mathcal{S}) = \{ \tau(A) : A \in \mathcal{S} \}$. Notice that $\tau|_\Phi = id$.
 
-\emph{Proof}: I. Suppose $\text{GSTL}$ proves $\langle \Gamma_n \rangle_{n=0}^\infty \Rightarrow \Delta$ by a proof tree $\mathbf{D}$. We will construct a proof tree in $\text{iSTL}$ for $\{ \nabla^n \Gamma_n \}_{n=0}^\infty \Rightarrow \Delta$. By induction on $h(\mathbf{D})$, the induction hypothesis states that for any $\text{GSTL}$ proof tree $\mathbf{D}'$ for $\langle \Gamma'_n \rangle_{n=0}^\infty \Rightarrow \Delta'$ such that $h(\mathbf{D}') < h(\mathbf{D})$, there exists an $\text{iSTL}$ proof tree $\mathbf{E}$ for $\{ \nabla^n \Gamma'_n \}_{n=0}^\infty \Rightarrow \Delta'$. Now we consider different cases for the last rule of $\mathbf{D}$.
+\section{Theorem} For any $\mathcal{S}$ and $\Delta$, $\text{GSTL} \vdash \mathcal{S} \Rightarrow \Delta$ if and only if $\text{iSTL} \vdash \tau(\mathcal{S}) \Rightarrow \Delta$.
+
+\emph{Proof}: I. Suppose $\text{GSTL}$ proves $\mathcal{S} \Rightarrow \Delta$ by a proof tree $\mathbf{D}$. We will construct a proof tree in $\text{iSTL}$ for $\tau(\mathcal{S}) \Rightarrow \Delta$. By induction on $h(\mathbf{D})$, the induction hypothesis states that for any $\text{GSTL}$ proof tree $\mathbf{D}'$ for $\mathcal{S}' \Rightarrow \Delta'$ such that $h(\mathbf{D}') < h(\mathbf{D})$, there exists an $\text{iSTL}$ proof tree IH$(\mathbf{D'})$ for $\tau(\mathcal{S}') \Rightarrow \Delta'$. Now we consider different cases for the last rule of $\mathbf{D}$. In all cases, we denote the immediate sub-trees of $\mathbf{D}$ by $\mathbf{D_i} ~(0 \leq i)$.
 \begin{enumerate}
 	\item[1,2.] ($Id$),($Ta$) iSTL has these as axioms.
 	\setcounter{enumi}{2}
-	\item ($Ex$) {\color{red}\textbf{TODO}} 
+	\item ($Ex$) {\color{red}\textbf{TODO}}
 \end{enumerate}

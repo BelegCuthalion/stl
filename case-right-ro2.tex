@@ -1,30 +1,30 @@
 ($R*, R\lor_2$)
-		\begin{prooftree}
-			\noLine
-			\AXC{$\mathbf{D_0}$}
-			\UIC{$\mathcal{S} \Rightarrow \nabla^k A$}
-			
-			\noLine
-			\AXC{$\mathbf{D_1}'$}
-			\UIC{$\mathcal{T} \cup [A^n | \epsilon_{l+k}] \Rightarrow C$}
-			\RightLabel{$R\lor_1$}
-			\UIC{$\mathcal{T} \cup [A^n | \epsilon_{l+k}] \Rightarrow B \lor C$}
-			
-			\dashedLine\RightLabel{$\nabla Cut$}
-			\BIC{$[\mathcal{S} | \epsilon_l] \cup \mathcal{T} \Rightarrow B \lor C$}
-		\end{prooftree}
-		By induction hypothesis for $\mathbf{D_0}$ and $\mathbf{D_1}'$
-		\begin{prooftree}
-			\noLine
-			\AXC{$\mathbf{D_0}$}
-			\UIC{$\mathcal{S} \Rightarrow \nabla^k A$}
-			
-			\noLine
-			\AXC{$\mathbf{D_1}'$}
-			\UIC{$\mathcal{T} \cup [A^n | \epsilon_{l+k}] \Rightarrow C$}
-			\RightLabel{IH}
-			\BIC{$[\mathcal{S} | \epsilon_l] \cup \mathcal{T} \Rightarrow C$}
-			
-			\RightLabel{$R\lor_1$}
-			\UIC{$[\mathcal{S} | \epsilon_l] \cup \mathcal{T} \Rightarrow B \lor C$}
-		\end{prooftree}
+\begin{prooftree}
+	\noLine
+	\AXC{$\mathbf{D_0}$}
+	\UIC{$\mathcal{S} \Rightarrow \nabla^k A$}
+	
+	\noLine
+	\AXC{$\mathbf{D_1}'$}
+	\UIC{$\mathcal{T} , \p^{l+k} A^n \Rightarrow C$}
+	\RightLabel{$R\lor_2$}
+	\UIC{$\mathcal{T} , \p^{l+k} A^n \Rightarrow B \lor C$}
+	
+	\dashedLine\RightLabel{$\nabla Cut$}
+	\BIC{$\p^l \mathcal{S} , \mathcal{T} \Rightarrow B \lor C$}
+\end{prooftree}
+By induction hypothesis for $\mathbf{D_0}$ and $\mathbf{D_1}'$
+\begin{prooftree}
+	\noLine
+	\AXC{$\mathbf{D_0}$}
+	\UIC{$\mathcal{S} \Rightarrow \nabla^k A$}
+	
+	\noLine
+	\AXC{$\mathbf{D_1}'$}
+	\UIC{$\mathcal{T} , \p^{l+k} A^n \Rightarrow C$}
+	\RightLabel{IH}
+	\BIC{$\p^l \mathcal{S} , \mathcal{T} \Rightarrow C$}
+	
+	\RightLabel{$R\lor_2$}
+	\UIC{$\p^l \mathcal{S} , \mathcal{T} \Rightarrow B \lor C$}
+\end{prooftree}

@@ -2,41 +2,41 @@
 	\begin{prooftree}
 		\noLine
 		\AXC{$\mathbf{D_0}'$}
-		\UIC{$\mathcal{S}' \Rightarrow \nabla^{k'} A'$}
+		\UIC{$\mathcal{S} \Rightarrow \nabla^{k'} A'$}
 		
 		\noLine
 		\AXC{$\mathbf{D_0}''$}
-		\UIC{$\mathcal{T}' \cup [A'^{n'} | \epsilon_{l'+k'}] \Rightarrow \nabla^k A$}
+		\UIC{$\mathcal{R} , \p^{l'+k'} A'^{n'} \Rightarrow \nabla^k A$}
 		
 		\RightLabel{$\nabla Cut$}
-		\BIC{$[\mathcal{S}' | \epsilon_{l'}] \cup \mathcal{T}' \Rightarrow \nabla^k A$}
+		\BIC{$\p^{l'} \mathcal{S} , \mathcal{R} \Rightarrow \nabla^k A$}
 		
 		
 		\noLine
 		\AXC{$\mathbf{D_1}$}
-		\UIC{$\mathcal{T} \cup [A^n | \epsilon_{l+k}] \Rightarrow \Delta$}
+		\UIC{$\mathcal{T} , \p^{l+k} A^n \Rightarrow \Delta$}
 		
 		\dashedLine\RightLabel{$\nabla Cut$}
-		\BIC{$[\mathcal{S}' | \epsilon_{l' + l}] \cup [\mathcal{T}' | \epsilon_l] \cup \mathcal{T} \Rightarrow \Delta$}
+		\BIC{$\p^{l'+l} \mathcal{S} , \p^l \mathcal{R} , \mathcal{T} \Rightarrow \Delta$}
 	\end{prooftree}
 	We can use the induction hypothesis to remove $A$ first, then cut $A'$.
 	\begin{prooftree}
 		\noLine
 		\AXC{$\mathbf{D_0}'$}
-		\UIC{$\mathcal{S}' \Rightarrow \nabla^{k'} A'$}
+		\UIC{$\mathcal{S} \Rightarrow \nabla^{k'} A'$}
 		
 		\noLine
 		\AXC{$\mathbf{D_0}''$}
-		\UIC{$\mathcal{T}' \cup [A'^{n'} | \epsilon_{l'+k'}] \Rightarrow \nabla^k A$}
+		\UIC{$\mathcal{R} , \p^{l'+k'} A'^{n'} \Rightarrow \nabla^k A$}
 
 		\noLine
 		\AXC{$\mathbf{D_1}$}
-		\UIC{$\mathcal{T} \cup [A^n | \epsilon_{l+k}] \Rightarrow \Delta$}
+		\UIC{$\mathcal{T} , \p^{l+k} A^n \Rightarrow \Delta$}
 
 		\RightLabel{IH}
-		\BIC{$[\mathcal{T}' | \epsilon_l] \cup [A'^{n'} | \epsilon_{l'+k'+l}] \cup \mathcal{T} \Rightarrow \Delta$}
+		\BIC{$\p^l \mathcal{R} , \p^{l'+k'+l} A'^{n'} , \mathcal{T} \Rightarrow \Delta$}
 		
 
 		\RightLabel{$\nabla Cut$}
-		\BIC{$[\mathcal{S}' | \epsilon_{l' + l}] \cup [\mathcal{T}' | \epsilon_l] \cup \mathcal{T} \Rightarrow \Delta$}
+		\BIC{$\p^{l'+l} \mathcal{S} , \p^l \mathcal{R} , \mathcal{T} \Rightarrow \Delta$}
 	\end{prooftree}

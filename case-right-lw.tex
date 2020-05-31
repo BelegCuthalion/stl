@@ -6,12 +6,12 @@
 			
 			\noLine
 			\AXC{$\mathbf{D_1}'$}
-			\UIC{$\mathcal{T} \cup [A^n | \epsilon_{l+k} ] \Rightarrow \Delta$}
+			\UIC{$\mathcal{T} , \p^{l+k} A^n \Rightarrow \Delta$}
 			\RightLabel{$Lw$}
-			\UIC{$\mathcal{T} \cup [A^n | \epsilon_{l+k}] \cup [B | \epsilon_r] \Rightarrow \Delta$}
+			\UIC{$\mathcal{T} , \p^{l+k} A^n , \p^r B \Rightarrow \Delta$}
 			
 			\dashedLine\RightLabel{$\nabla Cut$}
-			\BIC{$[\mathcal{S} | \epsilon_l] \cup \mathcal{T} \cup [B | \epsilon_r] \Rightarrow \Delta$}
+			\BIC{$\p^l \mathcal{S} , \mathcal{T} , \p^r B \Rightarrow \Delta$}
 		\end{prooftree}
 		By induction hypothesis for $\mathbf{D_0}$ and $\mathbf{D_1}'$ we have
 		\begin{prooftree}
@@ -21,10 +21,10 @@
 			
 			\noLine
 			\AXC{$\mathbf{D_1}'$}
-			\UIC{$\mathcal{T} \cup [A^n | \epsilon_{l+k}] \Rightarrow \Delta$}
+			\UIC{$\mathcal{T} , \p^{l+k} A^n \Rightarrow \Delta$}
 			\RightLabel{IH}
-			\BIC{$[\mathcal{S} | \epsilon_l] \cup \mathcal{T} \Rightarrow \Delta$}
+			\BIC{$\p^l \mathcal{S} , \mathcal{T} \Rightarrow \Delta$}
 			
 			\RightLabel{$Lw$}
-			\UIC{$[\mathcal{S} | \epsilon_l] \cup \mathcal{T} \cup [B | \epsilon_r] \Rightarrow \Delta$}
+			\UIC{$\p^l \mathcal{S} , \mathcal{T} , \p^r B \Rightarrow \Delta$}
 		\end{prooftree}

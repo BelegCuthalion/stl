@@ -1,29 +1,29 @@
-($R \nabla, Ex$) The last rule in $\mathbf{D_1}$ can be $Ex$ only in the case that $A = \bot$. So $\mathbf{D_0}$ must end with $R \nabla$ and $k > 0$.
+($R \nabla, Ex$) This forces $A = \bot$. So $R*$ is $R \nabla$ and $k > 0$.
 		\begin{prooftree}
 			\noLine
 			\AXC{$\mathbf{D_0}'$}
-			\UIC{$\mathcal{S}' \Rightarrow \nabla^{k'} \bot$}
+			\UIC{$\mathcal{S} \Rightarrow \nabla^{k'} \bot$}
 			\RightLabel{$R\nabla$}
-			\UIC{$\mathcal{S}' | \epsilon_1 \Rightarrow \nabla^{k' + 1} \bot$}
+			\UIC{$\p \mathcal{S} \Rightarrow \nabla^{k' + 1} \bot$}
 			
 
 			\AXC{$\mathbf{D_1}$}
 			\RightLabel{$Ex$}
-			\UIC{$\epsilon | \bot^n | \epsilon_{l+k'+1} \Rightarrow$}
+			\UIC{$\p^{l+k'+1} \bot^n \Rightarrow$}
 			
 			\dashedLine\RightLabel{$\nabla Cut$}
-			\BIC{$\mathcal{S}' | \epsilon_{l+1} \Rightarrow$}
+			\BIC{$\p^{l+1} \mathcal{S} \Rightarrow$}
 		\end{prooftree}
 		The desired sequent is exactly what we get from induction hypothesis for $\mathbf{D_0}'$ and $\mathbf{D_1}$.
 		\begin{prooftree}
 			\noLine
 			\AXC{$\mathbf{D_0}'$}
-			\UIC{$\mathcal{S}' \Rightarrow \nabla^{k'} \bot$}
+			\UIC{$\mathcal{S} \Rightarrow \nabla^{k'} \bot$}
 			
 			\AXC{$\mathbf{D_1}$}
 			\RightLabel{$Ex$}
-			\UIC{$\epsilon | \bot^n | \epsilon_{l+k'+1} \Rightarrow$}
+			\UIC{$\p^{l+k'+1} \bot^n \Rightarrow$}
 			
 			\RightLabel{IH}
-			\BIC{$\mathcal{S}' | \epsilon_{l+1} \Rightarrow$}
+			\BIC{$\p^{l+k'+1} \mathcal{S} \Rightarrow$}
 		\end{prooftree}

@@ -6,12 +6,12 @@
 			
 			\noLine
 			\AXC{$\mathbf{D_1}'$}
-			\UIC{$\mathcal{T} \cup [A^n | \epsilon_{l+k}] \Rightarrow B$}
+			\UIC{$\mathcal{T} , \p^{l+k} A^n \Rightarrow B$}
 			\RightLabel{$R\lor_1$}
-			\UIC{$\mathcal{T} \cup [A^n | \epsilon_{l+k}] \Rightarrow B \lor C$}
+			\UIC{$\mathcal{T} , \p^{l+k} A^n \Rightarrow B \lor C$}
 			
 			\dashedLine\RightLabel{$\nabla Cut$}
-			\BIC{$[\mathcal{S} | \epsilon_l] \cup \mathcal{T} \Rightarrow B \lor C$}
+			\BIC{$\p^l \mathcal{S} , \mathcal{T} \Rightarrow B \lor C$}
 		\end{prooftree}
 		By induction hypothesis for $\mathbf{D_0}$ and $\mathbf{D_1}'$
 		\begin{prooftree}
@@ -21,10 +21,10 @@
 			
 			\noLine
 			\AXC{$\mathbf{D_1}'$}
-			\UIC{$\mathcal{T} \cup [A^n | \epsilon_{l+k}] \Rightarrow B$}
+			\UIC{$\mathcal{T} , \p^{l+k} A^n \Rightarrow B$}
 			\RightLabel{IH}
-			\BIC{$[\mathcal{S} | \epsilon_l] \cup \mathcal{T} \Rightarrow B$}
+			\BIC{$\p^l \mathcal{S} , \mathcal{T} \Rightarrow B$}
 			
 			\RightLabel{$R\lor_1$}
-			\UIC{$[\mathcal{S} | \epsilon_l] \cup \mathcal{T} \Rightarrow B \lor C$}
+			\UIC{$\p^l \mathcal{S} , \mathcal{T} \Rightarrow B \lor C$}
 		\end{prooftree}

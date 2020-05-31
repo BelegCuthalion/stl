@@ -1,39 +1,39 @@
-($R*, R\nabla$) By the structure of $R \nabla$, since the cut-formula can not be in the $0$'th place in $\mathbf{D_1}$, we must have $l + k > 0$. Consider different cases for $l$.
+($R*, R\nabla$) By the structure of $R \nabla$ we must have $l + k > 0$. Consider different cases for $l$.
 		
-		If $l = 0$, then $k = k' + 1$ for some $k'$. Hence, the only possible right-rule as the last rule of $\mathbf{D_0}$ would be $R \nabla$.
+		($\star$) If $l = 0$, then $k = k' + 1$ for some $k'$. Hence, the only possible right-rule as the last rule of $\mathbf{D_0}$ would be $R \nabla$. ($Rw$ for $\mathbf{D_0}$ is already discussed, other right-rules force a different structure for $A$)
 		\begin{prooftree}
 			\noLine
 			\AXC{$\mathbf{D_0}'$}
-			\UIC{$\mathcal{S}' \Rightarrow \nabla^{k'} A$}
+			\UIC{$\mathcal{S} \Rightarrow \nabla^{k'} A$}
 			\RightLabel{$R \nabla$}
-			\UIC{$\mathcal{S}' | \epsilon_1 \Rightarrow \nabla^{k'+1} A$}
+			\UIC{$\p \mathcal{S} \Rightarrow \nabla^{k'+1} A$}
 			
 			\noLine
 			\AXC{$\mathbf{D_1}'$}
-			\UIC{$\mathcal{T} \cup [A^n | \epsilon_{k'}] \Rightarrow \Delta$}
+			\UIC{$\mathcal{T} , \p^{k'} A^n \Rightarrow \Delta$}
 			\RightLabel{$R\nabla$}
-			\UIC{$[\mathcal{T} | \epsilon_1] \cup [A^n | \epsilon_{k'+1}] \Rightarrow \nabla \Delta$}
+			\UIC{$\p \mathcal{T} , \p^{k'+1} A^n \Rightarrow \nabla \Delta$}
 			
 			\dashedLine\RightLabel{$\nabla Cut$}
-			\BIC{$[\mathcal{S}' | \epsilon_1] \cup [\mathcal{T} | \epsilon_1] \Rightarrow \nabla \Delta$}
+			\BIC{$\p \mathcal{S} , \p \mathcal{T} \Rightarrow \nabla \Delta$}
 		\end{prooftree}
 		By induction hypothesis for $\mathbf{D_0}'$ and $\mathbf{D_1}'$
 		\begin{prooftree}
 			\noLine
 			\AXC{$\mathbf{D_0}'$}
-			\UIC{$\mathcal{S}' \Rightarrow \nabla^{k'} A$}
+			\UIC{$\mathcal{S} \Rightarrow \nabla^{k'} A$}
 
 			\noLine
 			\AXC{$\mathbf{D_1}'$}
-			\UIC{$\mathcal{T} \cup [A^n | \epsilon_{k'}] \Rightarrow \Delta$}
+			\UIC{$\mathcal{T} , \p^{k'} A^n \Rightarrow \Delta$}
 
 			\RightLabel{IH}
-			\BIC{$\mathcal{S}' \cup \mathcal{T} \Rightarrow \Delta$}
+			\BIC{$\mathcal{S} , \mathcal{T} \Rightarrow \Delta$}
 			
 			\RightLabel{$R \nabla$}
-			\UIC{$[\mathcal{S}' | \epsilon_1] \cup [\mathcal{T} | \epsilon_1] \Rightarrow \nabla \Delta$}
+			\UIC{$\p \mathcal{S} , \p \mathcal{T} \Rightarrow \nabla \Delta$}
 		\end{prooftree}
-		Otherwise, if $l = l' + 1$ for some $l'$
+		($\star \star$) Otherwise, if $l = l' + 1$ for some $l'$
 		\begin{prooftree}
 			\noLine
 			\AXC{$\mathbf{D_0}$}
@@ -41,12 +41,12 @@
 			
 			\noLine
 			\AXC{$\mathbf{D_1}'$}
-			\UIC{$\mathcal{T} \cup [A^n | \epsilon_{l'+k}] \Rightarrow \Delta$}
+			\UIC{$\mathcal{T} , \p^{l'+k} A^n \Rightarrow \Delta$}
 			\RightLabel{$R\nabla$}
-			\UIC{$[\mathcal{T} | \epsilon_1] \cup [A^n | \epsilon_{l'+k+1}] \Rightarrow \nabla \Delta$}
+			\UIC{$\p \mathcal{T} , \p^{l'+k+1} A^n \Rightarrow \nabla \Delta$}
 			
 			\dashedLine\RightLabel{$\nabla Cut$}
-			\BIC{$[\mathcal{S} | \epsilon_{l'+1}] \cup [\mathcal{T} | \epsilon_1] \Rightarrow \nabla \Delta$}
+			\BIC{$\p^{l'+1} \mathcal{S} , \p \mathcal{T} \Rightarrow \nabla \Delta$}
 		\end{prooftree}
 		then by the induction hypothesis for $\mathbf{D_0}$ and $\mathbf{D_1}'$
 		\begin{prooftree}
@@ -56,13 +56,13 @@
 			
 			\noLine
 			\AXC{$\mathbf{D_1}'$}
-			\UIC{$\mathcal{T} \cup [A^n | \epsilon_{l'+k}] \Rightarrow B$}
+			\UIC{$\mathcal{T} , \p^{l'+k} A^n \Rightarrow \Delta$}
 			
 			\RightLabel{IH}
-			\BIC{$[\mathcal{S} | \epsilon_{l'}] \cup \mathcal{T} \Rightarrow B$}
+			\BIC{$\p^{l'} \mathcal{S} , \mathcal{T} \Rightarrow \Delta$}
 			
 			
 			\RightLabel{$R\nabla$}
-			\UIC{$[\mathcal{S} | \epsilon_{l'+1}] \cup [\mathcal{T} | \epsilon_1] \Rightarrow \nabla B$}
+			\UIC{$\p^{l'+1} \mathcal{S} , \p \mathcal{T} \Rightarrow \nabla \Delta$}
 		\end{prooftree}
 	\end{enumerate}

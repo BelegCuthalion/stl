@@ -6,15 +6,15 @@
 			
 			\noLine
 			\AXC{$\mathbf{D_1}'$}
-			\UIC{$\mathcal{T} \cup [A^n | \epsilon_{l+k}] \cup [B | \epsilon_r] \Rightarrow \Delta$}
+			\UIC{$\mathcal{T} , \p^{l+k} A^n , \p^r B \Rightarrow \Delta$}
 			\noLine
 			\AXC{$\mathbf{D_1}''$}
-			\UIC{$\mathcal{T} \cup [A^n | \epsilon_{l+k}] \cup [C | \epsilon_r] \Rightarrow \Delta$}
+			\UIC{$\mathcal{T} , \p^{l+k} A^n , \p^r C \Rightarrow \Delta$}
 			\RightLabel{$L\lor$}
-			\BIC{$\mathcal{T} \cup [A^n | \epsilon_{l+k}] \cup [B \lor C | \epsilon_r] \Rightarrow \Delta$}
+			\BIC{$\mathcal{T} , \p^{l+k} A^n , \p^r B \lor C \Rightarrow \Delta$}
 			
 			\dashedLine\RightLabel{$\nabla Cut$}
-			\BIC{$[\mathcal{S} | \epsilon_l] \cup \mathcal{T} \cup [B \lor C | \epsilon_r] \Rightarrow \Delta$}
+			\BIC{$\p^l \mathcal{S} ,  \mathcal{T} , \p^r B \lor C \Rightarrow \Delta$}
 		\end{prooftree}
 		By induction hypothesis, once for $\mathbf{D_0}$ and $\mathbf{D_1}'$ and again for $\mathbf{D_0}$ and $\mathbf{D_1}''$
 		\begin{prooftree}
@@ -24,10 +24,10 @@
 			
 			\noLine
 			\AXC{$\mathbf{D_1}'$}
-			\UIC{$\mathcal{T} \cup [A^n | \epsilon_{l+k}] \cup [B | \epsilon_r] \Rightarrow \Delta$}
+			\UIC{$\mathcal{T} , \p^{l+k} A^n , \p^r B \Rightarrow \Delta$}
 			
 			\RightLabel{IH}
-			\BIC{$[\mathcal{S} | \epsilon_l] \cup \mathcal{T} \cup [B | \epsilon_r] \Rightarrow \Delta$}
+			\BIC{$\p^l \mathcal{S} , \mathcal{T} , \p^r B \Rightarrow \Delta$}
 			
 			\noLine
 			\AXC{$\mathbf{D_0}$}
@@ -35,11 +35,11 @@
 			
 			\noLine
 			\AXC{$\mathbf{D_1}''$}
-			\UIC{$\mathcal{T} \cup [A^n | \epsilon_{l+k}] \cup [C | \epsilon_r] \Rightarrow \Delta$}
+			\UIC{$\mathcal{T} , \p^{l+k} A^n , \p^r C \Rightarrow \Delta$}
 			
 			\RightLabel{IH}
-			\BIC{$[\mathcal{S} | \epsilon_l] \cup \mathcal{T} \cup [C | \epsilon_r] \Rightarrow \Delta$}
+			\BIC{$\p^l \mathcal{S} , \mathcal{T} , \p^r C \Rightarrow \Delta$}
 			
 			\RightLabel{$L\lor$}
-			\BIC{$[\mathcal{S} | \epsilon_l] \cup \mathcal{T} \cup [B \lor C | \epsilon_r] \Rightarrow \Delta$}
+			\BIC{$\p^l \mathcal{S} , \mathcal{T} , \p^r B \lor C \Rightarrow \Delta$}
 		\end{prooftree}

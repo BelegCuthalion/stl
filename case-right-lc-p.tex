@@ -6,12 +6,12 @@
 			
 			\noLine
 			\AXC{$\mathbf{D_1}'$}
-			\UIC{$\mathcal{T} \cup [A^{n+1} | \epsilon_{l+k}] \Rightarrow \Delta$}
+			\UIC{$\mathcal{T} , \p^{l+k} A^{n+1} \Rightarrow \Delta$}
 			\RightLabel{$Lc$}
-			\UIC{$\mathcal{T} \cup [A^n | \epsilon_{l+k}] \Rightarrow \Delta$}
+			\UIC{$\mathcal{T} , \p^{l+k} A^n \Rightarrow \Delta$}
 			
 			\dashedLine\RightLabel{$\nabla Cut$}
-			\BIC{$[\mathcal{S} | \epsilon_l] \cup \mathcal{T} \Rightarrow \Delta$}
+			\BIC{$\p^l \mathcal{S} , \mathcal{T} \Rightarrow \Delta$}
 		\end{prooftree}
 		By induction hypothesis for $\mathbf{D_0}$ and $\mathbf{D_1}'$ we have
 		\begin{prooftree}
@@ -21,8 +21,8 @@
 			
 			\noLine
 			\AXC{$\mathbf{D_1}'$}
-			\UIC{$\mathcal{T} \cup [A^{n+1} | \epsilon_{l+k}] \Rightarrow \Delta$}
+			\UIC{$\mathcal{T} , \p^{l+k} A^{n+1} \Rightarrow \Delta$}
 			
 			\RightLabel{IH}
-			\BIC{$[\mathcal{S} | \epsilon_l] \cup \mathcal{T} \Rightarrow \Delta$}
+			\BIC{$\p^l \mathcal{S} , \mathcal{T} \Rightarrow \Delta$}
 		\end{prooftree}

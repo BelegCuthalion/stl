@@ -1,59 +1,61 @@
-($R\nabla, *$) This is the only case where $k$ can be more than $0$. First, in the case that $k = 0$, like previous cases, the last rule of $\mathbf{D_1}$ (and the construction of $A$) is determined by the last rule of $\mathbf{D_0}$; We have $A = \nabla B$ for some $B$.
+($R\nabla, *$) This is the only case where $k$ can be more than $0$.
+
+($\star$) In the case that $k = 0$, like previous cases, the last rule of $\mathbf{D_1}$ (and the structure of $A$) is determined by the last rule of $\mathbf{D_0}$. So we have $A = \nabla B$ for some $B$.
 		\begin{prooftree}
 			\noLine
 			\AXC{$\mathbf{D_0}$}
-			\UIC{$\mathcal{S} | \epsilon_1 \Rightarrow \nabla B$}
+			\UIC{$\p \mathcal{S} \Rightarrow \nabla B$}
 			
 			\noLine
 			\AXC{$\mathbf{D_1}'$}
-			\UIC{$\mathcal{T} \cup [B | (\nabla B)^{n-1} | \epsilon_l] \Rightarrow \Delta$}
+			\UIC{$\mathcal{T} , \p^{l+1} B , \p^l (\nabla B)^{n-1} \Rightarrow \Delta$}
 			\RightLabel{$L \nabla$}
-			\UIC{$\mathcal{T} \cup [(\nabla B)^n | \epsilon_l] \Rightarrow \Delta$}
+			\UIC{$\mathcal{T} , \p^l (\nabla B)^n \Rightarrow \Delta$}
 			
 			\RightLabel{$\nabla Cut$} \dashedLine
-			\BIC{$[ \mathcal{S} | \epsilon_{l+1} ] \cup \mathcal{T} \Rightarrow \Delta$}
+			\BIC{$\p^{l+1} \mathcal{S} , \mathcal{T} \Rightarrow \Delta$}
 		\end{prooftree}
-		First apply induction hypothesis for $\mathbf{D_0}$ and $\mathbf{D_1}'$ with $A' = A = \nabla B$ and $k' = 0$. Then remove $B$ by a $\nabla Cut$ on $\mathbf{D_0}$ and the resulting sequent.
+		First, apply the induction hypothesis for $\mathbf{D_0}$ and $\mathbf{D_1}'$ with $A' = A = \nabla B$ and $k' = 0$. Then remove $B$ by a $\nabla Cut$ on $\mathbf{D_0}$ and the resulting sequent.
 
 		\begin{prooftree}
 			\noLine
 			\AXC{$\mathbf{D_0}$}
-			\UIC{$\mathcal{S} | \epsilon_1 \Rightarrow \nabla B$}
+			\UIC{$\p \mathcal{S} \Rightarrow \nabla B$}
 			
 			
 			\noLine
 			\AXC{$\mathbf{D_0}$}
-			\UIC{$\mathcal{S} | \epsilon_1 \Rightarrow \nabla B$}
+			\UIC{$\p \mathcal{S} \Rightarrow \nabla B$}
 			
 			\noLine
 			\AXC{$\mathbf{D_1}'$}
-			\UIC{$\mathcal{T} \cup [B | (\nabla B)^{n-1} | \epsilon_l] \Rightarrow \Delta$}
+			\UIC{$\mathcal{T} , \p^{l+1} B , \p^l (\nabla B)^{n-1} \Rightarrow \Delta$}
 			
 			\RightLabel{IH}
-			\BIC{$[\mathcal{S} | \epsilon_{l+1}] \cup \mathcal{T} \cup [B | \epsilon_{l+1}] \Rightarrow \Delta$}
+			\BIC{$\p^{l+1} \mathcal{S} , \mathcal{T} , \p^{l+1} B \Rightarrow \Delta$}
 			
 			
 			\RightLabel{$\nabla Cut$}
-			\BIC{$[\mathcal{S}^2 | \epsilon_{l+1}] \cup \mathcal{T} \Rightarrow \Delta$}
+			\BIC{$\p^{l+1} \mathcal{S}^2 , \mathcal{T} \Rightarrow \Delta$}
 			
 			\RightLabel{$Lc$}
-			\UIC{$[\mathcal{S} | \epsilon_{l+1}] \cup \mathcal{T} \Rightarrow \Delta$}
+			\UIC{$\p^{l+1} \mathcal{S} , \mathcal{T} \Rightarrow \Delta$}
 		\end{prooftree}
 
-		Now let $k = k' + 1$ for some $k'$. This does not necessarily determine the structure of $A$. Our construction, however, does not depend on then last rule of $\mathbf{D_1}$ or whether $A$ is principal there.
+		($\star \star$) Now, let $k = k' + 1$ for some $k'$. This does not necessarily determine the structure of $A$. Our construction, however, does not depend on the last rule of $\mathbf{D_1}$.
 		\begin{prooftree}
 			\noLine
 			\AXC{$\mathbf{D_0}'$}
 			\UIC{$\mathcal{S} \Rightarrow \nabla^{k'} A$}
 			\RightLabel{$R \nabla$}
-			\UIC{$\mathcal{S} | \epsilon_1 \Rightarrow \nabla^{k'+1} A$}
+			\UIC{$\p \mathcal{S} \Rightarrow \nabla^{k'+1} A$}
 			
 			\noLine
 			\AXC{$\mathbf{D_1}$}
-			\UIC{$\mathcal{T} \cup [A^n | \epsilon_{l+k'+1}] \Rightarrow \Delta$}
+			\UIC{$\mathcal{T} , \p^{l+k'+1} A^n \Rightarrow \Delta$}
 			
 			\RightLabel{$\nabla Cut$} \dashedLine
-			\BIC{$[ \mathcal{S} | \epsilon_{l+1} ] \cup \mathcal{T} \Rightarrow \Delta$}
+			\BIC{$\p^{l+1} \mathcal{S} , \mathcal{T} \Rightarrow \Delta$}
 		\end{prooftree}
 		Induction hypothesis on $\mathbf{D_0}'$ and $\mathbf{D_1}$ does exactly the same.
 		\begin{prooftree}
@@ -63,8 +65,8 @@
 
 			\noLine
 			\AXC{$\mathbf{D_1}$}
-			\UIC{$\mathcal{T} \cup [A^n | \epsilon_{l+k'+1}] \Rightarrow \Delta$}
+			\UIC{$\mathcal{T} , \p^{l+k'+1} A^n \Rightarrow \Delta$}
 			
 			\RightLabel{IH}
-			\BIC{$[ \mathcal{S} | \epsilon_{l+1} ] \cup \mathcal{T} \Rightarrow \Delta$}
+			\BIC{$\p^{l+1} \mathcal{S} , \mathcal{T} \Rightarrow \Delta$}
 		\end{prooftree}
