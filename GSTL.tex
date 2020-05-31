@@ -157,9 +157,28 @@ We also use a natural extension of this translation from multi-sets of $\p$-form
 
 \section{Theorem} For any $\mathcal{S}$ and $\Delta$, $\text{GSTL} \vdash \mathcal{S} \Rightarrow \Delta$ if and only if $\text{iSTL} \vdash \tau(\mathcal{S}) \Rightarrow \Delta$.
 
-\emph{Proof}: I. Suppose $\text{GSTL}$ proves $\mathcal{S} \Rightarrow \Delta$ by a proof tree $\mathbf{D}$. We will construct a proof tree in $\text{iSTL}$ for $\tau(\mathcal{S}) \Rightarrow \Delta$. By induction on $h(\mathbf{D})$, the induction hypothesis states that for any $\text{GSTL}$ proof tree $\mathbf{D}'$ for $\mathcal{S}' \Rightarrow \Delta'$ such that $h(\mathbf{D}') < h(\mathbf{D})$, there exists an $\text{iSTL}$ proof tree IH$(\mathbf{D'})$ for $\tau(\mathcal{S}') \Rightarrow \Delta'$. Now we consider different cases for the last rule of $\mathbf{D}$. In all cases, we denote the immediate sub-trees of $\mathbf{D}$ by $\mathbf{D_i} ~(0 \leq i)$.
+\textit{Proof}: I. Suppose $\text{GSTL}$ proves $\mathcal{S} \Rightarrow \Delta$ by a proof tree $\mathbf{D}$. We will construct a proof tree in $\text{iSTL}$ for $\tau(\mathcal{S}) \Rightarrow \Delta$. By induction on $h(\mathbf{D})$, the induction hypothesis states that for any $\text{GSTL}$ proof tree $\mathbf{D}'$ for $\mathcal{S}' \Rightarrow \Delta'$ such that $h(\mathbf{D}') < h(\mathbf{D})$, there exists an $\text{iSTL}$ proof tree IH$(\mathbf{D'})$ for $\tau(\mathcal{S}') \Rightarrow \Delta'$. Now we consider different cases for the last rule of $\mathbf{D}$. In all cases, we denote the immediate sub-trees of $\mathbf{D}$ by $\mathbf{D_i} ~(0 \leq i)$. Notice that the rule name in parens is the last rule of $\mathcal{D}$ and in GSTL, but our construction in each case is in iSTL.
 \begin{enumerate}
 	\item[1,2.] ($Id$),($Ta$) iSTL has these as axioms.
 	\setcounter{enumi}{2}
-	\item ($Ex$) {\color{red}\textbf{TODO}}
+
+	\item ($Ex$) \todo{changing $N$ will probably fix this, but aint sure if it'll mess with completeness stuff}
+
+	\item[4-6] ($Lw$),($Rw$),($Lc$) Just apply the same rule in iSTL on IH$(\mathbf{D_0})$.
+	\setcounter{enumi}{6}
+
+	\item ($L\land_1$) IH($\mathbf{D_0}$) is of the form $\tau(\mathcal{S}) , \nabla^n A \Rightarrow \Delta$. By $L\land_1$ we have $\tau(\mathcal{S}) , \nabla^n A \land \nabla^n B \Rightarrow \Delta$. By $Cut$ with lemma \ref{lem:i-nabla-dist-and} we have $\tau(\mathcal{S}) , \nabla^n (A \land B) \Rightarrow \Delta$.
+	
+	\item ($L\land_2$) The same.
+	
+	\item ($R\land$) Just apply iSTL's $R\land$ on IH$(\mathbf{D_0})$ and IH$(\mathbf{D_1})$.
+	
+	\item ($L\lor$) IH($\mathbf{D_0}$) and IH($\mathbf{D_1}$) are of the form $\tau(\mathcal{S}) , \nabla^n A \Rightarrow \Delta$ and $\tau(\mathcal{S}) , \nabla^n B \Rightarrow \Delta$ respectively. By $L\lor$ we have $\tau(\mathcal{S}) , \nabla^n A \lor \nabla^n B \Rightarrow \Delta$. By $Cut$ with lemma \ref{lem:i-nabla-dist-or} we have $\tau(\mathcal{S}) , \nabla^n (A \lor B) \Rightarrow \Delta$.
+	
+	\item[11,12.] ($R\lor_{1/2}$) Just apply iSTL's $R\lor_{1/2}$ on IH$(\mathbf{D_0})$.
+	\setcounter{enumi}{12}
+	
+	\item ($L\rightarrow$) IH($\mathbf{D_0}$) and IH($\mathbf{D_1}$) are of the form $\tau(\mathcal{S}) \Rightarrow \nabla^n A$ and $\tau(\mathcal{S}) , \nabla^n B \Rightarrow \Delta$ respectively. By $L\rightarrow$ we have $\tau(\mathcal{S}) , \nabla (\nabla^n A \rightarrow \nabla^n B) \Rightarrow \Delta$. \todo{}
+	
+	\todo{}
 \end{enumerate}
