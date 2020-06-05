@@ -123,7 +123,7 @@ $\p \mathcal{S}$ in the premise of $R \rightarrow$ means that this rule is appli
 	\RightLabel{$Cut$}
 	\AXC{$\mathcal{S} \Rightarrow A$}
 	\AXC{$\mathcal{T} , \p^{l} A \Rightarrow \Delta$}
-	\BIC{$\mathcal{S} , \mathcal{T} \Rightarrow \Delta$}
+	\BIC{$\p^l \mathcal{S} , \mathcal{T} \Rightarrow \Delta$}
 \end{prooftree}
 
 \subsection{$\nabla Cut$} For any $l,k \ge 0$ and $n \ge 1$
@@ -162,7 +162,7 @@ We also use a natural extension of this translation from multi-sets of $\p$-form
 	\item[1,2.] ($Id$),($Ta$) iSTL has these as axioms.
 	\setcounter{enumi}{2}
 
-	\item ($Ex$) \todo{changing $N$ will probably fix this, but aint sure if it'll mess with completeness stuff}
+	\item ($Ex$) Using $Cut$ on lemma \ref{lem:i-nabla-n-bot} and (iSTL's) $Ex$, we get $\nabla^n \bot \Rightarrow$.
 
 	\item[4-6] ($Lw$),($Rw$),($Lc$) Just apply the same rule in iSTL on IH$(\mathbf{D_0})$.
 	\setcounter{enumi}{6}
@@ -178,7 +178,10 @@ We also use a natural extension of this translation from multi-sets of $\p$-form
 	\item[11,12.] ($R\lor_{1/2}$) Just apply iSTL's $R\lor_{1/2}$ on IH$(\mathbf{D_0})$.
 	\setcounter{enumi}{12}
 	
-	\item ($L\rightarrow$) IH($\mathbf{D_0}$) and IH($\mathbf{D_1}$) are of the form $\tau(\mathcal{S}) \Rightarrow \nabla^n A$ and $\tau(\mathcal{S}) , \nabla^n B \Rightarrow \Delta$ respectively. By $L\rightarrow$ we have $\tau(\mathcal{S}) , \nabla (\nabla^n A \rightarrow \nabla^n B) \Rightarrow \Delta$. \todo{}
+	\item ($L\rightarrow$) IH($\mathbf{D_0}$) and IH($\mathbf{D_1}$) are of the form $\tau(\mathcal{S}) \Rightarrow \nabla^n A$ and $\tau(\mathcal{S}) , \nabla^n B \Rightarrow \Delta$ respectively. By $L\rightarrow$ we have $\tau(\mathcal{S}) , \nabla (\nabla^n A \rightarrow \nabla^n B) \Rightarrow \Delta$. We also have $\tau(\mathcal{S}) , \nabla^{n+1} (A \rightarrow B) \Rightarrow \nabla (\nabla^n A \rightarrow \nabla^n B)$ from $Lw$ and $N$ applied to lemma \ref{lem:i-nabla-dist-imp}.
 	
-	\todo{}
+	\item[14,15,16.] ($R\rightarrow$),($L\nabla$),($R\nabla$) Use the same rule in iSTL on IH($\mathbf{D_0}$).
+	\setcounter{enumi}{16}
+	
+	\item ($Cut$) \todo{}
 \end{enumerate}
