@@ -110,7 +110,7 @@
 	\AXC{$\Gamma' , A \Rightarrow \Delta$}
 	\BIC{$\Gamma , \Gamma' \Rightarrow \Delta$}
 \end{prooftree}
-By $\text{iSTL}$ we mean $\text{iSTLL}^- + Cut$
+By $\text{iSTL}$ we mean $\text{iSTL}^- + Cut$
 
 \subsection{Lemma} iSTL proves
 
@@ -140,6 +140,63 @@ By $\text{iSTL}$ we mean $\text{iSTLL}^- + Cut$
 
 \subsubsection{}\label{lem:i-nabla-dist-or} $\nabla^n (A \lor B) \Rightarrow \nabla^n A \lor \nabla^n B$ \todo{}
 
+\subsubsection{}\label{lem:i-nabla-bot} $\nabla \bot \Rightarrow \bot$
+
+\textit{Proof}:
+\begin{prooftree}
+	\AXC{}
+	\RightLabel{$Ex$}
+	\UIC{$\bot \Rightarrow$}
+	\RightLabel{$Rw$}
+	\UIC{$\bot \Rightarrow \top \rightarrow \bot$}
+	\RightLabel{$N$}
+	\UIC{$\nabla \bot \Rightarrow \nabla (\top \rightarrow \bot)$}
+
+	\AXC{}
+	\RightLabel{$Ta$}
+	\UIC{$\Rightarrow \top$}	
+	\AXC{}
+	\RightLabel{$Id$}
+	\UIC{$\bot \Rightarrow \bot$}
+	\RightLabel{$L\rightarrow$}
+	\BIC{$\nabla (\top \rightarrow \bot) \Rightarrow \bot$}
+	
+	\RightLabel{$Cut$}
+	\BIC{$\nabla \bot \Rightarrow \bot$}
+\end{prooftree}
+
+\subsubsection{}\label{lem:i-nabla-n-bot} $\nabla^n \bot \Rightarrow \bot$
+
+\textit{Proof}:
+\begin{prooftree}
+	\AXC{$\nabla \bot \Rightarrow \bot$}
+	\RightLabel{$N^{(n-1)}$} \doubleLine
+	\UIC{$\nabla^n \bot \Rightarrow \nabla^{n-1} \bot$}
+
+	\AXC{$\nabla \bot \Rightarrow \bot$}
+	\RightLabel{$N^{(n-2)}$} \doubleLine
+	\UIC{$\nabla^{n-1} \bot \Rightarrow \nabla^{n-2} \bot$}
+
+	\RightLabel{$Cut$}
+	\BIC{$\nabla^{n} \bot \Rightarrow \nabla^{n-2} \bot$}
+	
+	\AXC{$\nabla \bot \Rightarrow \bot$}
+	\RightLabel{$N^{(n-3)}$} \doubleLine
+	\UIC{$\nabla^{n-2} \bot \Rightarrow \nabla^{n-3} \bot$}
+
+	\RightLabel{$Cut$}
+	\BIC{$\nabla^{n} \bot \Rightarrow \nabla^{n-3} \bot$}
+	\noLine
+	\UIC{$\vdots$}
+	\noLine
+	\UIC{$\nabla^n \bot \Rightarrow \nabla \bot$}
+	
+	\AXC{$\nabla \bot \Rightarrow \bot$}
+	
+	\RightLabel{$Cut$}
+	\BIC{$\nabla^n \bot \Rightarrow \bot$}
+\end{prooftree}
+
 \subsubsection{}\label{lem:i-nabla-dist-imp} $\nabla^n (A \rightarrow B) \Rightarrow \nabla^n A \rightarrow \nabla^n B$
 
 \textit{Proof}:
@@ -161,5 +218,3 @@ By $\text{iSTL}$ we mean $\text{iSTLL}^- + Cut$
 	\RightLabel{$R\rightarrow$}
 	\UIC{$\nabla^n (A \rightarrow B) \Rightarrow \nabla^n A \rightarrow \nabla^n B$}
 \end{prooftree}
-
-\subsubsection{}\label{lem:i-nabla-fact-imp} $\nabla^n A \rightarrow \nabla^n B \Rightarrow \nabla^n (A \rightarrow B)$ \todo{is this even possible?}
