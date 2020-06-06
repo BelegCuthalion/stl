@@ -138,7 +138,71 @@ By $\text{iSTL}$ we mean $\text{iSTL}^- + Cut$
 	\BIC{$\nabla^n (A \land B) \Rightarrow \nabla^n A \land \nabla^n B$}
 \end{prooftree}
 
-\subsubsection{}\label{lem:i-nabla-dist-or} $\nabla^n (A \lor B) \Rightarrow \nabla^n A \lor \nabla^n B$ \todo{}
+\subsubsection{}\label{lem:i-nabla-dist-or} $\nabla (A \lor B) \Rightarrow \nabla A \lor \nabla B$
+
+\textit{Proof}:
+\begin{prooftree}
+	\AXC{}
+	\RightLabel{$Id$}
+	\UIC{$\nabla A \Rightarrow \nabla A$}
+	\RightLabel{$R\lor_1$}
+	\UIC{$\nabla A \Rightarrow \nabla A \lor \nabla B$}
+	\RightLabel{$Lw$}
+	\UIC{$\nabla A , \top \Rightarrow \nabla A \lor \nabla B$}
+	\RightLabel{$R\rightarrow$}
+	\UIC{$A \Rightarrow \top \rightarrow (\nabla A \lor \nabla B)$}
+
+	\AXC{}
+	\RightLabel{$Id$}
+	\UIC{$\nabla B \Rightarrow \nabla B$}
+	\RightLabel{$R\lor_2$}
+	\UIC{$\nabla B \Rightarrow \nabla A \lor \nabla B$}
+	\RightLabel{$Lw$}
+	\UIC{$\nabla B , \top \Rightarrow \nabla A \lor \nabla B$}
+	\RightLabel{$R\rightarrow$}
+	\UIC{$B \Rightarrow \top \rightarrow (\nabla A \lor \nabla B)$}
+
+	\RightLabel{$L\lor$}
+	\BIC{$A \lor B \Rightarrow \top \rightarrow (\nabla A \lor \nabla B)$}
+	\RightLabel{$N$}
+	\UIC{$\nabla (A \lor B) \Rightarrow \nabla (\top \rightarrow (\nabla A \lor \nabla B))$}
+
+
+	\AXC{}
+	\RightLabel{$Ta$}
+	\UIC{$\Rightarrow \top$}
+
+	\AXC{}
+	\RightLabel{$Id$}
+	\UIC{$\nabla A \lor \nabla B \Rightarrow \nabla A \lor \nabla B$}
+
+	\RightLabel{$L\rightarrow$}
+	\BIC{$\nabla (\top \rightarrow (\nabla A \lor \nabla B)) \Rightarrow \nabla A \lor \nabla B$}
+
+
+
+	\RightLabel{$Cut$}
+	\BIC{$\nabla (A \lor B) \Rightarrow \nabla A \lor \nabla B$}
+\end{prooftree}
+
+\subsubsection{}\label{lem:i-nabla-n-dist-or} $\nabla^n (A \lor B) \Rightarrow \nabla^n A \lor \nabla^n B$
+
+\textit{Proof}: Let $\mathbf{D_1}$ be the proof of lemma \ref{lem:i-nabla-dist-or}. For $n > 1$
+
+\begin{prooftree}
+	\AXC{}
+	\RightLabel{$\mathbf{D_{n-1}}$}
+	\UIC{$\nabla^{n-1} (A \lor B) \Rightarrow \nabla^{n-1} A \lor \nabla^{n-1} B$}
+	\RightLabel{$N$}
+	\UIC{$\nabla^n (A \lor B) \Rightarrow \nabla (\nabla^{n-1} A \lor \nabla^{n-1} B)$}
+	
+	\AXC{}
+	\RightLabel{$\mathbf{D_1}$ \small$\begin{smallmatrix} A:=\nabla^{n-1} A \\ B:=\nabla^{n-1} B \end{smallmatrix}$}
+	\UIC{$\nabla (\nabla^{n-1} A \lor \nabla^{n-1} B) \Rightarrow \nabla^n A \lor \nabla^n B$}
+	
+	\RightLabel{$Cut$} \LeftLabel{$\mathbf{D_n~:~~~~}$}
+	\BIC{$\nabla^n (A \lor B) \Rightarrow \nabla^n A \lor \nabla^n B$}
+\end{prooftree}
 
 \subsubsection{}\label{lem:i-nabla-bot} $\nabla \bot \Rightarrow \bot$
 
@@ -169,18 +233,24 @@ By $\text{iSTL}$ we mean $\text{iSTL}^- + Cut$
 
 \textit{Proof}:
 \begin{prooftree}
-	\AXC{$\nabla \bot \Rightarrow \bot$}
+	\AXC{}
+	\RightLabel{\ref{lem:i-nabla-bot}}
+	\UIC{$\nabla \bot \Rightarrow \bot$}
 	\RightLabel{$N^{(n-1)}$} \doubleLine
 	\UIC{$\nabla^n \bot \Rightarrow \nabla^{n-1} \bot$}
 
-	\AXC{$\nabla \bot \Rightarrow \bot$}
+	\AXC{}
+	\RightLabel{\ref{lem:i-nabla-bot}}
+	\UIC{$\nabla \bot \Rightarrow \bot$}
 	\RightLabel{$N^{(n-2)}$} \doubleLine
 	\UIC{$\nabla^{n-1} \bot \Rightarrow \nabla^{n-2} \bot$}
 
 	\RightLabel{$Cut$}
 	\BIC{$\nabla^{n} \bot \Rightarrow \nabla^{n-2} \bot$}
 	
-	\AXC{$\nabla \bot \Rightarrow \bot$}
+	\AXC{}
+	\RightLabel{\ref{lem:i-nabla-bot}}
+	\UIC{$\nabla \bot \Rightarrow \bot$}
 	\RightLabel{$N^{(n-3)}$} \doubleLine
 	\UIC{$\nabla^{n-2} \bot \Rightarrow \nabla^{n-3} \bot$}
 
@@ -191,7 +261,9 @@ By $\text{iSTL}$ we mean $\text{iSTL}^- + Cut$
 	\noLine
 	\UIC{$\nabla^n \bot \Rightarrow \nabla \bot$}
 	
-	\AXC{$\nabla \bot \Rightarrow \bot$}
+	\AXC{}
+	\RightLabel{\ref{lem:i-nabla-bot}}
+	\UIC{$\nabla \bot \Rightarrow \bot$}
 	
 	\RightLabel{$Cut$}
 	\BIC{$\nabla^n \bot \Rightarrow \bot$}
