@@ -135,11 +135,11 @@ $\p \mathcal{S}$ in the premise of $R \rightarrow$ means that this rule is appli
 \end{prooftree}
 $A$ (as a formula, not a $\p$-formula) is called the \textit{cut-formula}.
 By $\text{GSTL}$ we mean $\text{GSTL}^- + Cut$
-\subsubsection{Rank} Rank of a formula $\varphi$ is defined as
-\[ \rho(\varphi) = \begin{cases}
-1 & \quad ; \varphi \in P \cup \{ \bot, \top \} \\
-\rho(\psi) + 1 & \quad ; \varphi = \nabla \psi \\
-max(\rho(\psi), \rho(\theta)) + 1 & \quad ; \varphi = \psi \Box \theta, \Box \in \{ \land , \lor, \rightarrow \}
+\subsubsection{Rank} Rank of a formula $A$ is defined as
+\[ \rho(A) = \begin{cases}
+1 & \quad ; A \in P \cup \{ \bot, \top \} \\
+\rho(B) + 1 & \quad ; A = \nabla B \\
+max(\rho(B), \rho(C)) + 1 & \quad ; A = B \Box C, \Box \in \{ \land , \lor, \rightarrow \}
 \end{cases} \]
 We also define rank for rule instances and proof trees. For an instance of the $\nabla Cut$ rule $c$ with cut-formula $\varphi$, $\rho(c) = \rho(\varphi)$, $0$ if it's not an instance of the $\nabla Cut$ rule.
 For a proof tree $\mathbf{D}$, $\rho(\mathbf{D})$ is the maximum rank of its rule instances.
