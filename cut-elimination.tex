@@ -126,7 +126,7 @@ We proceed by case analysis on the last rule in $\mathbf{D_0}$. We can either ap
 	\end{enumerate}
 \end{enumerate}
 
-\subsection{Corollary} \emph{Cut Elimination for GSTL: }
+\subsection{Corollary} \label{cut-elim} \emph{Cut Elimination for GSTL: }
 If $\small\text{GSTL} \vdash \Gamma \Rightarrow \Delta$, then $\small\text{GSTL}^- \vdash \Gamma \Rightarrow \Delta$.
 
 \textit{Proof}: It suffices to show that for any proof tree of $\Gamma \Rightarrow \Delta$ like $\mathbf{D}$, there is another proof of it with a lower rank. Using induction on $h(\mathbf{D})$, the induction hypothesis states that for any proof of $\Gamma' \Rightarrow \Delta'$ like $\mathbf{D}'$ such that $h(\mathbf{D}') < h(\mathbf{D})$, there is another proof of $\Gamma' \Rightarrow \Delta'$ like $\mathbf{D}''$ such that $\rho(\mathbf{D}'') < \rho(\mathbf{D}')$. Particularly for the immediate sub-trees of $\mathbf{D}$, this gives us sub-trees with lower cut-rank, which we call $\mathbf{D}_i$. We now consider two cases for the last rule of $\mathbf{D}$
