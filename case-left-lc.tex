@@ -1,32 +1,32 @@
-$\mathbf{D_0}$ proves $\mathcal{S} , \p^r B \Rightarrow \nabla^k A$ and has a subproof $\mathbf{D_0}'$ of $\mathcal{S} , \p^r B , \p^r B \Rightarrow \nabla^k A$.
+$\mathbf{D_0}$ proves $\Gamma , B \Rightarrow A$ and has a subproof $\mathbf{D_0}'$ of $\Gamma , B , B \Rightarrow A$.
 \begin{prooftree}
 	\noLine
 	\AXC{$\mathbf{D_0}'$}
-	\UIC{$\mathcal{S} , \p^r B , \p^r B \Rightarrow \nabla^k A$}
+	\UIC{$\Gamma , B , B \Rightarrow A$}
 	\RightLabel{$Lc$}
-	\UIC{$\mathcal{S} , \p^r B \Rightarrow \nabla^k A$}
+	\UIC{$\Gamma , B \Rightarrow A$}
 	
 	
 	\noLine
 	\AXC{$\mathbf{D_1}$}
-	\UIC{$\mathcal{T} , \p^{l + k} A^n \Rightarrow \Delta$}
+	\UIC{$\Sigma , (\nabla^l A)^n \Rightarrow \Delta$}
 	
-	\dashedLine\RightLabel{$\nabla Cut$}
-	\BIC{$\p^l \mathcal{S} , \p^{r+l} B , \mathcal{T} \Rightarrow \Delta$}
+	\dashedLine\RightLabel{$MC$}
+	\BIC{$\nabla^l \Gamma , \nabla^l B , \Sigma \Rightarrow \Delta$}
 \end{prooftree}
-From the induction hypothesis for $\mathbf{D_0}'$ and $\mathbf{D_1}$, we have a proof of $\p^l \mathcal{S} , \p^{r+l} B , \p^{r+l} B , \mathcal{T} \Rightarrow \Delta$ with rank lower than that of $A$. By applying $Lc$ we have $\p^l \mathcal{S} , \p^{r+l} B , \mathcal{T} \Rightarrow \Delta$, without increasing the cut-rank.
+From the induction hypothesis for $\mathbf{D_0}'$ and $\mathbf{D_1}$, we have a proof of $\nabla^l \Gamma , \nabla^l B , \nabla^l B , \Sigma \Rightarrow \Delta$ with rank lower than that of $A$. By applying $Lc$ we have $\nabla^l \Gamma , \nabla^l B , \Sigma \Rightarrow \Delta$, without increasing the cut-rank.
 \begin{prooftree}
 	\noLine
 	\AXC{$\mathbf{D_0}'$}
-	\UIC{$\mathcal{S} , \p^r B , \p^r B \Rightarrow \nabla^k A$}
+	\UIC{$\Gamma , B , B \Rightarrow A$}
 	
 	\noLine
 	\AXC{$\mathbf{D_1}$}
-	\UIC{$\mathcal{T} , \p^{l+k} A^n \Rightarrow \Delta$}
+	\UIC{$\Sigma , (\nabla^l A)^n \Rightarrow \Delta$}
 	
 	\RightLabel{IH}
-	\BIC{$\p^l \mathcal{S} , \p^{r+l} B , \p^{r+l} B , \mathcal{T} \Rightarrow \Delta$}
+	\BIC{$\nabla^l \Gamma , \nabla^l B , \nabla^l B , \Sigma \Rightarrow \Delta$}
 	
 	\RightLabel{$Lc$}
-	\UIC{$\p^l \mathcal{S} , \p^{r+l} B , \mathcal{T} \Rightarrow \Delta$}
+	\UIC{$\nabla^l \Gamma , \nabla^l B , \Sigma \Rightarrow \Delta$}
 \end{prooftree}

@@ -2,29 +2,29 @@
 		\begin{prooftree}
 			\noLine
 			\AXC{$\mathbf{D_0}$}
-			\UIC{$\mathcal{S} \Rightarrow \nabla^k A$}
-			
+			\UIC{$\Gamma \Rightarrow A$}
+
 			\noLine
 			\AXC{$\mathbf{D_1}'$}
-			\UIC{$\mathcal{T} , \p^{l+k} A^n , \p^r B , \p^r B \Rightarrow \Delta$}
+			\UIC{$\Sigma , (\nabla^l A)^n , B , B \Rightarrow \Delta$}
 			\RightLabel{$Lc$}
-			\UIC{$\mathcal{T} , \p^{l+k} A^n , \p^r B \Rightarrow \Delta$}
-			
-			\dashedLine\RightLabel{$\nabla Cut$}
-			\BIC{$\p^l \mathcal{S} , \mathcal{T} \p^r B \Rightarrow \Delta$}
+			\UIC{$\Sigma , (\nabla^l A)^n , B \Rightarrow \Delta$}
+
+			\dashedLine\RightLabel{$MC$}
+			\BIC{$\nabla^l \Gamma , \Sigma , B \Rightarrow \Delta$}
 		\end{prooftree}
 		By induction hypothesis for $\mathbf{D_0}$ and $\mathbf{D_1}'$ we have
 		\begin{prooftree}
 			\noLine
 			\AXC{$\mathbf{D_0}$}
-			\UIC{$\mathcal{S} \Rightarrow \nabla^k A$}
-			
+			\UIC{$\Gamma \Rightarrow A$}
+
 			\noLine
 			\AXC{$\mathbf{D_1}'$}
-			\UIC{$\mathcal{T} , \p^{l+k} A^n , \p^r B , \p^r B \Rightarrow \Delta$}
+			\UIC{$\Sigma , (\nabla^l A)^n , B , B \Rightarrow \Delta$}
 			\RightLabel{IH}
-			\BIC{$\p^l \mathcal{S} , \mathcal{T} , \p^r B , \p^r B \Rightarrow \Delta$}
-			
+			\BIC{$\nabla^l \Gamma , \Sigma , B , B \Rightarrow \Delta$}
+
 			\RightLabel{$Lc$}
-			\UIC{$\p^l \mathcal{S} , \mathcal{T} , \p^r B \Rightarrow \Delta$}
+			\UIC{$\nabla^l \Gamma , \Sigma , B \Rightarrow \Delta$}
 		\end{prooftree}

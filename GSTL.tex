@@ -1,11 +1,4 @@
-\section{GSTL}‌\\
-
-\subsection{$\p$-formula}
-A $\p$-formula is a regular proposition with zero or more ``$\p$'' operators applied. More precisely, if $\Phi$ is the set of all formulas, then the set of $\p$-formulas $P$ is a super-set of $\Phi$, defined recursively as follows:
-\[ P ~~::=~~ \Phi ~|~ \p P \]
-So if $A$ and $B$ are formulas, then $A$, $A \land B$, $\p A$, $\p \p ~ A$, $\p \p \p ~ \nabla A$ or $\p A \land B$ are all examples of $\p$-formulas. $\p^0 A$ means $A$ and $\p^{n+1} A$ means $\p \p^n A$. $\p \mathcal{S}$ means $\{\p^{m+1} A : \p^m A \in \mathcal{S}\}$. We also write $\p^m A$ for $\{ \p^m A \}$ and $\p^m A^{n+1}$ for $\p^m A^n,\p^m A$. $\mathcal{S}^n$ means $\{ \p^m A^n : \p^m A \in \mathcal{S} \}$.
-
-\subsection{GSTL$^-$} A GSTL sequent $\mathcal{S} \Rightarrow \Delta$ is a binary relation between $\mathcal{S}$, a multi-set of $\p$-formulas, and $\Delta$, a sub-singleton of some formula, defined inductively by the following rules.
+\section{GSTL} A GSTL sequent $\Gamma \Rightarrow \Delta$ is a binary relation between $\Gamma$, a multi-set of formulas, and $\Delta$, a sub-singleton of some formula, defined inductively by the following rules.
 
 \begin{multicols}{3}
 	\begin{prooftree}
@@ -23,141 +16,115 @@ So if $A$ and $B$ are formulas, then $A$, $A \land B$, $\p A$, $\p \p ~ A$, $\p 
 	\begin{prooftree}
 		\RightLabel{$Ex$}
 		\AXC{}
-		\UIC{$\p^n \bot \Rightarrow$}
+		\UIC{$\nabla^n \bot \Rightarrow$}
 	\end{prooftree}
 \end{multicols}
 ‌\\
 \begin{multicols}{3}
 	\begin{prooftree}
 		\RightLabel{$Lw$}
-		\AXC{$\mathcal{S} \Rightarrow \Delta$}
-		\UIC{$\mathcal{S}, \p^n A \Rightarrow \Delta$}
+		\AXC{$\Gamma \Rightarrow \Delta$}
+		\UIC{$\Gamma, A \Rightarrow \Delta$}
 	\end{prooftree}
 	\columnbreak
 	\begin{prooftree}
 		\RightLabel{$Rw$}
-		\AXC{$\mathcal{S} \Rightarrow$}
-		\UIC{$\mathcal{S} \Rightarrow A$}
+		\AXC{$\Gamma \Rightarrow$}
+		\UIC{$\Gamma \Rightarrow A$}
 	\end{prooftree}
 	\columnbreak
 	\begin{prooftree}
 		\RightLabel{$Lc$}
-		\AXC{$\mathcal{S} , \p^n A , \p^n A \Rightarrow \Delta$}
-		\UIC{$\mathcal{S} , \p^n A \Rightarrow \Delta$}
+		\AXC{$\Gamma , A , A \Rightarrow \Delta$}
+		\UIC{$\Gamma , A \Rightarrow \Delta$}
 	\end{prooftree}
 \end{multicols}
 ‌\\
 \begin{multicols}{3}
 	\begin{prooftree}
 		\RightLabel{$L\land_1$}
-		\AXC{$\mathcal{S} , \p^n A \Rightarrow \Delta$}
-		\UIC{$\mathcal{S} , \p^n A \land B \Rightarrow \Delta$}
+		\AXC{$\Gamma , \nabla^n A \Rightarrow \Delta$}
+		\UIC{$\Gamma , \nabla^n (A \land B) \Rightarrow \Delta$}
 	\end{prooftree}
 	\columnbreak
 	\begin{prooftree}
 		\RightLabel{$L\land_2$}
-		\AXC{$\mathcal{S} , \p^n B \Rightarrow \Delta$}
-		\UIC{$\mathcal{S} , \p^n A \land B \Rightarrow \Delta$}
+		\AXC{$\Gamma , \nabla^n B \Rightarrow \Delta$}
+		\UIC{$\Gamma , \nabla^n (A \land B) \Rightarrow \Delta$}
 	\end{prooftree}
 	\columnbreak
 	\begin{prooftree}
 		\RightLabel{$R\land$}
-		\AXC{$\mathcal{S} \Rightarrow A$}
-		\AXC{$\mathcal{S} \Rightarrow B$}
-		\BIC{$\mathcal{S} \Rightarrow A \land B$}
+		\AXC{$\Gamma \Rightarrow A$}
+		\AXC{$\Gamma \Rightarrow B$}
+		\BIC{$\Gamma \Rightarrow A \land B$}
 	\end{prooftree}
 \end{multicols}
 ‌\\
 \begin{multicols}{3}
 	\begin{prooftree}
 		\RightLabel{$L\lor$}
-		\AXC{$\mathcal{S} , \p^n A \Rightarrow \Delta$}
-		\AXC{$\mathcal{S} , \p^n B \Rightarrow \Delta$}
-		\BIC{$\mathcal{S} , \p^n A \lor B \Rightarrow \Delta$}
+		\AXC{$\Gamma , \nabla^n A \Rightarrow \Delta$}
+		\AXC{$\Gamma , \nabla^n B \Rightarrow \Delta$}
+		\BIC{$\Gamma , \nabla^n (A \lor B) \Rightarrow \Delta$}
 	\end{prooftree}
 	\columnbreak
 	\begin{prooftree}
 		\RightLabel{$R\lor_1$}
-		\AXC{$\mathcal{S} \Rightarrow A$}
-		\UIC{$\mathcal{S} \Rightarrow A \lor B$}
+		\AXC{$\Gamma \Rightarrow A$}
+		\UIC{$\Gamma \Rightarrow A \lor B$}
 	\end{prooftree}
 	\columnbreak
 	\begin{prooftree}
 		\RightLabel{$R\lor_2$}
-		\AXC{$\mathcal{S} \Rightarrow B$}
-		\UIC{$\mathcal{S} \Rightarrow A \lor B$}
+		\AXC{$\Gamma \Rightarrow B$}
+		\UIC{$\Gamma \Rightarrow A \lor B$}
 	\end{prooftree}
 \end{multicols}
 ‌\\
 \begin{multicols}{2}
 	\begin{prooftree}
 		\RightLabel{$L\rightarrow$}
-		\AXC{$\mathcal{S} \Rightarrow \nabla^n A$}
-		\AXC{$\mathcal{S} , \p^n B \Rightarrow \Delta$}
-		\BIC{$\mathcal{S} , \p^{n+1} A \rightarrow B \Rightarrow \Delta$}
+		\AXC{$\Gamma \Rightarrow \nabla^n A$}
+		\AXC{$\Gamma , \nabla^n B \Rightarrow \Delta$}
+		\BIC{$\Gamma , \nabla^{n+1} (A \rightarrow B) \Rightarrow \Delta$}
 	\end{prooftree}
 	\columnbreak
 	\begin{prooftree}
 		\RightLabel{$R\rightarrow$}
-		\AXC{$\p \mathcal{S} , A \Rightarrow B$}
-		\UIC{$\mathcal{S} \Rightarrow A \rightarrow B$}
+		\AXC{$\nabla \Gamma , A \Rightarrow B$}
+		\UIC{$\Gamma \Rightarrow A \rightarrow B$}
 	\end{prooftree}
 \end{multicols}
 ‌\\
-\begin{multicols}{2}
-	\begin{prooftree}
-		\RightLabel{$L\nabla$}
-		\AXC{$\mathcal{S} , \p^{n+1} A \Rightarrow \Delta$}
-		\UIC{$\mathcal{S} , \p^n \nabla A \Rightarrow \Delta$}
-	\end{prooftree}
-	
-	\begin{prooftree}
-		\RightLabel{$R\nabla$}
-		\AXC{$\mathcal{S} \Rightarrow \Delta$}
-		\UIC{$\p \mathcal{S} \Rightarrow \nabla \Delta$}
-	\end{prooftree}
-\end{multicols}
-$\p \mathcal{S}$ in the premise of $R \rightarrow$ means that this rule is applicable only if all $\p$-formulas in the antecedent, except $A$, have at least one $\p$, which is removed after applying $R \rightarrow$. Also notice that $A$ and $B$ are names for formulas, not $\p$-formulas.
-\subsection{$Cut$}
 \begin{prooftree}
-	\RightLabel{$Cut$}
-	\AXC{$\mathcal{S} \Rightarrow A$}
-	\AXC{$\mathcal{T} , \p^{l} A \Rightarrow \Delta$}
-	\BIC{$\p^l \mathcal{S} , \mathcal{T} \Rightarrow \Delta$}
+	\RightLabel{$N'$}
+	\AXC{$\Gamma \Rightarrow \Delta$}
+	\UIC{$\nabla \Gamma \Rightarrow \nabla \Delta$}
 \end{prooftree}
 
-\subsection{$\nabla Cut$} For any $l,k \ge 0$ and $n \ge 1$
+\subsection{$MC$} For any $l \ge 0$ and $n \ge 1$
 \begin{prooftree}
-	\AXC{$\mathcal{S} \Rightarrow \nabla^k A$}
-	\AXC{$\mathcal{T} , \p^{l+k} A^n \Rightarrow \Delta$}
-	\RightLabel{$\nabla Cut$}
-	\BIC{$\p^l \mathcal{S} , \mathcal{T} \Rightarrow \Delta$}
+	\AXC{$\Gamma \Rightarrow A$}
+	\AXC{$\Sigma , (\nabla^l A)^n \Rightarrow \Delta$}
+	\RightLabel{$MC$}
+	\BIC{$\nabla^l \Gamma , \Sigma \Rightarrow \Delta$}
 \end{prooftree}
-$A$ (as a formula, not a $\p$-formula) is called the \textit{cut-formula}.
-By $\text{GSTL}$ we mean $\text{GSTL}^- + Cut$
+$A$ is called the \textit{cut-formula}.
+By $\text{GSTL}$ we mean $\text{GSTL}^- + MC$
+
 \subsubsection{Rank} Rank of a formula $A$ is defined as
 \[ \rho(A) = \begin{cases}
 1 & \quad ; A \in P \cup \{ \bot, \top \} \\
-\rho(B) + 1 & \quad ; A = \nabla B \\
+\rho(B) & \quad ; A = \nabla B \\
 max(\rho(B), \rho(C)) + 1 & \quad ; A = B \Box C, \Box \in \{ \land , \lor, \rightarrow \}
 \end{cases} \]
-We also define rank for rule instances and proof trees. For an instance of the $\nabla Cut$ rule $c$ with cut-formula $\varphi$, $\rho(c) = \rho(\varphi)$, $0$ if it's not an instance of the $\nabla Cut$ rule.
+We also define rank for rule instances and proof trees. For an instance of the $MC$ rule $c$ with cut-formula $A$, $\rho(c) = \rho(A)$, $0$ if it's not an instance of the $MC$ rule.
 For a proof tree $\mathbf{D}$, $\rho(\mathbf{D})$ is the maximum rank of its rule instances.
 
-\subsection{Theorem} For any $\mathcal{S}$ and $\Delta$, if $\small\text{GSTL} \vdash \mathcal{S} \Rightarrow \Delta$ then $\small\text{GSTL}^- + \nabla Cut \vdash \mathcal{S} \Rightarrow \Delta$.
+\subsection{Theorem} For any $\Gamma$ and $\Delta$, $\text{GSTL} \vdash \Gamma \Rightarrow \Delta$ if and only if $\text{iSTL} \vdash \Gamma \Rightarrow \Delta$.
 
-\textit{Proof}: Just replace any occurrence of $Cut$ with $\nabla Cut$, with $k := 0$ and $n := 1$.
-
-\section{Translation} For any $\p$-formula $A$, $\tau : P \mapsto \Phi$ gives its translation as a formula.
-\[ \tau(A) = \begin{cases}
-	A & \quad ; A \in \Phi \\
-	\nabla \tau(B) & \quad ; A = \p B
-\end{cases} \]
-We also use a natural extension of this translation from multi-sets of $\p$-formulas to multi-sets of formulas: $\tau(\mathcal{S}) = \{ \tau(A) : A \in \mathcal{S} \}$. Notice that $\tau|_\Phi = id$.
-
-\section{Theorem} For any $\mathcal{S}$ and $\Delta$, $\text{GSTL} \vdash \mathcal{S} \Rightarrow \Delta$ if and only if $\text{iSTL} \vdash \tau(\mathcal{S}) \Rightarrow \Delta$.
-
-\textit{Proof}: I. Suppose $\text{GSTL}$ proves $\mathcal{S} \Rightarrow \Delta$ by a proof tree $\mathbf{D}$. We will construct a proof tree in $\text{iSTL}$ for $\tau(\mathcal{S}) \Rightarrow \Delta$. By induction on $h(\mathbf{D})$, the induction hypothesis states that for any $\text{GSTL}$ proof tree $\mathbf{D}'$ for $\mathcal{S}' \Rightarrow \Delta'$ such that $h(\mathbf{D}') < h(\mathbf{D})$, there exists an $\text{iSTL}$ proof tree IH$(\mathbf{D'})$ for $\tau(\mathcal{S}') \Rightarrow \Delta'$. Now we consider different cases for the last rule of $\mathbf{D}$. In all cases, we denote the immediate sub-trees of $\mathbf{D}$ by $\mathbf{D_i} ~(0 \leq i)$. Notice that the rule name in parens is the last rule of $\mathcal{D}$ and in GSTL, but our construction in each case is in iSTL.
+\textit{Proof}: I. Suppose $\text{GSTL}$ proves $\Gamma \Rightarrow \Delta$ by a proof tree $\mathbf{D}$. We will construct a proof tree in $\text{iSTL}$ for $\Gamma \Rightarrow \Delta$. By induction on $h(\mathbf{D})$, the induction hypothesis states that for any $\text{GSTL}$ proof tree $\mathbf{D}'$ for $\Gamma' \Rightarrow \Delta'$ such that $h(\mathbf{D}') < h(\mathbf{D})$, there exists an $\text{iSTL}$ proof tree IH$(\mathbf{D'})$ for $\Gamma' \Rightarrow \Delta'$. Now we consider different cases for the last rule of $\mathbf{D}$. In all cases, we denote the immediate sub-trees of $\mathbf{D}$ by $\mathbf{D_i} ~(0 \leq i)$. The rule name in parens is the last rule of $\mathbf{D}$ and in GSTL, but our construction in each case is in iSTL.
 \begin{enumerate}
 	\item[1,2.] ($Id$),($Ta$) iSTL has these as axioms.
 	\setcounter{enumi}{2}
@@ -167,21 +134,22 @@ We also use a natural extension of this translation from multi-sets of $\p$-form
 	\item[4-6] ($Lw$),($Rw$),($Lc$) Just apply the same rule in iSTL on IH$(\mathbf{D_0})$.
 	\setcounter{enumi}{6}
 
-	\item ($L\land_1$) IH($\mathbf{D_0}$) is of the form $\tau(\mathcal{S}) , \nabla^n A \Rightarrow \Delta$. By $L\land_1$ we have $\tau(\mathcal{S}) , \nabla^n A \land \nabla^n B \Rightarrow \Delta$. By $Cut$ with lemma \ref{lem:i-nabla-dist-and} we have $\tau(\mathcal{S}) , \nabla^n (A \land B) \Rightarrow \Delta$.
+	\item ($L\land_1$) IH($\mathbf{D_0}$) is of the form $\Gamma , \nabla^n A \Rightarrow \Delta$. By $L\land_1$ we have $\Gamma , \nabla^n A \land \nabla^n B \Rightarrow \Delta$. By $Cut$ with lemma \ref{lem:i-nabla-dist-and} we have $\Gamma , \nabla^n (A \land B) \Rightarrow \Delta$.
 	
 	\item ($L\land_2$) The same.
 	
 	\item ($R\land$) Just apply iSTL's $R\land$ on IH$(\mathbf{D_0})$ and IH$(\mathbf{D_1})$.
 	
-	\item ($L\lor$) IH($\mathbf{D_0}$) and IH($\mathbf{D_1}$) are of the form $\tau(\mathcal{S}) , \nabla^n A \Rightarrow \Delta$ and $\tau(\mathcal{S}) , \nabla^n B \Rightarrow \Delta$ respectively. By $L\lor$ we have $\tau(\mathcal{S}) , \nabla^n A \lor \nabla^n B \Rightarrow \Delta$. By $Cut$ with lemma \ref{lem:i-nabla-n-dist-or} we have $\tau(\mathcal{S}) , \nabla^n (A \lor B) \Rightarrow \Delta$.
+	\item ($L\lor$) IH($\mathbf{D_0}$) and IH($\mathbf{D_1}$) are of the form $\Gamma , \nabla^n A \Rightarrow \Delta$ and $\Gamma , \nabla^n B \Rightarrow \Delta$ respectively. By $L\lor$ we have $\Gamma , \nabla^n A \lor \nabla^n B \Rightarrow \Delta$. By $Cut$ with lemma \ref{lem:i-nabla-n-dist-or} we have $\Gamma , \nabla^n (A \lor B) \Rightarrow \Delta$.
 	
 	\item[11,12.] ($R\lor_{1/2}$) Just apply iSTL's $R\lor_{1/2}$ on IH$(\mathbf{D_0})$.
 	\setcounter{enumi}{12}
 	
-	\item ($L\rightarrow$) IH($\mathbf{D_0}$) and IH($\mathbf{D_1}$) are of the form $\tau(\mathcal{S}) \Rightarrow \nabla^n A$ and $\tau(\mathcal{S}) , \nabla^n B \Rightarrow \Delta$ respectively. By $L\rightarrow$ we have $\tau(\mathcal{S}) , \nabla (\nabla^n A \rightarrow \nabla^n B) \Rightarrow \Delta$. We also have $\tau(\mathcal{S}) , \nabla^{n+1} (A \rightarrow B) \Rightarrow \nabla (\nabla^n A \rightarrow \nabla^n B)$ from $Lw$ and $N$ applied to lemma \ref{lem:i-nabla-dist-imp}.
+	\item ($L\rightarrow$) IH($\mathbf{D_0}$) and IH($\mathbf{D_1}$) are of the form $\Gamma \Rightarrow \nabla^n A$ and $\Gamma , \nabla^n B \Rightarrow \Delta$ respectively. By $L\rightarrow$ we have $\Gamma , \nabla (\nabla^n A \rightarrow \nabla^n B) \Rightarrow \Delta$. We also have $\Gamma , \nabla^{n+1} (A \rightarrow B) \Rightarrow \nabla (\nabla^n A \rightarrow \nabla^n B)$ from $Lw$ and $N$ applied to lemma \ref{lem:i-nabla-dist-imp}.
 	
-	\item[14,15,16.] ($R\rightarrow$),($L\nabla$),($R\nabla$) Use the same rule in iSTL on IH($\mathbf{D_0}$).
-	\setcounter{enumi}{16}
+	\item[14,15.] ($R\rightarrow$),($N'$) Use the same rule in iSTL on IH($\mathbf{D_0}$).
+	\setcounter{enumi}{15}
 	
-	\item ($Cut$) \todo{}
+	\item ($MC$) Apply $N$ on IH($\mathbf{D_0}$) $l$ times, before cutting it with IH($\mathbf{D_1}$).
 \end{enumerate}
+II. To prove the other direction it suffices to observe that iSTL rules are just specific cases of GSTL ones.

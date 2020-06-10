@@ -1,31 +1,34 @@
-\section{Lemma}\label{true-assum} If $~\small\text{GSTL}^- + \nabla Cut \vdash \mathcal{S} , \p^r \top^n \Rightarrow \Delta$ then $\small\text{GSTL}^- + \nabla Cut \vdash \mathcal{S} \Rightarrow \Delta$ with a proof of at most the same rank.
+\section{Cut-elimination for GSTL}
 
-\textit{Proof}: Suppose $\mathbf{D}$ is a proof tree for $\mathcal{S} , \p^r \top^n \Rightarrow \Delta$. By induction on $h(\mathbf{D})$, induction hypothesis states that for any proof tree $\mathbf{D}'$ with conclusion $\mathcal{S'} , \p^{r'} \top^{n'} \Rightarrow \Delta'$ such that $h(\mathbf{D}') < h(\mathbf{D})$, there is a proof $\mathbf{D}''$ of $\mathcal{S}' \Rightarrow \Delta'$ such that $\rho(\mathbf{D}'') \leq \rho(\mathbf{D}')$.
+\subsection{Lemma}\label{true-assum} If $~\small\text{GSTL} \vdash \Gamma , \nabla^r \top^n \Rightarrow \Delta$ then $\small\text{GSTL} \vdash \Gamma \Rightarrow \Delta$ with a proof of at most the same rank.
 
-Consider different cases for the last rule of $\mathbf{D}$, with possible sub-trees $\mathbf{D_0}$ and $\mathbf{D_1}$. $Ta$ and $Ex$ cases are trivially ruled out. In $Id$ case (which implies $n = 1$ and $r = 0$), we have $\Rightarrow \top$ by $Ta$. In $Lw$ case, where an instance of $\top$ is principal and $n = 1$, $\mathbf{D_0}$ itself proves the desired sequent. If $n > 1$, then the induction hypothesis with $n' = n - 1$ gives the desired sequent. $Lc$ on an instance of $\top$ is similar, with $n' = n + 1$. In all other cases, just apply induction hypothesis on $\mathbf{D_0}$ (and possibly $\mathbf{D_1}$), then the same last rule. Notice in all cases we must apply induction hypothesis with $n' = n$ and $r' = r$, except for $R\rightarrow$ and $R\nabla$, in which we apply it with $r' = r + 1$ and $r' = r - 1$ respectively. Also notice that $\nabla Cut$ is not used except in $\nabla Cut$ case, where it is applied with the same cut-formula, so the resulting proof tree is not of a higher rank than $\mathbf{D}$.
+\textit{Proof}: Suppose $\mathbf{D}$ is a proof tree for $\Gamma , \nabla^r \top^n \Rightarrow \Delta$. By induction on $h(\mathbf{D})$, induction hypothesis states that for any proof tree $\mathbf{D}'$ with conclusion $\Gamma' , \nabla^{r'} \top^{n'} \Rightarrow \Delta'$ such that $h(\mathbf{D}') < h(\mathbf{D})$, there is a proof $\mathbf{D}''$ of $\Gamma' \Rightarrow \Delta'$ such that $\rho(\mathbf{D}'') \leq \rho(\mathbf{D}')$.
 
-\section{Theorem}\label{cut-admis} \emph{Cut Reduction for GSTL: } For any $\mathcal{S}$, $n>0$, $A$, $\mathcal{T}$, $k$, $l$ and $\Delta$, if $~\small\text{GSTL}^- + \nabla Cut \vdash \mathcal{S} \Rightarrow \nabla^k A$ and $\small\text{GSTL}^- + \nabla Cut \vdash$ $\mathcal{T} , \p^{l+k} A^n \Rightarrow \Delta$ with proof trees of ranks less than $\rho(A)$, then
- $\small\text{GSTL}^- + \nabla Cut \vdash \p^l \mathcal{S} , \mathcal{T}$ $\Rightarrow \Delta$ also with a proof tree of a rank less than $\rho(A)$.
+Consider different cases for the last rule of $\mathbf{D}$, with possible sub-trees $\mathbf{D_0}$ and $\mathbf{D_1}$. $Ta$ and $Ex$ cases are trivially ruled out. In $Id$ case (which implies $n = 1$ and $r = 0$), we have $\Rightarrow \top$ by $Ta$. In $Lw$ case, where an instance of $\top$ is principal and $n = 1$, $\mathbf{D_0}$ itself proves the desired sequent. If $n > 1$, then the induction hypothesis with $n' = n - 1$ gives the desired sequent. $Lc$ on an instance of $\top$ is similar, with $n' = n + 1$. In all other cases, just apply induction hypothesis on $\mathbf{D_0}$ (and possibly $\mathbf{D_1}$), then the same last rule. Notice in all cases we must apply induction hypothesis with $n' = n$ and $r' = r$, except for $R\rightarrow$ and $N'$, in which we apply it with $r' = r + 1$ and $r' = r - 1$ respectively. Also notice that $MC$ is not used except in $MC$ case, where it is applied with the same cut-formula, so the resulting proof tree is not of a higher rank than $\mathbf{D}$.
+
+\subsection{Theorem}\label{cut-admis} \emph{Cut Reduction for GSTL: } For any $\Gamma$, $A$, $\Sigma$, $l$, $n$ and $\Delta$, if $~\small\text{GSTL} \vdash \Gamma \Rightarrow A$ and $\small\text{GSTL} \vdash \Sigma , (\nabla^l A)^n \Rightarrow \Delta$ with proof trees of ranks less than $\rho(A)$, then
+ $\small\text{GSTL} \vdash \nabla^l \Gamma , \Sigma \Rightarrow \Delta$ also with a proof tree of a rank less than $\rho(A)$.
  
 \textit{Proof}:
-Let $\mathbf{D_0}$ and $\mathbf{D_1}$ be proof trees of ranks less than $\rho(A)$, with conclusions $\mathcal{S} \Rightarrow \nabla^k A$ and $\mathcal{T} , \p^{l+k} A^n \Rightarrow \Delta$ and heights $h(\mathbf{D_0})$ and $h(\mathbf{D_1})$ respectively.
+Let $\mathbf{D_0}$ and $\mathbf{D_1}$ be proof trees of ranks less than $\rho(A)$, with conclusions $\Gamma \Rightarrow A$ and $\Sigma , (\nabla^l A)^n \Rightarrow \Delta$ and heights $h(\mathbf{D_0})$ and $h(\mathbf{D_1})$ respectively.
 \begin{prooftree}
 	\noLine
 	\AXC{$\mathbf{D_0}$}
-	\UIC{$\mathcal{S} \Rightarrow \nabla^k A$}
+	\UIC{$\Gamma \Rightarrow A$}
 	
 	\noLine
 	\AXC{$\mathbf{D_1}$}
-	\UIC{$\mathcal{T} , \p^{l+k} A^n \Rightarrow \Delta$}
+	\UIC{$\Sigma , (\nabla^l A)^n \Rightarrow \Delta$}
 	
-	\dashedLine \RightLabel{$\nabla Cut$}
-	\BIC{$\p^l \mathcal{S} , \mathcal{T} \Rightarrow \Delta$}
+	\dashedLine \RightLabel{$MC$}
+	\BIC{$\nabla^l \Gamma , \Sigma \Rightarrow \Delta$}
 \end{prooftree}
-By induction on $h(\mathbf{D_0}) + h(\mathbf{D_1})$, the induction hypothesis states that for any proof trees $\mathbf{D_0}'$ with conclusion $\mathcal{S}' \Rightarrow \nabla^{k'} A'$ and $\mathbf{D_1}'$ with conclusion $\mathcal{T}' , \p^{l'+k'} A'^{n'} \Rightarrow \Delta'$ such that $h(\mathbf{D_0}') + h(\mathbf{D_1}') < h(\mathbf{D_0}) + h(\mathbf{D_1})$, if $\rho(\mathbf{D_0}'),\rho(\mathbf{D_1}') < \rho(A)$ then there exists a proof tree $\mathbf{D}'$ with conclusion $\p^{l'} \mathcal{S}' , \mathcal{T}' \Rightarrow \Delta'$ such that $\rho(\mathbf{D}') < \rho(A)$.
+We can assume $n > 0$. ($n=0$ case is trivially done by $Lw$ on $\mathbf{D_1}$)
+By induction on $h(\mathbf{D_0}) + h(\mathbf{D_1})$, the induction hypothesis states that for any proof trees $\mathbf{D_0}'$ with conclusion $\Gamma' \Rightarrow A'$ and $\mathbf{D_1}'$ with conclusion $\Sigma' , (\nabla^{l'} A')^{n'} \Rightarrow \Delta'$ such that $h(\mathbf{D_0}') + h(\mathbf{D_1}') < h(\mathbf{D_0}) + h(\mathbf{D_1})$, if $\rho(\mathbf{D_0}'),\rho(\mathbf{D_1}') < \rho(A)$ then there exists a proof tree $\mathbf{D}'$ with conclusion $\nabla^{l'} \Gamma' , \Sigma' \Rightarrow \Delta'$ such that $\rho(\mathbf{D}') < \rho(A)$.
 
-\input{table-cut-reduction-cases}
+%\input{table-cut-reduction-cases}
 
-We proceed by case analysis on the last rule in $\mathbf{D_0}$. We can either apply the induction hypothesis on a pair of trees shorter than $\mathbf{D_0}$ and $\mathbf{D_1}$, or just cut a formula of a lower rank than $A$, to reach the desired sequent without increasing the cut-rank. This is easy when the cut-formula is also present in the immediate sub-tree(s) of $\mathbf{D_0}$, as it is the case for the left-rules. In these cases, we somehow ``commute'' the last rule of $\mathbf{D_0}$ with an application of induction hypothesis for its premise(s) and $\mathbf{D_1}$. In right-rule cases, where $A$ is principal and not present in the sub-tree(s) of $\mathbf{D_0}$, we consider further cases, this time for the last rule of $\mathbf{D_1}$. We can do the same with $\mathbf{D_1}$ in the cases that no instance of $A$ is principal in its last rule. Almost all other cases force a particular construction for $A$ so we can apply $\nabla Cut$ on its sub-formulas. The only exception is the case where $\mathbf{D_0}$ ends with $R \nabla$. The induction hypothesis is strong enough to handle this one in particular.
+We proceed by case analysis on the last rule in $\mathbf{D_0}$. We can either apply the induction hypothesis on a pair of trees shorter than $\mathbf{D_0}$ and $\mathbf{D_1}$, or just cut a formula of a lower rank than $A$, to reach the desired sequent without increasing the cut-rank. This is easy when the cut-formula is also present in the immediate sub-tree(s) of $\mathbf{D_0}$, as it is the case for the left-rules. In these cases, we somehow ``commute'' the last rule of $\mathbf{D_0}$ with an application of induction hypothesis for its premise(s) and $\mathbf{D_1}$. In right-rule cases, where $A$ is principal and not present in the sub-tree(s) of $\mathbf{D_0}$, we consider further cases, this time for the last rule of $\mathbf{D_1}$. We can do the same with $\mathbf{D_1}$ in the cases that no instance of $A$ is principal in its last rule. All other cases force a particular construction for $A$ so we can apply $MC$ on its sub-formulas.
 
 \begin{enumerate}
 	\item ($Id$) \label{c:id-*} \input{case-left-id}
@@ -44,17 +47,20 @@ We proceed by case analysis on the last rule in $\mathbf{D_0}$. We can either ap
 	
 	\item \label{c:lo-*} \input{case-left-lo}
 	
-	\item \label{c:ln-*} \input{case-left-ln}
+%	\item \label{c:ln-*} \input{case-left-ln}
 	
 	\item \label{c:li-*} \input{case-left-li}
 	
 	\item \label{c:rw-*} \input{case-left-rw}
+	
+	\item \label{c:ln-*} \input{case-left-n}
 
 
-	\item[13-17.] ($R*$) In the cases that the last rule in $\mathbf{D_0}$ is any of the logical right-rules $R*$ ($* \in \{ \land, \lor_{i}, \rightarrow, \nabla \}$), its principal formula would be $\nabla^k A$. The only admissible $R*$ with $k > 0$ would be $R\nabla$. For the other rules, this forces $k = 0$, plus a particular construction for $A$ based on the last rule. In each case, we will proceed by case analysis on the last rule of $\mathbf{D_1}$, but to avoid repeating similar cases, we will separate cases by whether the last rule of $\mathbf{D_1}$ is logical, and if $A$ is also the principal formula there or not. So we have the following groups of cases:
+	\item[12-15.] ($R*$) In the cases that the last rule in $\mathbf{D_0}$ is any of the logical right-rules $R*$ ($* \in \{ \land, \lor_1, \lor_2, \rightarrow\}$), its principal formula would be $A$. This forces a particular construction for $A$ based on the last rule. In each case, we will proceed by case analysis on the last rule of $\mathbf{D_1}$, but to avoid repeating similar cases, we will separate cases by whether the last rule of $\mathbf{D_1}$ is logical, and if $A$ is also the principal formula there or not. So we have the following groups of cases:
 	(I) Cases in which $A$ is not principal in $\mathbf{D_1}$,
-	(II) cases in which the last rule of $\mathbf{D_1}$ is any of the logical left-rules and (an instance of) $A$ is its principal formula, and (III) $A$ is principal in $\mathbf{D_1}$, but the rule is either structural or an axiom. Notice that the solution for the different cases of $\mathbf{D_1}$ in (I) and (III) is shared by all cases of $\mathbf{D_0}$, since it does not depend on the last rule of $\mathbf{D_0}$. This may seem like we have commuted the case analysis on $\mathbf{D_1}$ with the one on $\mathbf{D_0}$, which is not true. So each item in (I) or (III) handles many different cases with similar solutions.
+	(II) cases in which the last rule of $\mathbf{D_1}$ is any of the logical left-rules and (an instance of) $A$ is its principal formula, and (III) $A$ is principal in $\mathbf{D_1}$, but the rule is either structural or an axiom. Notice that the solution for the different cases of $\mathbf{D_1}$ in (I) and (III) is shared by all cases of $\mathbf{D_0}$, since it does not depend on the last rule of $\mathbf{D_0}$. This may seem like we have somehow ``commuted'' the case analysis on $\mathbf{D_1}$ with the one on $\mathbf{D_0}$, which is not true. So each item in (I) or (III) handles many different cases with similar solutions.
 	On the other hand, each case of $\mathbf{D_0}$ in (II) determines a single case for $\mathbf{D_1}$. The parens before each case show the last rule of $\mathbf{D_0}$ and $\mathbf{D_1}$ respectively.
+
 
 	\paragraph{} I. If $A$ is not principal in the last rule of $\mathbf{D_1}$.
 	
@@ -84,11 +90,14 @@ We proceed by case analysis on the last rule in $\mathbf{D_0}$. We can either ap
 		
 		\item \label{c:*-ri} \input{case-right-ri}
 		
-		\item \label{c:*-ln} \input{case-right-ln}
+%		\item \label{c:*-ln} \input{case-right-ln}
 		
-		\item \label{c:*-rn} \input{case-right-rn}
-	
-		\paragraph{} II. These are the cases where the last rule in $\mathbf{D_1}$ is a logical left-rule with $A$ as its principal formula, which forces a specific structure for $A$. So in any case for $\mathbf{D_0}$, except $R \nabla$, we can assume $\mathbf{D_1}$ also ends with the corresponding logical rule and $k = 0$. The $R \nabla$ case with $k = 0$ is the same, but $k > 0$ tells us nothing more about $\mathbf{D_1}$.
+%		\item \label{c:*-rn} \input{case-right-rn}
+
+		\item \label{c:*-n} \input{case-right-n}
+	\end{enumerate}
+
+	\paragraph{} II. These are the cases where the last rule in $\mathbf{D_1}$ is a logical left-rule with $A$ as its principal formula, which forces a specific structure for $A$. So in any case for $\mathbf{D_0}$ we can assume $\mathbf{D_1}$ also ends with the corresponding logical rule.
 
 	\begin{enumerate}[label={\Alph*.}]
 		\item \label{c:ra-la1} \input{case-ra-la1}
@@ -99,7 +108,7 @@ We proceed by case analysis on the last rule in $\mathbf{D_0}$. We can either ap
 
 		\item \label{c:ro2-lo} \input{case-ro2-lo}
 
-		\item \label{c:rn-*} \input{case-rn-ln}
+%		\item \label{c:rn-*} \input{case-rn-ln}
 
 		\item \label{c:ri-li} \input{case-ri-li}
 
@@ -117,13 +126,14 @@ We proceed by case analysis on the last rule in $\mathbf{D_0}$. We can either ap
 	\end{enumerate}
 \end{enumerate}
 
-\section{Corollary} \emph{$\nabla$Cut Elimination for GSTL: }
-If $\small\text{GSTL}^- + \nabla Cut \vdash \Gamma \Rightarrow \Delta$, then $\small\text{GSTL}^- \vdash \Gamma \Rightarrow \Delta$.
+\subsection{Corollary} \emph{Cut Elimination for GSTL: }
+If $\small\text{GSTL} \vdash \Gamma \Rightarrow \Delta$, then $\small\text{GSTL}^- \vdash \Gamma \Rightarrow \Delta$.
 
-\textit{Proof}: It suffices to show that for any proof tree of $\Gamma \Rightarrow \Delta$ like $\mathbf{D}$, there is another proof of it with a lower rank. Using induction on $h(\mathbf{D})$, the induction hypothesis states that for any proof of $\Gamma' \Rightarrow \Delta'$ like $\mathbf{D'}$ such that $h(\mathbf{D'}) < h(\mathbf{D})$, there is another proof of $\Gamma' \Rightarrow \Delta'$ like $\mathbf{D''}$ such that $\rho(\mathbf{D''}) < \rho(\mathbf{D'})$. Particularly for the immediate sub-trees of $\mathbf{D}$, this gives us sub-trees with lower cut-rank, which we call $\mathbf{D}_i$. We now consider two cases for the last rule of $\mathbf{D}$
+\textit{Proof}: It suffices to show that for any proof tree of $\Gamma \Rightarrow \Delta$ like $\mathbf{D}$, there is another proof of it with a lower rank. Using induction on $h(\mathbf{D})$, the induction hypothesis states that for any proof of $\Gamma' \Rightarrow \Delta'$ like $\mathbf{D}'$ such that $h(\mathbf{D}') < h(\mathbf{D})$, there is another proof of $\Gamma' \Rightarrow \Delta'$ like $\mathbf{D}''$ such that $\rho(\mathbf{D}'') < \rho(\mathbf{D}')$. Particularly for the immediate sub-trees of $\mathbf{D}$, this gives us sub-trees with lower cut-rank, which we call $\mathbf{D}_i$. We now consider two cases for the last rule of $\mathbf{D}$
 
 \begin{enumerate}[label=\Roman*]
-	\item If the last rule of $\mathbf{D}$ is of a lower rank than $\rho(\mathbf{D})$, i.e. the $\nabla Cut$ rule with the maximum rank is not the last rule in $\mathbf{D}$, then we can apply the same last rule on $\mathbf{D}_i$s and get a proof of $\Gamma \Rightarrow \Delta$ with a lower rank.
+	\item If the last rule of $\mathbf{D}$ is of a lower rank than $\rho(\mathbf{D})$, i.e. the $MC$ rule with the maximum rank is not the last rule in $\mathbf{D}$, then we can apply the same last rule on $\mathbf{D}_i$s and get a proof of $\Gamma \Rightarrow \Delta$ with a lower rank.
 	
-	\item If the last rule of $\mathbf{D}$ is an instance of $\nabla Cut$ rule with a cut-formula of rank $\rho(\mathbf{D})$, then we can apply theorem \ref{cut-admis} to $\mathbf{D_0}$ and $\mathbf{D_1}$ to get the same $\nabla Cut$ with a lower rank.
+	\item If the last rule of $\mathbf{D}$ is an instance of $MC$ rule with a cut-formula of rank $\rho(\mathbf{D})$, then we can apply theorem \ref{cut-admis} to $\mathbf{D_0}$ and $\mathbf{D_1}$ to get the same $MC$ with a lower rank.
 \end{enumerate}
+So for any proof of $\Gamma \Rightarrow \Delta$ we also have a proof with rank $0$, which is cut-free.

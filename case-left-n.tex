@@ -1,0 +1,28 @@
+($N'$) As the last rule of $\mathbf{D_0}$, $N'$ forces $A = \nabla B$ for some $B$. Then $\mathbf{D_0}$ proves $\nabla \Gamma \Rightarrow \nabla B$ and has a subproof $\mathbf{D_0}'$ of $\Gamma \Rightarrow B$.
+\begin{prooftree}
+	\noLine
+	\AXC{$\mathbf{D_0}'$}
+	\UIC{$\Gamma \Rightarrow B$}
+	\RightLabel{$N'$}
+	\UIC{$\nabla \Gamma \Rightarrow \nabla B$}
+	
+	\noLine
+	\AXC{$\mathbf{D_1}$}
+	\UIC{$\Sigma , (\nabla^{l+1} B)^n \Rightarrow \Delta$}
+	
+	\dashedLine \RightLabel{$MC$}
+	\BIC{$\nabla^{l+1} \Gamma , \Sigma \Rightarrow \Delta$}
+\end{prooftree}
+Induction hypothesis on $\mathbf{D_0}'$ and $\mathbf{D_1}$ gives exactly what we want.
+\begin{prooftree}
+	\noLine
+	\AXC{$\mathbf{D_0}'$}
+	\UIC{$\Gamma \Rightarrow B$}
+	
+	\noLine
+	\AXC{$\mathbf{D_1}$}
+	\UIC{$\Sigma , (\nabla^{l+1} B)^n \Rightarrow \Delta$}
+	
+	\RightLabel{IH}
+	\BIC{$\nabla^{l+1} \Gamma , \Sigma \Rightarrow \Delta$}
+\end{prooftree}

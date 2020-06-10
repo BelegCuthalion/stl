@@ -1,0 +1,30 @@
+($R*, N'$)
+\begin{prooftree}
+	\noLine
+	\AXC{$\mathbf{D_0}$}
+	\UIC{$\Gamma \Rightarrow A$}
+	
+	\noLine
+	\AXC{$\mathbf{D_1}'$}
+	\UIC{$\Sigma , (\nabla^l A)^n \Rightarrow \Delta$}
+	\RightLabel{$N'$}
+	\UIC{$\nabla \Sigma , (\nabla^{l+1} A)^n \Rightarrow \nabla \Delta$}
+	
+	\dashedLine\RightLabel{$MC$}
+	\BIC{$\nabla^{l+1} \Gamma , \nabla \Sigma \Rightarrow \nabla \Delta$}
+\end{prooftree}
+By induction hypothesis for $\mathbf{D_0}$ and $\mathbf{D_1}'$
+\begin{prooftree}
+	\noLine
+	\AXC{$\mathbf{D_0}$}
+	\UIC{$\Gamma \Rightarrow A$}
+	
+	\noLine
+	\AXC{$\mathbf{D_1}'$}
+	\UIC{$\Sigma , (\nabla^l A)^n \Rightarrow \Delta$}
+	\RightLabel{IH}
+	\BIC{$\nabla^l \Gamma , \Sigma , \Delta$}
+	
+	\RightLabel{$R\rightarrow$}
+	\UIC{$\nabla^{l+1} \Gamma , \nabla \Sigma \Rightarrow \nabla \Delta$}
+\end{prooftree}

@@ -2,44 +2,44 @@
 		\begin{prooftree}
 			\noLine
 			\AXC{$\mathbf{D_0}$}
-			\UIC{$\mathcal{S} \Rightarrow \nabla^k A$}
+			\UIC{$\Gamma \Rightarrow A$}
 
 			\noLine
 			\AXC{$\mathbf{D_1}'$}
-			\UIC{$\mathcal{T} , \p^{l+k} A^n \Rightarrow B$}
+			\UIC{$\Sigma , (\nabla^l A)^n \Rightarrow B$}
 			\noLine
 			\AXC{$\mathbf{D_1}''$}
-			\UIC{$\mathcal{T} , \p^{l+k} A^n \Rightarrow C$}
+			\UIC{$\Sigma , (\nabla^l A)^n \Rightarrow C$}
 			\RightLabel{$R\land$}
-			\BIC{$\mathcal{T} , \p^{l+k} A^n \Rightarrow B \land C$}
+			\BIC{$\Sigma , (\nabla^l A)^n \Rightarrow B \land C$}
 
-			\dashedLine\RightLabel{$\nabla Cut$}
-			\BIC{$\p^l \mathcal{S} , \mathcal{T} \Rightarrow B \land C$}
+			\dashedLine\RightLabel{$MC$}
+			\BIC{$\nabla^l \Gamma , \Sigma \Rightarrow B \land C$}
 		\end{prooftree}
 		By induction hypothesis, once for $\mathbf{D_0}$ and $\mathbf{D_1}'$ and again for $\mathbf{D_0}$ and $\mathbf{D_1}''$
 		\begin{prooftree}
 			\noLine
 			\AXC{$\mathbf{D_0}$}
-			\UIC{$\mathcal{S} \Rightarrow \nabla^k A$}
+			\UIC{$\Gamma \Rightarrow A$}
 
 			\noLine
 			\AXC{$\mathbf{D_1}'$}
-			\UIC{$\mathcal{T} , \p^{l+k} A^n \Rightarrow B$}
+			\UIC{$\Sigma , (\nabla^l A)^n \Rightarrow B$}
 
 			\RightLabel{IH}
-			\BIC{$\p^l \mathcal{S} , \mathcal{T} \Rightarrow B$}
+			\BIC{$\nabla^l \Gamma , \Sigma \Rightarrow B$}
 
 			\noLine
 			\AXC{$\mathbf{D_0}$}
-			\UIC{$\mathcal{S} \Rightarrow \nabla^k A$}
+			\UIC{$\Gamma \Rightarrow A$}
 
 			\noLine
 			\AXC{$\mathbf{D_1}''$}
-			\UIC{$\mathcal{T} , \p^{l+k} A^n \Rightarrow C$}
+			\UIC{$\Sigma , (\nabla^l A)^n \Rightarrow C$}
 
 			\RightLabel{IH}
-			\BIC{$\p^l \mathcal{S} , \mathcal{T} \Rightarrow C$}
+			\BIC{$\nabla^l \Gamma , \Sigma \Rightarrow C$}
 
 			\RightLabel{$R\land$}
-			\BIC{$\p^l \mathcal{S} , \mathcal{T} \Rightarrow B \land C$}
+			\BIC{$\nabla^l \Gamma , \Sigma \Rightarrow B \land C$}
 		\end{prooftree}

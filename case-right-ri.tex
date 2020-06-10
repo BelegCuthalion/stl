@@ -2,29 +2,29 @@
 		\begin{prooftree}
 			\noLine
 			\AXC{$\mathbf{D_0}$}
-			\UIC{$\mathcal{S} \Rightarrow \nabla^k A$}
+			\UIC{$\Gamma \Rightarrow A$}
 			
 			\noLine
 			\AXC{$\mathbf{D_1}'$}
-			\UIC{$\p \mathcal{T} , B , \p^{l+k+1} A^n \Rightarrow C$}
+			\UIC{$\nabla \Sigma , (\nabla^{l+1} A)^n , B \Rightarrow C$}
 			\RightLabel{$R\rightarrow$}
-			\UIC{$\mathcal{T} , \p^{l+k} A^n \Rightarrow B \rightarrow C$}
+			\UIC{$\Sigma , (\nabla^l A)^n \Rightarrow B \rightarrow C$}
 			
-			\dashedLine\RightLabel{$\nabla Cut$}
-			\BIC{$\p^l \mathcal{S} , \mathcal{T} \Rightarrow B \rightarrow C$}
+			\dashedLine\RightLabel{$MC$}
+			\BIC{$\nabla^l \Gamma , \Sigma \Rightarrow B \rightarrow C$}
 		\end{prooftree}
 		By induction hypothesis for $\mathbf{D_0}$ and $\mathbf{D_1}'$
 		\begin{prooftree}
 			\noLine
 			\AXC{$\mathbf{D_0}$}
-			\UIC{$\mathcal{S} \Rightarrow \nabla^k A$}
+			\UIC{$\Gamma \Rightarrow A$}
 			
 			\noLine
 			\AXC{$\mathbf{D_1}'$}
-			\UIC{$\p \mathcal{T} , B , \p^{l+k+1} A^n \Rightarrow C$}
+			\UIC{$\nabla \Sigma , (\nabla^{l+1} A)^n , B \Rightarrow C$}
 			\RightLabel{IH}
-			\BIC{$\p^{l+1} \mathcal{S} , \p \mathcal{T} , B \Rightarrow C$}
+			\BIC{$\nabla^{l+1} \Gamma , \nabla \Sigma , B \Rightarrow C$}
 			
 			\RightLabel{$R\rightarrow$}
-			\UIC{$\p^l \mathcal{S} , \mathcal{T} \Rightarrow B \rightarrow C$}
+			\UIC{$\nabla^l \Gamma , \Sigma \Rightarrow B \rightarrow C$}
 		\end{prooftree}

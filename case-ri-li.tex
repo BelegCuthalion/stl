@@ -2,75 +2,75 @@
 		\begin{prooftree}
 			\noLine
 			\AXC{$\mathbf{D_0}'$}
-			\UIC{$\p \mathcal{S} , B \Rightarrow C$}
+			\UIC{$\nabla \Gamma , B \Rightarrow C$}
 			\RightLabel{$R\rightarrow$}
-			\UIC{$\mathcal{S} \Rightarrow B \rightarrow C$}
+			\UIC{$\Gamma \Rightarrow B \rightarrow C$}
 
 			\noLine
 			\AXC{$\mathbf{D_1}'$}
-			\UIC{$\mathcal{T} , \p^{l+1} (B \rightarrow C)^{n-1} \Rightarrow \nabla^l B$}
+			\UIC{$\Sigma , (\nabla^{l+1} (B \rightarrow C))^{n-1} \Rightarrow \nabla^l B$}
 			\noLine
 			\AXC{$\mathbf{D_1}''$}
-			\UIC{$\mathcal{T} , \p^{l+1} (B \rightarrow C)^{n-1} , \p^l C \Rightarrow \Delta$}
+			\UIC{$\Sigma , (\nabla^{l+1} (B \rightarrow C))^{n-1} , \nabla^l C \Rightarrow \Delta$}
 			\RightLabel{$L\rightarrow$}
-			\BIC{$\mathcal{T} , \p^{l+1} (B \rightarrow C)^n \Rightarrow \Delta$}
+			\BIC{$\Sigma , (\nabla^{l+1} (B \rightarrow C))^n \Rightarrow \Delta$}
 			
-			\RightLabel{$\nabla Cut$} \dashedLine
-			\BIC{$\p^{l+1} \mathcal{S} , \mathcal{T} \Rightarrow \Delta$}
+			\RightLabel{$MC$} \dashedLine
+			\BIC{$\nabla^{l+1} \Gamma , \Sigma \Rightarrow \Delta$}
 		\end{prooftree}
-		From induction hypothesis for $\mathbf{D_0}$ and $\mathbf{D_1}'$ we have $\p^{l+1} \mathcal{S} , \mathcal{T} \Rightarrow \nabla^l B$. Call it $\mathbf{D}'$.
+		From induction hypothesis for $\mathbf{D_0}$ and $\mathbf{D_1}'$ we have $\nabla^{l+1} \Gamma , \Sigma \Rightarrow \nabla^l B$. Call it $\mathbf{D}'$.
 		\begin{prooftree}
 			\noLine
 			\AXC{$\mathbf{D_0}$}
-			\UIC{$\mathcal{S} \Rightarrow B \rightarrow C$}
+			\UIC{$\Gamma \Rightarrow B \rightarrow C$}
 			
 			\noLine
 			\AXC{$\mathbf{D_1}'$}
-			\UIC{$\mathcal{T} , \p^{l+1} (B \rightarrow C)^{n-1} \Rightarrow \nabla^l B$}
+			\UIC{$\Sigma , (\nabla^{l+1} (B \rightarrow C))^{n-1} \Rightarrow \nabla^l B$}
 			
 			\LeftLabel{$\mathbf{D}':~$}
 			\RightLabel{IH}
-			\BIC{$\p^{l+1} \mathcal{S} , \mathcal{T} \Rightarrow \nabla^l B$}
+			\BIC{$\nabla^{l+1} \Gamma , \Sigma \Rightarrow \nabla^l B$}
 		\end{prooftree}
-		Again from IH, this time for $\mathbf{D_0}$ and $\mathbf{D_1}''$ we have $\p^{l+1} \mathcal{S} , \mathcal{T} , \p^l C \Rightarrow \Delta$. Call it $\mathbf{D}''$.
+		Again from IH, this time for $\mathbf{D_0}$ and $\mathbf{D_1}''$ we have $\nabla^{l+1} \Gamma , \Sigma , \nabla^l C \Rightarrow \Delta$. Call it $\mathbf{D}''$.
 		\begin{prooftree}
 			\noLine
 			\AXC{$\mathbf{D_0}$}
-			\UIC{$\mathcal{S} \Rightarrow B \rightarrow C$}
+			\UIC{$\Gamma \Rightarrow B \rightarrow C$}
 			
 			\noLine
 			\AXC{$\mathbf{D_1}''$}
-			\UIC{$\mathcal{T} , \p^{l+1} (B \rightarrow C)^{n-1} , \p^l C \Rightarrow \Delta$}
+			\UIC{$\Sigma , (\nabla^{l+1} (B \rightarrow C))^{n-1} , \nabla^l C \Rightarrow \Delta$}
 			
 			\LeftLabel{$\mathbf{D}'':~$}
 			\RightLabel{IH}
-			\BIC{$\p^{l+1} \mathcal{S} , \mathcal{T} , \p^l C \Rightarrow \Delta$}
+			\BIC{$\nabla^{l+1} \Gamma , \Sigma , \nabla^l C \Rightarrow \Delta$}
 		\end{prooftree}
-		Now we use $\nabla Cut$ (with $k:=0$) on $\mathbf{D_0}'$ and $\mathbf{D}''$ to remove $\p^l C$, and another $\nabla Cut$ (with $k:=l$) with $\mathbf{D}'$ to remove $\p^l B$. Applying enough contractions, we can derive the desired sequent.
+		Cut $C$ from $\mathbf{D_0}'$ and $\mathbf{D}''$, then cut $\nabla^l B$ from the resulting sequent and $\mathbf{D}'$. Notice that $\nabla$ does not increase the rank of a formula, so $\rho(\nabla^l B) < \rho(B \rightarrow C)$. Applying enough contractions, we can derive the desired sequent.
 		\begin{prooftree}
 			\noLine
 			\AXC{$\mathbf{D}'$}
-			\UIC{$\p^{l+1} \mathcal{S} , \mathcal{T} \Rightarrow \nabla^l B$}
+			\UIC{$\nabla^{l+1} \Gamma , \Sigma \Rightarrow \nabla^l B$}
 
 
 			\noLine
 			\AXC{$\mathbf{D_0}'$}
-			\UIC{$\p \mathcal{S} , B \Rightarrow C$}
+			\UIC{$\nabla \Gamma , B \Rightarrow C$}
 
 			\noLine
 			\AXC{$\mathbf{D}''$}
-			\UIC{$\p^{l+1} \mathcal{S} , \mathcal{T} , \p^l C \Rightarrow \Delta$}
+			\UIC{$\nabla^{l+1} \Gamma , \Sigma , \nabla^l C \Rightarrow \Delta$}
 
-			\RightLabel{$\nabla Cut$}
-			\BIC{$\p^{l+1} \mathcal{S}^2 , \p^l B , \mathcal{T} \Rightarrow \Delta$}
+			\RightLabel{$MC$}
+			\BIC{$\nabla^{l+1} \Gamma^2 , \nabla^l B , \Sigma \Rightarrow \Delta$}
 
 
 
-			\RightLabel{$\nabla Cut$}
-			\BIC{$\p^{l+1} \mathcal{S}^3 , \mathcal{T}^2 \Rightarrow \Delta$}
+			\RightLabel{$MC$}
+			\BIC{$\nabla^{l+1} \Gamma^3 , \Sigma^2 \Rightarrow \Delta$}
 
 
 
 			\doubleLine \RightLabel{$Lc$}
-			\UIC{$\p^{l+1} \mathcal{S} , \mathcal{T} \Rightarrow \Delta$}
+			\UIC{$\nabla^{l+1} \Gamma , \Sigma \Rightarrow \Delta$}
 		\end{prooftree}

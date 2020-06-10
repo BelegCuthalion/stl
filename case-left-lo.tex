@@ -1,46 +1,46 @@
-($L\lor$)  $\mathbf{D_0}$ proves $\mathcal{S} , \p^r B \lor C \Rightarrow \nabla^k A$ and has subproofs $\mathbf{D_0}'$ of $\mathcal{S} , \p^r B \Rightarrow \nabla^k A$ and $\mathbf{D_0}''$ of $\mathcal{S} , \p^r C \Rightarrow \nabla^k A$.
+($L\lor$)  $\mathbf{D_0}$ proves $\Gamma , \nabla^r (B \lor C) \Rightarrow A$ and has subproofs $\mathbf{D_0}'$ of $\Gamma , \nabla^r B \Rightarrow A$ and $\mathbf{D_0}''$ of $\Gamma , \nabla^r C \Rightarrow A$.
 	\begin{prooftree}
 		\noLine
 		\AXC{$\mathbf{D_0}'$}
-		\UIC{$\mathcal{S} , \p^r B \Rightarrow \nabla^k A$}
+		\UIC{$\Gamma , \nabla^r B \Rightarrow A$}
 		\noLine
 		\AXC{$\mathbf{D_0}''$}
-		\UIC{$\mathcal{S} , \p^r C \Rightarrow \nabla^k A$}
+		\UIC{$\Gamma , \nabla^r C \Rightarrow A$}
 		\RightLabel{$L\lor$}
-		\BIC{$\mathcal{S} , \p^r B \lor C \Rightarrow \nabla^k A$}
+		\BIC{$\Gamma , \nabla^r (B \lor C) \Rightarrow A$}
 		
 		
 		\noLine
 		\AXC{$\mathbf{D_1}$}
-		\UIC{$\mathcal{T} , \p^{l+k} A^n \Rightarrow \Delta$}
+		\UIC{$\Sigma , (\nabla^l A)^n \Rightarrow \Delta$}
 		
-		\dashedLine\RightLabel{$\nabla Cut$}
-		\BIC{$\p^l \mathcal{S} , \p^{r+l} B \lor C , \mathcal{T} \Rightarrow \Delta$}
+		\dashedLine\RightLabel{$MC$}
+		\BIC{$\nabla^l \Gamma , \nabla^{r+l} (B \lor C) , \Sigma \Rightarrow \Delta$}
 	\end{prooftree}
-	From the induction hypothesis for $\mathbf{D_0}'$ and $\mathbf{D_1}$, we have a proof of $\p^l \mathcal{S} , \p^{r+l} B , \mathcal{T} \Rightarrow \Delta$ with rank lower than that of $A$. Also from the induction hypothesis for $\mathbf{D_0}''$ and $\mathbf{D_1}$, we have a proof of $\p^l \mathcal{S} , \p^{r+l} C , \mathcal{T} \Rightarrow \Delta$ with rank lower than that of $A$. By applying $L\lor$ we have $\p^l \mathcal{S} , \p^{r+l} B \lor C , \mathcal{T} \Rightarrow \Delta$, without increasing the cut-rank.
+	From the induction hypothesis for $\mathbf{D_0}'$ and $\mathbf{D_1}$, we have a proof of $\nabla^l \Gamma , \nabla^{r+l} B , \Sigma \Rightarrow \Delta$ with rank lower than that of $A$. Also from the induction hypothesis for $\mathbf{D_0}''$ and $\mathbf{D_1}$, we have a proof of $\nabla^l \Gamma , \nabla^{r+l} C , \Sigma \Rightarrow \Delta$ with rank lower than that of $A$. By applying $L\lor$ we have $\nabla^l \Gamma , \nabla^{r+l} (B \lor C) , \Sigma \Rightarrow \Delta$, without increasing the cut-rank.
 	\begin{prooftree}
 		\noLine
 		\AXC{$\mathbf{D_0}'$}
-		\UIC{$\mathcal{S} , \p^r B \Rightarrow \nabla^k A$}
+		\UIC{$\Gamma , \nabla^r B \Rightarrow A$}
 		
 		\noLine
 		\AXC{$\mathbf{D_1}$}
-		\UIC{$\mathcal{T} , \p^{l+k} A^n \Rightarrow \Delta$}
+		\UIC{$\Sigma , (\nabla^l A)^n \Rightarrow \Delta$}
 		
 		\RightLabel{IH}
-		\BIC{$\p^l \mathcal{S} , \p^{r+l} B , \mathcal{T} \Rightarrow \Delta$}
+		\BIC{$\nabla^l \Gamma , \nabla^{r+l} B , \Sigma \Rightarrow \Delta$}
 		
 		\noLine
 		\AXC{$\mathbf{D_0}''$}
-		\UIC{$\mathcal{S} , \p^r C \Rightarrow \nabla^k A$}
+		\UIC{$\Gamma , \nabla^r C \Rightarrow A$}
 		
 		\noLine
 		\AXC{$\mathbf{D_1}$}
-		\UIC{$\mathcal{T} , \p^{l+k} A^n \Rightarrow \Delta$}
+		\UIC{$\Sigma , (\nabla^l A)^n \Rightarrow \Delta$}
 		
 		\RightLabel{IH}
-		\BIC{$\p^l \mathcal{S} , \p^{r+l} C , \mathcal{T} \Rightarrow \Delta$}
+		\BIC{$\nabla^l \Gamma , \nabla^{r+l} C , \Sigma \Rightarrow \Delta$}
 		
 		\RightLabel{$L\lor$}
-		\BIC{$\p^l \mathcal{S} , \p^{r+l} B \lor C , \mathcal{T} \Rightarrow \Delta$}
+		\BIC{$\nabla^l \Gamma , \nabla^{r+l} (B \lor C) , \Sigma \Rightarrow \Delta$}
 	\end{prooftree}
