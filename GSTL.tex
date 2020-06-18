@@ -1,5 +1,7 @@
-\section{GSTL} A GSTL sequent $\Gamma \Rightarrow \Delta$ is a binary relation between $\Gamma$, a multi-set of formulas, and $\Delta$, a sub-singleton of some formula, defined inductively by the following rules.
+\section{GSTL} GSTL is defined similarly. GSTL$^-$ is a fragment of GSTL without the $Cut$ rule, which by the following cut-elimination theorem is equal to GSTL. To this end, we will also utilize a stronger version of the $Cut$ rule, called $MC$.
 
+\subsection{GSTL$^-$}‌\\
+\noindent\textbf{Axioms}
 \begin{multicols}{3}
 	\begin{prooftree}
 		\RightLabel{$Id$}
@@ -19,7 +21,8 @@
 		\UIC{$\nabla^n \bot \Rightarrow$}
 	\end{prooftree}
 \end{multicols}
-‌\\
+
+\noindent\textbf{Structural Rules}
 \begin{multicols}{3}
 	\begin{prooftree}
 		\RightLabel{$Lw$}
@@ -39,7 +42,8 @@
 		\UIC{$\Gamma , A \Rightarrow \Delta$}
 	\end{prooftree}
 \end{multicols}
-‌\\
+
+\noindent\textbf{Logical Rules}
 \begin{multicols}{3}
 	\begin{prooftree}
 		\RightLabel{$L\land_1$}
@@ -96,35 +100,54 @@
 		\UIC{$\Gamma \Rightarrow A \rightarrow B$}
 	\end{prooftree}
 \end{multicols}
-‌\\
+
+\noindent\textbf{Modal Rule}
 \begin{prooftree}
 	\RightLabel{$N'$}
 	\AXC{$\Gamma \Rightarrow \Delta$}
 	\UIC{$\nabla \Gamma \Rightarrow \nabla \Delta$}
 \end{prooftree}
 
-\subsection{$MC$} For any $l \ge 0$ and $n \ge 1$
+\subsection{Cut}
+\begin{prooftree}
+	\RightLabel{$Cut$}
+	\AXC{$\Gamma \Rightarrow A$}
+	\AXC{$\Sigma , A \Rightarrow \Delta$}
+	\BIC{$\Gamma , \Sigma \Rightarrow \Delta$}
+\end{prooftree}
+By GSTL we mean GSTL$^-$ with $Cut$.\\
+
+\subsection{Multi-cut} For any $l \ge 0$ and $n \ge 1$
 \begin{prooftree}
 	\AXC{$\Gamma \Rightarrow A$}
 	\AXC{$\Sigma , (\nabla^l A)^n \Rightarrow \Delta$}
 	\RightLabel{$MC$}
 	\BIC{$\nabla^l \Gamma , \Sigma \Rightarrow \Delta$}
 \end{prooftree}
-$A$ is called the \textit{cut-formula}.
-By $\text{GSTL}$ we mean $\text{GSTL}^- + MC$
+In both $Cut$ and $MC$, $A$ is called the \textit{cut-formula}.
+GSTL$^-+MC$ is the variation of GSTL where $Cut$ is replaced by $MC$, called GSTL$^{MC}$ for short.
 
-\subsubsection{Rank} Rank of a formula $A$ is defined as
+\subsection{Rank} Rank of a formula $A$ is defined as
 \[ \rho(A) = \begin{cases}
 1 & \quad ; A \in P \cup \{ \bot, \top \} \\
 \rho(B) & \quad ; A = \nabla B \\
 max(\rho(B), \rho(C)) + 1 & \quad ; A = B \Box C, \Box \in \{ \land , \lor, \rightarrow \}
 \end{cases} \]
+
+Notice that $\nabla$ does not increase rank.
+
 We also define rank for rule instances and proof trees. For an instance of the $MC$ rule $c$ with cut-formula $A$, $\rho(c) = \rho(A)$, $0$ if it's not an instance of the $MC$ rule.
 For a proof tree $\mathbf{D}$, $\rho(\mathbf{D})$ is the maximum rank of its rule instances.
 
-\subsection{Theorem} \label{translation} For any $\Gamma$ and $\Delta$, $\text{GSTL} \vdash \Gamma \Rightarrow \Delta$ if and only if $\text{iSTL} \vdash \Gamma \Rightarrow \Delta$.
+\subsection{Theorem}\label{thm:g-mc} If GSTL$\vdash \Gamma \Rightarrow \Delta$ then GSTL$^{MC} \vdash \Gamma \Rightarrow \Delta$.
 
-\textit{Proof}: I. Suppose $\text{GSTL}$ proves $\Gamma \Rightarrow \Delta$ by a proof tree $\mathbf{D}$. We will construct a proof tree in $\text{iSTL}$ for $\Gamma \Rightarrow \Delta$. By induction on $h(\mathbf{D})$, the induction hypothesis states that for any $\text{GSTL}$ proof tree $\mathbf{D}'$ for $\Gamma' \Rightarrow \Delta'$ such that $h(\mathbf{D}') < h(\mathbf{D})$, there exists an $\text{iSTL}$ proof tree IH$(\mathbf{D'})$ for $\Gamma' \Rightarrow \Delta'$. Now we consider different cases for the last rule of $\mathbf{D}$. In all cases, we denote the immediate sub-trees of $\mathbf{D}$ by $\mathbf{D_i} ~(0 \leq i)$. The rule name in parens is the last rule of $\mathbf{D}$ and in GSTL, but our construction in each case is in iSTL.
+\textit{Proof}: Just replace any instance of $Cut$ with similar instance of $MC$, with $l = 0$ and $n = 1$.
+
+\section{Theorem} \label{translation} For any $\Gamma$ and $\Delta$, $\text{GSTL} \vdash \Gamma \Rightarrow \Delta$ if and only if $\text{iSTL} \vdash \Gamma \Rightarrow \Delta$.
+
+\textit{Proof}:
+
+I. Suppose $\text{GSTL}$ proves $\Gamma \Rightarrow \Delta$ by a proof tree $\mathbf{D}$. We will construct a proof tree in $\text{iSTL}$ for $\Gamma \Rightarrow \Delta$. We will use induction on the length of $\mathbf{D}$, and for any GSTL proof tree $\mathbf{D'}$ with lower length than $\mathbf{D}$, we will denote its iSTL equivalent from induction hypothesis by IH($\mathbf{D'}$). Now consider different cases for the last rule of $\mathbf{D}$. In all cases, we denote the immediate sub-trees of $\mathbf{D}$ by $\mathbf{D_i} ~(0 \leq i)$. Note that the rule name in parens is the last rule of $\mathbf{D}$ in GSTL, while our construction in each case is in iSTL.
 \begin{enumerate}
 	\item[1,2.] ($Id$),($Ta$) iSTL has these as axioms.
 	\setcounter{enumi}{2}

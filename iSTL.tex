@@ -1,5 +1,6 @@
 
-\section{iSTL$^-$} An iSTL sequent $\Gamma \Rightarrow \Delta$ is a binary relation between $\Gamma$, a multi-set of formulas, and $\Delta$, a sub-singleton of some formula, defined inductively by the following rules.
+\section{iSTL} We define iSTL by the following rules.‌\\
+\textbf{Axioms}
 \begin{multicols}{3}
 	\begin{prooftree}
 		\AXC{}
@@ -19,7 +20,8 @@
 		\UIC{$\bot \Rightarrow$}
 	\end{prooftree}
 \end{multicols}
-‌\\
+
+\noindent\textbf{Structural Rules}
 \begin{multicols}{3}
 	\begin{prooftree}
 		\RightLabel{$Lw$}
@@ -39,7 +41,8 @@
 		\UIC{$\Gamma , A \Rightarrow \Delta$}
 	\end{prooftree}
 \end{multicols}
-‌\\
+
+\noindent\textbf{Logical Rules}
 \begin{multicols}{3}
 	\begin{prooftree}
 		\RightLabel{$L\land_1$}
@@ -96,25 +99,22 @@
 		\UIC{$\Gamma \Rightarrow A \rightarrow B$}
 	\end{prooftree}
 \end{multicols}
-‌\\
+\noindent\textbf{Modal Rule}
 \begin{prooftree}
 	\RightLabel{$N$}
 	\AXC{$\Gamma \Rightarrow A$}
 	\UIC{$\nabla\Gamma \Rightarrow \nabla A$}
 \end{prooftree}
-‌\\
-\subsection{Cut}
+
+\noindent\textbf{Cut}
 \begin{prooftree}
 	\RightLabel{$Cut$}
 	\AXC{$\Gamma \Rightarrow A$}
 	\AXC{$\Sigma , A \Rightarrow \Delta$}
 	\BIC{$\Gamma , \Sigma \Rightarrow \Delta$}
 \end{prooftree}
-By $\text{iSTL}$ we mean $\text{iSTL}^- + Cut$
 
-\subsection{Lemma}
-
-\subsubsection{}\label{lem:i-nabla-dist-and} iSTL $\vdash \nabla^n (A \land B) \Rightarrow \nabla^n A \land \nabla^n B$
+\subsection{Lemma}\label{lem:i-nabla-dist-and} For all $n > 0$, iSTL $\vdash \nabla^n (A \land B) \Rightarrow \nabla^n A \land \nabla^n B$
 
 \textit{Proof}:
 \begin{prooftree}
@@ -138,7 +138,7 @@ By $\text{iSTL}$ we mean $\text{iSTL}^- + Cut$
 	\BIC{$\nabla^n (A \land B) \Rightarrow \nabla^n A \land \nabla^n B$}
 \end{prooftree}
 
-\subsubsection{}\label{lem:i-nabla-dist-or} iSTL $\vdash \nabla (A \lor B) \Rightarrow \nabla A \lor \nabla B$
+\subsection{Lemma}\label{lem:i-nabla-dist-or} iSTL $\vdash \nabla (A \lor B) \Rightarrow \nabla A \lor \nabla B$
 
 \textit{Proof}:
 \begin{prooftree}
@@ -185,26 +185,26 @@ By $\text{iSTL}$ we mean $\text{iSTL}^- + Cut$
 	\BIC{$\nabla (A \lor B) \Rightarrow \nabla A \lor \nabla B$}
 \end{prooftree}
 
-\subsubsection{}\label{lem:i-nabla-n-dist-or} iSTL $\vdash \nabla^n (A \lor B) \Rightarrow \nabla^n A \lor \nabla^n B$
+\subsection{Lemma}\label{lem:i-nabla-n-dist-or} For all $n > 0$, iSTL $\vdash \nabla^n (A \lor B) \Rightarrow \nabla^n A \lor \nabla^n B$
 
-\textit{Proof}: Let $\mathbf{D_1}$ be the proof of lemma \ref{lem:i-nabla-dist-or}. For $n > 1$
+\textit{Proof}: Let $\mathbf{D_1}$ be the proof of lemma \ref{lem:i-nabla-dist-or}, which proves $n = 1$ case. For $n > 1$
 
 \begin{prooftree}
-	\AXC{}
-	\RightLabel{$\mathbf{D_{n-1}}$}
+	\AXC{$\mathbf{D_{n-1}}$}
+	\noLine
 	\UIC{$\nabla^{n-1} (A \lor B) \Rightarrow \nabla^{n-1} A \lor \nabla^{n-1} B$}
 	\RightLabel{$N$}
 	\UIC{$\nabla^n (A \lor B) \Rightarrow \nabla (\nabla^{n-1} A \lor \nabla^{n-1} B)$}
-	
-	\AXC{}
-	\RightLabel{$\mathbf{D_1}$ \small$\begin{smallmatrix} A:=\nabla^{n-1} A \\ B:=\nabla^{n-1} B \end{smallmatrix}$}
+
+	\AXC{$\mathbf{D_1}$}
+	\noLine
 	\UIC{$\nabla (\nabla^{n-1} A \lor \nabla^{n-1} B) \Rightarrow \nabla^n A \lor \nabla^n B$}
 	
 	\RightLabel{$Cut$} \LeftLabel{$\mathbf{D_n~:~~~~}$}
 	\BIC{$\nabla^n (A \lor B) \Rightarrow \nabla^n A \lor \nabla^n B$}
 \end{prooftree}
 
-\subsubsection{}\label{lem:i-nabla-bot} iSTL $\vdash \nabla \bot \Rightarrow \bot$
+\subsection{Lemma}\label{lem:i-nabla-bot} iSTL $\vdash \nabla \bot \Rightarrow \bot$
 
 \textit{Proof}:
 \begin{prooftree}
@@ -229,47 +229,25 @@ By $\text{iSTL}$ we mean $\text{iSTL}^- + Cut$
 	\BIC{$\nabla \bot \Rightarrow \bot$}
 \end{prooftree}
 
-\subsubsection{}\label{lem:i-nabla-n-bot} iSTL $\vdash \nabla^n \bot \Rightarrow \bot$
+\subsection{Lemma}\label{lem:i-nabla-n-bot} For $n \geq m > 0$, iSTL $\vdash \nabla^n \bot \Rightarrow \nabla^{n-m} \bot$.
 
-\textit{Proof}:
+\textit{Proof}: Let $\mathbf{D_1}$ be the proof of lemma \ref{lem:i-nabla-bot} which handles $n = m = 1$. By induction om $m$, let IH be the proof tree for $\nabla^n \bot \Rightarrow \nabla^{n-(m-1)} \bot$, which we have from the induction hypothesis. Then for $n > 1$
 \begin{prooftree}
-	\AXC{}
-	\RightLabel{\ref{lem:i-nabla-bot}}
-	\UIC{$\nabla \bot \Rightarrow \bot$}
-	\RightLabel{$N^{(n-1)}$} \doubleLine
-	\UIC{$\nabla^n \bot \Rightarrow \nabla^{n-1} \bot$}
-
-	\AXC{}
-	\RightLabel{\ref{lem:i-nabla-bot}}
-	\UIC{$\nabla \bot \Rightarrow \bot$}
-	\RightLabel{$N^{(n-2)}$} \doubleLine
-	\UIC{$\nabla^{n-1} \bot \Rightarrow \nabla^{n-2} \bot$}
-
-	\RightLabel{$Cut$}
-	\BIC{$\nabla^{n} \bot \Rightarrow \nabla^{n-2} \bot$}
-	
-	\AXC{}
-	\RightLabel{\ref{lem:i-nabla-bot}}
-	\UIC{$\nabla \bot \Rightarrow \bot$}
-	\RightLabel{$N^{(n-3)}$} \doubleLine
-	\UIC{$\nabla^{n-2} \bot \Rightarrow \nabla^{n-3} \bot$}
-
-	\RightLabel{$Cut$}
-	\BIC{$\nabla^{n} \bot \Rightarrow \nabla^{n-3} \bot$}
+	\AXC{IH}
 	\noLine
-	\UIC{$\vdots$}
+	\UIC{$\nabla^{n-m} \bot \Rightarrow \nabla^{n-(m-1)} \bot$}
+
+	\AXC{$\mathbf{D_1}$}
 	\noLine
-	\UIC{$\nabla^n \bot \Rightarrow \nabla \bot$}
-	
-	\AXC{}
-	\RightLabel{\ref{lem:i-nabla-bot}}
 	\UIC{$\nabla \bot \Rightarrow \bot$}
-	
+	\doubleLine \RightLabel{$N^{(n-m)}$}
+	\UIC{$\nabla^{n-m+1} \bot \Rightarrow \nabla^{n-m} \bot$}
+
 	\RightLabel{$Cut$}
-	\BIC{$\nabla^n \bot \Rightarrow \bot$}
+	\BIC{$\nabla^n \bot \Rightarrow \nabla^{n-m} \bot$}
 \end{prooftree}
 
-\subsubsection{}\label{lem:i-nabla-dist-imp} iSTL $\vdash \nabla^n (A \rightarrow B) \Rightarrow \nabla^n A \rightarrow \nabla^n B$
+\subsection{Lemma}\label{lem:i-nabla-dist-imp} For any $n > 0$, iSTL $\vdash \nabla^n (A \rightarrow B) \Rightarrow \nabla^n A \rightarrow \nabla^n B$
 
 \textit{Proof}:
 \begin{prooftree}
@@ -291,7 +269,7 @@ By $\text{iSTL}$ we mean $\text{iSTL}^- + Cut$
 	\UIC{$\nabla^n (A \rightarrow B) \Rightarrow \nabla^n A \rightarrow \nabla^n B$}
 \end{prooftree}
 
-\subsubsection{}\label{lem:modus-ponens} iSTL $\vdash A , \nabla (A \rightarrow B) \Rightarrow B$
+\subsection{Lemma}\label{lem:modus-ponens} iSTL $\vdash A , \nabla (A \rightarrow B) \Rightarrow B$
 
 \textit{Proof}:
 \begin{prooftree}
@@ -309,7 +287,7 @@ By $\text{iSTL}$ we mean $\text{iSTL}^- + Cut$
 	\BIC{$A , \nabla (A \rightarrow B) \Rightarrow B$}
 \end{prooftree}
 
-\subsubsection{}\label{lem:impl-elim} If iSTL $\vdash \Rightarrow A \rightarrow B$ then iSTL $\vdash A \Rightarrow B$.
+\subsection{Lemma}\label{lem:impl-elim} If iSTL $\vdash \Rightarrow A \rightarrow B$ then iSTL $\vdash A \Rightarrow B$.
 
 \textit{Proof}:
 \begin{prooftree}
@@ -325,36 +303,15 @@ By $\text{iSTL}$ we mean $\text{iSTL}^- + Cut$
 	\BIC{$A \Rightarrow B$}
 \end{prooftree}
 
-\subsubsection{}\label{lem:conj-context} iSTL $\vdash \{ A_i \}_{i=1}^n \Rightarrow \bigwedge_{i=1}^n A_i$
+\subsection{Lemma}\label{lem:conj-context} For $n \geq 0$, iSTL $\vdash \{ A_i \}_{i=1}^n \Rightarrow \bigwedge_{i=1}^n A_i$
 
-\textit{Proof}:
+\textit{Proof}: For $n = 1$ we have $A_1 \Rightarrow A_1$ by $Id$. By induction on $n$, let IH be the proof tree for $\{ A_n \}_{i=1}^{n-1} \Rightarrow \bigwedge_{i=1}^{n-1}$, which we have from the induction hypothesis. For $n > 1$
 \begin{prooftree}
-	\AXC{}
-	\RightLabel{$Id$}
-	\UIC{$A_1 \Rightarrow A_1$}
-	\doubleLine \RightLabel{$Lw$}
-	\UIC{$\{ A_i \}_{i=0}^n \Rightarrow A_1$}
-
-	\AXC{}
-	\RightLabel{$Id$}
-	\UIC{$A_2 \Rightarrow A_2$}
-	\doubleLine \RightLabel{$Lw$}
-	\UIC{$\{ A_i \}_{i=0}^n \Rightarrow A_2$}
-
-	
+	\AXC{IH}
 	\noLine
-	\BIC{$\vdots$}
-	\RightLabel{$R\land$}
-	\UIC{$\{ A_i \}_{i=1}^n \Rightarrow \bigwedge_{i=1}^{n-2} A_i$}
-	
-	\AXC{}
-	\RightLabel{$Id$}
-	\UIC{$A_{n-1} \Rightarrow A_{n-1}$}
-	\doubleLine \RightLabel{$Lw$}
-	\UIC{$\{ A_i \}_{i=1}^n \Rightarrow A_{n-1}$}
-
-	\RightLabel{$R\land$}
-	\BIC{$\{ A_i \}_{i=1}^n \Rightarrow \bigwedge_{i=1}^{n-1} A_i$}
+	\UIC{$\{ A_i \}_{i=1}^{n-1} \Rightarrow \bigwedge_{i=1}^{n-1} A_i$}
+	\RightLabel{$Lw$}
+	\UIC{$\{ A_i \}_{i=1}^n \Rightarrow \bigwedge_{i=1}^{n-1} A_i$}
 
 	\AXC{}
 	\RightLabel{$Id$}
