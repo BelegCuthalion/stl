@@ -3,16 +3,16 @@
 
 \begin{document}
 {\noindent
-	v 0.5.2 \\
+	v 0.6.1 \\
 {\large\textbf{Some notes about iSTL}}
 }
 \\
 \setcounter{section}{-1}
-\section{Notation} In the following $\Gamma$, $\Sigma$ and $\Pi$ are names for finite multi-sets of formulas, $\Delta$ for sub-singleton of some formula, $A$, $B$ and $C$ for formulas and $n$, $l$, $r$ and $k$ for natural numbers.
+\section{Notation} In the following $\Gamma$, $\Sigma$ and $\Pi$ are names for finite multi-sets of formulas, $\Delta$ for sub-singleton of some formula, $A$, $B$ and $C$ for formulas, $p$ for propositional variables and $n$, $l$, $r$ and $k$ for natural numbers. We denote by $P$ the set of all propositional variables, and by $P(A)$ the set of those that occur in the formula $A$.
 
 We will write $A$ for the singleton $\{A\}$ where ever it is inferable from the context.
 ``$,$'' is the multi-set union.
-$A^1$ is $\{A\}$ and $A^{n+1}$ is $A^n, A$. $\Gamma^n$ means $\{ A^n : A \in \Gamma \}$.
+We will also write $A^1$ for $\{A\}$, write $A^{n+1}$ for $A^n, A$, write $\Gamma^n$ for $\{ A^n : A \in \Gamma \}$ and write $P(\Gamma)$ for $\bigcup_{A \in \Gamma} P(A)$
 
 A sequent $\Gamma \Rightarrow \Delta$ is a binary relation between $\Gamma$, a multi-set of formulas, and $\Delta$, a sub-singleton of some formula
 
@@ -24,4 +24,6 @@ A sequent $\Gamma \Rightarrow \Delta$ is a binary relation between $\Gamma$, a m
 \input{cut-elimination}
 
 \input{rules}
+
+\input{interpolation}
 \end{document}
