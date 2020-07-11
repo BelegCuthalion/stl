@@ -96,22 +96,38 @@
 		We have from IH $\Gamma_2' \Rightarrow C_1$ and $\Gamma_2' , C_2 \Rightarrow \Delta$, from which we can derive $\Gamma_2' , \nabla (C_1 \rightarrow C_2)$ by an application of $L\rightarrow$. We also have from IH $P(C_1) \subseteq P(\Gamma_2') \cap P(\Gamma_1' , \nabla^n A)$ and $P(C_2) \subseteq P(\Gamma_1' , \nabla^n B) \cap P(\Gamma_2' , \Delta)$. Then $P(\nabla (C_1 \rightarrow C_2)) \subseteq P(\Gamma_1' , \nabla^{n+1} (A \rightarrow B)) \cap P(\Gamma_2' , \Delta)$.
 	\end{enumerate}
 
-	\item ($R\rightarrow$) $\mathbf{D}$ proves $\Gamma_1 , \Gamma_2 \Rightarrow A \rightarrow B$ and has a sub-proof for $\nabla \Gamma_1 , \nabla \Gamma_2 , A \Rightarrow B$. Let $C = C_{\langle\Gamma_1';\Gamma_2',A;B\rangle}$.
-	\todo{}
-	{\color{red} Intuitionistic implication does not help.\\  If we strengthen the theorem so that interpolants are $\nabla$-irrelevant, i.e. $C \Leftrightarrow \nabla C$}
-	\begin{prooftree}
-		\AXC{} \RightLabel{IH}
-		\UIC{$\nabla C \Rightarrow C$}
+	\item ($R\rightarrow$) $\mathbf{D}$ proves $\Gamma_1 , \Gamma_2 \Rightarrow A \rightarrow B$ and has a sub-proof for $\nabla \Gamma_1 , \nabla \Gamma_2 , A \Rightarrow B$. Let $C = C_{\langle\nabla\Gamma_1;\nabla\Gamma_2,A;B\rangle}$ and we have
+	\begin{multicols}{2}
+		\begin{prooftree}
+			\AXC{IH} \noLine
+			\UIC{$\nabla \Gamma_1 \Rightarrow C$}
+			\RightLabel{$Lw$}
+			\UIC{$\nabla \Gamma_1 , \top \Rightarrow C$}
+			\RightLabel{$R\rightarrow$}
+			\UIC{$\Gamma_1 \Rightarrow \top \rightarrow C$}
+		\end{prooftree}
+		\columnbreak
+		\begin{prooftree}
+			\AXC{} \RightLabel{$Ta$}
+			\UIC{$\Rightarrow \top$}
 
-		\AXC{} \RightLabel{IH}
-		\UIC{$\nabla \Gamma_2 , A , C \Rightarrow B$}
+			\AXC{} \RightLabel{$Id$}
+			\UIC{$C \Rightarrow C$}
 
-		\RightLabel{$Cut$}
-		\BIC{$\nabla \Gamma_2 , A , \nabla C \Rightarrow B$}
-		\RightLabel{$R\rightarrow$}
-		\UIC{$\Gamma_2 , C , \Rightarrow A \rightarrow B$}
-	\end{prooftree}
-	IH also gives $\nabla \Gamma_1 \Rightarrow C$ and $C \Rightarrow \nabla C$. We cut them to $\nabla \Gamma_1 \Rightarrow \nabla C$. Since $N'$ is invertible {\color{red} (it is so)}, we have $\Gamma_1 \Rightarrow C$. {\color{red} Constructed interpolant in other cases are also $\nabla$-irrelevant, except $L\rightarrow$, that needs $\nabla C_1 \rightarrow \nabla C_2 \Rightarrow \nabla (C_1 \rightarrow C_2)$ again.}
-	
+			\RightLabel{$L\rightarrow$}
+			\BIC{$\nabla (\top \rightarrow C) \Rightarrow C$}
+
+			\AXC{IH} \noLine
+			\UIC{$\nabla \Gamma_2 , A , C \Rightarrow B$}
+
+			\RightLabel{$Cut$}
+			\BIC{$\nabla \Gamma_2 , A , \nabla (\top \rightarrow C) \Rightarrow B$}
+
+			\RightLabel{$R\rightarrow$}
+			\UIC{$\Gamma_2 , \top \rightarrow C \Rightarrow A \rightarrow B$}
+		\end{prooftree}
+	\end{multicols}
+	We also have $P(\top \rightarrow C) \subseteq P(\Gamma_1) \cap P(\Gamma_2 , A \rightarrow B)$ from IH and the fact that $P$ preserves sub-formula ordering in $\subseteq$ and $\top$ does not introduce new atomic formulas.
+
 	\item ($N'$) $\mathbf{D}$ proves $\nabla \Gamma_1 , \nabla \Gamma_2 \Rightarrow \nabla \Delta$ and has a sub-proof for $\Gamma_1 , \Gamma_2 \Rightarrow \Delta$. Just take $C = C(\Gamma_1;\Gamma_2;\Delta)$ and apply $N'$ on the sequents from IH. The variable condition is also trivial from IH.
 \end{enumerate}
