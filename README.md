@@ -1,1 +1,1 @@
- - [Cut Elimination](https://github.com/BelegCuthalion/stl/releases/latest/download/cut-elimination.pdf)
+ - [Latest release](https://github.com/BelegCuthalion/stl/releases/latest/download/spacetime-logics.pdf)
