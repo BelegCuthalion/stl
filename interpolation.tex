@@ -1,5 +1,7 @@
 \section{Interpolation}
 
+\subsection{Lemma} For any $\Delta_1$
+
 \subsection{Theorem} \textit{Craig's Interpolation for GSTL$^-$: } For any $\Gamma_1$, $\Gamma_2$ and $\Delta$, if GSTL$^-\vdash \Gamma_1 , \Gamma_2 \Rightarrow \Delta$, then there is a formula $C$ such that $P(C) \subseteq P(\Gamma_1) \cap P(\Gamma_2 , \Delta)$, GSTL$^-\vdash \Gamma_1 \Rightarrow C$ and GSTL$^-\vdash \Gamma_2 , C \Rightarrow \Delta$.
 
 \textit{Proof}: Let $\mathbf{D}$ be the GSTL$^-$ proof of $\Gamma_1 , \Gamma_2 \Rightarrow \Delta$. We will use induction on $h(\mathbf{D})$. So for any $\Gamma_1'$, $\Gamma_2'$ and $\Delta'$ such that GSTL$^-\vdash \Gamma_1' , \Gamma_2' \Rightarrow \Delta'$ with a proof smaller than $\mathbf{D}$, the induction hypothesis (IH) gives an interpolant $C_{\langle\Gamma_1'; \Gamma_2'; \Delta'\rangle}$ for which the statement of the theorem is true. We now build the desired interpolant $C$, in different cases for the last rule of $\mathbf{D}$. In cases for left-rules, we also need to consider whether the principal formula is in $\Gamma_1$ or $\Gamma_2$ in separate cases.
@@ -108,14 +110,8 @@
 		\end{prooftree}
 		\columnbreak
 		\begin{prooftree}
-			\AXC{} \RightLabel{$Ta$}
-			\UIC{$\Rightarrow \top$}
-
-			\AXC{} \RightLabel{$Id$}
-			\UIC{$C \Rightarrow C$}
-
-			\RightLabel{$L\rightarrow$}
-			\BIC{$\nabla (\top \rightarrow C) \Rightarrow C$}
+			\AXC{Lemma \ref{lem:i-nabla-box}} \noLine
+			\UIC{$\nabla (\top \rightarrow C) \Rightarrow C$}
 
 			\AXC{IH} \noLine
 			\UIC{$\nabla \Gamma_2 , A , C \Rightarrow B$}

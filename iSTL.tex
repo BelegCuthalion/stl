@@ -137,6 +137,36 @@
 	\RightLabel{$R\land$}
 	\BIC{$\nabla^n (A \land B) \Rightarrow \nabla^n A \land \nabla^n B$}
 \end{prooftree}
+\subsection{Lemma}\label{lem:i-nabla-box} iSTL $\vdash \nabla (\top \rightarrow A) \Rightarrow A$.
+
+\textit{Proof}:
+\begin{prooftree}
+	\AXC{}
+	\RightLabel{$Ta$}
+	\UIC{$\Rightarrow \top$}
+
+	\AXC{}
+	\RightLabel{$Id$}
+	\UIC{$A \Rightarrow A$}
+
+	\RightLabel{$L\rightarrow$}
+	\BIC{$\nabla (\top \rightarrow A) \Rightarrow A$}
+\end{prooftree}
+
+\subsection{Lemma}\label{lem:i-box-nabla} iSTL $\vdash A \Rightarrow \top \rightarrow \nabla A$.
+
+\textit{Proof}:
+\begin{prooftree}
+	\AXC{}
+	\RightLabel{$Id$}
+	\UIC{$\nabla A \Rightarrow \nabla A$}
+	
+	\RightLabel{$Lw$}
+	\UIC{$\nabla A , \top \Rightarrow \nabla A$}
+
+	\RightLabel{$R\rightarrow$}
+	\UIC{$A \Rightarrow \top \rightarrow \nabla A$}
+\end{prooftree}
 
 \subsection{Lemma}\label{lem:i-nabla-dist-or} iSTL $\vdash \nabla (A \lor B) \Rightarrow \nabla A \lor \nabla B$
 
@@ -168,16 +198,8 @@
 	\UIC{$\nabla (A \lor B) \Rightarrow \nabla (\top \rightarrow (\nabla A \lor \nabla B))$}
 
 
-	\AXC{}
-	\RightLabel{$Ta$}
-	\UIC{$\Rightarrow \top$}
-
-	\AXC{}
-	\RightLabel{$Id$}
-	\UIC{$\nabla A \lor \nabla B \Rightarrow \nabla A \lor \nabla B$}
-
-	\RightLabel{$L\rightarrow$}
-	\BIC{$\nabla (\top \rightarrow (\nabla A \lor \nabla B)) \Rightarrow \nabla A \lor \nabla B$}
+	\AXC{Lemma \ref{lem:i-nabla-box}} \noLine
+	\UIC{$\nabla (\top \rightarrow (\nabla A \lor \nabla B)) \Rightarrow \nabla A \lor \nabla B$}
 
 
 
@@ -216,14 +238,8 @@
 	\RightLabel{$N$}
 	\UIC{$\nabla \bot \Rightarrow \nabla (\top \rightarrow \bot)$}
 
-	\AXC{}
-	\RightLabel{$Ta$}
-	\UIC{$\Rightarrow \top$}	
-	\AXC{}
-	\RightLabel{$Id$}
-	\UIC{$\bot \Rightarrow \bot$}
-	\RightLabel{$L\rightarrow$}
-	\BIC{$\nabla (\top \rightarrow \bot) \Rightarrow \bot$}
+	\AXC{Lemma \ref{lem:i-nabla-box}} \noLine
+	\UIC{$\nabla (\top \rightarrow \bot) \Rightarrow \bot$}
 	
 	\RightLabel{$Cut$}
 	\BIC{$\nabla \bot \Rightarrow \bot$}
@@ -295,8 +311,7 @@
 	\RightLabel{$N$}
 	\UIC{$\Rightarrow \nabla (A \rightarrow B)$}
 
-	\AXC{}
-	\RightLabel{\ref{lem:modus-ponens}}
+	\AXC{Lemma \ref{lem:modus-ponens}} \noLine
 	\UIC{$A, \nabla (A \rightarrow B) \Rightarrow B$}
 	
 	\RightLabel{$Cut$}
