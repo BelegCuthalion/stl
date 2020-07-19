@@ -1,13 +1,13 @@
 \section{Cut Elimination for GSTL}
 
-\subsection{Lemma}\label{true-assum} If $~\small\text{GSTL}^{MC} \vdash \Gamma , (\nabla^r \top)^n \Rightarrow \Delta$ then $\small\text{GSTL}^{MC} \vdash \Gamma \Rightarrow \Delta$ with a proof of at most the same rank.
+\subsection{Lemma}\label{true-assum} If $\vdash_{GSTL^{MC}} \Gamma , (\nabla^r \top)^n \Rightarrow \Delta$ then $\vdash_{GSTL^{MC}} \Gamma \Rightarrow \Delta$ with a proof of at most the same rank.
 
 \textit{Proof}: Suppose $\mathbf{D}$ is a proof tree for $\Gamma , (\nabla^r \top)^n \Rightarrow \Delta$. By induction on $h(\mathbf{D})$, induction hypothesis states that for an arbitrary proof tree $\mathbf{D}'$ with conclusion $\Gamma' , (\nabla^{r'} \top)^{n'} \Rightarrow \Delta'$ such that $h(\mathbf{D}') < h(\mathbf{D})$, there is a proof $\mathbf{D}''$ of $\Gamma' \Rightarrow \Delta'$ such that $\rho(\mathbf{D}'') \leq \rho(\mathbf{D}')$. Notice that induction hypothesis is applicable to any proof tree of lower length, with no restrictions on $\Gamma'$, $\Delta'$, $n'$ or $r'$.
 
 Consider different cases for the last rule of $\mathbf{D}$, with possible sub-trees $\mathbf{D_0}$ and $\mathbf{D_1}$. $Ta$ and $Ex$ cases are trivially ruled out. In $Id$ case, which implies $n = 1$, we have $\Rightarrow \nabla^r \top$ by $r$ times applications of $N'$ on $Ta$. In $Lw$ case, where an instance of $\top$ is principal and $n = 1$, $\mathbf{D_0}$ itself proves the desired sequent. If $n > 1$, then the induction hypothesis with $n' = n - 1$ gives the desired sequent. $Lc$ on an instance of $\top$ is similar, with $n' = n + 1$. In all other cases, just apply induction hypothesis on $\mathbf{D_0}$ (and possibly $\mathbf{D_1}$), then the same last rule. Notice that in all cases we must apply the induction hypothesis with $n' = n$ and $r' = r$, except for $R\rightarrow$ and $N'$, in which we apply it with $r' = r + 1$ and $r' = r - 1$ respectively. Also notice that $MC$ is not used except in $MC$ case, where it is applied with the same cut-formula, so the resulting proof tree is not of a higher rank than $\mathbf{D}$.
 
-\subsection{Theorem}\label{cut-admis} \emph{Cut Reduction for GSTL$^{MC}$: } For any $\Gamma$, $\Sigma$, $\Delta$, $A$, $l$ and $n$, if $~\small\text{GSTL}^{MC} \vdash \Gamma \Rightarrow A$ and $\small\text{GSTL}^{MC} \vdash \Sigma , (\nabla^l A)^n \Rightarrow \Delta$ with proof trees of ranks less than $\rho(A)$, then
- $\small\text{GSTL}^{MC} \vdash \nabla^l \Gamma , \Sigma \Rightarrow \Delta$ also with a proof tree of a rank less than $\rho(A)$.
+\subsection{Theorem}\label{cut-admis} \emph{Cut Reduction for GSTL$^{MC}$: } For any $\Gamma$, $\Sigma$, $\Delta$, $A$, $l$ and $n$, if $\vdash_{GSTL^{MC}} \Gamma \Rightarrow A$ and $\vdash_{GSTL^{MC}} \Sigma , (\nabla^l A)^n \Rightarrow \Delta$ with proof trees of ranks less than $\rho(A)$, then
+ $\vdash_{GSTL^{MC}} \nabla^l \Gamma , \Sigma \Rightarrow \Delta$ also with a proof tree of a rank less than $\rho(A)$.
  
 \textit{Proof}:
 Let $\mathbf{D_0}$ and $\mathbf{D_1}$ be proof trees of ranks less than $\rho(A)$, with conclusions $\Gamma \Rightarrow A$ and $\Sigma , (\nabla^l A)^n \Rightarrow \Delta$ and heights $h(\mathbf{D_0})$ and $h(\mathbf{D_1})$ respectively.
@@ -134,7 +134,7 @@ We proceed by case analysis on the last rule in $\mathbf{D_0}$. In each case we 
 \end{enumerate}
 
 \subsection{Corollary} \label{cut-elim} \emph{Cut Elimination for GSTL: }
-If $\small\text{GSTL}\vdash \Gamma \Rightarrow \Delta$, then $\small\text{GSTL}^-\vdash \Gamma \Rightarrow \Delta$.
+If $\vdash_{GSTL} \Gamma \Rightarrow \Delta$, then $\vdash_{GSTL^-} \Gamma \Rightarrow \Delta$.
 
 \textit{Proof}: First, we will show that for any proof of $\Gamma \Rightarrow \Delta$ like $\mathbf{D}$ in GSTL$^{MC}$, there is another proof of the same sequent with a lower rank. Using induction on $h(\mathbf{D})$, the induction hypothesis states that for any proof of $\Gamma' \Rightarrow \Delta'$ like $\mathbf{D}'$ such that $h(\mathbf{D}') < h(\mathbf{D})$, there is another proof of $\Gamma' \Rightarrow \Delta'$ like $\mathbf{D}''$ such that $\rho(\mathbf{D}'') < \rho(\mathbf{D}')$. Particularly for the immediate sub-trees of $\mathbf{D}$, this gives us sub-trees with lower cut-rank, which we call $\mathbf{D}_i$. We now consider two cases for the last rule of $\mathbf{D}$
 

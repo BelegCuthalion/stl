@@ -139,11 +139,11 @@ Notice that $\nabla$ does not increase rank.
 We also define rank for rule instances and proof trees. For an instance of the $MC$ rule $c$ with cut-formula $A$, $\rho(c) = \rho(A)$, $0$ if it's not an instance of the $MC$ rule.
 For a proof tree $\mathbf{D}$, $\rho(\mathbf{D})$ is the maximum rank of its rule instances.
 
-\subsection{Theorem}\label{thm:g-mc} If GSTL$\vdash \Gamma \Rightarrow \Delta$ then GSTL$^{MC} \vdash \Gamma \Rightarrow \Delta$.
+\subsection{Theorem}\label{thm:g-mc} If $\vdash_{GSTL} \Gamma \Rightarrow \Delta$ then $\vdash_{GSTL^{MC}} \Gamma \Rightarrow \Delta$.
 
 \textit{Proof}: Just replace any instance of $Cut$ with similar instance of $MC$, with $l = 0$ and $n = 1$.
 
-\section{Theorem} \label{translation} For any $\Gamma$ and $\Delta$, $\text{GSTL} \vdash \Gamma \Rightarrow \Delta$ if and only if $\text{iSTL} \vdash \Gamma \Rightarrow \Delta$.
+\section{Theorem} \label{translation} For any $\Gamma$ and $\Delta$, $\vdash_{GSTL} \Gamma \Rightarrow \Delta$ if and only if $\vdash_{iSTL} \Gamma \Rightarrow \Delta$.
 
 \textit{Proof}:
 

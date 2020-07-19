@@ -114,7 +114,7 @@
 	\BIC{$\Gamma , \Sigma \Rightarrow \Delta$}
 \end{prooftree}
 
-\subsection{Lemma}\label{lem:i-nabla-dist-and} For all $n > 0$, iSTL $\vdash \nabla^n (A \land B) \Rightarrow \nabla^n A \land \nabla^n B$
+\subsection{Lemma}\label{lem:i-nabla-dist-and} For all $n > 0$, $\vdash_{iSTL} \nabla^n (A \land B) \Rightarrow \nabla^n A \land \nabla^n B$
 
 \textit{Proof}:
 \begin{prooftree}
@@ -137,7 +137,7 @@
 	\RightLabel{$R\land$}
 	\BIC{$\nabla^n (A \land B) \Rightarrow \nabla^n A \land \nabla^n B$}
 \end{prooftree}
-\subsection{Lemma}\label{lem:i-nabla-box} iSTL $\vdash \nabla (\top \rightarrow A) \Rightarrow A$.
+\subsection{Lemma}\label{lem:i-nabla-box} $\vdash_{iSTL} \nabla (\top \rightarrow A) \Rightarrow A$.
 
 \textit{Proof}:
 \begin{prooftree}
@@ -153,7 +153,7 @@
 	\BIC{$\nabla (\top \rightarrow A) \Rightarrow A$}
 \end{prooftree}
 
-\subsection{Lemma}\label{lem:i-box-nabla} iSTL $\vdash A \Rightarrow \top \rightarrow \nabla A$.
+\subsection{Lemma}\label{lem:i-box-nabla} $\vdash_{iSTL} A \Rightarrow \top \rightarrow \nabla A$.
 
 \textit{Proof}:
 \begin{prooftree}
@@ -168,7 +168,7 @@
 	\UIC{$A \Rightarrow \top \rightarrow \nabla A$}
 \end{prooftree}
 
-\subsection{Lemma}\label{lem:i-nabla-dist-or} iSTL $\vdash \nabla (A \lor B) \Rightarrow \nabla A \lor \nabla B$
+\subsection{Lemma}\label{lem:i-nabla-dist-or} $\vdash_{iSTL} \nabla (A \lor B) \Rightarrow \nabla A \lor \nabla B$
 
 \textit{Proof}:
 \begin{prooftree}
@@ -207,7 +207,7 @@
 	\BIC{$\nabla (A \lor B) \Rightarrow \nabla A \lor \nabla B$}
 \end{prooftree}
 
-\subsection{Lemma}\label{lem:i-nabla-n-dist-or} For all $n > 0$, iSTL $\vdash \nabla^n (A \lor B) \Rightarrow \nabla^n A \lor \nabla^n B$
+\subsection{Lemma}\label{lem:i-nabla-n-dist-or} For all $n > 0$, $\vdash_{iSTL} \nabla^n (A \lor B) \Rightarrow \nabla^n A \lor \nabla^n B$
 
 \textit{Proof}: Let $\mathbf{D_1}$ be the proof of lemma \ref{lem:i-nabla-dist-or}, which proves $n = 1$ case. For $n > 1$
 
@@ -226,7 +226,7 @@
 	\BIC{$\nabla^n (A \lor B) \Rightarrow \nabla^n A \lor \nabla^n B$}
 \end{prooftree}
 
-\subsection{Lemma}\label{lem:i-nabla-bot} iSTL $\vdash \nabla \bot \Rightarrow \bot$
+\subsection{Lemma}\label{lem:i-nabla-bot} $\vdash_{iSTL} \nabla \bot \Rightarrow \bot$
 
 \textit{Proof}:
 \begin{prooftree}
@@ -245,7 +245,7 @@
 	\BIC{$\nabla \bot \Rightarrow \bot$}
 \end{prooftree}
 
-\subsection{Lemma}\label{lem:i-nabla-n-bot} For $n \geq m > 0$, iSTL $\vdash \nabla^n \bot \Rightarrow \nabla^{n-m} \bot$.
+\subsection{Lemma}\label{lem:i-nabla-n-bot} For $n \geq m > 0$, $\vdash_{iSTL} \nabla^n \bot \Rightarrow \nabla^{n-m} \bot$.
 
 \textit{Proof}: Let $\mathbf{D_1}$ be the proof of lemma \ref{lem:i-nabla-bot} which handles $n = m = 1$. By induction om $m$, let IH be the proof tree for $\nabla^n \bot \Rightarrow \nabla^{n-(m-1)} \bot$, which we have from the induction hypothesis. Then for $n > 1$
 \begin{prooftree}
@@ -263,7 +263,7 @@
 	\BIC{$\nabla^n \bot \Rightarrow \nabla^{n-m} \bot$}
 \end{prooftree}
 
-\subsection{Lemma}\label{lem:i-nabla-dist-imp} For any $n > 0$, iSTL $\vdash \nabla^n (A \rightarrow B) \Rightarrow \nabla^n A \rightarrow \nabla^n B$
+\subsection{Lemma}\label{lem:i-nabla-dist-imp} For any $n > 0$, $\vdash_{iSTL} \nabla^n (A \rightarrow B) \Rightarrow \nabla^n A \rightarrow \nabla^n B$
 
 \textit{Proof}:
 \begin{prooftree}
@@ -285,7 +285,7 @@
 	\UIC{$\nabla^n (A \rightarrow B) \Rightarrow \nabla^n A \rightarrow \nabla^n B$}
 \end{prooftree}
 
-\subsection{Lemma}\label{lem:modus-ponens} iSTL $\vdash A , \nabla (A \rightarrow B) \Rightarrow B$
+\subsection{Lemma}\label{lem:modus-ponens} $\vdash_{iSTL} A , \nabla (A \rightarrow B) \Rightarrow B$
 
 \textit{Proof}:
 \begin{prooftree}
@@ -303,7 +303,7 @@
 	\BIC{$A , \nabla (A \rightarrow B) \Rightarrow B$}
 \end{prooftree}
 
-\subsection{Lemma}\label{lem:impl-elim} If iSTL $\vdash \Rightarrow A \rightarrow B$ then iSTL $\vdash A \Rightarrow B$.
+\subsection{Lemma}\label{lem:impl-elim} $\Rightarrow A \rightarrow B \vdash_{iSTL} A \Rightarrow B$.
 
 \textit{Proof}:
 \begin{prooftree}
@@ -318,7 +318,7 @@
 	\BIC{$A \Rightarrow B$}
 \end{prooftree}
 
-\subsection{Lemma}\label{lem:conj-context} For $n \geq 0$, iSTL $\vdash \{ A_i \}_{i=1}^n \Rightarrow \bigwedge_{i=1}^n A_i$
+\subsection{Lemma}\label{lem:conj-context} For $n \geq 0$, $\vdash_{iSTL} \{ A_i \}_{i=1}^n \Rightarrow \bigwedge_{i=1}^n A_i$
 
 \textit{Proof}: For $n = 1$ we have $A_1 \Rightarrow A_1$ by $Id$. By induction on $n$, let IH be the proof tree for $\{ A_n \}_{i=1}^{n-1} \Rightarrow \bigwedge_{i=1}^{n-1}$, which we have from the induction hypothesis. For $n > 1$
 \begin{prooftree}
