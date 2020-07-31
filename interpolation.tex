@@ -1,9 +1,8 @@
 \section{Interpolation}
 
-\subsection{Lemma}\label{lem:vdash} $\Rightarrow \Delta' \vdash_{iSTL} \Gamma \Rightarrow \Delta$ if and only if $\vdash_{iSTL} \{ \nabla^a \Box^b \Delta'\}_{(a,b) \in I} , \Gamma \Rightarrow \Delta$ for some finite set of pairs of natural numbers $I$.
+\subsection{Lemma}\label{lem:vdash} $\Rightarrow A \vdash_{iSTL} \Gamma \Rightarrow \Delta$ if and only if $\vdash_{iSTL} \{ \nabla^a \Box^b A\}_{(a,b) \in I} , \Gamma \Rightarrow \Delta$ for some finite set of pairs of natural numbers $I$.
 
 \textit{Proof}:
-If $\Delta' = \{\}$ then this is trivial by \todo{It is not true, actually.} So we can assume $\Delta' = A$ for some formula $A$. \\
 
 I. Suppose we have $\Rightarrow A$ and $\{ \nabla^a \Box^b A\}_{(a,b) \in I} , \Gamma \Rightarrow \Delta$ for some finite set of pairs of natural numbers $I$. First for any $(a,b) \in I$, construct $\Rightarrow \nabla^a \Box^b A$ from $\Rightarrow A$ as follows. Introduce $\top$ in the left side with $Lw$ and apply $R\rightarrow$ to get $\Rightarrow \top \rightarrow A$. Repeat $b$ times to get $\Rightarrow \Box^b A$. Then $a$ applications of $N$ yields $\Rightarrow \nabla^a \Box^b A$. Now $Cut$ all of them into $\{ \nabla^a \Box^b A\}_{(a,b) \in I} , \Gamma \Rightarrow \Delta$ to get $\Gamma \Rightarrow \Delta$. \\
 
