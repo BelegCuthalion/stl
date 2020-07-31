@@ -1,6 +1,78 @@
 \section{Interpolation}
 
-\subsection{Lemma} For any $\Delta_1$
+\subsection{Lemma}\label{lem:vdash} $\Rightarrow \Delta' \vdash_{iSTL} \Gamma \Rightarrow \Delta$ if and only if $\vdash_{iSTL} \{ \nabla^a \Box^b \Delta'\}_{(a,b) \in I} , \Gamma \Rightarrow \Delta$ for some finite set of pairs of natural numbers $I$.
+
+\textit{Proof}:
+If $\Delta' = \{\}$ then this is trivial by \todo{It is not true, actually.} So we can assume $\Delta' = A$ for some formula $A$. \\
+
+I. Suppose we have $\Rightarrow A$ and $\{ \nabla^a \Box^b A\}_{(a,b) \in I} , \Gamma \Rightarrow \Delta$ for some finite set of pairs of natural numbers $I$. First for any $(a,b) \in I$, construct $\Rightarrow \nabla^a \Box^b A$ from $\Rightarrow A$ as follows. Introduce $\top$ in the left side with $Lw$ and apply $R\rightarrow$ to get $\Rightarrow \top \rightarrow A$. Repeat $b$ times to get $\Rightarrow \Box^b A$. Then $a$ applications of $N$ yields $\Rightarrow \nabla^a \Box^b A$. Now $Cut$ all of them into $\{ \nabla^a \Box^b A\}_{(a,b) \in I} , \Gamma \Rightarrow \Delta$ to get $\Gamma \Rightarrow \Delta$. \\
+
+II. Suppose $\Rightarrow A \vdash_{iSTL} \Gamma \Rightarrow \Delta$ by a proof tree $\mathbf{D}$. By induction on the length of $\mathbf{D}$, for any $\Gamma'$, $\Delta'$ and any iSTL$+A$ proof tree $\mathbf{D}'$ which proves $\Gamma' \Rightarrow \Delta'$ in lower length than $\mathbf{D}$, we can assume there is an iSTL proof tree IH($\mathbf{D}'$) that proves $\{\nabla^a \Box^b A\}_{(a,b) \in I_{IH(\mathbf{D}')}} , \Gamma' \Rightarrow \Delta'$ for some set of pairs of natural numbers $I_{IH(\mathbf{D}')}$.
+
+For different possible rules in iSTL$+A$ as the last rule of $\mathbf{D}$, we will construct an iSTL proof of $\{ \nabla^a \Box^b A\}_{(a,b) \in I} , \Gamma \Rightarrow \Delta$ for some finite set of pairs natural numbers $I$. In all cases, the possible immediate sub-trees of $\mathbf{D}$ are called $\mathbf{D_0}$ and $\mathbf{D_1}$.
+\begin{enumerate}
+	\setcounter{enumi}{-1}
+	\item ($\Rightarrow A$) This implies $\Gamma = \{\}$ and $\Delta = A$. Then we have $A \Rightarrow A$ by $Id$.
+
+	\item ($Id$) This implies $\Gamma = \Delta = A$. Then $A \Rightarrow A$ by $Id$.
+
+	\item ($Ta$) This implies $\Gamma = \{\}$ and $\Delta = \top$. We have $\Rightarrow \top$ by $Ta$.
+
+	\item ($Ex$) This implies $\Gamma = \bot$ and $\Delta = \{\}$. We have $\bot \Rightarrow$ by $Ex$.
+
+	\item[4-10.] ($Lw$),($Lc$),($Rw$),($L\land_1$),($L\land_2$),($R\lor_1$),($R\lor_2$) Just apply the same rule on IH($\mathbf{D_0}$). Notice that $I$ would be the same set we get from the induction hypothesis.
+	\setcounter{enumi}{10}
+
+	\item ($N$) Same as the previous cases, except that $I = \{ (a + 1 , b) : (a , b) \in I_{IH(\mathbf{D_0})} \}$, where $I_{IH(\mathbf{D_0})}$ is the set from the induction hypothesis.
+
+	\item ($Cut$) Just apply $Cut$ on IH($\mathbf{D_0}$) and IH($\mathbf{D_1}$). Notice that $I = I_{IH(\mathbf{D_0})} \cup I_{IH(\mathbf{D_1})}$.
+
+	\item[13,14,15.] ($R\land$), ($L\lor$), ($L\rightarrow$) Same as the $Cut$ case, except that before applying the corresponding rule to IH($\mathbf{D_0}$) and IH($\mathbf{D_1}$), we must first equalize their contexts using enough applications of $Lw$, to $\{ \nabla^a \Box^b A \}_{(a,b) \in I_{IH(\mathbf{D_0})} \cup I_{IH(\mathbf{D_1})}}$.
+	\setcounter{enumi}{15}
+
+	\item ($R\rightarrow$) If $a = 0$ for some $(a,b) \in I_{IH(\mathbf{D_0})}$, then $R\rightarrow$ is not applicable on IH($\mathbf{D_0}$). We have $\nabla \Box^{b+1} A \Rightarrow \Box^b A$ from lemma \ref{lem:i-nabla-box}. For all such $(0,b) \in I_{IH(\mathbf{D_0})}$ we first $Cut$ this into IH($\mathbf{D_0}$), so that the context has at least one $\nabla$ before applying $R\rightarrow$. Notice that $I = \{ (a, b) : (a+1, b) \in I \} \cup$ $\{ (0, b+1) : (0, b) \in I \}$.
+\end{enumerate}
+
+\subsection{Theorem} \textit{Deductive Interpolation for iSTL: } For any $\Delta'$ and $\Delta$, if $\Rightarrow \Delta' \vdash_{iSTL} \Rightarrow \Delta$ then there exists a formula $C$ such that
+\begin{enumerate}
+	\item $\Rightarrow \Delta' \vdash_{iSTL} \Rightarrow C$,
+	\item $\Rightarrow C \vdash_{iSTL} \Rightarrow \Delta$ and
+	\item $P(C) \subseteq P(\Delta') \cap P(\Delta)$.
+\end{enumerate}
+
+\textit{Proof}: In case $\Delta' = \{\}$, just take $C = \bot$. Now let's assume $\Delta' = A$ for some formula $A$. It is also necessary to strengthen the statement of the theorem so that $\Rightarrow \Delta$ has an antecedent like $\Gamma$, i.e. $\Rightarrow A \vdash_{iSTL} \Gamma \Rightarrow \Delta$. By lemma \ref{lem:vdash}, theorem \ref{translation} and corollary \ref{cut-elim}, there is a GSTL$^-$ proof tree $\mathbf{D}$ for $\{ \nabla^a \Box^b A \}_{(a,b) \in I} , \Gamma \Rightarrow \Delta$ for some set of pairs of natural numbers $I$.
+
+So we will prove for any $\Gamma$, $\Delta$ and $A$ that if $\vdash_{GSTL^-} \{ \nabla^a \Box^b A \}_{(a,b) \in I} , \Gamma \Rightarrow \Delta$ for some $I$, then there is $C$ such that
+\begin{enumerate}
+	\item $\Rightarrow A \vdash_{GSTL^-} \Rightarrow C$, 
+	\item $\Rightarrow C \vdash_{GSTL^-} \Gamma \Rightarrow \Delta$ and
+	\item $P(C) \subseteq P(A) \cap P(\Gamma,\Delta)$.
+\end{enumerate}
+By induction on the length of $\mathbf{D}$, we can assume for any $\Gamma'$, $\Delta'$, $I'$ and $\mathbf{D}'$, where $\mathbf{D}'$ is a GSTL$^-$ proof for $\{ \nabla^a \Box^b A \}_{(a,b) \in I'} , \Gamma' \Rightarrow \Delta'$ and $h(\mathbf{D}')<h(\mathbf{D})$, there is a formula IH($\mathbf{D}'$) such that
+\begin{enumerate}
+	\item $\Rightarrow A \vdash_{GSTL^-} IH(\mathbf{D}')$,
+	\item $\Rightarrow IH(\mathbf{D}') \vdash_{GSTL^-} \Gamma' \Rightarrow \Delta'$ and
+	\item $P(IH(\mathbf{D}')) \subseteq P(A) \cap P(\Gamma',\Delta')$.
+\end{enumerate}
+We now construct proper $C$ for different cases for the last rule of $\mathbf{D}$. In each case, the immediate sub-trees of $\mathbf{D}$ are denoted by $\mathbf{D_i} (i \in \{0,1\})$. First notice that if none of $\nabla^a \Box^b A$'s are principal in the last rule, we can just use the same interpolant from the induction hypothesis, IH($\mathbf{D_i}$). \todo{More justifications.}
+
+Now suppose one $\nabla^{a_0} \Box^{b_0} A$ is principal in the last rule, which can be
+\begin{enumerate}
+	\item ($L\land_1$) This implies $b_0 = 0$ and $A = \nabla^n (A_1 \land A_2)$ for some formulas $A_1$ and $A_2$ and some natural number $n$. Let $I' = I - \{(a_0,b_0)\}$
+	\begin{prooftree}
+		\AXC{$\mathbf{D_0}$} \noLine
+		\UIC{$\{ \nabla^a \Box^b \nabla^n (A_1 \land A_2) \}_{(a,b) \in I'} , \nabla^{a_0 + n} A_1 , \Gamma \Rightarrow \Delta$}
+		\RightLabel{$L\land_1$}
+		\UIC{$\{ \nabla^a \Box^b \nabla^n (A_1 \land A_2) \}_{(a,b) \in I'} , \nabla^{a_0 + n} (A_1 \land A_2) , \Gamma \Rightarrow \Delta$}
+	\end{prooftree}
+\end{enumerate}
+By induction hypothesis
+\begin{enumerate}
+	\item $\Rightarrow \nabla^n (A_1 \land A_2) \vdash_{GSTL^-} IH(\mathbf{D_0})$,
+	\item $\Rightarrow IH(\mathbf{D_0}) \vdash_{GSTL^-} \nabla^{a_0 + n} A_1 , \Gamma \Rightarrow \Delta$ and
+	\item $P(IH(\mathbf{D_0})) \subseteq P(\nabla^n (A_1 \land A_2)) \cap P(\nabla^{a_0 + n} A_1,\Gamma,\Delta)$.
+\end{enumerate}
+\todo{no way}
 
 \subsection{Theorem} \textit{Craig's Interpolation for GSTL$^-$: } For any $\Gamma_1$, $\Gamma_2$ and $\Delta$, if $\vdash_{GSTL^-} \Gamma_1 , \Gamma_2 \Rightarrow \Delta$, then there is a formula $C$ such that $P(C) \subseteq P(\Gamma_1) \cap P(\Gamma_2 , \Delta)$, $\vdash_{GSTL^-} \Gamma_1 \Rightarrow C$ and $\vdash_{GSTL^-} \Gamma_2 , C \Rightarrow \Delta$.
 
