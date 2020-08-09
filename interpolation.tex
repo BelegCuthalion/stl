@@ -58,20 +58,20 @@ We now construct proper $D$ for different cases for the last rule of $\mathbf{D}
 
 Now suppose one $\nabla^{a_0} \Box^{b_0} A$ is principal in the last rule.
 \begin{enumerate}
-	\item ($L\land_i, i \in \{1,2\}$) This implies $b_0 = 0$ and $A = \nabla^n (A_1 \land A_2)$ for some formulas $A_1$ and $A_2$ and some natural number $n$. Let $I' = I - \{(a_0,b_0)\}$
+	\item[1,2.] ($L\land_i, i \in \{1,2\}$) This implies $b_0 = 0$ and $A = \nabla^n (A_1 \land A_2)$ for some formulas $A_1$ and $A_2$ and some natural number $n$. Let $I' = I - \{(a_0,b_0)\}$.
 	\begin{prooftree}
 		\AXC{$\mathbf{D_0}$} \noLine
 		\UIC{$\{ \nabla^a \Box^b \nabla^n (A_1 \land A_2) \}_{(a,b) \in I'} , \nabla^{a_0 + n} A_i , \Gamma_1 , \Gamma_2 \Rightarrow \Delta$}
 		\RightLabel{$L\land_i$}
 		\UIC{$\{ \nabla^a \Box^b \nabla^n (A_1 \land A_2) \}_{(a,b) \in I'} , \nabla^{a_0 + n} (A_1 \land A_2) , \Gamma_1 , \Gamma_2 \Rightarrow \Delta$}
 	\end{prooftree}
-	Let $D = D_{\langle I;\nabla^n(A_1 \land A_2);\nabla^{a_0+n}A_i,\Gamma_1;\Gamma_2;\Delta \rangle}$. By induction hypothesis we have
+	Let $D = D_{\langle I';\nabla^n(A_1 \land A_2);\nabla^{a_0+n}A_i,\Gamma_1;\Gamma_2;\Delta \rangle}$. By induction hypothesis we have
 	\begin{enumerate}[label=(\arabic*)]
 		\item $\vdash_{GSTL^-} \{\nabla^a \Box^b \nabla^n (A_1 \land A_2) \}_{(a,b) \in J'} , \nabla^{a_0+n} A_i , \Gamma_1 \Rightarrow D$,
 		\item $\vdash_{GSTL^-} \{\nabla^a \Box^b D\}_{(a,b) \in K'}, \Gamma_2 \Rightarrow \Delta$ and
 		\item $P(D) \subseteq P(\nabla^n(A_1 \land A_2),\Gamma_1) \cap P(\Gamma_2,\Delta)$.
 	\end{enumerate}
-	Now just apply $L\land_i$ on $(1)$ to get $\{\nabla^a \Box^b \nabla^n (A_1 \land A_2) \}_{(a,b) \in J'} , \nabla^{a_0+n} (A_1 \land A_2), \Gamma_1 \Rightarrow D$ and take $J = J' \cup \{(a_0+n,0)\}$.
+	Now just apply $L\land_i$ on $(1)$ to get $\{\nabla^a \Box^b \nabla^n (A_1 \land A_2) \}_{(a,b) \in J'} , \nabla^{a_0+n} (A_1 \land A_2), \Gamma_1 \Rightarrow D$ and take $J = J' \cup \{(a_0,0)\}$.
 \end{enumerate}
 
 \subsection{Theorem} \textit{Craig's Interpolation for GSTL$^-$: } For any $\Gamma_1$, $\Gamma_2$ and $\Delta$, if $\vdash_{GSTL^-} \Gamma_1 , \Gamma_2 \Rightarrow \Delta$, then there is a formula $C$ such that $P(C) \subseteq P(\Gamma_1) \cap P(\Gamma_2 , \Delta)$, $\vdash_{GSTL^-} \Gamma_1 \Rightarrow C$ and $\vdash_{GSTL^-} \Gamma_2 , C \Rightarrow \Delta$.
