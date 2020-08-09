@@ -69,7 +69,7 @@ Now suppose one $\nabla^{a_0} \Box^{b_0} A$ is principal in the last rule.
 	\begin{enumerate}[label=(\arabic*)]
 		\item $\vdash_{GSTL^-} \{\nabla^a \Box^b \nabla^n (A_1 \land A_2) \}_{(a,b) \in J'} , \nabla^{a_0+n} A_i , \Gamma_1 \Rightarrow D$,
 		\item $\vdash_{GSTL^-} \{\nabla^a \Box^b D\}_{(a,b) \in K'}, \Gamma_2 \Rightarrow \Delta$ and
-		\item $P(D) \subseteq P(\nabla^n(A_1 \land A_2),\Gamma_1) \cap P(\Gamma_2,\Delta)$.
+		\item $P(D) \subseteq P(\nabla^n(A_1 \land A_2),\nabla^{a_0+n}A_i,\Gamma_1) \cap P(\Gamma_2,\Delta)$.
 	\end{enumerate}
 	Now just apply $L\land_i$ on $(1)$ to get $\{\nabla^a \Box^b \nabla^n (A_1 \land A_2) \}_{(a,b) \in J'} , \nabla^{a_0+n} (A_1 \land A_2), \Gamma_1 \Rightarrow D$ and take $J = J' \cup \{(a_0,0)\}$.
 \end{enumerate}
