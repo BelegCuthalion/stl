@@ -68,10 +68,37 @@ Now suppose one $\nabla^{a_0} \Box^{b_0} A$ is principal in the last rule.
 	Let $D = D_{\langle I';\nabla^n(A_1 \land A_2);\nabla^{a_0+n}A_i,\Gamma_1;\Gamma_2;\Delta \rangle}$. By induction hypothesis we have
 	\begin{enumerate}[label=(\arabic*)]
 		\item $\vdash_{GSTL^-} \{\nabla^a \Box^b \nabla^n (A_1 \land A_2) \}_{(a,b) \in J'} , \nabla^{a_0+n} A_i , \Gamma_1 \Rightarrow D$,
-		\item $\vdash_{GSTL^-} \{\nabla^a \Box^b D\}_{(a,b) \in K'}, \Gamma_2 \Rightarrow \Delta$ and
-		\item $P(D) \subseteq P(\nabla^n(A_1 \land A_2),\nabla^{a_0+n}A_i,\Gamma_1) \cap P(\Gamma_2,\Delta)$.
+		\item $\vdash_{GSTL^-} \{\nabla^a \Box^b D\}_{(a,b) \in K'} \Gamma_2 \Rightarrow \Delta$
+		\item $P(D) \subseteq P(\nabla^n(A_1 \land A_2),\nabla^{a_0+n}A_i,\Gamma_1) \cap P(\Gamma_2,\Delta)$
 	\end{enumerate}
 	Now just apply $L\land_i$ on $(1)$ to get $\{\nabla^a \Box^b \nabla^n (A_1 \land A_2) \}_{(a,b) \in J'} , \nabla^{a_0+n} (A_1 \land A_2), \Gamma_1 \Rightarrow D$ and take $J = J' \cup \{(a_0,0)\}$.
+
+	\setcounter{enumi}{2}
+	\item ($L\lor$) This implies $b_0 = 0$ and $A = \nabla^n(A_1 \lor A_2)$. Let $I' = I - \{(a_0,b_0)\}$. We have
+	\[ \mathbf{D_0} : \{ \nabla^a \Box^b \nabla^n (A_1 \lor A_2) \}_{(a,b) \in I'} , \nabla^{a_0 + n} A_1 , \Gamma_1 , \Gamma_2 \Rightarrow \Delta \]
+	\[ \mathbf{D_1} : \{ \nabla^a \Box^b \nabla^n (A_1 \lor A_2) \}_{(a,b) \in I'} , \nabla^{a_0 + n} A_2 , \Gamma_1 , \Gamma_2 \Rightarrow \Delta\]
+	\begin{prooftree}
+		\AXC{$\mathbf{D_0}$}
+		\AXC{$\mathbf{D_1}$}
+		\RightLabel{$L\lor$}
+		\BIC{$\{ \nabla^a \Box^b \nabla^n (A_1 \lor A_2) \}_{(a,b) \in I'} , \nabla^{a_0 + n} (A_1 \lor A_2) , \Gamma_1 , \Gamma_2 \Rightarrow \Delta$}
+	\end{prooftree}
+	Let $D_1 = D_{\langle I';\nabla^n(A_1 \lor A_2);\nabla^{a_0+n}A_1,\Gamma_1;\Gamma_2;\Delta \rangle}$ and $D_2 = D_{\langle I';\nabla^n(A_1 \lor A_2);\nabla^{a_0+n}A_2,\Gamma_1;\Gamma_2;\Delta \rangle}$ and take $D = D_1 \lor D_2$. From induction hypothesis we have
+	\begin{enumerate}[label=(1.\arabic*)]
+		\item $\vdash_{GSTL^-} \{\nabla^a \Box^b \nabla^n (A_1 \lor A_2) \}_{(a,b) \in J_1} , \nabla^{a_0+n} A_1 , \Gamma_1 \Rightarrow D_1$
+		\item $\vdash_{GSTL^-} \{\nabla^a \Box^b D_1\}_{(a,b) \in K_1}, \Gamma_2 \Rightarrow \Delta$
+		\item $P(D_1) \subseteq P(\nabla^n(A_1 \lor A_2),\nabla^{a_0+n}A_1,\Gamma_1) \cap P(\Gamma_2,\Delta)$
+	\end{enumerate}
+	\begin{enumerate}[label=(2.\arabic*)]
+		\item $\vdash_{GSTL^-} \{\nabla^a \Box^b \nabla^n (A_1 \lor A_2) \}_{(a,b) \in J_2} , \nabla^{a_0+n} A_2 , \Gamma_1 \Rightarrow D_2$
+		\item $\vdash_{GSTL^-} \{\nabla^a \Box^b D_2\}_{(a,b) \in K_2}, \Gamma_2 \Rightarrow \Delta$
+		\item $P(D_2) \subseteq P(\nabla^n(A_1 \lor A_2),\nabla^{a_0+n}A_2,\Gamma_1) \cap P(\Gamma_2,\Delta)$
+	\end{enumerate}
+	Take $J = J_1 \cup J_2$. Proper applications of $Lw$ and $R\lor_i$ on $(i,1)$ (for $i \in \{1,2\}$) gives
+	\[\{\nabla^a \Box^b \nabla^n (A_1 \lor A_2) \}_{(a,b) \in J_1 \cup J_2} , \nabla^{a_0+n} A_i , \Gamma_1 \Rightarrow D_1 \lor D_2\]
+	then by $L\lor$ we have
+	\[\{\nabla^a \Box^b \nabla^n (A_1 \lor A_2) \}_{(a,b) \in J_1 \cup J_2} , \nabla^{a_0+n} (A_1 \lor A_2) , \Gamma_1 \Rightarrow D_1 \lor D_2\]
+	\todo{nothing. Can't construct $D_1 \lor D_2$ on the left side. No other candidate.}
 \end{enumerate}
 
 \subsection{Theorem} \textit{Craig's Interpolation for GSTL$^-$: } For any $\Gamma_1$, $\Gamma_2$ and $\Delta$, if $\vdash_{GSTL^-} \Gamma_1 , \Gamma_2 \Rightarrow \Delta$, then there is a formula $C$ such that $P(C) \subseteq P(\Gamma_1) \cap P(\Gamma_2 , \Delta)$, $\vdash_{GSTL^-} \Gamma_1 \Rightarrow C$ and $\vdash_{GSTL^-} \Gamma_2 , C \Rightarrow \Delta$.
