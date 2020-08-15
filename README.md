@@ -1,0 +1,1 @@
+ - [Some notes about iSTL](https://github.com/BelegCuthalion/stl/releases/latest/download/spacetime-logics.pdf)

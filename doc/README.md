@@ -1,1 +1,0 @@
- - [Latest release](https://github.com/BelegCuthalion/stl/releases/latest/download/spacetime-logics.pdf)
