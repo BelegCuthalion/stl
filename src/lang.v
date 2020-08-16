@@ -101,3 +101,9 @@ Qed.
 
 Lemma nabla_Nabl_option : forall D n, S n ^∇o D = ∇o (n ^∇o D).
 Proof. induction D; simpl; try reflexivity. Qed.
+
+Fixpoint list_conj (l : list form) : form :=
+  match l with
+  | [] => ⊤
+  | h :: t => h ∧ (list_conj t)
+  end.

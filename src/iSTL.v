@@ -122,3 +122,37 @@ Proof.
     - unfold form_to_some. rewrite nabla_nil. apply N. apply H.
     - apply modus_ponens.
 Qed.
+
+Lemma list_app_cons : forall {A : Type} (l : list A) (a : A),
+  a :: l = [a] ++ l.
+Proof. reflexivity. Qed.
+
+Lemma exc_a_lot : forall G S P D a,
+  G ++ a::S ++ P ⇒ D -> G ++ S ++ a::P ⇒ D.
+Proof.
+  intros G S. generalize dependent G.
+  induction S; intros; simpl in *.
+    - apply H.
+    - apply (Exc _ _ _ a0 a) in H.
+      rewrite list_app_cons in H. rewrite app_assoc in H.
+      apply (IHS (G ++ [a]) _ _ a0) in H.
+      rewrite <- app_assoc in H. rewrite <- list_app_cons in H.
+      apply H.
+Qed.
+
+Lemma weaken_a_lot : forall G S D, G ⇒ D -> G++S ⇒ D.
+Proof.
+  intros. induction S.
+    - rewrite app_nil_r. apply H.
+    - apply (Lw _ _ a) in IHS.
+      apply (exc_a_lot [] G S D a) in IHS. apply IHS.
+Qed.
+
+Lemma conj_context : forall G : list form, G ⇒ list_conj G.
+Proof.
+  induction G.
+    - apply Ta.
+    - simpl. apply Ra.
+      + rewrite list_app_cons. apply weaken_a_lot. apply Id.
+      + apply Lw. apply IHG.
+Qed.
