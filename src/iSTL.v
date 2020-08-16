@@ -115,3 +115,10 @@ Proof. intros. apply Li.
     - apply Id.
     - swap_hd. apply Lw. apply Id.
 Qed.
+
+Lemma impl_elim : forall a b, ⇒ a ⊃ b -> a ⇒ b.
+Proof.
+  intros. apply (Cut (∇(a ⊃ b)) []).
+    - unfold form_to_some. rewrite nabla_nil. apply N. apply H.
+    - apply modus_ponens.
+Qed.

@@ -85,6 +85,8 @@ Proof. induction n. reflexivity. simpl in *. rewrite <- IHn. reflexivity. Qed.
 
 Lemma nabla_singleton : forall a, [∇ a] = ∇l [a]. Proof. reflexivity. Qed.
 
+Lemma nabla_nil : [] = ∇l []. Proof. reflexivity. Qed.
+
 Lemma nabla_some : forall a, Some (∇ a) = ∇o Some a. Proof. reflexivity. Qed.
 
 Lemma nabla_n_singleton : forall a n, [n^∇ a] = n^∇l [a]. Proof. reflexivity. Qed.
