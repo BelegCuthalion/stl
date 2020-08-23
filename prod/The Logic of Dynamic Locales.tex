@@ -1,0 +1,400 @@
+\documentclass[12pt,a4paper]{article} 
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+%\usepackage{fdsymbol}
+
+\usepackage{authblk}
+
+\usepackage[mathscr]{eucal}
+
+\usepackage{bussproofs}
+\usepackage{amssymb}
+\usepackage{tikz}
+\tikzset{node distance=2cm, auto}
+
+\theoremstyle{plain} 
+\newtheorem{thm}{Theorem}[section]
+
+\renewcommand{\thethm}{\arabic{section}.\arabic{thm}}
+\newtheorem{lem}[thm]{Lemma}
+
+\newtheorem{cor}[thm]{Corollary}
+\theoremstyle{definition}
+\newtheorem{dfn}[thm]{Definition}
+\newtheorem{exam}[thm]{Example}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{nota}[thm]{Notation}
+\newtheorem{exer}[thm]{Exercise}
+
+\def\d{\displaystyle} 
+\def\PA{\mathrm{PA}}
+\def\Pr{\mathrm{Pr}}
+\def\Prf{\mathrm{Prf}}
+\def\PR{\mathrm{PR}}
+\def\IPC{\mathrm{IPC}}
+\def\Proofs{\mathrm{Proofs}}
+\def\int{\mathrm{int}}
+\def\WT{\mathrm{WT}}
+\def\exp{\mathrm{exp}}
+\def\CHaus{\mathrm{CHaus}}
+\def\Fin{\mathrm{Fin}}
+\def\E{\mathrm{E}}
+\def\PR{\mathrm{PR}}
+\def\Top{\mathrm{Top}}
+\def\S4{\mathrm{S4}}
+\def\Hom{\mathrm{Hom}}
+\def\Set{\mathrm{Set}}
+
+\begin{document}
+
+\title{The Logic of Dynamic Locales}
+
+
+\author[]{Amirhossein Akbar Tabatabai, Alireza Mahmoudian}
+
+\affil[]{ }
+
+
+\date{ }
+
+\maketitle
+
+
+\begin{abstract}
+In this paper we will first introduce dynamic locales as the point-free intuitionistic version of the dynamic topological systems. Then we will introduce the logic of the dynamic locales, $\mathbf{LDL}$, as a base for the intuitionistic version for classical dynamic topological logic, introduced in \cite{Artemov}. We will then present cut-free sequent-style proof systems for the logic $\mathbf{LDL}$ and one of its important fragments. Using the systems, we will finally provide a syntactical proof for the admissibly of a natural extension of Visser rules and the appropriate interpolation property that these logic enjoy.
+\end{abstract}
+
+\section{Introduction}
+
+
+\section{Dynamic Locales and Their Logic} \label{DynamicLocales}
+
+\begin{dfn}
+A locale $\mathscr{X}$ is a complete poset whose meet distributes over any arbitrary family of joins, i.e., $a \wedge \bigvee_{i \in I} b_i=\bigvee_{i \in I} (a \vee b_i)$, for any $a, b_i \in \mathscr{X}$. A localic map $f: \mathscr{X} \to \mathscr{Y}$ between two locales $\mathscr{X}$ and $\mathscr{Y}$ is a map preserving all finite meets and arbitrary joins. It is called an isomorphism if it has a converse as a localic map.
+\end{dfn}
+
+The canonical example of locales and the localic maps are the poset of the open subsets of a topological space and the inverse image of the continuous functions between spaces, respectively. In this sense, locales and the localic maps provide a point-free formalization for the topological discourse, focusing only on open subsets as the main ingredient of topology.
+
+\begin{dfn}
+Let $\mathscr{X}$ be a locale and $\nabla: \mathscr{X} \to \mathscr{X}$ be a localic map. Then $\mathcal{D}=(\mathscr{X}, \nabla)$ is called a dynamic locale. It is called invertible if $\nabla$ is an isomorphism.
+\end{dfn}
+
+Dynamic locales are the intuitionistic and symplified version of the dynamic topological spaces defined in \cite{}. Here, we force the formalization to restrict itself to the open subsets. However, to represent the non-elementary structure of dynamic locales in a syntactical elementary language, we need to capture the distributivity of meets over arbitrary joins and the fact that $\nabla$ preserves any arbitrary joins. The following easy observation helps:
+
+\begin{thm}(Adjoint Functor Theorem for Posets) \label{AFT}
+Let $\mathcal{A}$ and $\mathcal{B}$ be two complete posets and $f:\mathcal{A} \to \mathcal{B}$ be an order-preserving function. Then $f$ preserves arbitrary joins iff there exists an order-preserving function $g: \mathcal{B} \to \mathcal{A}$ such that 
+\[
+f(a) \leq_{\mathcal{B}} b  \;\;\; \text{iff}  \;\;\; a \leq_{\mathcal{A}} g(b)
+\]
+This $g$ if exits is clearly unique and called the right adjoint of $f$.
+\end{thm}
+\begin{proof}
+If there exists such $g$ then $f$ preserves all joins... For the other half, define $g(b)=\bigvee \{a \in \mathcal{A} | f(a) \leq_{\mathcal{B}} b \}$. One direction is obvious from the definition. The other is a consequence of the fact that $f$ preserves all joins.
+\end{proof}
+
+Using Theorem \ref{AFT} on a dynamic locale $\mathcal{D}=(\mathscr{X}, \nabla_{\mathcal{D}})$, we can observe that the facts that the maps $x \mapsto x \wedge a$ and $x \mapsto \nabla x$ preserve arbitrary joins, are representable by introducing their right adjoints into the language as the primitive connectives. For the former, the adjoint is nothing but the usual Heyting implication. For the latter, we need to add a new unary connective $\Box$ representing the function denoted by $\Box_{\mathcal{D}}$, satisfying
+\[
+\nabla_{\mathcal{D}} a \leq_{\mathscr{X}} b  \;\;\; \text{iff}  \;\;\; a \leq_{\mathscr{X}} \Box_{\mathcal{D}} b
+\]
+
+In the following, we will define the logic of dynamic locales, denoted by $\mathbf{LDL}$. Let $\mathcal{L}$ be the usual language of propositional logic plus the modalities $\nabla$ and $\Box$, i.e., $\mathcal{L}=\{\wedge, \vee, \to, \top, \bot, \nabla, \Box\}$. Define $\mathbf{LDL}$ as the logic of the sequent-style system defined by the following rules: 
+\begin{flushleft}
+ \textbf{Axioms:}
+\end{flushleft}
+\begin{center}
+ \begin{tabular}{c c c} 
+ \AxiomC{}
+ \UnaryInfC{$ A \Rightarrow A$}
+ \DisplayProof \;\;\;
+ &
+ \AxiomC{}
+ \UnaryInfC{$ \Rightarrow \top$}
+ \DisplayProof\;\;\;
+ &
+ \AxiomC{}
+ \UnaryInfC{$ \bot \Rightarrow $}
+ \DisplayProof
+ \\[3ex]
+\end{tabular}
+\end{center}
+
+\begin{flushleft}
+ 		\textbf{Structural Rules:}
+\end{flushleft}
+
+\begin{center}
+ \begin{tabular}{c c c} 
+ \AxiomC{$ \Gamma \Rightarrow \Delta$}
+ \RightLabel{$L w$}
+ \UnaryInfC{$ \Gamma, A \Rightarrow \Delta$}
+ \DisplayProof
+ &
+ \AxiomC{$ \Gamma \Rightarrow $}
+\RightLabel{$R w$}
+ \UnaryInfC{$\Gamma \Rightarrow A$}
+ \DisplayProof
+ &
+ \AxiomC{$ \Gamma, A, A \Rightarrow \Delta$}
+\RightLabel{$Lc$}
+ \UnaryInfC{$\Gamma, A \Rightarrow \Delta$}
+ \DisplayProof
+  \\[3ex]
+\end{tabular}
+\end{center}
+
+\begin{flushleft}
+ 		\textbf{Cut:}
+\end{flushleft}
+\begin{center}
+  	\begin{tabular}{c}
+		
+		\AxiomC{$ \Gamma \Rightarrow A$}
+		\AxiomC{$\Pi, A \Rightarrow \Delta$}
+		\RightLabel{$cut$}
+		\BinaryInfC{$ \Pi, \Gamma \Rightarrow \Delta$}
+		\DisplayProof
+		 \\[3ex]
+		\end{tabular}
+\end{center}
+
+\begin{flushleft}
+ \textbf{Conjunction Rules:}
+\end{flushleft}
+\begin{center}
+ \begin{tabular}{c c c}  
+\AxiomC{$ \Gamma, A \Rightarrow \Delta$}
+ \RightLabel{$L \wedge$} 
+ \UnaryInfC{$ \Gamma, A \wedge B \Rightarrow \Delta$}
+ \DisplayProof
+ &
+ \AxiomC{$ \Gamma, B \Rightarrow \Delta$}
+ \RightLabel{$L \wedge$} 
+ \UnaryInfC{$\Gamma, A \wedge B \Rightarrow \Delta$}
+ \DisplayProof
+	   		&
+   		\AxiomC{$\Gamma \Rightarrow A$}
+   		\AxiomC{$\Gamma \Rightarrow B$}
+   		\RightLabel{$R \wedge$} 
+   		\BinaryInfC{$ \Gamma \Rightarrow A \wedge B $}
+   		\DisplayProof
+   			\\[3 ex]
+\end{tabular}
+\end{center}
+
+\begin{flushleft}
+ \textbf{Disjunction Rules:}
+\end{flushleft}
+\vspace{.001pt}
+\begin{center}
+ \begin{tabular}{c c c}
+ \AxiomC{$ \Gamma, A \Rightarrow \Delta$}
+ \AxiomC{$\Gamma, B \Rightarrow \Delta$}
+ \RightLabel{$L \vee$} 
+ \BinaryInfC{$ \Gamma, A \vee B \Rightarrow \Delta$}
+ \DisplayProof
+ &
+ \AxiomC{$\Gamma \Rightarrow A$}
+ \RightLabel{$R \vee$} 
+ \UnaryInfC{$\Gamma \Rightarrow A \vee B$}
+ \DisplayProof
+ &
+ \AxiomC{$\Gamma \Rightarrow B$}
+ \RightLabel{$R \vee$} 
+ \UnaryInfC{$\Gamma \Rightarrow A \vee B$}
+ \DisplayProof
+ \\[3ex]
+\end{tabular}
+\end{center}
+
+\begin{flushleft}
+  \textbf{$\nabla$ Rules:}
+\end{flushleft}
+\vspace{.001pt}
+\begin{center}
+ \begin{tabular}{c}
+ \AxiomC{$\Gamma \Rightarrow A$}
+ \RightLabel{$N$} 
+ \UnaryInfC{$\nabla \Gamma \Rightarrow \nabla A$}
+ \DisplayProof
+ \\[3ex]
+\end{tabular}
+\end{center} 
+
+\begin{flushleft}
+ \textbf{$\Box$ Rules:}
+\end{flushleft}
+\vspace{.001pt}
+\begin{center}
+ \begin{tabular}{c c}
+ \AxiomC{$\Gamma, A \Rightarrow \Delta$}
+ \RightLabel{$L \Box$} 
+ \UnaryInfC{$\Gamma, \nabla \Box A \Rightarrow \Delta$}
+ \DisplayProof
+ &
+ \AxiomC{$\nabla \Gamma \Rightarrow A$}
+ \RightLabel{$R \Box$} 
+ \UnaryInfC{$\Gamma \Rightarrow \Box A$}
+ \DisplayProof
+ \\[3ex]
+\end{tabular}
+\end{center} 
+If we also add the following rule to the system we have the logic $\mathbf{LDL}(H)$:
+\begin{flushleft}
+ \textbf{The Rule $H$:}
+\end{flushleft}
+\vspace{.001pt}
+\begin{center}
+ \begin{tabular}{c}
+ \AxiomC{$\nabla \Gamma \Rightarrow \nabla A$}
+ \RightLabel{$H$} 
+ \UnaryInfC{$\Gamma \Rightarrow \nabla \Box A$}
+ \DisplayProof
+ \\[3ex]
+\end{tabular}
+\end{center} 
+
+\begin{dfn}\label{t4-1}(Topological Semantics)
+Let $\mathcal{D}=(\mathscr{X}, \nabla_{\mathcal{D}})$ be a dynamic locale and $V:\mathcal{L} \to\mathscr{X}$ be an assignment. A tuple $(\mathcal{D}, V)$ is called a topological model if: 
+\begin{itemize}
+\item[$\bullet$]
+$V(\top)=1$ and $V(\bot)=0$,
+\item[$\bullet$]
+$V(A \wedge B)=V(A) \wedge V(B)$,
+\item[$\bullet$]
+$V(A \vee B)=V(A) \vee V(B)$,
+\item[$\bullet$]
+$V(\nabla A)=\nabla_{\mathcal{D}} V(A)$,
+\item[$\bullet$]
+$V(\Box A)= \Box_{\mathcal{D}} V(A)$.
+\end{itemize}
+We say $(\mathcal{D}, V) \vDash \Gamma \Rightarrow \Delta$ when $\bigwedge_{\gamma \in \Gamma} V(\gamma) \leq \bigvee_{\delta \in \Delta} V(\delta)$ and $\mathcal{D} \vDash \Gamma \Rightarrow \Delta$ when for all $V$, $(\mathcal{D}, V) \vDash \Gamma \Rightarrow \Delta$.
+\end{dfn}
+
+\begin{thm}\label{t4-2}(Soundness-Completeness) 
+\begin{itemize}
+\item[$(i)$]
+$ \mathbf{LDL} \vdash \Gamma \Rightarrow \Delta$ iff $\mathcal{D} \vDash \Gamma \Rightarrow \Delta$, for any dynamic locale $\mathcal{D}$.
+\item[$(ii)$]
+$ \mathbf{LDL}(H) \vdash \Gamma \Rightarrow \Delta$ iff $\mathcal{D} \vDash \Gamma \Rightarrow \Delta$,  for any invertible dynamic locale $\mathcal{D}$.
+\end{itemize}
+
+\end{thm}
+\begin{proof}
+Basically refer to \cite{Amir}.
+\end{proof}
+
+\subsection{Kripke Models} \label{KripkeModels}
+
+\begin{dfn}
+By a Kripke model for the language $\mathcal{L}$, we mean a tuple $\mathcal{K}=(W, \leq, R, V)$ where $(W, \leq)$ is a poset, $R \subseteq W \times W$ is a relation over $W$ (not necessarily transitive or reflexive) compatible with $\leq$, i.e., for all $u, u', v, v' \in W$ if $(u, v) \in R$ and $u' \leq u$ and $v \leq v'$ then $(u', v') \in R$ and $V: At(\mathcal{L}) \to U((W, \leq))$, where $At(\mathcal{L})$ is the set of atomic formulas of $\mathcal{L}$ and $U((W, \leq))$ is the set of all upsets of $(W, \leq)$. Define the forcing relation as usual using the relation $\leq$ for the intuitionistic implication and $R$ for $\Box$, and for the $\nabla$ let $u \Vdash \nabla A$ if there exists $v \in W$ such that $(v, u) \in R$ and $v \Vdash A$. A Kripke model is called normal if there exists an order preserving function $\pi : W \to W$ such that $(u, v) \in R$ iff $u \leq \pi(v)$. It is clear that if this $\pi$ exists, it would be unique. Finally, a sequent $\Gamma \Rightarrow \Delta$ is valid in a Kripke model if for all $w \in W$, $w \Vdash \bigwedge \Gamma$ implies $w \Vdash \bigvee \Delta$.
+\end{dfn}
+
+\begin{thm}(Soundness-Completeness)
+\begin{itemize}
+\item[$(i)$]
+The logic $\mathbf{LDL}$ is sound and complete with respect to all normal Kripke models. 
+\item[$(ii)$]
+The logic $\mathbf{LDL}(H)$ is sound and complete with respect to all normal Kripke models whose functions $\pi$ are order-isomorphism. 
+\end{itemize}
+\end{thm}
+
+\subsection{The Fragment $\mathbf{LDL}_{\rightsquigarrow}$}
+In this subsection we will introduce a fragment of the logic $\mathbf{LDL}$. To explain why we find this fragment interesting, let us begin with a formalization for a general notion of implication, introduced in \cite{Amir}:
+\begin{dfn}
+Let $\mathcal{A}=(A, \leq, \wedge, 1)$ be a meet semi-lattice. A map $\rightsquigarrow : A^{op} \times A \to A$ is called a meet-internalizing implication if:
+\begin{itemize}
+\item[$\bullet$]
+$a \rightsquigarrow a=1$, for any $a \in A$.
+\item[$\bullet$]
+$(a \rightsquigarrow b) \wedge (b \rightsquigarrow c) \leq (a \rightsquigarrow c)$, for any $a, b, c \in A$.
+\item[$\bullet$]
+$(a \rightsquigarrow b) \wedge (a \rightsquigarrow c)= a \rightsquigarrow (b \wedge c)$, for any $a, b, c \in A$.
+\end{itemize} 
+The tuple $(A, \leq, \wedge, 1, \rightsquigarrow)$ is called a meet-internalizing strong algebra. An embedding from a meet-internalizing strong algebra $(A, \leq_A, \wedge_A, 1_A, \rightsquigarrow_A)$ to another meet-internalizing strong algebra $(B, \leq_B, \wedge_B, 1_B, \rightsquigarrow_B)$ is a map $i : A \to B$, preserving all structures such that if $i(a) \leq_B i(b)$ then $a \leq_A b$.
+\end{dfn}
+The main source to produce these implications is dynamic locales. Let $\mathcal{D}=(\mathscr{X}, \nabla)$ be a dynamic locale. Then define $a \rightsquigarrow_{\nabla} b=\Box_{\mathcal{D}}(a \to b)$. It is not hard to show that this binary operation is a meet-internalizing implication. Denote this meet-internalizing strong algebra by $\mathcal{A}(\mathcal{D})$. The following theorem, proved in \cite{Amir}, shows that this example is essentially the only example we may have:
+\begin{thm}(Representation theorem)
+Let $\mathcal{A}=(A, \wedge, \rightsquigarrow)$ be a meet-internalizing strong algebra. Then there exists a dynamic locale $\mathcal{D}=(\mathscr{X}, \nabla)$ and an embedding $i: \mathcal{A} \to \mathcal{A}(\mathcal{D})$.
+\end{thm}
+
+This representation theorem justifies focusing on the fragment of $\mathbf{LDL}$, where the implication $\rightsquigarrow$ is present and the usual intuitionistic implication and $\Box$ are both omitted. Note that the representation theorem implies that the study of such a fragment is actually the study of all possible meet-internalizing implications. It is also possible to omit the modality $\nabla$ to have a more faithful syntax for implications. This is an established approach in sub-intuitionistic logic community. However, the draw back here is that in the absence of $\nabla$, the implication becomes proof-theoretically ill-behaved.\\
+
+Define the fragment $\mathbf{LDL}_{\rightsquigarrow}$ of $\mathbf{LDL}$ as the system over the language $\mathcal{L}_{\rightsquigarrow}=\mathcal{L}-\{\to, \Box\} \cup \{\rightsquigarrow\}$, consisting of the axioms, structural rules and propositional rules and the rule $N$ of $\mathbf{LDL}$,  together with the following rules for $\rightsquigarrow$:
+
+\begin{flushleft}
+ \textbf{Implication Rules:}
+\end{flushleft}
+\vspace{.001pt}
+\begin{center}
+ \begin{tabular}{c c}
+ \AxiomC{$\Gamma \Rightarrow A$}
+ \AxiomC{$\Gamma, B \Rightarrow \Delta$}
+ \RightLabel{$L \rightsquigarrow$} 
+ \BinaryInfC{$\Gamma, \nabla (A \rightsquigarrow B) \Rightarrow \Delta$}
+ \DisplayProof
+ &
+ \AxiomC{$\nabla \Gamma, A \Rightarrow B$}
+ \RightLabel{$R \rightsquigarrow$} 
+ \UnaryInfC{$\Gamma \Rightarrow A \rightsquigarrow B$}
+ \DisplayProof
+ \\[3ex]
+\end{tabular}
+\end{center} 
+
+If we also add the following rule to the system, we denote the logic by $\mathbf{LDL}_{\rightsquigarrow}(H_\rightsquigarrow)$:
+
+\begin{flushleft}
+ \textbf{The Rule $H_{\rightsquigarrow}$:}
+\end{flushleft}
+\vspace{.001pt}
+\begin{center}
+ \begin{tabular}{c}
+ \AxiomC{$\nabla \Gamma, \nabla A \Rightarrow \nabla B$}
+ \RightLabel{$H$} 
+ \UnaryInfC{$\Gamma \Rightarrow \nabla (A \rightsquigarrow B)$}
+ \DisplayProof
+ \\[3ex]
+\end{tabular}
+\end{center} 
+
+\begin{thm}
+The systems $\mathbf{LDL}$ and $\mathbf{LDL}(H)$ are conservative extensions of the systems $\mathbf{LDL}_{\rightsquigarrow}$ and $\mathbf{LDL}_{\rightsquigarrow}(H_\rightsquigarrow)$, respectively.
+\end{thm}
+\begin{proof}
+Write the easier part. The harder part must be essentially to completeness theorems of \cite{Amir}.
+\end{proof}
+
+
+\section{Proof Theory of $\mathbf{LDL}$ and $\mathbf{LDL}_{\rightsquigarrow}$}
+
+\subsection{Sequent-style Systems}
+\textbf{Problem.} Imitate the sequent-style system we developed for $\mathbf{LDL}_{\rightsquigarrow}$ to present a natural system for $\mathbf{LDL}$. Do we have cut elimination theorem for this new system? \\
+\\
+\textbf{Problem.} Do we have cut elimination theorem for the sequent-style systems we developed for $\mathbf{LDL}_{\rightsquigarrow}$ but this time plus the rule $H_{\rightsquigarrow}$? What about the system of the previous problem for $\mathbf{LDL}$ plus the rule $H$?
+\subsection{Admissible Rules}
+\textbf{Problem.} What are the Harrop formulas here? Prove the disjunction property for the theories axiomatized by Harrop formulas, using the cut-free proofs over the logics $\mathbf{LDL}$ and $\mathbf{LDL}_{\rightsquigarrow}$. Prove the same thing via Kleene-type argument. Do we have similar thing for the logics with added rules $H$ and $H_{\rightsquigarrow}$, respectively?
+\subsection{Interpolation}
+\textbf{Problem.} As we discussed, the system $\mathbf{LDL}$ and possibly $\mathbf{LDL}(H)$ must enjoy Craig interpolation property. What are the proofs?\\
+\\
+\textbf{Problem.} As we discussed, the system $\mathbf{LDL}_{\rightsquigarrow}$ and possibly $\mathbf{LDL}_{\rightsquigarrow}(H_{\rightsquigarrow})$ must enjoy deductive interpolation property. What are the proofs?
+
+\begin{thebibliography}{99} 
+\addcontentsline{toc}{section}{References} 
+
+\bibitem{Amir}
+A. Akbar Tabatabai. ``Implication via Spacetime." arXiv preprint arXiv:2001.00997 (2019).
+\bibitem{Artemov}
+S. Artemov, J. Davoren, and A. Nerode. Modal logics and topological semantics for hybrid systems. Technical Report MSI 97-05, 1997.
+\bibitem{Ewald}
+W. Ewald. Intuitionistic tense and modal logic. The Journal of Symbolic Logic, 51(1):166–179, 1986.
+\bibitem{Duque}
+D. Fernández-Duque. The intuitionistic temporal logic of dynamical systems. Log. Methods Comput. Sci. 14(3) (2018)
+\bibitem{Mints}
+P. Kremer and G. Mints. Dynamic topological logic. Annals of Pure and Applied Logic, 131:133–158, 2005.
+ 
+\end{thebibliography}
+
+
+
+\end{document}
