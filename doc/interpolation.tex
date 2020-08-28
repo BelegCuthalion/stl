@@ -1,12 +1,58 @@
 \section{Interpolation}
+\setcounter{subsection}{-1}
+\subsection{Notation}
+\begin{enumerate}
+	\item Let $a$ be a finite sequence of natural numbers of length $k$ and $A$ be a formula. We will write $(\nabla\Box)^a A$ for the formula constructed from applying $a_k$ times $\Box$, $a_{k-1}$ times $\nabla$, ..., $a_2$ times $\Box$ and $a_1$ times $\nabla$ to $A$. More precisely
+	\[ (\nabla\Box)^a A = \nabla^{a_1} \Box^{a_2} \dots \nabla^{a_{k-1}} \Box^{a_k} A \]
 
-\subsection{Lemma}\label{lem:vdash} $\Rightarrow A \vdash_{iSTL} \Gamma \Rightarrow \Delta$ if and only if $\vdash_{iSTL} \{ \nabla^a \Box^b A\}_{(a,b) \in I} , \Gamma \Rightarrow \Delta$ for some finite set of pairs of natural numbers $I$.
+	\item Let $\Gamma$ be a finite multi-set of formulas and $f$ a function that assigns to each member of $\Gamma$ a finite set of finite sequences of natural numbers. By $N(\Gamma, f)$ we denote the finite multi-set of formulas consisting of members of $\Gamma$ like $A$, with some $\nabla$'s and $\Box$'s as defined by memebers of $f(A)$, i.e.
+	\[ N(\Gamma, f) = \{ \nabla^{a_1} \Box^{a_2} \dots \nabla^{a_{k-1}} \Box^{a_k} A : A \in \Gamma ~\&~ a \in f(A) ~\&~ |a| = k \} \]
+	\[ = \{ (\nabla\Box)^a A : A \in \Gamma ~\&~ a \in f(A) \} \]
+	So for any $B \in N(\Gamma, f)$, there is $A$ in $\Gamma$ such that $B = \nabla^{a_1} \Box^{a_2} \dots \nabla^{a_{k-1}} \Box^{a_k} A$, for some finite sequence of natural numbers $a_1.\dots,a_k$. \\
+	By $N(A,f)$ we mean $N(\{A\},f)$. We might also write $N(\Gamma)$ when $f$ is not important.
+\end{enumerate}
+
+\subsection{Lemma}\label{lem:box-rule} $A \Rightarrow B \vdash_{iSTL} \Box A \Rightarrow \Box B$.
+
+\textit{Proof:}
+\begin{prooftree}
+	\AXC{}
+	\RightLabel{$Ta$}
+	\UIC{$\Rightarrow \top$}
+	\AXC{$A \Rightarrow B$}
+	\RightLabel{$L\rightarrow$}
+	\BIC{$\nabla (\top \rightarrow A) \Rightarrow B$}
+	\RightLabel{$Lw$}
+	\UIC{$\nabla (\top \rightarrow A) , \top \Rightarrow B$}
+	\RightLabel{$R\rightarrow$}
+	\UIC{$\top \rightarrow A \Rightarrow \top \rightarrow B$}
+\end{prooftree}
+
+\subsection{Lemma}\label{lem:nabla-box-rule} For any finite sequence of natural numbers $a$, $A \Rightarrow B \vdash_{iSTL} (\nabla\Box)^a A \Rightarrow (\nabla\Box)^a B$.
+
+\textit{Proof:}
+\begin{prooftree}
+	\AXC{} \noLine
+	\UIC{$A \Rightarrow B$}
+	\RightLabel{Lemma \ref{lem:box-rule}$^{a_k}$} \doubleLine
+	\UIC{$\Box^{a_k} A \Rightarrow \Box^{a_k} B$}
+	\RightLabel{$N^{a_{k-1}}$} \doubleLine
+	\UIC{$\nabla^{a_{k-1}} \Box^{a_k} A \Rightarrow \nabla^{a_{k-1}} \Box^{a_k} B$} \noLine
+	\UIC{\vdots} \noLine
+	\UIC{$\nabla^{a_3} \dots \nabla^{a_{k-1}} \Box^{a_k} A \Rightarrow \nabla^{a_3} \dots \nabla^{a_{k-1}} \Box^{a_k} B$}
+	\RightLabel{Lemma \ref{lem:box-rule}$^{a_2}$} \doubleLine
+	\UIC{$\Box^{a_2} \nabla^{a_3} \dots \nabla^{a_{k-1}} \Box^{a_k} A \Rightarrow \Box^{a_2} \nabla^{a_3} \dots \nabla^{a_{k-1}} \Box^{a_k} B$}
+	\RightLabel{$N^{a_1}$} \doubleLine
+	\UIC{$\nabla^{a_1} \Box^{a_2} \dots \nabla^{a_{k-1}} \Box^{a_k} A \Rightarrow \nabla^{a_1} \Box^{a_2} \dots \nabla^{a_{k-1}} \Box^{a_k} B$}
+\end{prooftree}
+
+\subsection{Lemma}\label{lem:vdash} $\Rightarrow A \vdash_{iSTL} \Gamma \Rightarrow \Delta$ if and only if $\vdash_{iSTL} N(A, f) , \Gamma \Rightarrow \Delta$ for some $f$.
 
 \textit{Proof}:
 
-I. Suppose we have $\Rightarrow A$ and $\{ \nabla^a \Box^b A\}_{(a,b) \in I} , \Gamma \Rightarrow \Delta$ for some finite set of pairs of natural numbers $I$. First for any $(a,b) \in I$, construct $\Rightarrow \nabla^a \Box^b A$ from $\Rightarrow A$ as follows. Introduce $\top$ in the left side with $Lw$ and apply $R\rightarrow$ to get $\Rightarrow \top \rightarrow A$. Repeat $b$ times to get $\Rightarrow \Box^b A$. Then $a$ applications of $N$ yields $\Rightarrow \nabla^a \Box^b A$. Now $Cut$ all of them into $\{ \nabla^a \Box^b A\}_{(a,b) \in I} , \Gamma \Rightarrow \Delta$ to get $\Gamma \Rightarrow \Delta$. \\
+I. Suppose we have $\Rightarrow A$ and $N(A, f) , \Gamma \Rightarrow \Delta$ for some $f$. First for any $a \in f(A)$, construct $\Rightarrow \nabla^{a_1} \Box^{a_2} \dots \nabla^{a_{k-1}} \Box^{a_k} A$ from $\Rightarrow A$ as follows: Introduce $\top$ in the left side with $Lw$ and apply $R\rightarrow$ to get $\Rightarrow \top \rightarrow A$. Repeat $a_k$ times to get $\Rightarrow \Box^{a_k} A$. Then $a_{k-1}$ applications of $N$ yields $\Rightarrow \nabla^{a_{k-1}} \Box^{b_k} A$. Repeat this process for all elements of $a$, and do this for all $a \in f(A)$. Now $Cut$ all of them into $N(A, f) , \Gamma \Rightarrow \Delta$ to get $\Gamma \Rightarrow \Delta$. \\
 
-II. Suppose $\Rightarrow A \vdash_{iSTL} \Gamma \Rightarrow \Delta$ by a proof tree $\mathbf{D}$. By induction on the length of $\mathbf{D}$, for any $\Gamma'$, $\Delta'$ and any iSTL$+A$ proof tree $\mathbf{D}'$ which proves $\Gamma' \Rightarrow \Delta'$ in lower length than $\mathbf{D}$, we can assume there is an iSTL proof tree IH($\mathbf{D}'$) that proves $\{\nabla^a \Box^b A\}_{(a,b) \in I_{IH(\mathbf{D}')}} , \Gamma' \Rightarrow \Delta'$ for some set of pairs of natural numbers $I_{IH(\mathbf{D}')}$.
+II. For the other direction, we can prove a stronger version: Suppose $\Rightarrow A \vdash_{iSTL} \Gamma \Rightarrow \Delta$ by a proof tree $\mathbf{D}$. We want to prove $\vdash_{iSTL} \{ \nabla^a \Box^b A\}_{(a,b) \in I} , \Gamma \Rightarrow \Delta$ for some finite set of pairs of natural numbers $I$. By induction on the length of $\mathbf{D}$, for any $\Gamma'$, $\Delta'$ and any iSTL$+A$ proof tree $\mathbf{D}'$ which proves $\Gamma' \Rightarrow \Delta'$ in lower length than $\mathbf{D}$, we can assume there is an iSTL proof tree IH($\mathbf{D}'$) that proves $\{\nabla^a \Box^b A\}_{(a,b) \in I_{IH(\mathbf{D}')}} , \Gamma' \Rightarrow \Delta'$ for some set of pairs of natural numbers $I_{IH(\mathbf{D}')}$.
 
 For different possible rules in iSTL$+A$ as the last rule of $\mathbf{D}$, we will construct an iSTL proof of $\{ \nabla^a \Box^b A\}_{(a,b) \in I} , \Gamma \Rightarrow \Delta$ for some finite set of pairs natural numbers $I$. In all cases, the possible immediate sub-trees of $\mathbf{D}$ are called $\mathbf{D_0}$ and $\mathbf{D_1}$.
 \begin{enumerate}
@@ -32,197 +78,102 @@ For different possible rules in iSTL$+A$ as the last rule of $\mathbf{D}$, we wi
 	\item ($R\rightarrow$) If $a = 0$ for some $(a,b) \in I_{IH(\mathbf{D_0})}$, then $R\rightarrow$ is not applicable on IH($\mathbf{D_0}$). We have $\nabla \Box^{b+1} A \Rightarrow \Box^b A$ from lemma \ref{lem:i-nabla-box}. For all such $(0,b) \in I_{IH(\mathbf{D_0})}$ we first $Cut$ this into IH($\mathbf{D_0}$), so that the context has at least one $\nabla$ before applying $R\rightarrow$. Notice that $I = \{ (a, b) : (a+1, b) \in I \} \cup$ $\{ (0, b+1) : (0, b) \in I \}$.
 \end{enumerate}
 
-\subsection{Theorem} \textit{Deductive Interpolation for iSTL: } For any $\Delta'$ and $\Delta$, if $\Rightarrow \Delta' \vdash_{iSTL} \Rightarrow \Delta$ then there exists a formula $D$ such that
+\subsection{Theorem} \textit{Deductive Interpolation for iSTL: } For any $\Delta'$ and $\Delta$, if $\Rightarrow \Delta' \vdash_{iSTL} \Rightarrow \Delta$ then there exists a formula $C$ such that
 \begin{enumerate}[label=(\arabic*)]
-	\item $\Rightarrow \Delta' \vdash_{iSTL} \Rightarrow D$,
-	\item $\Rightarrow D \vdash_{iSTL} \Rightarrow \Delta$ and
-	\item $P(D) \subseteq P(\Delta') \cap P(\Delta)$.
+	\item $\Rightarrow \Delta' \vdash_{iSTL} \Rightarrow C$,
+	\item $\Rightarrow C \vdash_{iSTL} \Rightarrow \Delta$ and
+	\item $P(C) \subseteq P(\Delta') \cap P(\Delta)$.
 \end{enumerate}
 
-\textit{Proof}: In case $\Delta' = \{\}$, just take $D = \bot$. Now let's assume $\Delta' = A$ for some formula $A$. By lemma \ref{lem:vdash}, we can assume iSTL$\vdash \{ \nabla^a \Box^b A \}_{(a,b) \in I} \Rightarrow \Delta$ for some set of pairs of natural numbers $I$. Also by theorem \ref{translation} and corollary \ref{cut-elim}, we can state the whole theorem in GSTL$^-$. 
-We will also change the original statement and prove the following stronger version: For any $\Gamma_1$, $\Gamma_2$, $\Delta$ and $A$, if $\vdash_{GSTL^-} \{ \nabla^a \Box^b A \}_{(a,b) \in I} , \Gamma_1 , \Gamma_2 \Rightarrow \Delta$ for some $I \subseteq \omega^2$, then there is $D$ such that
-\begin{enumerate}[label=(\arabic*)]
-	\item $\vdash_{GSTL^-} \{\nabla^a \Box^b A\}_{(a,b) \in J} , \Gamma_1 \Rightarrow D$ for some $J \subseteq \omega^2$, 
-	\item $\vdash_{GSTL^-} \{ \nabla^a \Box^b D \}_{(a,b) \in K} , \Gamma_2 \Rightarrow \Delta$ for some $K \in \omega^2$, and
-	\item $P(D) \subseteq P(A,\Gamma_1) \cap P(\Gamma_2,\Delta)$.
+\textit{Proof}: In case $\Delta' = \{\}$, just take $C = \bot$. Now let's assume $\Delta' = A$ for some formula $A$.
+
+We will first prove the following stronger version: For any $\Gamma_1$, $\Gamma_2$ and $\Delta$, if $\vdash_{GSTL^-} \Gamma_1 , \Gamma_2 \Rightarrow \Delta$ then there is a formula $C$ and a finite multi-set of formulas $\Pi$ (consisting of members of $\Gamma_1$ with some $\nabla$ and $\Box$) such that
+\begin{enumerate}[label=(\arabic**)]
+	\item $\vdash_{GSTL^-} \Pi \Rightarrow C$,
+	\item $\vdash_{GSTL^-} \Gamma_2 , C \Rightarrow \Delta$,
+	\item $P(C) \subseteq P(\Gamma_1) \cap P(\Gamma_2,\Delta)$, and
+	\item for any $B$ in $\Pi$ there is $A$ in $\Gamma_1$ such that $B = \nabla^{n_0} \Box^{n_1} \dots \nabla^{n_{k-1}} \Box^{n_k} A$ for some finite sequence of natural numbers $n_1,...,n_k$.
 \end{enumerate}
+Notice that using the notation defined above we can ommit (4*) and replace $\Pi$ in (1*) by $N(\Gamma_1, f)$ for some $f$.
 
-By induction on the length of $\mathbf{D}$, we can assume for any $I'$, $A'$, $\Gamma_1'$, $\Gamma_2'$, $\Delta'$ and $\mathbf{D}'$, where $\mathbf{D}'$ is a GSTL$^-$ proof for $\{ \nabla^a \Box^b A' \}_{(a,b) \in I'} , \Gamma_1' , \Gamma_2' \Rightarrow \Delta'$ and $h(\mathbf{D}')<h(\mathbf{D})$, there is a formula $D_{\langle I';A';\Gamma_1';\Gamma_2';\Delta'\rangle}$, more concisely $D'$, such that
-\begin{enumerate}[label=(\arabic*)]
-	\item $\vdash_{GSTL^-} \{\nabla^a \Box^b A'\}_{(a,b) \in J'} , \Gamma_1' \Rightarrow D'$ for some $J' \subseteq \omega^2$,
-	\item $\vdash_{GSTL^-} \{\nabla^a \Box^b D'\}_{(a,b) \in K'}, \Gamma_2' \Rightarrow \Delta'$ for some $K' \subseteq \omega^2$, and
-	\item $P(D') \subseteq P(A',\Gamma_1') \cap P(\Gamma_2',\Delta')$.
+Then to prove the original statement, first convert $\Rightarrow A \vdash_{iSTL} \Rightarrow \Delta$ to $\vdash_{GSTL^-} \{\nabla^a\Box^b A : (a,b) \in I\} \Rightarrow \Delta$ using lemma \ref{lem:vdash} and theorems \ref{translation} and \ref{cut-elim}, and then let $\Gamma_1 = \{\nabla^a \Box^b A : (a,b) \in I \}$, $\Gamma_2 = \{\}$. Notice that we can again translate (2*) and (3*) to (2) and (3) respectively, using \ref{lem:vdash}, \ref{cut-elim} and \ref{translation}. To convert (1*) to (1), i.e. $\vdash_{iSTL} \{\nabla^a \Box^b \nabla^c \Box^d A : (a,b) \in I , (c,d) \in J \} \Rightarrow C$ to $\Rightarrow A \vdash_{iSTL} C$ we must construct $\Rightarrow \nabla^a \Box^b \nabla^c \Box^d A$ for each $(a,b)$ and $(c,d)$ in $I$ and $J$ from $\Rightarrow A$, in a manner similar to the proof of \ref{lem:vdash}, and then cut them to get $\Rightarrow \Delta$.
+
+Now back to the stronger form, using induction on the length of $\mathbf{D}$, we can assume for any $\Gamma_1'$, $\Gamma_2'$, $\Delta'$ and $\mathbf{D}'$, where $\mathbf{D}'$ is a GSTL$^-$ proof for $\Gamma_1' , \Gamma_2' \Rightarrow \Delta'$ and $h(\mathbf{D}')<h(\mathbf{D})$, there is a formula $C_{\langle \Gamma_1';\Gamma_2';\Delta' \rangle}$, more concisely $C'$, and a finite multi-set of formulas $\Pi'$ ($= N(\Gamma_1', f)$ for some proper f) such that
+\begin{enumerate}[label=(\arabic*')]
+	\item $\vdash_{GSTL^-} \Pi' \Rightarrow C'$,
+	\item $\vdash_{GSTL^-} \Gamma_2' , C' \Rightarrow \Delta'$,
+	\item $P(C') \subseteq P(\Gamma_1') \cap P(\Gamma_2',\Delta')$, and
+	\item for any $B$ in $\Pi'$ there is $A$ in $\Gamma_1'$ such that $B = \nabla^{n_0} \Box^{n_1} \dots \nabla^{n_{k-1}} \Box^{n_k} A$ for some finite sequence of natural numbers $n_1,...,n_k$.
 \end{enumerate}
-We now construct proper $D$ for different cases for the last rule of $\mathbf{D}$. In each case, the immediate sub-trees of $\mathbf{D}$ are denoted by $\mathbf{D_i} (i \in \{0,1\})$. First notice that if none of $\nabla^a \Box^b A$'s are principal in the last rule, that is, the principal formula is either in $\Gamma_1$ or $\Gamma_2$
-\todo{}.
-
-Now suppose one $\nabla^{a_0} \Box^{b_0} A$ is principal in the last rule.
-\begin{enumerate}
-	\item[1,2.] ($L\land_i, i \in \{1,2\}$) This implies $b_0 = 0$ and $A = \nabla^n (A_1 \land A_2)$ for some formulas $A_1$ and $A_2$ and some natural number $n$. Let $I' = I - \{(a_0,b_0)\}$.
-	\begin{prooftree}
-		\AXC{$\mathbf{D_0}$} \noLine
-		\UIC{$\{ \nabla^a \Box^b \nabla^n (A_1 \land A_2) \}_{(a,b) \in I'} , \nabla^{a_0 + n} A_i , \Gamma_1 , \Gamma_2 \Rightarrow \Delta$}
-		\RightLabel{$L\land_i$}
-		\UIC{$\{ \nabla^a \Box^b \nabla^n (A_1 \land A_2) \}_{(a,b) \in I'} , \nabla^{a_0 + n} (A_1 \land A_2) , \Gamma_1 , \Gamma_2 \Rightarrow \Delta$}
-	\end{prooftree}
-	Let $D = D_{\langle I';\nabla^n(A_1 \land A_2);\nabla^{a_0+n}A_i,\Gamma_1;\Gamma_2;\Delta \rangle}$. By induction hypothesis we have
-	\begin{enumerate}[label=(\arabic*)]
-		\item $\vdash_{GSTL^-} \{\nabla^a \Box^b \nabla^n (A_1 \land A_2) \}_{(a,b) \in J'} , \nabla^{a_0+n} A_i , \Gamma_1 \Rightarrow D$,
-		\item $\vdash_{GSTL^-} \{\nabla^a \Box^b D\}_{(a,b) \in K'} \Gamma_2 \Rightarrow \Delta$
-		\item $P(D) \subseteq P(\nabla^n(A_1 \land A_2),\nabla^{a_0+n}A_i,\Gamma_1) \cap P(\Gamma_2,\Delta)$
-	\end{enumerate}
-	Now just apply $L\land_i$ on $(1)$ to get $\{\nabla^a \Box^b \nabla^n (A_1 \land A_2) \}_{(a,b) \in J'} , \nabla^{a_0+n} (A_1 \land A_2), \Gamma_1 \Rightarrow D$ and take $J = J' \cup \{(a_0,0)\}$.
-
-	\setcounter{enumi}{2}
-	\item ($L\lor$) This implies $b_0 = 0$ and $A = \nabla^n(A_1 \lor A_2)$. Let $I' = I - \{(a_0,b_0)\}$. We have
-	\[ \mathbf{D_0} : \{ \nabla^a \Box^b \nabla^n (A_1 \lor A_2) \}_{(a,b) \in I'} , \nabla^{a_0 + n} A_1 , \Gamma_1 , \Gamma_2 \Rightarrow \Delta \]
-	\[ \mathbf{D_1} : \{ \nabla^a \Box^b \nabla^n (A_1 \lor A_2) \}_{(a,b) \in I'} , \nabla^{a_0 + n} A_2 , \Gamma_1 , \Gamma_2 \Rightarrow \Delta\]
-	\begin{prooftree}
-		\AXC{$\mathbf{D_0}$}
-		\AXC{$\mathbf{D_1}$}
-		\RightLabel{$L\lor$}
-		\BIC{$\{ \nabla^a \Box^b \nabla^n (A_1 \lor A_2) \}_{(a,b) \in I'} , \nabla^{a_0 + n} (A_1 \lor A_2) , \Gamma_1 , \Gamma_2 \Rightarrow \Delta$}
-	\end{prooftree}
-	Let $D_1 = D_{\langle I';\nabla^n(A_1 \lor A_2);\nabla^{a_0+n}A_1,\Gamma_1;\Gamma_2;\Delta \rangle}$ and $D_2 = D_{\langle I';\nabla^n(A_1 \lor A_2);\nabla^{a_0+n}A_2,\Gamma_1;\Gamma_2;\Delta \rangle}$ and take $D = D_1 \lor D_2$. From induction hypothesis we have
-	\begin{enumerate}[label=(1.\arabic*)]
-		\item $\vdash_{GSTL^-} \{\nabla^a \Box^b \nabla^n (A_1 \lor A_2) \}_{(a,b) \in J_1} , \nabla^{a_0+n} A_1 , \Gamma_1 \Rightarrow D_1$
-		\item $\vdash_{GSTL^-} \{\nabla^a \Box^b D_1\}_{(a,b) \in K_1}, \Gamma_2 \Rightarrow \Delta$
-		\item $P(D_1) \subseteq P(\nabla^n(A_1 \lor A_2),\nabla^{a_0+n}A_1,\Gamma_1) \cap P(\Gamma_2,\Delta)$
-	\end{enumerate}
-	\begin{enumerate}[label=(2.\arabic*)]
-		\item $\vdash_{GSTL^-} \{\nabla^a \Box^b \nabla^n (A_1 \lor A_2) \}_{(a,b) \in J_2} , \nabla^{a_0+n} A_2 , \Gamma_1 \Rightarrow D_2$
-		\item $\vdash_{GSTL^-} \{\nabla^a \Box^b D_2\}_{(a,b) \in K_2}, \Gamma_2 \Rightarrow \Delta$
-		\item $P(D_2) \subseteq P(\nabla^n(A_1 \lor A_2),\nabla^{a_0+n}A_2,\Gamma_1) \cap P(\Gamma_2,\Delta)$
-	\end{enumerate}
-	Take $J = J_1 \cup J_2$. Proper applications of $Lw$ and $R\lor_i$ on $(i,1)$ (for $i \in \{1,2\}$) gives
-	\[\{\nabla^a \Box^b \nabla^n (A_1 \lor A_2) \}_{(a,b) \in J_1 \cup J_2} , \nabla^{a_0+n} A_i , \Gamma_1 \Rightarrow D_1 \lor D_2\]
-	then by $L\lor$ we have
-	\[\{\nabla^a \Box^b \nabla^n (A_1 \lor A_2) \}_{(a,b) \in J_1 \cup J_2} , \nabla^{a_0+n} (A_1 \lor A_2) , \Gamma_1 \Rightarrow D_1 \lor D_2\]
-	\todo{nothing. Can't construct $D_1 \lor D_2$ on the left side. No other candidate.}
-\end{enumerate}
-
-\subsection{Theorem} \textit{Craig's Interpolation for GSTL$^-$: } For any $\Gamma_1$, $\Gamma_2$ and $\Delta$, if $\vdash_{GSTL^-} \Gamma_1 , \Gamma_2 \Rightarrow \Delta$, then there is a formula $C$ such that $P(C) \subseteq P(\Gamma_1) \cap P(\Gamma_2 , \Delta)$, $\vdash_{GSTL^-} \Gamma_1 \Rightarrow C$ and $\vdash_{GSTL^-} \Gamma_2 , C \Rightarrow \Delta$.
-
-\textit{Proof}: Let $\mathbf{D}$ be the GSTL$^-$ proof of $\Gamma_1 , \Gamma_2 \Rightarrow \Delta$. We will use induction on $h(\mathbf{D})$. So for any $\Gamma_1'$, $\Gamma_2'$ and $\Delta'$ such that $\vdash_{GSTL^-} \Gamma_1' , \Gamma_2' \Rightarrow \Delta'$ with a proof smaller than $\mathbf{D}$, the induction hypothesis (IH) gives an interpolant $C_{\langle\Gamma_1'; \Gamma_2'; \Delta'\rangle}$ for which the statement of the theorem is true. We now build the desired interpolant $C$, in different cases for the last rule of $\mathbf{D}$. In cases for left-rules, we also need to consider whether the principal formula is in $\Gamma_1$ or $\Gamma_2$ in separate cases.
+Now construct proper $C$ and $\Pi$ for different cases for the last rule of $\mathbf{D}$. In each case, the immediate sub-trees of $\mathbf{D}$ are denoted by $\mathbf{D_i} (i \in \{0,1\})$.
 \begin{enumerate}
 	\item ($Id$) We have $\Gamma_1,\Gamma_2 = \Delta = A$.
 	\begin{enumerate}
-		\item If $\Gamma_1 = \{\}$ and $\Gamma_2 = A$, then define $C = \top$. So we have $\Rightarrow \top$ by $Ta$ and $A , \top \Rightarrow A$ by $Id$ and $Lw$.
-		
-		\item If $\Gamma_1 = A$ and $\Gamma_2 = \{\}$ then define $C = A$. So we have $A \Rightarrow A$ by $Id$.
+		\item If $\Gamma_1 = \{\}$ and $\Gamma_2 = A$, then let $C = \top$. So we have $\Rightarrow \top$ by $Ta$ and $A , \top \Rightarrow A$ by $Id$ and $Lw$.
+
+		\item If $\Gamma_1 = A$ and $\Gamma_2 = \{\}$ then let $C = A$. So we have $A \Rightarrow A$ by $Id$.
 	\end{enumerate}
 	\item ($Ta$) Take $C = \top$.
-	
+
 	\item ($Ex$) Take $C = \nabla^n \bot$.
-	
-	\item ($Lw$) $\mathbf{D}$ proves $\Gamma_1' , \Gamma_2' , A \Rightarrow \Delta$ and has a sub-proof for $\Gamma_1' , \Gamma_2' \Rightarrow \Delta$, for which IH gives an interpolant $C_{\langle\Gamma_1';\Gamma_2';\Delta\rangle}$ and proofs for $\Gamma_1' \Rightarrow C_{\langle\Gamma_1';\Gamma_2';\Delta\rangle}$ and $\Gamma_2 , C_{\langle\Gamma_1';\Gamma_2';\Delta\rangle} \Rightarrow \Delta$, such that $P(C_{\langle\Gamma_1';\Gamma_2';\Delta\rangle}) \subseteq$ $ P(\Gamma_1') \cap P(\Gamma_2' , \Delta)$.
+
+	\item ($Lw$) $\mathbf{D}$ proves $\Gamma_1' , \Gamma_2' , A \Rightarrow \Delta$ and has a sub-proof for $\Gamma_1' , \Gamma_2' \Rightarrow \Delta$, for which IH gives an interpolant $C_{\langle\Gamma_1';\Gamma_2';\Delta\rangle}$, a multi-set $\Pi$ consisting of formulas made up of some $\nabla$'s and $\Box$'s applied to members of $\Gamma_1'$, and proofs for $\Pi \Rightarrow C_{\langle\Gamma_1';\Gamma_2';\Delta\rangle}$ and $\Gamma_2 , C_{\langle\Gamma_1';\Gamma_2';\Delta\rangle} \Rightarrow \Delta$, such that $P(C_{\langle\Gamma_1';\Gamma_2';\Delta\rangle}) \subseteq$ $ P(\Gamma_1') \cap P(\Gamma_2' , \Delta)$.
 	\begin{enumerate}
-		\item If $\Gamma_1 = \Gamma_1'$ and $\Gamma_2 = \Gamma_2' , A$, take $C = C_{\langle\Gamma_1';\Gamma_2';\Delta\rangle}$. Then we have  $\Gamma_1' \Rightarrow C$ by IH and $\Gamma_2 , A , C \Rightarrow \Delta$ by $Lw$ and IH. From IH, we also have $P(C) \subseteq P(\Gamma_1') \cap P(\Gamma_2' , A , \Delta)$, since $P$ takes ``$,$'' to ``$\cup$'', which distributes over ``$\cap$'' and is increasing with respect to ``$\subseteq$''.
-		
-		\item If $\Gamma_1 = \Gamma_1' , A$ and $\Gamma_2 = \Gamma_2'$, again take $C = C_{\langle\Gamma_1';\Gamma_2';\Delta\rangle}$. Then we have  $\Gamma_1' , A \Rightarrow C$ by $Lw$ and IH, and $\Gamma_2 , C \Rightarrow \Delta$ by IH. We also have $P(C) \subseteq P(\Gamma_1' , A) \cap P(\Gamma_2' , \Delta)$ by IH and argument similar to the previous case.
+		\item If $\Gamma_1 = \Gamma_1'$ and $\Gamma_2 = \Gamma_2' , A$, take $C = C_{\langle\Gamma_1';\Gamma_2';\Delta\rangle}$. Then we have  $\Pi \Rightarrow C$ by IH and $\Gamma_2 , A , C \Rightarrow \Delta$ by $Lw$ and IH. From IH, we also have $P(C) \subseteq P(\Gamma_1') \cap P(\Gamma_2' , A , \Delta)$, since $P$ takes ``$,$'' to ``$\cup$'', which distributes over ``$\cap$'' and is increasing with respect to ``$\subseteq$''.
+
+		\item If $\Gamma_1 = \Gamma_1' , A$ and $\Gamma_2 = \Gamma_2'$, again take $C = C_{\langle\Gamma_1';\Gamma_2';\Delta\rangle}$. Then we have  $\Pi , A \Rightarrow C$ by $Lw$ and IH, and $\Gamma_2 , C \Rightarrow \Delta$ by IH. We also have $P(C) \subseteq P(\Gamma_1' , A) \cap P(\Gamma_2' , \Delta)$ by IH and argument similar to the previous case.
 	\end{enumerate}
 
 	\item ($Lc$) $\mathbf{D}$ proves $\Gamma_1' , \Gamma_2' , A \Rightarrow \Delta$ and has a sub-proof for $\Gamma_1' , \Gamma_2' , A , A \Rightarrow \Delta$.
 	\begin{enumerate}
-		\item If $\Gamma_1 = \Gamma_1'$ and $\Gamma_2 = \Gamma_2' , A$, take $C = C_{\langle\Gamma_1';\Gamma_2',A,A;\Delta\rangle}$. Then we have $\Gamma_1' \Rightarrow C$ by IH and $\Gamma_2' , A \Rightarrow \Delta$ by IH and $Lc$. From IH, we also have $P(C) \subseteq P(\Gamma_1') \cap P(\Gamma_2',A,\Delta)$, since $P(\Gamma,X) = P(\Gamma,X,X)$.
+		\item If $\Gamma_1 = \Gamma_1'$ and $\Gamma_2 = \Gamma_2' , A$, take $C = C_{\langle\Gamma_1';\Gamma_2',A,A;\Delta\rangle}$. Then we have $\Pi \Rightarrow C$ by IH and $\Gamma_2' , A \Rightarrow \Delta$ by IH and $Lc$. From IH, we also have $P(C) \subseteq P(\Gamma_1') \cap P(\Gamma_2',A,\Delta)$, since $P(\Gamma,X) = P(\Gamma,X,X)$.
 		
-		\item If $\Gamma_1 = \Gamma_1' , A$ and $\Gamma_2 = \Gamma_2'$, take $C = C_{\langle\Gamma_1',A,A;\Gamma_2';\Delta\rangle}$. Then we have $\Gamma_1' , A \Rightarrow C$ by IH and $Lc$, and $\Gamma_2' \Rightarrow \Delta$ by IH. We also have $P(C) \subseteq P(\Gamma_1',A) \cap P(\Gamma_2',\Delta)$ as justified before.
+		\item If $\Gamma_1 = \Gamma_1' , A$ and $\Gamma_2 = \Gamma_2'$, take $C = C_{\langle\Gamma_1',A,A;\Gamma_2';\Delta\rangle}$. Then we have $N(\Gamma_1',A,A,f) \Rightarrow C$ by IH (which is just $N(\Gamma_1',A,f')$ for some $f'$), and $\Gamma_2' \Rightarrow \Delta$ by IH. We also have $P(C) \subseteq P(\Gamma_1',A) \cap$ $P(\Gamma_2',\Delta)$ as justified before.
 	\end{enumerate}
 
 	\item[6,7.] ($L\land_i$, {\small$i \in \{1,2\}$}) $\mathbf{D}$ proves $\Gamma_1' , \Gamma_2' , \nabla^n (A_1 \land A_2) \Rightarrow \Delta$ and has a sub-proof for $\Gamma_1' , \Gamma_2' , \nabla^n A_i \Rightarrow \Delta$.
 	\begin{enumerate}
-		\item If $\Gamma_1 = \Gamma_1'$ and $\Gamma_2 = \Gamma_2' , \nabla^n (A_1 \land A_2)$, take $C = C_{\langle\Gamma_1';\Gamma_2',\nabla^n A_i;\Delta\rangle}$. Then we have $\Gamma_1' \Rightarrow C$ by IH and $\Gamma_2' , \nabla^n (A_1 \land A_2) \Rightarrow \Delta$ by IH and $L\land_i$. From IH, we also have $P(C) \subseteq$ $P(\Gamma_1') \cap P(\Gamma_2',\nabla^n(A_1 \land A_2),\Delta)$, since $P(\nabla^n X) = P(X)$ and $P$ takes sub-formula ordering to ``$\subseteq$''.
+		\item If $\Gamma_1 = \Gamma_1'$ and $\Gamma_2 = \Gamma_2' , \nabla^n (A_1 \land A_2)$, take $C = C_{\langle\Gamma_1';\Gamma_2',\nabla^n A_i;\Delta\rangle}$. Then we have $\Pi \Rightarrow C$ by IH and $\Gamma_2' , \nabla^n (A_1 \land A_2) \Rightarrow \Delta$ by IH and $L\land_i$. From IH, we also have $P(C) \subseteq$ $P(\Gamma_1')$ $\cap P(\Gamma_2',\nabla^n(A_1 \land A_2),\Delta)$, since $P(\nabla^n X) = P(X)$ and $P$ takes sub-formula ordering to ``$\subseteq$''.
 		
-		\item If $\Gamma_1 = \Gamma_1' , \nabla^n (A_1 \land A_2)$ and $\Gamma_2 = \Gamma_2'$, take $C = C_{\langle\Gamma_1',\nabla^n A_i;\Gamma_2';\Delta\rangle}$. Then we have $\Gamma_1' , \nabla^n (A_1 \land A_2)$ $\Rightarrow C$ by IH and $L\land_i$. Also from IH we have $\Gamma_2' \Rightarrow \Delta$. We also have $P(C) \subseteq P(\Gamma_1',\nabla^n (A_1 \land A_2))$ $\cap P(\Gamma_2',\Delta)$ as justified in the previous case.
+		\item If $\Gamma_1 = \Gamma_1' , \nabla^n (A_1 \land A_2)$ and $\Gamma_2 = \Gamma_2'$, take $C = C_{\langle\Gamma_1',\nabla^n A_i;\Gamma_2';\Delta\rangle}$. Then we have $N(\Gamma_1',\nabla^n A_i,f)$ $\Rightarrow C$ by IH. For any $a \in f(\nabla^n A_i)$, we have $(\nabla\Box)^a \nabla^n (A_1 \land A_2) \Rightarrow (\nabla\Box)^a \nabla^n A_i$ from lemmas \ref{lem:nabla-box-rule} and \ref{translation}, from which we can get $N(\Gamma_1',\nabla^n (A_1 \land A_2),f') \Rightarrow C$ using $Cut$. Also from IH we have $\Gamma_2' \Rightarrow \Delta$. We also have $P(C) \subseteq P(\Gamma_1',\nabla^n (A_1 \land A_2))$ $\cap P(\Gamma_2',\Delta)$ as justified in the previous case.
 	\end{enumerate}
 	\setcounter{enumi}{7}
 
 	\item ($R\land$) $\mathbf{D}$ proves $\Gamma_1 , \Gamma_2 \Rightarrow A \land B$ and has sub-proofs for $\Gamma_1 , \Gamma_2 \Rightarrow A$ and $\Gamma_1 , \Gamma_2 \Rightarrow B$.\\
 	Let $C_1 = C_{\langle\Gamma_1;\Gamma_2;A\rangle}$ and $C_2 = C_{\langle\Gamma_1;\Gamma_2;B\rangle}$, and then take $C = C_1 \land C_2$.
-	We have $\Gamma_1 \Rightarrow C_1$ and $\Gamma_1 \Rightarrow C_2$, both from IH. Then by $R\land$ we have $\Gamma_1 \Rightarrow C_1 \land C_2$.
+	We have $N(\Gamma_1,f_1) \Rightarrow C_1$ and $N(\Gamma_1,f_2) \Rightarrow C_2$, both from IH, to which we apply proper $Lw$ and equalize their contexts to get $N(\Gamma_1,f) \Rightarrow C_1$ and $N(\Gamma_1,f) \Rightarrow C_2$ for some $f$. Then by $R\land$ we have $N(\Gamma_1,f) \Rightarrow C_1 \land C_2$.
 	We also have $\Gamma_2 , C_1 \Rightarrow A$ and $\Gamma_2 , C_2 \Rightarrow B$, again from IH.
 	We can then derive $\Gamma_2 , C_1 \land C_2 \Rightarrow A$ and $\Gamma_2 , C_1 \land C_2 \Rightarrow B$, respectively by $L\land_1$ and $L\land_2$, and finally  $\Gamma_2 , C_1 \land C_2 \Rightarrow A \land B$ by $R\land$.
 	We also have $P(C_1) \subseteq P(\Gamma_1) \cap P(\Gamma_2 , A)$ and $P(C_2) \subseteq P(\Gamma_1) \cap P(\Gamma_2 , B)$. So $P(C_1 , C_2) \subseteq P(\Gamma_1) \cap P(\Gamma_2 , A , B)$ as it was justified before, and then $P(C_1 \land C_2) \subseteq P(\Gamma_1) \cap P(\Gamma_2 , A \land B)$.
-	
-	\item ($L\lor$) $\mathbf{D}$ proves $\Gamma_1' , \Gamma_2' , \nabla^n (A \lor B) \Rightarrow \Delta$ and has sub-proofs for $\Gamma_1' , \Gamma_2' , \nabla^n A \Rightarrow \Delta$ and $\Gamma_1' , \Gamma_2' , \nabla^n B \Rightarrow \Delta$.
+
+	\item ($L\lor$) $\mathbf{D}$ proves $\Gamma_1' , \Gamma_2' , \nabla^n (A \lor B) \Rightarrow \Delta$ and has sub-proofs for $\Gamma_1' , \Gamma_2' , \nabla^n A \Rightarrow \Delta$ and $\Gamma_1' , \Gamma_2' ,$ $\nabla^n B \Rightarrow \Delta$.
 	\begin{enumerate}
 		\item If $\Gamma_1 = \Gamma_1'$ and $\Gamma_2 = \Gamma_2' , \nabla^n (A \lor B)$, let $C_1 = C_{\langle\Gamma_1';\Gamma_2',\nabla^n A;\Delta\rangle}$ and $C_2 = C_{\langle\Gamma_1';\Gamma_2',\nabla^n B;\Delta\rangle}$, and then take $C = C_1 \land C_2$.
-		We have $\Gamma_1' \Rightarrow C_1 \land C_2$ from IH and $R\land$.
+		We have $N(\Gamma_1',f_1) \Rightarrow C_1$ and $N(\Gamma_1',f_2) \Rightarrow C_2$ from IH, to which we apply $R\land$ after equalizing their contexts with $Lw$, to get $N(\Gamma_1',f) \Rightarrow C_1 \land C_2$ for some $f$.
 		From IH, by $L\land_1$ and $L\land_2$ we can derive $\Gamma_2' , \nabla^n A , C_1 \land C_2 \Rightarrow \Delta$ and $\Gamma_2' , \nabla^n B , C_1 \land C_2 \Rightarrow \Delta$ respectively, to which we apply $L\lor$ to get to $\Gamma_2' , \nabla^n (A \lor B) , C_1 \land C_2 \Rightarrow \Delta$.
 		From IH, we also have $P(C_1) \subseteq P(\Gamma_1') \cap P(\Gamma_2' , \nabla^n A , \Delta)$ and $P(C_2) \subseteq P(\Gamma_1') \cap P(\Gamma_2' , \nabla^n B , \Delta)$. Just like the previous case, we can deduce that $P(C_1 \land C_2) \subseteq P(\Gamma_1') \cap P(\Gamma_2' , \nabla^n (A \land B) , \Delta)$.
 
 		\item If $\Gamma_1 = \Gamma_1' , \nabla^n (A \lor B)$ and $\Gamma_2 = \Gamma_2'$, let $C_1 = C_{\langle\Gamma_1',\nabla^n A;\Gamma_2';\Delta\rangle}$ and $C_2 = C_{\langle\Gamma_1',\nabla^n B;\Gamma_2';\Delta\rangle}$, and then take $C = C_1 \lor C_2$.
-		From IH, by $R\lor_1$ and $R\lor_2$ we can derive $\Gamma_1' , \nabla^n A \Rightarrow C_1 \lor C_2$ and $\Gamma_1' , \nabla^n B \Rightarrow C_1 \lor C_2$ respectively, to which we apply $L\lor$ to get to $\Gamma_1' , \nabla^n (A \lor B) \Rightarrow C_1 \lor C_2$.
+		From IH, by $R\lor_1$ and $R\lor_2$ we can derive $N(\Gamma_1',\nabla^n A,f_1) \Rightarrow C_1 \lor C_2$ and $N(\Gamma_1',\nabla^n B,f_2) \Rightarrow C_1 \lor C_2$ respectively, to which we apply \todo{what?} to get to $N(\Gamma_1',\nabla^n (A \lor B),f) \Rightarrow C_1 \lor C_2$ for some $f$.
 		We have $\Gamma_2' , C_1 \lor C_2 \Rightarrow \Delta$ from IH and $L\lor$.
 		From IH, we also have $P(C_1) \subseteq P(\Gamma_1' , \nabla^n A) \cap$ $P(\Gamma_2' , \Delta)$ and $P(C_2) \subseteq P(\Gamma_1' , \nabla^n B) \cap P(\Gamma_2' , \Delta)$. Just like the previous case, we can deduce that $P(C_1 \lor C_2) \subseteq P(\Gamma_1' , \nabla^n (A \land B)) \cap P(\Gamma_2' , \Delta)$.
 	\end{enumerate}
 
-	\item[10,11.] ($R\lor_i$, {\small$i \in \{1,2\}$}) $\mathbf{D}$ proves $\Gamma_1 , \Gamma_2 \Rightarrow A_1 \lor A_2$ and has a sub-proof for $\Gamma_1 , \Gamma_2 \Rightarrow A_i$. Take $C = C_{\langle\Gamma_1;\Gamma_2;A_i\rangle}$. Then we have $\Gamma_1 \Rightarrow C$ from IH and $\Gamma_2 , C \Rightarrow A_1 \lor A_2$ from IH and $R\lor_i$.
+	\item[10,11.] ($R\lor_i$, {\small$i \in \{1,2\}$}) $\mathbf{D}$ proves $\Gamma_1 , \Gamma_2 \Rightarrow A_1 \lor A_2$ and has a sub-proof for $\Gamma_1 , \Gamma_2 \Rightarrow A_i$. Take $C = C_{\langle\Gamma_1;\Gamma_2;A_i\rangle}$. Then we have $N(\Gamma_1,f) \Rightarrow C$ from IH and $\Gamma_2 , C \Rightarrow A_1 \lor A_2$ from IH and $R\lor_i$.
 	From IH, we also have $P(C) \subseteq P(\Gamma_1) \cap P(\Gamma_2 , A_1 \lor A_2)$, as was justified before.
 	\setcounter{enumi}{11}
-	
+
 	\item ($L\rightarrow$) $\mathbf{D}$ proves $\Gamma_1' , \Gamma_2' , \nabla^{n+1} (A \rightarrow B) \Rightarrow \Delta$ and has sub-proofs for $\Gamma_1' , \Gamma_2' \Rightarrow \nabla^n A$ and $\Gamma_1' , \Gamma_2' , \nabla^n B \Rightarrow \Delta$.
 	\begin{enumerate}
 		\item If $\Gamma_1 = \Gamma_1'$ and $\Gamma_2 = \Gamma_2' , \nabla^{n+1} (A \rightarrow B)$, let $C_1 = C_{\langle\Gamma_1';\Gamma_2';\nabla^n A\rangle}$ and $C_2 = C_{\langle\Gamma_1';\Gamma_2',\nabla^n B;\Delta\rangle}$, and take $C = C_1 \land C_2$.
-		We have $\Gamma_1' \Rightarrow C_1 \land C_2$ from IH and $R\land$.
+		We have $N(\Gamma_1',f) \Rightarrow C_1 \land C_2$ from IH and $R\land$.
 		From IH, by $L\land_1$ and $L\land_2$ we can derive $\Gamma_2' , C_1 \land C_2 \Rightarrow \nabla^n A$ and $\Gamma_2' , \nabla^n B , C_1 \land C_2 \Rightarrow \Delta$ respectively, to which we apply $L\rightarrow$ to get to $\Gamma_2' , \nabla^{n+1} (A \rightarrow B) , C_1 \land C_2 \Rightarrow \Delta$.
 		From IH, we also have $P(C_1) \subseteq P(\Gamma_1') \cap$ $P(\Gamma_2' , \nabla^n A)$ and $P(C_2) \subseteq P(\Gamma_1') \cap P(\Gamma_2' , \nabla^n B , \Delta)$. This implies $P(C_1 \land C_2) \subseteq P(\Gamma_1') \cap P(\Gamma_2' , \nabla^{n+1} (A \rightarrow B) , \Delta)$.
 
 		\item If $\Gamma_1 = \Gamma_1' , \nabla^{n+1} (A \rightarrow B)$ and $\Gamma_2 = \Gamma_2'$, let $C_1 = C_{\langle\Gamma_2';\Gamma_1';\nabla^n A\rangle}$ and $C_2 = C_{\langle\Gamma_1',\nabla^n B;\Gamma_2';\Delta\rangle}$, and take $C = \nabla (C_1 \rightarrow C_2)$.
-		From IH we have $\Gamma_1' , C_1 \Rightarrow \nabla^n A$. Also from IH, with a $Lw$ to add $C_1$ to the left, we have $\Gamma_1' , \nabla^n B , C_1 \Rightarrow C_2$. By applying $L\rightarrow$ we get $\Gamma_1 , \nabla^{n+1} (A \rightarrow B) , C_1 \Rightarrow C_2$.
-		\todo{}
-		{\color{red} If $\nabla C_1 \rightarrow \nabla C_2 \Rightarrow \nabla (C_1 \rightarrow C_2)$}
-		\begin{prooftree}
-			\AXC{$\Gamma_1 , \nabla^{n+1} (A \rightarrow B) , C_1 \Rightarrow C_2$}
-			\RightLabel{$N'$}
-			\UIC{$\nabla \Gamma_1 , \nabla^{n+2} (A \rightarrow B) , \nabla C_1 \Rightarrow \nabla C_2$}
-			\RightLabel{$R\rightarrow$}
-			\UIC{$\Gamma_1 , \nabla^{n+1} (A \rightarrow B) \Rightarrow \nabla C_1 \rightarrow \nabla C_2$}
-			
-			\AXC{}
-			\RightLabel{{\color{red}Only if this was true}}
-			\UIC{$\nabla C_1 \rightarrow \nabla C_2 \Rightarrow \nabla (C_1 \rightarrow C_2)$}
-
-			\RightLabel{$Cut$\tiny of the other logic}
-			\BIC{$\Gamma_1 , \nabla^{n+1} (A \rightarrow B) \Rightarrow \nabla (C_1 \rightarrow C_2)$}
-		\end{prooftree}
-		{\color{red} Or if there was an intuitionistic implication $\supset$, we could take $C = C_1 \supset C_2$}
-		\begin{prooftree}
-			\AXC{$\Gamma_1 , \nabla^{n+1} (A \rightarrow B) , C_1 \Rightarrow C_2$}
-			\RightLabel{$\supset$}
-			\UIC{$\Gamma_1 , \nabla^{n+1} (A \rightarrow B) \Rightarrow C_1 \supset C_2$}
-		\end{prooftree}
-
-
-		We have from IH $\Gamma_2' \Rightarrow C_1$ and $\Gamma_2' , C_2 \Rightarrow \Delta$, from which we can derive $\Gamma_2' , \nabla (C_1 \rightarrow C_2)$ by an application of $L\rightarrow$. We also have from IH $P(C_1) \subseteq P(\Gamma_2') \cap P(\Gamma_1' , \nabla^n A)$ and $P(C_2) \subseteq P(\Gamma_1' , \nabla^n B) \cap P(\Gamma_2' , \Delta)$. Then $P(\nabla (C_1 \rightarrow C_2)) \subseteq P(\Gamma_1' , \nabla^{n+1} (A \rightarrow B)) \cap P(\Gamma_2' , \Delta)$.
+		From IH we have $\Gamma_1' , C_1 \Rightarrow \nabla^n A$. Also from IH, with a $Lw$ to add $C_1$ to the left, we have $N(\Gamma_1',\nabla^n B,f_1) , C_1 \Rightarrow C_2$. By applying $L\rightarrow$ \todo{how?} we get $N(\Gamma_1,\nabla^{n+1}(A \rightarrow B),f) , C_1 \Rightarrow C_2$ for some $f$. By lemma \ref{lem:i-nabla-box} and $Cut$ we can add a $\nabla\Box$ to all formulas in $N(\Gamma_1',\nabla^{n+1}(A \rightarrow B),f)$, so we can move $C_1$ to the right by $R\rightarrow$. With $N'$ we will have $N(\Gamma_1',\nabla^{n+1}(A \rightarrow B),f') , \Rightarrow \nabla (C_1 \rightarrow C_2)$ for some $f'$.
+		From IH we also have $N(\Gamma_2',f_2) \Rightarrow C_1$ and $\Gamma_2' , C_2 \Rightarrow \Delta$. With proper applications of $Lw$, we can equalize their contexts to $N(\Gamma_2',f_2) , \Gamma_2' \Rightarrow C_1$ and $N(\Gamma_2',f_2) , \Gamma_2' , C_2 \Rightarrow \Delta$, from which we then derive $N(\Gamma_2',f_2) , \Gamma_2' , \nabla (C_1 \rightarrow C_2) \Rightarrow \Delta$ by an application of $L\rightarrow$. \todo{which is not what we want.} We also have from IH $P(C_1) \subseteq P(\Gamma_2') \cap P(\Gamma_1' , \nabla^n A)$ and $P(C_2) \subseteq P(\Gamma_1' , \nabla^n B) \cap P(\Gamma_2' , \Delta)$. Then $P(\nabla (C_1 \rightarrow C_2)) \subseteq P(\Gamma_1' , \nabla^{n+1} (A \rightarrow B)) \cap P(\Gamma_2' , \Delta)$.
 	\end{enumerate}
 
-	\item ($R\rightarrow$) $\mathbf{D}$ proves $\Gamma_1 , \Gamma_2 \Rightarrow A \rightarrow B$ and has a sub-proof for $\nabla \Gamma_1 , \nabla \Gamma_2 , A \Rightarrow B$. Let $C = C_{\langle\nabla\Gamma_1;\nabla\Gamma_2,A;B\rangle}$ and we have
-	\begin{multicols}{2}
-		\begin{prooftree}
-			\AXC{IH} \noLine
-			\UIC{$\nabla \Gamma_1 \Rightarrow C$}
-			\RightLabel{$Lw$}
-			\UIC{$\nabla \Gamma_1 , \top \Rightarrow C$}
-			\RightLabel{$R\rightarrow$}
-			\UIC{$\Gamma_1 \Rightarrow \top \rightarrow C$}
-		\end{prooftree}
-		\columnbreak
-		\begin{prooftree}
-			\AXC{Lemma \ref{lem:i-nabla-box}} \noLine
-			\UIC{$\nabla (\top \rightarrow C) \Rightarrow C$}
-
-			\AXC{IH} \noLine
-			\UIC{$\nabla \Gamma_2 , A , C \Rightarrow B$}
-
-			\RightLabel{$Cut$}
-			\BIC{$\nabla \Gamma_2 , A , \nabla (\top \rightarrow C) \Rightarrow B$}
-
-			\RightLabel{$R\rightarrow$}
-			\UIC{$\Gamma_2 , \top \rightarrow C \Rightarrow A \rightarrow B$}
-		\end{prooftree}
-	\end{multicols}
-	We also have $P(\top \rightarrow C) \subseteq P(\Gamma_1) \cap P(\Gamma_2 , A \rightarrow B)$ from IH and the fact that $P$ preserves sub-formula ordering in $\subseteq$ and $\top$ does not introduce new atomic formulas.
-
-	\item ($N'$) $\mathbf{D}$ proves $\nabla \Gamma_1 , \nabla \Gamma_2 \Rightarrow \nabla \Delta$ and has a sub-proof for $\Gamma_1 , \Gamma_2 \Rightarrow \Delta$. Just take $C = C(\Gamma_1;\Gamma_2;\Delta)$ and apply $N'$ on the sequents from IH. The variable condition is also trivial from IH.
+	\item ($N'$) $\mathbf{D}$ proves $\nabla \Gamma_1 , \nabla \Gamma_2 \Rightarrow \nabla \Delta$ and has a sub-proof for $\Gamma_1 , \Gamma_2 \Rightarrow \Delta$. Just take $C = C(\Gamma_1;\Gamma_2;\Delta)$ and apply $N'$ on the sequents from IH. \todo{!} The variable condition is also trivial from IH.
 \end{enumerate}
