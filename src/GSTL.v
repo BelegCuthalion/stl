@@ -12,6 +12,7 @@ Inductive GSTL : list form -> option form -> Prop :=
   | Ex:     forall n, n^∇ ⊥ ⇒g None
   | Lw:     forall G D p, G ⇒g D -> p::G ⇒g D
   | Rw:     forall G p, G ⇒g None -> G ⇒g p
+  | Lc:     forall G D p, p::p::G ⇒g D -> p::G ⇒g D
   | La1:    forall G D (a b : form) n, (n^∇ a)::G ⇒g D -> (n^∇ (a ∧ b))::G ⇒g D
   | La2:    forall G D (a b : form) n, (n^∇ b)::G ⇒g D -> (n^∇ (a ∧ b))::G ⇒g D
   | Ra:     forall G (a b : form), G ⇒g a -> G ⇒g b -> G ⇒g (a ∧ b)

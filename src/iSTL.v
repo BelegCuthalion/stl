@@ -11,7 +11,7 @@ Inductive iSTL : list form -> option form -> Prop :=
   | Ex:     ⊥ ⇒ None
   | Lw:     forall G D p, G ⇒ D -> p::G ⇒ D
   | Rw:     forall G p, G ⇒ None -> G ⇒ p
-  | Lc:     forall G D p, a::a::G ⇒ D -> a::G ⇒ D
+  | Lc:     forall G D p, p::p::G ⇒ D -> p::G ⇒ D
   | La1:    forall G D (a b : form), a::G ⇒ D -> (a ∧ b)::G ⇒ D
   | La2:    forall G D (a b : form), b::G ⇒ D -> (a ∧ b)::G ⇒ D
   | Ra:     forall G (a b : form), G ⇒ a -> G ⇒ b -> G ⇒ (a ∧ b)
