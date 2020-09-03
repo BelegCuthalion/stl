@@ -25,3 +25,35 @@ Inductive GSTL : list form -> option form -> Prop :=
   | Cut:    forall (a : form) G S D, G ⇒g a -> a::S ⇒g D -> G++S ⇒g D
   | Exc:    forall G S D a b, G++a::b::S ⇒g D -> G++b::a::S ⇒g D
 where "G ⇒g D" := (GSTL G D).
+
+Theorem i2g : forall G D, G ⇒ D -> G ⇒g D.
+Proof.
+  intros. induction H.
+    - apply Id.
+    - apply Ta.
+    - apply (Ex 0).
+    - apply Lw. apply IHiSTL.
+    - apply Rw. apply IHiSTL.
+    - apply Lc. apply IHiSTL.
+    - apply (La1 _ _ _ _ 0). apply IHiSTL.
+    - apply (La2 _ _ _ _ 0). apply IHiSTL.
+    - apply Ra.
+      + apply IHiSTL1.
+      + apply IHiSTL2.
+    - apply (Lo _ _ _ _ 0).
+      + apply IHiSTL1.
+      + apply IHiSTL2.
+    - apply Ro1. apply IHiSTL.
+    - apply Ro2. apply IHiSTL.
+    - apply (Li _ _ _ _ 0).
+      + apply IHiSTL1.
+      + apply IHiSTL2.
+    - apply (Ri (∇l S)).
+      + reflexivity.
+      + subst. apply IHiSTL.
+    - apply N. apply IHiSTL.
+    - apply (Cut a).
+      + apply IHiSTL1.
+      + apply IHiSTL2.
+    - apply Exc. apply IHiSTL.
+Qed.
