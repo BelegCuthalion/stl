@@ -208,6 +208,26 @@ In the following, we will define the logic of dynamic locales, denoted by $\math
 \end{center}
 
 \begin{flushleft}
+	\textbf{Implication Rules:}
+ \end{flushleft}
+ \vspace{.001pt}
+ \begin{center}
+	\begin{tabular}{c c c}
+	\AxiomC{$ \Gamma \Rightarrow A$}
+	\AxiomC{$\Gamma, B \Rightarrow \Delta$}
+	\RightLabel{$L \rightarrow$}
+	\BinaryInfC{$ \Gamma, A \rightarrow B \Rightarrow \Delta$}
+	\DisplayProof
+	&
+	\AxiomC{$\Gamma , A \Rightarrow B$}
+	\RightLabel{$R \rightarrow$}
+	\UnaryInfC{$\Gamma \Rightarrow A \rightarrow B$}
+	\DisplayProof
+	\\[3ex]
+ \end{tabular}
+ \end{center}
+
+\begin{flushleft}
   \textbf{$\nabla$ Rules:}
 \end{flushleft}
 \vspace{.001pt}
