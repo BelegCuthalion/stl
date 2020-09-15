@@ -1,4 +1,4 @@
-\documentclass[12pt,a4paper]{article} 
+\documentclass[12pt,a4paper]{article}
 \usepackage{amsmath}
 \usepackage{amsthm}
 \usepackage{amsfonts}
@@ -13,7 +13,7 @@
 \usepackage{tikz}
 \tikzset{node distance=2cm, auto}
 
-\theoremstyle{plain} 
+\theoremstyle{plain}
 \newtheorem{thm}{Theorem}[section]
 
 \renewcommand{\thethm}{\arabic{section}.\arabic{thm}}
@@ -27,7 +27,7 @@
 \newtheorem{nota}[thm]{Notation}
 \newtheorem{exer}[thm]{Exercise}
 
-\def\d{\displaystyle} 
+\def\d{\displaystyle}
 \def\PA{\mathrm{PA}}
 \def\Pr{\mathrm{Pr}}
 \def\Prf{\mathrm{Prf}}
@@ -83,7 +83,7 @@ Let $\mathscr{X}$ be a locale and $\nabla: \mathscr{X} \to \mathscr{X}$ be a loc
 Dynamic locales are the intuitionistic and symplified version of the dynamic topological spaces defined in \cite{}. Here, we force the formalization to restrict itself to the open subsets. However, to represent the non-elementary structure of dynamic locales in a syntactical elementary language, we need to capture the distributivity of meets over arbitrary joins and the fact that $\nabla$ preserves any arbitrary joins. The following easy observation helps:
 
 \begin{thm}(Adjoint Functor Theorem for Posets) \label{AFT}
-Let $\mathcal{A}$ and $\mathcal{B}$ be two complete posets and $f:\mathcal{A} \to \mathcal{B}$ be an order-preserving function. Then $f$ preserves arbitrary joins iff there exists an order-preserving function $g: \mathcal{B} \to \mathcal{A}$ such that 
+Let $\mathcal{A}$ and $\mathcal{B}$ be two complete posets and $f:\mathcal{A} \to \mathcal{B}$ be an order-preserving function. Then $f$ preserves arbitrary joins iff there exists an order-preserving function $g: \mathcal{B} \to \mathcal{A}$ such that
 \[
 f(a) \leq_{\mathcal{B}} b  \;\;\; \text{iff}  \;\;\; a \leq_{\mathcal{A}} g(b)
 \]
@@ -98,12 +98,12 @@ Using Theorem \ref{AFT} on a dynamic locale $\mathcal{D}=(\mathscr{X}, \nabla_{\
 \nabla_{\mathcal{D}} a \leq_{\mathscr{X}} b  \;\;\; \text{iff}  \;\;\; a \leq_{\mathscr{X}} \Box_{\mathcal{D}} b
 \]
 
-In the following, we will define the logic of dynamic locales, denoted by $\mathbf{LDL}$. Let $\mathcal{L}$ be the usual language of propositional logic plus the modalities $\nabla$ and $\Box$, i.e., $\mathcal{L}=\{\wedge, \vee, \to, \top, \bot, \nabla, \Box\}$. Define $\mathbf{LDL}$ as the logic of the sequent-style system defined by the following rules: 
+In the following, we will define the logic of dynamic locales, denoted by $\mathbf{LDL}$. Let $\mathcal{L}$ be the usual language of propositional logic plus the modalities $\nabla$ and $\Box$, i.e., $\mathcal{L}=\{\wedge, \vee, \to, \top, \bot, \nabla, \Box\}$. Define $\mathbf{LDL}$ as the logic of the sequent-style system defined by the following rules:
 \begin{flushleft}
  \textbf{Axioms:}
 \end{flushleft}
 \begin{center}
- \begin{tabular}{c c c} 
+ \begin{tabular}{c c c}
  \AxiomC{}
  \RightLabel{$Id$}
  \UnaryInfC{$ A \Rightarrow A$}
@@ -127,7 +127,7 @@ In the following, we will define the logic of dynamic locales, denoted by $\math
 \end{flushleft}
 
 \begin{center}
- \begin{tabular}{c c c} 
+ \begin{tabular}{c c c}
  \AxiomC{$ \Gamma \Rightarrow \Delta$}
  \RightLabel{$L w$}
  \UnaryInfC{$ \Gamma, A \Rightarrow \Delta$}
@@ -151,7 +151,7 @@ In the following, we will define the logic of dynamic locales, denoted by $\math
 \end{flushleft}
 \begin{center}
   	\begin{tabular}{c}
-		
+
 		\AxiomC{$ \Gamma \Rightarrow A$}
 		\AxiomC{$\Pi, A \Rightarrow \Delta$}
 		\RightLabel{$cut$}
@@ -165,20 +165,20 @@ In the following, we will define the logic of dynamic locales, denoted by $\math
  \textbf{Conjunction Rules:}
 \end{flushleft}
 \begin{center}
- \begin{tabular}{c c c}  
+ \begin{tabular}{c c c}
 \AxiomC{$ \Gamma, A \Rightarrow \Delta$}
- \RightLabel{$L \wedge$} 
+ \RightLabel{$L \wedge$}
  \UnaryInfC{$ \Gamma, A \wedge B \Rightarrow \Delta$}
  \DisplayProof
  &
  \AxiomC{$ \Gamma, B \Rightarrow \Delta$}
- \RightLabel{$L \wedge$} 
+ \RightLabel{$L \wedge$}
  \UnaryInfC{$\Gamma, A \wedge B \Rightarrow \Delta$}
  \DisplayProof
 	   		&
    		\AxiomC{$\Gamma \Rightarrow A$}
    		\AxiomC{$\Gamma \Rightarrow B$}
-   		\RightLabel{$R \wedge$} 
+   		\RightLabel{$R \wedge$}
    		\BinaryInfC{$ \Gamma \Rightarrow A \wedge B $}
    		\DisplayProof
    			\\[3 ex]
@@ -193,17 +193,17 @@ In the following, we will define the logic of dynamic locales, denoted by $\math
  \begin{tabular}{c c c}
  \AxiomC{$ \Gamma, A \Rightarrow \Delta$}
  \AxiomC{$\Gamma, B \Rightarrow \Delta$}
- \RightLabel{$L \vee$} 
+ \RightLabel{$L \vee$}
  \BinaryInfC{$ \Gamma, A \vee B \Rightarrow \Delta$}
  \DisplayProof
  &
  \AxiomC{$\Gamma \Rightarrow A$}
- \RightLabel{$R \vee$} 
+ \RightLabel{$R \vee$}
  \UnaryInfC{$\Gamma \Rightarrow A \vee B$}
  \DisplayProof
  &
  \AxiomC{$\Gamma \Rightarrow B$}
- \RightLabel{$R \vee$} 
+ \RightLabel{$R \vee$}
  \UnaryInfC{$\Gamma \Rightarrow A \vee B$}
  \DisplayProof
  \\[3ex]
@@ -237,12 +237,12 @@ In the following, we will define the logic of dynamic locales, denoted by $\math
 \begin{center}
  \begin{tabular}{c}
  \AxiomC{$\Gamma \Rightarrow A$}
- \RightLabel{$N$} 
+ \RightLabel{$N$}
  \UnaryInfC{$\nabla \Gamma \Rightarrow \nabla A$}
  \DisplayProof
  \\[3ex]
 \end{tabular}
-\end{center} 
+\end{center}
 
 \begin{flushleft}
  \textbf{$\Box$ Rules:}
@@ -251,17 +251,17 @@ In the following, we will define the logic of dynamic locales, denoted by $\math
 \begin{center}
  \begin{tabular}{c c}
  \AxiomC{$\Gamma, A \Rightarrow \Delta$}
- \RightLabel{$L \Box$} 
+ \RightLabel{$L \Box$}
  \UnaryInfC{$\Gamma, \nabla \Box A \Rightarrow \Delta$}
  \DisplayProof
  &
  \AxiomC{$\nabla \Gamma \Rightarrow A$}
- \RightLabel{$R \Box$} 
+ \RightLabel{$R \Box$}
  \UnaryInfC{$\Gamma \Rightarrow \Box A$}
  \DisplayProof
  \\[3ex]
 \end{tabular}
-\end{center} 
+\end{center}
 If we also add the following rule to the system we have the logic $\mathbf{LDL}(H)$:
 \begin{flushleft}
  \textbf{The Rule $H$:}
@@ -270,15 +270,15 @@ If we also add the following rule to the system we have the logic $\mathbf{LDL}(
 \begin{center}
  \begin{tabular}{c}
  \AxiomC{$\nabla \Gamma \Rightarrow \nabla A$}
- \RightLabel{$H$} 
+ \RightLabel{$H$}
  \UnaryInfC{$\Gamma \Rightarrow \nabla \Box A$}
  \DisplayProof
  \\[3ex]
 \end{tabular}
-\end{center} 
+\end{center}
 
 \begin{dfn}\label{t4-1}(Topological Semantics)
-Let $\mathcal{D}=(\mathscr{X}, \nabla_{\mathcal{D}})$ be a dynamic locale and $V:\mathcal{L} \to\mathscr{X}$ be an assignment. A tuple $(\mathcal{D}, V)$ is called a topological model if: 
+Let $\mathcal{D}=(\mathscr{X}, \nabla_{\mathcal{D}})$ be a dynamic locale and $V:\mathcal{L} \to\mathscr{X}$ be an assignment. A tuple $(\mathcal{D}, V)$ is called a topological model if:
 \begin{itemize}
 \item[$\bullet$]
 $V(\top)=1$ and $V(\bot)=0$,
@@ -294,7 +294,7 @@ $V(\Box A)= \Box_{\mathcal{D}} V(A)$.
 We say $(\mathcal{D}, V) \vDash \Gamma \Rightarrow \Delta$ when $\bigwedge_{\gamma \in \Gamma} V(\gamma) \leq \bigvee_{\delta \in \Delta} V(\delta)$ and $\mathcal{D} \vDash \Gamma \Rightarrow \Delta$ when for all $V$, $(\mathcal{D}, V) \vDash \Gamma \Rightarrow \Delta$.
 \end{dfn}
 
-\begin{thm}\label{t4-2}(Soundness-Completeness) 
+\begin{thm}\label{t4-2}(Soundness-Completeness)
 \begin{itemize}
 \item[$(i)$]
 $ \mathbf{LDL} \vdash \Gamma \Rightarrow \Delta$ iff $\mathcal{D} \vDash \Gamma \Rightarrow \Delta$, for any dynamic locale $\mathcal{D}$.
@@ -316,9 +316,9 @@ By a Kripke model for the language $\mathcal{L}$, we mean a tuple $\mathcal{K}=(
 \begin{thm}(Soundness-Completeness)
 \begin{itemize}
 \item[$(i)$]
-The logic $\mathbf{LDL}$ is sound and complete with respect to all normal Kripke models. 
+The logic $\mathbf{LDL}$ is sound and complete with respect to all normal Kripke models.
 \item[$(ii)$]
-The logic $\mathbf{LDL}(H)$ is sound and complete with respect to all normal Kripke models whose functions $\pi$ are order-isomorphism. 
+The logic $\mathbf{LDL}(H)$ is sound and complete with respect to all normal Kripke models whose functions $\pi$ are order-isomorphism.
 \end{itemize}
 \end{thm}
 
@@ -333,7 +333,7 @@ $a \rightsquigarrow a=1$, for any $a \in A$.
 $(a \rightsquigarrow b) \wedge (b \rightsquigarrow c) \leq (a \rightsquigarrow c)$, for any $a, b, c \in A$.
 \item[$\bullet$]
 $(a \rightsquigarrow b) \wedge (a \rightsquigarrow c)= a \rightsquigarrow (b \wedge c)$, for any $a, b, c \in A$.
-\end{itemize} 
+\end{itemize}
 The tuple $(A, \leq, \wedge, 1, \rightsquigarrow)$ is called a meet-internalizing strong algebra. An embedding from a meet-internalizing strong algebra $(A, \leq_A, \wedge_A, 1_A, \rightsquigarrow_A)$ to another meet-internalizing strong algebra $(B, \leq_B, \wedge_B, 1_B, \rightsquigarrow_B)$ is a map $i : A \to B$, preserving all structures such that if $i(a) \leq_B i(b)$ then $a \leq_A b$.
 \end{dfn}
 The main source to produce these implications is dynamic locales. Let $\mathcal{D}=(\mathscr{X}, \nabla)$ be a dynamic locale. Then define $a \rightsquigarrow_{\nabla} b=\Box_{\mathcal{D}}(a \to b)$. It is not hard to show that this binary operation is a meet-internalizing implication. Denote this meet-internalizing strong algebra by $\mathcal{A}(\mathcal{D})$. The following theorem, proved in \cite{Amir}, shows that this example is essentially the only example we may have:
@@ -353,17 +353,17 @@ Define the fragment $\mathbf{LDL}_{\rightsquigarrow}$ of $\mathbf{LDL}$ as the s
  \begin{tabular}{c c}
  \AxiomC{$\Gamma \Rightarrow A$}
  \AxiomC{$\Gamma, B \Rightarrow \Delta$}
- \RightLabel{$L \rightsquigarrow$} 
+ \RightLabel{$L \rightsquigarrow$}
  \BinaryInfC{$\Gamma, \nabla (A \rightsquigarrow B) \Rightarrow \Delta$}
  \DisplayProof
  &
  \AxiomC{$\nabla \Gamma, A \Rightarrow B$}
- \RightLabel{$R \rightsquigarrow$} 
+ \RightLabel{$R \rightsquigarrow$}
  \UnaryInfC{$\Gamma \Rightarrow A \rightsquigarrow B$}
  \DisplayProof
  \\[3ex]
 \end{tabular}
-\end{center} 
+\end{center}
 
 If we also add the following rule to the system, we denote the logic by $\mathbf{LDL}_{\rightsquigarrow}(H_\rightsquigarrow)$:
 
@@ -374,12 +374,12 @@ If we also add the following rule to the system, we denote the logic by $\mathbf
 \begin{center}
  \begin{tabular}{c}
  \AxiomC{$\nabla \Gamma, \nabla A \Rightarrow \nabla B$}
- \RightLabel{$H$} 
+ \RightLabel{$H$}
  \UnaryInfC{$\Gamma \Rightarrow \nabla (A \rightsquigarrow B)$}
  \DisplayProof
  \\[3ex]
 \end{tabular}
-\end{center} 
+\end{center}
 
 \begin{thm}
 The systems $\mathbf{LDL}$ and $\mathbf{LDL}(H)$ are conservative extensions of the systems $\mathbf{LDL}_{\rightsquigarrow}$ and $\mathbf{LDL}_{\rightsquigarrow}(H_\rightsquigarrow)$, respectively.
@@ -402,8 +402,8 @@ Write the easier part. The harder part must be essentially to completeness theor
 \\
 \textbf{Problem.} As we discussed, the system $\mathbf{LDL}_{\rightsquigarrow}$ and possibly $\mathbf{LDL}_{\rightsquigarrow}(H_{\rightsquigarrow})$ must enjoy deductive interpolation property. What are the proofs?
 
-\begin{thebibliography}{99} 
-\addcontentsline{toc}{section}{References} 
+\begin{thebibliography}{99}
+\addcontentsline{toc}{section}{References}
 
 \bibitem{Amir}
 A. Akbar Tabatabai. ``Implication via Spacetime." arXiv preprint arXiv:2001.00997 (2019).
@@ -415,7 +415,7 @@ W. Ewald. Intuitionistic tense and modal logic. The Journal of Symbolic Logic, 5
 D. Fernández-Duque. The intuitionistic temporal logic of dynamical systems. Log. Methods Comput. Sci. 14(3) (2018)
 \bibitem{Mints}
 P. Kremer and G. Mints. Dynamic topological logic. Annals of Pure and Applied Logic, 131:133–158, 2005.
- 
+
 \end{thebibliography}
 
 
