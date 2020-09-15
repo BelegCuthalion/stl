@@ -167,12 +167,12 @@ In the following, we will define the logic of dynamic locales, denoted by $\math
 \begin{center}
  \begin{tabular}{c c c}
 \AxiomC{$ \Gamma, A \Rightarrow \Delta$}
- \RightLabel{$L \wedge$}
+ \RightLabel{$L \wedge_1$}
  \UnaryInfC{$ \Gamma, A \wedge B \Rightarrow \Delta$}
  \DisplayProof
  &
  \AxiomC{$ \Gamma, B \Rightarrow \Delta$}
- \RightLabel{$L \wedge$}
+ \RightLabel{$L \wedge_2$}
  \UnaryInfC{$\Gamma, A \wedge B \Rightarrow \Delta$}
  \DisplayProof
 	   		&
@@ -193,12 +193,12 @@ In the following, we will define the logic of dynamic locales, denoted by $\math
  \begin{tabular}{c c c}
  \AxiomC{$ \Gamma, A \Rightarrow \Delta$}
  \AxiomC{$\Gamma, B \Rightarrow \Delta$}
- \RightLabel{$L \vee$}
+ \RightLabel{$L \vee_1$}
  \BinaryInfC{$ \Gamma, A \vee B \Rightarrow \Delta$}
  \DisplayProof
  &
  \AxiomC{$\Gamma \Rightarrow A$}
- \RightLabel{$R \vee$}
+ \RightLabel{$R \vee_2$}
  \UnaryInfC{$\Gamma \Rightarrow A \vee B$}
  \DisplayProof
  &
