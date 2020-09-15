@@ -392,8 +392,83 @@ Write the easier part. The harder part must be essentially to completeness theor
 \section{Proof Theory of $\mathbf{LDL}$ and $\mathbf{LDL}_{\rightsquigarrow}$}
 
 \subsection{Sequent-style Systems}
-\textbf{Problem.} Imitate the sequent-style system we developed for $\mathbf{LDL}_{\rightsquigarrow}$ to present a natural system for $\mathbf{LDL}$. Do we have cut elimination theorem for this new system? \\
-\\
+In this section we will introduce two slightly modified systems $\mathbf{LDL}^*$ and $\mathbf{LDL}_{\rightsquigarrow}^*$, equivalent to $\mathbf{LDL}$ and $\mathbf{LDL}_{\rightsquigarrow}$ respectively. Their advantage is that they are, as it will be shown, cut-free.
+
+\subsubsection{$\mathbf{LDL}^*$}
+Define $\mathbf{LDL}^*$ as the logic of the sequent-style system define by the same rules of $\mathbf{LDL}$, excpet the rulles $Ex$, $L\wedge_1$, $L\wedge_2$, $L\vee$, $L\rightarrow$, $N$ and $L\Box$, which are replaced by the following rules respectively.
+
+	 \begin{center}
+		\begin{tabular}{c}
+		\AxiomC{}
+		\RightLabel{$Ex$}
+		\UnaryInfC{$\nabla^n \bot \Rightarrow$}
+		\DisplayProof
+		\\[3ex]
+	 \end{tabular}
+	 \end{center}
+
+	 \begin{center}
+		\begin{tabular}{c c}
+	 \AxiomC{$\Gamma, \nabla^n A \Rightarrow \Delta$}
+		\RightLabel{$L \wedge_1$}
+		\UnaryInfC{$\Gamma, \nabla^n (A \wedge B) \Rightarrow \Delta$}
+		\DisplayProof
+		&
+		\AxiomC{$ \Gamma, \nabla^n B \Rightarrow \Delta$}
+		\RightLabel{$L \wedge_2$}
+		\UnaryInfC{$\Gamma, \nabla^n (A \wedge B) \Rightarrow \Delta$}
+		\DisplayProof
+		\\[3 ex]
+	 \end{tabular}
+	 \end{center}
+
+	 \vspace{.001pt}
+	 \begin{center}
+		\begin{tabular}{c}
+		\AxiomC{$\Gamma, \nabla^n A \Rightarrow \Delta$}
+		\AxiomC{$\Gamma, \nabla^n B \Rightarrow \Delta$}
+		\RightLabel{$L \vee$}
+		\BinaryInfC{$\Gamma, \nabla^n (A \vee B) \Rightarrow \Delta$}
+		\DisplayProof
+		\\[3ex]
+	 \end{tabular}
+	 \end{center}
+
+	 \vspace{.001pt}
+	 \begin{center}
+		\begin{tabular}{c c}
+		\AxiomC{$ \Gamma \Rightarrow \nabla^n A$}
+		\AxiomC{$\Gamma, \nabla^n B \Rightarrow \Delta$}
+		\RightLabel{$L \rightarrow$}
+		\BinaryInfC{$ \Gamma, \nabla^n (A \rightarrow B) \Rightarrow \Delta$}
+		\DisplayProof
+		\\[3ex]
+	 \end{tabular}
+	 \end{center}
+
+	 \vspace{.001pt}
+	 \begin{center}
+		\begin{tabular}{c}
+		\AxiomC{$\Gamma \Rightarrow \Delta$}
+		\RightLabel{$N$}
+		\UnaryInfC{$\nabla \Gamma \Rightarrow \nabla \Delta$}
+		\DisplayProof
+		\\[3ex]
+	 \end{tabular}
+	 \end{center}
+
+	 \vspace{.001pt}
+	 \begin{center}
+		\begin{tabular}{c}
+		\AxiomC{$\Gamma, \nabla^n A \Rightarrow \Delta$}
+		\RightLabel{$L \Box$}
+		\UnaryInfC{$\Gamma, \nabla^{n+1} \Box A \Rightarrow \Delta$}
+		\DisplayProof
+		\\[3ex]
+	 \end{tabular}
+	 \end{center}
+
+
 \textbf{Problem.} Do we have cut elimination theorem for the sequent-style systems we developed for $\mathbf{LDL}_{\rightsquigarrow}$ but this time plus the rule $H_{\rightsquigarrow}$? What about the system of the previous problem for $\mathbf{LDL}$ plus the rule $H$?
 \subsection{Admissible Rules}
 \textbf{Problem.} What are the Harrop formulas here? Prove the disjunction property for the theories axiomatized by Harrop formulas, using the cut-free proofs over the logics $\mathbf{LDL}$ and $\mathbf{LDL}_{\rightsquigarrow}$. Prove the same thing via Kleene-type argument. Do we have similar thing for the logics with added rules $H$ and $H_{\rightsquigarrow}$, respectively?
