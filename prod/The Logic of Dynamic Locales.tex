@@ -397,8 +397,7 @@ Write the easier part. The harder part must be essentially to completeness theor
 \subsection{Sequent-style Systems}
 In this section we will introduce two slightly modified systems $\mathbf{LDL}^*$ and $\mathbf{LDL}_{\rightsquigarrow}^*$, equivalent to $\mathbf{LDL}$ and $\mathbf{LDL}_{\rightsquigarrow}$ respectively. Their advantage is that they are, as it will be shown, cut-free.
 
-\subsubsection{$\mathbf{LDL}^*$}
-Define $\mathbf{LDL}^*$ on the language $\mathcal{L}$, as the logic of the sequent-style system define by the same rules of $\mathbf{LDL}$, excpet the rules $Ex$, $L\wedge_1$, $L\wedge_2$, $L\vee$, $L\rightarrow$, $N$ and $L\Box$, which are replaced by the following rules respectively.
+Define $\mathbf{LDL}^*$ on the language $\mathcal{L}$, as the logic of the sequent-style system define by the same rules of $\mathbf{LDL}$, excpet the rules $Ex$, $L\wedge_1$, $L\wedge_2$, $L\vee$, $L\rightarrow$, $N$ and $L\Box$, which are replaced by the following generalized rules respectively:
 
 	 \begin{center}
 		\begin{tabular}{c}
@@ -471,9 +470,18 @@ Define $\mathbf{LDL}^*$ on the language $\mathcal{L}$, as the logic of the seque
 	 \end{tabular}
 	 \end{center}
 
+Similarly for $\mathbf{LDL}_{\rightsquigarrow}$, the equivalent but cut-free logic $\mathbf{LDL}^*_{\rightsquigarrow}$ is defined on the language $\mathcal{L}_{\rightsquigarrow}$, by replacing $Ex$, $L\wedge_1$, $L\wedge_2$, $L\vee$ and $N$ by exactly the same generalized rules as above, and also $L\rightsquigarrow$ by the following rule:
+
+\begin{prooftree}
+	\AXC{$\Gamma \Rightarrow \nabla^n A$}
+	\AXC{$\Gamma, \nabla^n B \Rightarrow \Delta$}
+	\RightLabel{$L \rightsquigarrow$}
+	\BIC{$\Gamma, \nabla^{n+1} (A \rightsquigarrow B) \Rightarrow \Delta$}
+\end{prooftree}
+
 The following lemmas are used in the subsequent theorem, to show that $\mathbf{LDL}^*$ has exactly the same power as $\mathbf{LDL}$.
 
-\begin{lem}\label{lem:l-nabla-dist-and} For all $n > 0$, $\mathbf{LDL} \vdash \nabla^n (A \land B) \Rightarrow \nabla^n A \land \nabla^n B$
+\begin{lem}\label{lem:l-nabla-dist-and} For all $n > 0$, $\mathbf{LDL} \vdash \nabla^n (A \land B) \Rightarrow \nabla^n A \land \nabla^n B$.
 \end{lem}
 \begin{proof}\quad
 	\begin{prooftree}
@@ -498,7 +506,7 @@ The following lemmas are used in the subsequent theorem, to show that $\mathbf{L
 	\end{prooftree}
 \end{proof}
 
-\begin{lem}\label{lem:l-nabla-dist-or} $\mathbf{LDL} \vdash \nabla (A \lor B) \Rightarrow \nabla A \lor \nabla B$
+\begin{lem}\label{lem:l-nabla-dist-or} $\mathbf{LDL} \vdash \nabla (A \lor B) \Rightarrow \nabla A \lor \nabla B$.
 \end{lem}
 \begin{proof}\quad
 	\begin{prooftree}
@@ -536,7 +544,7 @@ The following lemmas are used in the subsequent theorem, to show that $\mathbf{L
 	\end{prooftree}
 \end{proof}
 
-\begin{lem}\label{lem:l-nabla-n-dist-or} For all $n > 0$, $\mathbf{LDL} \vdash \nabla^n (A \lor B) \Rightarrow \nabla^n A \lor \nabla^n B$
+\begin{lem}\label{lem:l-nabla-n-dist-or} For all $n > 0$, $\mathbf{LDL} \vdash \nabla^n (A \lor B) \Rightarrow \nabla^n A \lor \nabla^n B$.
 \end{lem}
 \begin{proof} Let $\mathcal{D}_1$ be the proof-tree of lemma \ref{lem:l-nabla-dist-or}, which proves $n = 1$ case. For $n > 1$
 
@@ -556,7 +564,7 @@ The following lemmas are used in the subsequent theorem, to show that $\mathbf{L
 	\end{prooftree}
 \end{proof}
 
-\begin{lem}\label{lem:l-nabla-bot} $\mathbf{LDL} \vdash \nabla \bot \Rightarrow \bot$
+\begin{lem}\label{lem:l-nabla-bot} $\mathbf{LDL} \vdash \nabla \bot \Rightarrow \bot$.
 \end{lem}
 \begin{proof}\quad
 	\begin{prooftree}
@@ -597,7 +605,11 @@ The following lemmas are used in the subsequent theorem, to show that $\mathbf{L
 	\end{prooftree}
 \end{proof}
 
-\begin{lem}\label{lem:l-nabla-dist-imp} For any $n > 0$, $\mathbf{LDL} \vdash \nabla^n (A \rightarrow B) \Rightarrow \nabla^n A \rightarrow \nabla^n B$
+\begin{cor}
+	All proof-trees of the lemmas \ref{lem:l-nabla-dist-and}, \ref{lem:l-nabla-dist-or}, \ref{lem:l-nabla-n-dist-or}, \ref{lem:l-nabla-bot} and \ref{lem:l-nabla-n-bot} can be easily constructed in $\mathbf{LDL}_{\rightsquigarrow}$. Hence the these lemmas also hold for $\mathbf{LDL}_{\rightsquigarrow}$.
+\end{cor}
+
+\begin{lem}\label{lem:l-nabla-dist-imp} For any $n > 0$, $\mathbf{LDL} \vdash \nabla^n (A \rightarrow B) \Rightarrow \nabla^n A \rightarrow \nabla^n B$.
 \end{lem}
 \begin{proof}\quad
 	\begin{prooftree}
@@ -637,6 +649,35 @@ The following lemmas are used in the subsequent theorem, to show that $\mathbf{L
 	\end{prooftree}
 \end{proof}
 
+\begin{lem}\label{lem:sl-nabla-dist-si} For any $n > 0$, $\mathbf{LDL}_{\rightsquigarrow} \vdash \nabla^n (A \rightsquigarrow B) \Rightarrow \nabla^n A \rightsquigarrow \nabla^n B$.
+\end{lem}
+\begin{proof}\quad
+	\begin{prooftree}
+		\AXC{}
+		\RightLabel{$Id$}
+		\UIC{$A \Rightarrow A$}
+		
+		\AXC{}
+		\RightLabel{$Id$}
+		\UIC{$B \Rightarrow B$}
+		\RightLabel{$Lw$}
+		\UIC{$A , B \Rightarrow B$}
+		
+		\RightLabel{$L\rightsquigarrow$}
+		\BIC{$\nabla (A \rightsquigarrow B) , A \Rightarrow B$}
+		\RightLabel{$N^{(n)}$} \doubleLine
+		\UIC{$\nabla^{n+1} (A \rightsquigarrow B) , \nabla^n A \Rightarrow \nabla^n B$}
+		\RightLabel{$R\rightsquigarrow$}
+		\UIC{$\nabla^n (A \rightsquigarrow B) \Rightarrow \nabla^n A \rightsquigarrow \nabla^n B$}
+	\end{prooftree}
+\end{proof}
+
+\begin{cor}
+	Since $\mathbf{LDL}^*$ ($\mathbf{LDL}^*_{\rightsquigarrow}$) is just a generalization of $\mathbf{LDL}$ ($\mathbf{LDL}_{\rightsquigarrow}$), then all the above lemmas also hold for $\mathbf{LDL}^*$ ($\mathbf{LDL}^*_{\rightsquigarrow}$).
+\end{cor}
+
+In the rest of this section, by the \emph{length of a proof-tree} $\mathcal{D}$, denoted by $h(\mathcal{D})$, we mean the number of rule instances in its longest branch.
+
 \begin{thm}\label{thm:ldl-eq-ldls}
 	For any sequent $\Gamma \Rightarrow \Delta$ in the language $\mathcal{L}$, $\mathbf{LDL} \vdash \Gamma \Rightarrow \Delta$ iff $\mathbf{LDL}^* \vdash \Gamma \Rightarrow \Delta$.
 \end{thm}
@@ -654,8 +695,12 @@ The following lemmas are used in the subsequent theorem, to show that $\mathbf{L
 	Then we can $cut$ it into the sequent from lemma \ref{lem:l-nabla-bot}, and then into $Ex$, just to derive $\nabla \Gamma \Rightarrow$ as was desired.
 \end{proof}
 
-
-
+\begin{thm}\label{thm:sldl-eq-sldls}
+	For any sequent $\Gamma \Rightarrow \Delta$ in the language $\mathcal{L}_{\rightsquigarrow}$, $\mathbf{LDL}_{\rightsquigarrow} \vdash \Gamma \Rightarrow \Delta$ iff $\mathbf{LDL}^*_{\rightsquigarrow} \vdash \Gamma \Rightarrow \Delta$.
+\end{thm}
+\begin{proof}
+	The proof is similar to the proof of previous theorem, except that we don't have a case for $L\Box$ and there is a case for $L\rightsquigarrow$ instead of $L\rightarrow$, which is handled similarly, with the help of lemma \ref{lem:sl-nabla-dist-si}.
+\end{proof}
 
 \textbf{Problem.} Do we have cut elimination theorem for the sequent-style systems we developed for $\mathbf{LDL}_{\rightsquigarrow}$ but this time plus the rule $H_{\rightsquigarrow}$? What about the system of the previous problem for $\mathbf{LDL}$ plus the rule $H$?
 \subsection{Admissible Rules}
