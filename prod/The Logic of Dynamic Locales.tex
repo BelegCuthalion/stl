@@ -748,6 +748,26 @@ Consider different cases for the last rule of $\mathcal{D}$, with possible sub-t
 The proof for $\mathbf{LDL}^{*M}_{\rightsquigarrow}$ is similar, except that there are no cases for $\Box$, and there are cases for $\rightsquigarrow$ instead of $\rightarrow$. The case for $L\rightsquigarrow$ is handled similar to $L\rightarrow$, but in $R\rightsquigarrow$ case, we must apply the induction hypothesis with $r = r + 1$.
 \end{proof}
 
+The following theorem shows that we can imitate any instance of the cut rule in a proof-tree of lower rank.
+
+\begin{thm}\label{thm:ldls-cut-reduction}[Cut Reduction] If $\mathbf{LDL}^{*M}$ ($\mathbf{LDL}^{*M}_{\rightsquigarrow}$) proves $\Gamma \Rightarrow A$ and $\Sigma , (\nabla^l A)^n \Rightarrow \Delta$ with proof trees of ranks less than $\rho(A)$, then it also proves $\nabla^l \Gamma , \Sigma \Rightarrow \Delta$ also with a proof tree of a rank less than $\rho(A)$. 
+\end{thm}
+\begin{proof}
+Let $\mathcal{D}_0$ and $\mathcal{D}_1$ be proof trees of ranks less than $\rho(A)$, with conclusions $\Gamma \Rightarrow A$ and $\Sigma , (\nabla^l A)^n \Rightarrow \Delta$ and heights $h(\mathcal{D}_0)$ and $h(\mathcal{D}_1)$ respectively.
+\begin{prooftree}
+ 	\noLine
+ 	\AXC{$\mathcal{D}_0$}
+ 	\UIC{$\Gamma \Rightarrow A$}
+ 	
+ 	\noLine
+ 	\AXC{$\mathcal{D}_1$}
+ 	\UIC{$\Sigma , (\nabla^l A)^n \Rightarrow \Delta$}
+ 	
+ 	\dashedLine \RightLabel{$MC$}
+ 	\BIC{$\nabla^l \Gamma , \Sigma \Rightarrow \Delta$}
+\end{prooftree}
+\end{proof}
+
 \textbf{Problem.} Do we have cut elimination theorem for the sequent-style systems we developed for $\mathbf{LDL}_{\rightsquigarrow}$ but this time plus the rule $H_{\rightsquigarrow}$? What about the system of the previous problem for $\mathbf{LDL}$ plus the rule $H$?
 \subsection{Admissible Rules}
 \textbf{Problem.} What are the Harrop formulas here? Prove the disjunction property for the theories axiomatized by Harrop formulas, using the cut-free proofs over the logics $\mathbf{LDL}$ and $\mathbf{LDL}_{\rightsquigarrow}$. Prove the same thing via Kleene-type argument. Do we have similar thing for the logics with added rules $H$ and $H_{\rightsquigarrow}$, respectively?
