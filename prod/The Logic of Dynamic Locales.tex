@@ -702,6 +702,40 @@ In the rest of this section, by the \emph{length of a proof-tree} $\mathcal{D}$,
 	The proof is similar to the proof of previous theorem, except that we don't have a case for $L\Box$ and there is a case for $L\rightsquigarrow$ instead of $L\rightarrow$, which is handled similarly, with the help of lemma \ref{lem:sl-nabla-dist-si}.
 \end{proof}
 
+\subsection{Cut-elimination theorems}
+Although the admissibility of cut in $\mathbf{LDL}^*$ and $\mathbf{LDL}^*_{\rightsquigarrow}$ does not imply it's admissibility in $\mathbf{LDL}$ or $\mathbf{LDL}_{\rightsquigarrow}$, but as we will see, their equivalence ---by theorems \ref{thm:ldl-eq-ldls} and \ref{thm:sldl-eq-sldls} respectively--- enables us to prove statements about the cut-free system, which are otherwise not provable in the presence of the cut rule, and translate the result back into statements about the original system.
+
+For technical reasons, we will eliminate a stronger form of the cut rule, which nevertheless satisfies our goal here.
+
+\begin{dfn}[Multi-cut rule] We denote by $\mathbf{LDL}^{*M}$ ($\mathbf{LDL}^{*M}_{\rightsquigarrow}$) the same system defined by $\mathbf{LDL}^*$ ($\mathbf{LDL}^*_{\rightsquigarrow}$), with the cut rule replaced by the following generalization:
+\begin{prooftree}
+	\AXC{$\Gamma \Rightarrow A$}
+	\AXC{$\Sigma , (\nabla^l A)^n \Rightarrow \Delta$}
+	\RightLabel{$MC$}
+	\BIC{$\nabla^l \Gamma , \Sigma \Rightarrow \Delta$}
+\end{prooftree}
+where $\nabla^l$ means $\nabla$ applied $l$ times and $A^n$ means $n$ instances of $A$ in a multi-set.
+\end{dfn}
+
+\begin{cor}\label{cor:mc-riddance} Any sequent provable in $\mathbf{LDL}^*$ ($\mathbf{LDL}^*_{\rightsquigarrow}$) is also provable in $\mathbf{LDL}^{*M}$ ($\mathbf{LDL}^{*M}_{\rightsquigarrow}$). Indeed we can just replace any instance of $cut$ with similar instance of $MC$, with $l = 0$ and $n = 1$.
+\end{cor}
+
+Next, we should make precise what we mean by the \emph{rank} of formulas and proof-trees.
+
+\begin{dfn}[Rank]
+	Rank of a formula $A$ is defined as
+	\[ \rho(A) = \begin{cases}
+	1 & \quad ; A \in P \cup \{ \bot, \top \} \\
+	\rho(B) & \quad ; A = \nabla B \\
+	\rho(B) + 1 & \quad ; A = \Box B \\
+	max(\rho(B), \rho(C)) + 1 & \quad ; A = B \circ C, \circ \in \{ \land , \lor, \rightarrow \}
+	\end{cases} \]
+	Notice that $\nabla$ does not increase rank.
+	
+	We also define rank for rule instances and proof-trees. Rank of a rule instance is the rank of its cut-formula if it is an instance of the $MC$ rule, and $0$ if it's not.
+	For a proof tree $\mathcal{D}$, $\rho(\mathcal{D})$ is the maximum rank of its rule instances.
+\end{dfn}
+
 \textbf{Problem.} Do we have cut elimination theorem for the sequent-style systems we developed for $\mathbf{LDL}_{\rightsquigarrow}$ but this time plus the rule $H_{\rightsquigarrow}$? What about the system of the previous problem for $\mathbf{LDL}$ plus the rule $H$?
 \subsection{Admissible Rules}
 \textbf{Problem.} What are the Harrop formulas here? Prove the disjunction property for the theories axiomatized by Harrop formulas, using the cut-free proofs over the logics $\mathbf{LDL}$ and $\mathbf{LDL}_{\rightsquigarrow}$. Prove the same thing via Kleene-type argument. Do we have similar thing for the logics with added rules $H$ and $H_{\rightsquigarrow}$, respectively?
