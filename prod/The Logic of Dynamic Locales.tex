@@ -9,8 +9,11 @@
 \usepackage[mathscr]{eucal}
 
 \usepackage{bussproofs}
+\EnableBpAbbreviations
+
 \usepackage{amssymb}
 \usepackage{tikz}
+\usepackage{enumitem}
 \tikzset{node distance=2cm, auto}
 
 \theoremstyle{plain}
@@ -395,7 +398,7 @@ Write the easier part. The harder part must be essentially to completeness theor
 In this section we will introduce two slightly modified systems $\mathbf{LDL}^*$ and $\mathbf{LDL}_{\rightsquigarrow}^*$, equivalent to $\mathbf{LDL}$ and $\mathbf{LDL}_{\rightsquigarrow}$ respectively. Their advantage is that they are, as it will be shown, cut-free.
 
 \subsubsection{$\mathbf{LDL}^*$}
-Define $\mathbf{LDL}^*$ as the logic of the sequent-style system define by the same rules of $\mathbf{LDL}$, excpet the rulles $Ex$, $L\wedge_1$, $L\wedge_2$, $L\vee$, $L\rightarrow$, $N$ and $L\Box$, which are replaced by the following rules respectively.
+Define $\mathbf{LDL}^*$ on the language $\mathcal{L}$, as the logic of the sequent-style system define by the same rules of $\mathbf{LDL}$, excpet the rules $Ex$, $L\wedge_1$, $L\wedge_2$, $L\vee$, $L\rightarrow$, $N$ and $L\Box$, which are replaced by the following rules respectively.
 
 	 \begin{center}
 		\begin{tabular}{c}
@@ -467,6 +470,191 @@ Define $\mathbf{LDL}^*$ as the logic of the sequent-style system define by the s
 		\\[3ex]
 	 \end{tabular}
 	 \end{center}
+
+The following lemmas are used in the subsequent theorem, to show that $\mathbf{LDL}^*$ has exactly the same power as $\mathbf{LDL}$.
+
+\begin{lem}\label{lem:l-nabla-dist-and} For all $n > 0$, $\mathbf{LDL} \vdash \nabla^n (A \land B) \Rightarrow \nabla^n A \land \nabla^n B$
+\end{lem}
+\begin{proof}\quad
+	\begin{prooftree}
+		\AXC{}
+		\RightLabel{$Id$}
+		\UIC{$A \Rightarrow A$}
+		\RightLabel{$L\land_1$}
+		\UIC{$A \land B \Rightarrow A$}
+		\RightLabel{$N$} \doubleLine
+		\UIC{$\nabla^n (A \land B) \Rightarrow \nabla^n A$}
+
+		\AXC{}
+		\RightLabel{$Id$}
+		\UIC{$B \Rightarrow B$}
+		\RightLabel{$L\land_2$}
+		\UIC{$A \land B \Rightarrow B$}
+		\RightLabel{$N$} \doubleLine	
+		\UIC{$\nabla^n (A \land B) \Rightarrow \nabla^n B$}
+		
+		\RightLabel{$R\land$}
+		\BIC{$\nabla^n (A \land B) \Rightarrow \nabla^n A \land \nabla^n B$}
+	\end{prooftree}
+\end{proof}
+
+\begin{lem}\label{lem:l-nabla-dist-or} $\mathbf{LDL} \vdash \nabla (A \lor B) \Rightarrow \nabla A \lor \nabla B$
+\end{lem}
+\begin{proof}\quad
+	\begin{prooftree}
+		\AXC{}
+		\RightLabel{$Id$}
+		\UIC{$\nabla A \Rightarrow \nabla A$}
+		\RightLabel{$R\lor_1$}
+		\UIC{$\nabla A \Rightarrow \nabla A \lor \nabla B$}
+		\RightLabel{$R\Box$}
+		\UIC{$A \Rightarrow \Box (\nabla A \lor \nabla B)$}
+
+		\AXC{}
+		\RightLabel{$Id$}
+		\UIC{$\nabla B \Rightarrow \nabla B$}
+		\RightLabel{$R\lor_2$}
+		\UIC{$\nabla B \Rightarrow \nabla A \lor \nabla B$}
+		\RightLabel{$R\Box$}
+		\UIC{$B \Rightarrow \Box (\nabla A \lor \nabla B)$}
+
+		\RightLabel{$L\lor$}
+		\BIC{$A \lor B \Rightarrow \Box (\nabla A \lor \nabla B)$}
+		\RightLabel{$N$}
+		\UIC{$\nabla (A \lor B) \Rightarrow \nabla \Box (\nabla A \lor \nabla B)$}
+
+		
+		\AXC{} \RightLabel{$Id$}
+		\UIC{$\nabla A \lor \nabla B \Rightarrow \nabla A \lor \nabla B$}
+		\RightLabel{$L\Box$}
+		\UIC{$\nabla \Box (\nabla A \lor \nabla B) \Rightarrow \nabla A \lor \nabla B$}
+
+
+
+		\RightLabel{$Cut$}
+		\BIC{$\nabla (A \lor B) \Rightarrow \nabla A \lor \nabla B$}
+	\end{prooftree}
+\end{proof}
+
+\begin{lem}\label{lem:l-nabla-n-dist-or} For all $n > 0$, $\mathbf{LDL} \vdash \nabla^n (A \lor B) \Rightarrow \nabla^n A \lor \nabla^n B$
+\end{lem}
+\begin{proof} Let $\mathcal{D}_1$ be the proof-tree of lemma \ref{lem:l-nabla-dist-or}, which proves $n = 1$ case. For $n > 1$
+
+	\begin{prooftree}
+		\AXC{$\mathcal{D}_{n-1}$}
+		\noLine
+		\UIC{$\nabla^{n-1} (A \lor B) \Rightarrow \nabla^{n-1} A \lor \nabla^{n-1} B$}
+		\RightLabel{$N$}
+		\UIC{$\nabla^n (A \lor B) \Rightarrow \nabla (\nabla^{n-1} A \lor \nabla^{n-1} B)$}
+
+		\AXC{$\mathcal{D}_1$}
+		\noLine
+		\UIC{$\nabla (\nabla^{n-1} A \lor \nabla^{n-1} B) \Rightarrow \nabla^n A \lor \nabla^n B$}
+		
+		\RightLabel{$Cut$} \LeftLabel{$\mathcal{D}_n:$}
+		\BIC{$\nabla^n (A \lor B) \Rightarrow \nabla^n A \lor \nabla^n B$}
+	\end{prooftree}
+\end{proof}
+
+\begin{lem}\label{lem:l-nabla-bot} $\mathbf{LDL} \vdash \nabla \bot \Rightarrow \bot$
+\end{lem}
+\begin{proof}\quad
+	\begin{prooftree}
+		\AXC{}
+		\RightLabel{$Ex$}
+		\UIC{$\bot \Rightarrow$}
+		\RightLabel{$Rw$}
+		\UIC{$\bot \Rightarrow \Box \bot$}
+		\RightLabel{$N$}
+		\UIC{$\nabla \bot \Rightarrow \nabla \Box \bot$}
+
+		\AXC{} \RightLabel{$Id$}
+		\UIC{$\bot \Rightarrow \bot$}
+		\RightLabel{$L\Box$}
+		\UIC{$\nabla \Box \bot \Rightarrow \bot$}
+		
+		\RightLabel{$Cut$}
+		\BIC{$\nabla \bot \Rightarrow \bot$}
+	\end{prooftree}
+\end{proof}
+
+\begin{lem}\label{lem:l-nabla-n-bot} For $n > 0$, $\mathbf{LDL} \vdash \nabla^n \bot \Rightarrow \bot$.
+\end{lem}
+\begin{proof} We will prove a stronger version: For $n \geq m > 0$, $\mathbf{LDL} \vdash \nabla^n \bot \Rightarrow \nabla^{n-m} \bot$. Let $\mathcal{D}_1$ be the proof-tree of lemma \ref{lem:l-nabla-bot} which handles $n = m = 1$. Using induction om $m$, and denoting by IH the proof-tree for $\nabla^n \bot \Rightarrow \nabla^{n-(m-1)} \bot$ from the induction hypothesis, we have for $n > 1$
+	\begin{prooftree}
+		\AXC{IH}
+		\noLine
+		\UIC{$\nabla^n \bot \Rightarrow \nabla^{n-(m-1)} \bot$}
+
+		\AXC{$\mathcal{D}_1$}
+		\noLine
+		\UIC{$\nabla \bot \Rightarrow \bot$}
+		\doubleLine \RightLabel{$N^{(n-m)}$}
+		\UIC{$\nabla^{n-(m-1)} \bot \Rightarrow \nabla^{n-m} \bot$}
+
+		\RightLabel{$Cut$}
+		\BIC{$\nabla^n \bot \Rightarrow \nabla^{n-m} \bot$}
+	\end{prooftree}
+\end{proof}
+
+\begin{lem}\label{lem:l-nabla-dist-imp} For any $n > 0$, $\mathbf{LDL} \vdash \nabla^n (A \rightarrow B) \Rightarrow \nabla^n A \rightarrow \nabla^n B$
+\end{lem}
+\begin{proof}\quad
+	\begin{prooftree}
+		\AXC{}
+		\RightLabel{$Id$}
+		\UIC{$A \Rightarrow A$}
+	
+		\AXC{}
+		\RightLabel{$Id$}
+		\UIC{$B \Rightarrow B$}
+		\RightLabel{$Lw$}
+		\UIC{$A , B \Rightarrow B$}
+	
+		\RightLabel{$L\rightarrow$}
+		\BIC{$A \rightarrow B , A \Rightarrow B$}
+		\RightLabel{$N^{(n)}$} \doubleLine
+		\UIC{$\nabla^n (A \rightarrow B) , \nabla^n A \Rightarrow \nabla^n B$}
+		\RightLabel{$R\rightarrow$}
+		\UIC{$\nabla^n (A \rightarrow B) \Rightarrow \nabla^n A \rightarrow \nabla^n B$}
+	\end{prooftree}
+\end{proof}
+
+\begin{lem}\label{lem:l-nabla-box-comm} For all $n > 0$, $\mathbf{LDL} \vdash \nabla^{n+1} \Box A \Rightarrow \nabla \Box \nabla^n A$.
+\end{lem}
+\begin{proof}\quad
+	\begin{prooftree}
+		\AXC{} \RightLabel{$Id$}
+		\UIC{$A \Rightarrow A$}
+		\RightLabel{$L\Box$}
+		\UIC{$\nabla \Box A \Rightarrow A$}
+		\RightLabel{$N^{(n)}$} \doubleLine
+		\UIC{$\nabla^{n+1} \Box A \Rightarrow \nabla^n A$}
+		\RightLabel{$R\Box$}
+		\UIC{$\nabla^n \Box A \Rightarrow \Box \nabla^n A$}
+		\RightLabel{$N$}
+		\UIC{$\nabla^{n+1} \Box A \Rightarrow \nabla \Box \nabla^n A$}
+	\end{prooftree}
+\end{proof}
+
+\begin{thm}\label{thm:ldl-eq-ldls}
+	For any sequent $\Gamma \Rightarrow \Delta$ in the language $\mathcal{L}$, $\mathbf{LDL} \vdash \Gamma \Rightarrow \Delta$ iff $\mathbf{LDL}^* \vdash \Gamma \Rightarrow \Delta$.
+\end{thm}
+\begin{proof}
+	One direction easily follows from the fact that all rules of $\mathbf{LDL}$ are just instances of $\mathbf{LDL}^*$'s rules.
+	For the other direction, we will use case analysis for the last rule of the proof-tree of $\Gamma \Rightarrow \Delta$ in $\mathbf{LDL}^*$, which we call $\mathcal{D}$, and construct a proof-tree for it in $\mathbf{LDL}$ for each case.
+	
+	First notice that $Id$ and $Ta$ are present in $\mathbf{LDL}$ and lemma \ref{lem:l-nabla-n-bot} handles the $Ex$ case.
+	For other rules, use induction on the length of $\mathcal{D}$.
+	So for the sequents proved by sub-tree(s) of $\mathcal{D}$, the induction hypothesis provides proof of the same sequent(s) in $\mathbf{LDL}$.
+	For common rules, just apply the same rule (in $\mathbf{LDL}$) on the proof-tree(s) from the induction hypothesis to reach the desired sequent.
+	In cases of $\mathbf{LDL}^*$'s stronger rules, i.e. $L\land_1$, $L\land_2$, $L\lor$, $L\rightarrow$ and $L\Box$, do the same, and also $cut$ sequents from lemmas \ref{lem:l-nabla-dist-and}, \ref{lem:l-nabla-dist-or}, \ref{lem:l-nabla-dist-imp} or \ref{lem:l-nabla-box-comm} into the resulting sequent.
+	The case for $N$ divides to two further cases. One case is when $\Delta = A$ for some formula $A$, which is again handled by applying $N$ on the sequent from the induction hypothesis.
+	The other case is when $\Delta = \{\}$, so we have $\Gamma \Rightarrow$ from induction hypothesis, in which we first introduce $\bot$ on the right using $Rw$ and apply $N$.
+	Then we can $cut$ it into the sequent from lemma \ref{lem:l-nabla-bot}, and then into $Ex$, just to derive $\nabla \Gamma \Rightarrow$ as was desired.
+\end{proof}
+
+
 
 
 \textbf{Problem.} Do we have cut elimination theorem for the sequent-style systems we developed for $\mathbf{LDL}_{\rightsquigarrow}$ but this time plus the rule $H_{\rightsquigarrow}$? What about the system of the previous problem for $\mathbf{LDL}$ plus the rule $H$?
