@@ -736,6 +736,18 @@ Next, we should make precise what we mean by the \emph{rank} of formulas and pro
 	For a proof tree $\mathcal{D}$, $\rho(\mathcal{D})$ is the maximum rank of its rule instances.
 \end{dfn}
 
+The following lemma will help us in the proof of the next theorem.
+
+\begin{lem}\label{lem:ldls-top-redundant} If $\mathbf{LDL}^{*M}$ ($\mathbf{LDL}^{*M}_{\rightsquigarrow}$) proves $\Gamma , (\nabla^r \top)^n \Rightarrow \Delta$, then it also proves $\Gamma \Rightarrow \Delta$ with a proof-tree of at most the same rank.
+\end{lem}
+\begin{proof}
+Suppose $\mathcal{D}$ is a proof-tree for $\Gamma , (\nabla^r \top)^n \Rightarrow \Delta$ in $\mathbf{LDL}^{*M}$. By induction on $h(\mathcal{D})$, induction hypothesis states that for an arbitrary proof tree $\mathcal{D}'$ with conclusion $\Gamma' , (\nabla^{r'} \top)^{n'} \Rightarrow \Delta'$ such that $h(\mathcal{D}') < h(\mathcal{D})$, there is a proof $\mathcal{D}''$ of $\Gamma' \Rightarrow \Delta'$ such that $\rho(\mathcal{D}'') \leq \rho(\mathcal{D}')$. Notice that induction hypothesis is applicable to any proof tree of lower length, with no restrictions on $\Gamma'$, $\Delta'$, $n'$ or $r'$.
+
+Consider different cases for the last rule of $\mathcal{D}$, with possible sub-trees $\mathcal{D}_0$ and $\mathcal{D}_1$. $Ta$ and $Ex$ cases are trivially ruled out. In $Id$ case, which implies $n = 1$, we have $\Rightarrow \nabla^r \top$ by $r$ times applications of $N$ on $Ta$. In $Lw$ case, where an instance of $\top$ is principal and $n = 1$, $\mathcal{D}_0$ itself proves the desired sequent. If $n > 1$, then the induction hypothesis with $n' = n - 1$ gives the desired sequent. $Lc$ on an instance of $\top$ is similar, with $n' = n + 1$. In all other cases, just apply induction hypothesis on $\mathcal{D}_0$ (and possibly $\mathcal{D}_1$), then the same last rule. Notice that in all cases we must apply the induction hypothesis with $n' = n$ and $r' = r$, except for $N$, in which we apply it with $r' = r - 1$. Also notice that $MC$ is not used except in $MC$ case, where it is applied with the same cut-formula, so the resulting proof tree is not of a higher rank than $\mathcal{D}$.
+
+The proof for $\mathbf{LDL}^{*M}_{\rightsquigarrow}$ is similar, except that there are no cases for $\Box$, and there are cases for $\rightsquigarrow$ instead of $\rightarrow$. The case for $L\rightsquigarrow$ is handled similar to $L\rightarrow$, but in $R\rightsquigarrow$ case, we must apply the induction hypothesis with $r = r + 1$.
+\end{proof}
+
 \textbf{Problem.} Do we have cut elimination theorem for the sequent-style systems we developed for $\mathbf{LDL}_{\rightsquigarrow}$ but this time plus the rule $H_{\rightsquigarrow}$? What about the system of the previous problem for $\mathbf{LDL}$ plus the rule $H$?
 \subsection{Admissible Rules}
 \textbf{Problem.} What are the Harrop formulas here? Prove the disjunction property for the theories axiomatized by Harrop formulas, using the cut-free proofs over the logics $\mathbf{LDL}$ and $\mathbf{LDL}_{\rightsquigarrow}$. Prove the same thing via Kleene-type argument. Do we have similar thing for the logics with added rules $H$ and $H_{\rightsquigarrow}$, respectively?
