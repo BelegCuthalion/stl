@@ -1,0 +1,218 @@
+\subsection*{$\mathbf{LDL}^{\red*}$} $:=$
+
+\begin{multicols}{3}
+	\begin{prooftree}
+		\AXC{}
+		\RightLabel{$Id$}
+		\UIC{$A \Rightarrow A$}
+	\end{prooftree}
+\columnbreak
+	\begin{prooftree}
+		\AXC{}
+		\RightLabel{$Ta$}
+		\UIC{$\Rightarrow \top$}
+	\end{prooftree}
+\columnbreak
+	\begin{prooftree}
+		\AXC{}
+		\RightLabel{$Ex$}
+		\UIC{${\red\nabla^n} \bot \Rightarrow$}
+	\end{prooftree}
+\end{multicols}
+\smallskip
+
+\begin{multicols}{3}
+	\begin{prooftree}
+		\RightLabel{$Lw$}
+		\AXC{$\Gamma \Rightarrow \Delta$}
+		\UIC{$\Gamma , A \Rightarrow \Delta$}
+	\end{prooftree}
+	\columnbreak
+	\begin{prooftree}
+		\RightLabel{$Rw$}
+		\AXC{$\Gamma \Rightarrow$}
+		\UIC{$\Gamma \Rightarrow A$}
+	\end{prooftree}
+	\columnbreak
+	\begin{prooftree}
+		\RightLabel{$Lc$}
+		\AXC{$\Gamma , A , A \Rightarrow \Delta$}
+		\UIC{$\Gamma , A \Rightarrow \Delta$}
+	\end{prooftree}
+\end{multicols}
+\smallskip
+
+\begin{multicols}{2}
+	\begin{prooftree}
+		\RightLabel{$L\land_i$}
+		\AXC{$\Gamma , {\red\nabla^n} A_i \Rightarrow \Delta$}
+		\UIC{$\Gamma , {\red\nabla^n} (A_1 \land A_2) \Rightarrow \Delta$}
+	\end{prooftree}
+	\columnbreak
+	\begin{prooftree}
+		\RightLabel{$R\land$}
+		\AXC{$\Gamma \Rightarrow A$}
+		\AXC{$\Gamma \Rightarrow B$}
+		\BIC{$\Gamma \Rightarrow A \land B$}
+	\end{prooftree}
+\end{multicols}
+\smallskip
+
+\begin{multicols}{2}
+	\begin{prooftree}
+		\RightLabel{$L\lor$}
+		\AXC{$\Gamma , {\red\nabla^n} A \Rightarrow \Delta$}
+		\AXC{$\Gamma , {\red\nabla^n} B \Rightarrow \Delta$}
+		\BIC{$\Gamma , {\red\nabla^n} (A \lor B) \Rightarrow \Delta$}
+	\end{prooftree}
+	\columnbreak
+	\begin{prooftree}
+		\RightLabel{$R\lor_i$}
+		\AXC{$\Gamma \Rightarrow A_i$}
+		\UIC{$\Gamma \Rightarrow A_1 \lor A_2$}
+	\end{prooftree}
+\end{multicols}
+\smallskip
+
+\begin{multicols}{2}
+	\begin{prooftree}
+		\RightLabel{$L\rightarrow$}
+		\AXC{$\Gamma \Rightarrow {\red\nabla^n} A$}
+		\AXC{$\Gamma , {\red\nabla^n} B \Rightarrow \Delta$}
+		\BIC{$\Gamma, {\red\nabla^n} (A \rightarrow B) \Rightarrow \Delta$}
+	\end{prooftree}
+	\columnbreak
+	\begin{prooftree}
+		\RightLabel{$R\rightarrow$}
+		\AXC{$\Gamma , A \Rightarrow B$}
+		\UIC{$\Gamma \Rightarrow A \rightarrow B$}
+	\end{prooftree}
+\end{multicols}
+\smallskip
+
+\begin{multicols}{2}
+	\begin{prooftree}
+		\RightLabel{$L\Box$}
+		\AXC{$\Gamma, {\red\nabla^n} A \Rightarrow \Delta$}
+		\UIC{$\Gamma, \nabla {\red ^{n+1}}  \Box A \Rightarrow \Delta$}
+	\end{prooftree}
+	\columnbreak
+	\begin{prooftree}
+		\RightLabel{$R\Box$}
+		\AXC{$\nabla\Gamma \Rightarrow A$}
+		\UIC{$\Gamma \Rightarrow \Box A$}
+	\end{prooftree}
+\end{multicols}
+\smallskip
+
+\begin{prooftree}
+	\RightLabel{$N$}
+	\AXC{$\Gamma \Rightarrow A {\red (/\Delta)}$}
+	\UIC{$\nabla\Gamma \Rightarrow \nabla A {\red (/\nabla\Delta)}$}
+\end{prooftree}
+
+
+\subsection*{$\mathbf{LDL}_{\rightsquigarrow}^{{\red*}}$} $:= \mathbf{LDL}^{\red*} - \{ L\rightarrow, R\rightarrow, L\Box, R\Box \} +$
+
+\begin{multicols}{2}
+	\begin{prooftree}
+		\RightLabel{$L\rightsquigarrow$}
+		\AXC{$\Gamma \Rightarrow {\red \nabla^n} A$}
+		\AXC{$\Gamma , {\red \nabla^n} B \Rightarrow \Delta$}
+		\BIC{$\Gamma, \nabla^{\red n+1}(A \rightsquigarrow B) \Rightarrow \Delta$}
+	\end{prooftree}
+	\columnbreak
+	\begin{prooftree}
+		\RightLabel{$R\rightsquigarrow$}
+		\AXC{$\nabla\Gamma , A \Rightarrow B$}
+		\UIC{$\Gamma \Rightarrow A \rightsquigarrow B$}
+	\end{prooftree}
+\end{multicols}
+
+\subsection*{L}
+\begin{prooftree}
+	\RightLabel{$L$}
+	\AXC{$\Gamma, A \Rightarrow \Delta$}
+	\UIC{$\Gamma, \nabla A \Rightarrow \Delta$}
+\end{prooftree}
+
+\subsection*{R} \emph{}
+
+\begin{multicols}{3}
+	\begin{prooftree}
+		\RightLabel{$R'$}
+		\AXC{$\nabla \Gamma, \Sigma \Rightarrow \Delta$}
+		\UIC{$\Gamma, \Sigma \Rightarrow \Delta$}
+	\end{prooftree}
+	\columnbreak
+	\begin{prooftree}
+		\RightLabel{$R$}
+		\AXC{$\Gamma \Rightarrow A$}
+		\AXC{$\Gamma, B \Rightarrow \Delta$}
+		\BIC{$\Gamma, A \rightsquigarrow B \Rightarrow \Delta$}
+	\end{prooftree}
+	\columnbreak
+	\begin{prooftree}
+		\RightLabel{$N'$}
+		\AXC{$\Gamma, \Sigma \Rightarrow \Delta$}
+		\UIC{$\nabla\Gamma, \Sigma \Rightarrow \Delta$}
+	\end{prooftree}
+\end{multicols}
+
+\subsection*{F} \emph{}
+
+\begin{multicols}{2}
+	\begin{prooftree}
+		\RightLabel{$F$}
+		\AXC{$\Gamma \Rightarrow A$}
+		\UIC{$\Gamma \Rightarrow \nabla \Box A$}
+	\end{prooftree}
+	\columnbreak
+	\begin{prooftree}
+		\RightLabel{$F_\rightsquigarrow$}
+		\AXC{$\Gamma , A \Rightarrow B$}
+		\UIC{$\Gamma \Rightarrow \nabla(A \rightsquigarrow B)$}
+	\end{prooftree}
+\end{multicols}
+
+\subsection*{Fu} \emph{}
+
+\begin{multicols}{2}
+	\begin{prooftree}
+		\RightLabel{$Fu'$}
+		\AXC{$\nabla \Gamma \Rightarrow \nabla A$}
+		\UIC{$\Gamma \Rightarrow A$}
+	\end{prooftree}
+	\columnbreak
+	\begin{prooftree}
+		\RightLabel{$Fu$}
+		\AXC{$\nabla\Gamma \Rightarrow A$}
+		\AXC{$\nabla\Gamma, B \Rightarrow \nabla\Delta$}
+		\BIC{$\Gamma, A \rightsquigarrow B \Rightarrow \Delta$}
+	\end{prooftree}
+\end{multicols}
+
+\subsection*{Cut} \emph{}
+
+\begin{multicols}{2}
+	\begin{prooftree}
+		\RightLabel{$Cut$}
+		\AXC{$\Gamma \Rightarrow A$}
+		\AXC{$\Sigma, A \Rightarrow \Delta$}
+		\BIC{$\Gamma, \Sigma \Rightarrow \Delta$}
+	\end{prooftree}
+	\columnbreak
+	\begin{prooftree}
+		\RightLabel{$MC$}
+		\AXC{$\Gamma \Rightarrow A$}
+		\AXC{$\Sigma, (\nabla^l A)^n \Rightarrow \Delta$}
+		\BIC{$\nabla^n\Gamma, \Sigma \Rightarrow \Delta$}
+	\end{prooftree}
+\end{multicols}
+\smallskip
+\begin{prooftree}
+	\RightLabel{$\nabla Cut$}
+	\AXC{$\Gamma \Rightarrow \nabla^m A$}
+	\AXC{$\Sigma, \{\nabla^{n_i} A\} \Rightarrow \Delta$}
+	\BIC{$\{\nabla^{n_i}\Gamma\}, \nabla^m\Sigma \Rightarrow \nabla^m\Delta$}
+\end{prooftree}
