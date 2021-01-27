@@ -210,7 +210,7 @@
  It suffices to apply $Fu'$ on $IH(\mathcal{D}_0', \mathcal{D}_1)$.\\
 
  The rest of the cases for $\mathcal{D}_0$ can't be solve independent of $\mathcal{D}_1$, so we will consider cases for the last rule of $\mathcal{D}_1$, again, where they're handled independent of $\mathcal{D}_0$.
- But this time we have much less possibilities for the opposite sub-tree, since we've already solved many of them. In fact the only possible rules for the last rule of $\mathcal{D}_0$ are now $R\star (\star \in \{\land, \lor_{1/2}, \rightarrow, \Box, \rightsquigarrow\})$ and F.
+ But this time we have much less possibilities for the opposite sub-tree, since we've already solved many of them. In fact the only possible rules for the last rule of $\mathcal{D}_0$ are now $R\star (\star \in \{\land, \lor_{1/2}, \rightarrow, \Box, \rightsquigarrow\})$, $F$ and $F_\rightsquigarrow$.
 
  This time, suppose $\mathcal{D}_1$ is and axiom. Again, the $Id$ case is trivial, $Ta$ won't happen, and $Ex$ is also infeasible, since all possible rules for $\mathcal{D}_0$ alter the right side of the sequent, but none of them is able to introduce $\bot$ there.
 
@@ -389,4 +389,93 @@
       \BIC{$\{\nabla^{n_i+n_i'} \Gamma\} , \{\nabla^{n_i'+m} \Sigma\} , \nabla^{m+m'} \Pi \Rightarrow \nabla^{m+m'} \Delta$}
     \end{prooftree}
 
+    Now for the rest of the proof, we will show how the construction takes place in the cases where the cut-formula is principal in the last rule of $\mathcal{D}_1$, which can be either of $L\land$, $L\lor_1$, $L\lor_2$, $L\rightarrow$, $L\Box$ or $L\rightsquigarrow$.
+    Any of these rules imply a specific form for the cut-formula, which can also determine the rule at the end of the other proof-tree, because the cut-formula is also principal in the last rule of $\mathcal{D}_0$ (note that the only possible rules for the last rule of $\mathcal{D}_0$ are now $R\star (\star \in \{\land, \lor_{1/2}, \rightarrow, \Box, \rightsquigarrow\})$, $F$ and $F_\rightsquigarrow$).
+    Now we further destruct the proof by cases for $m$.
+    
+    First, notice that $m > 1$ is impossible, since the only rules that introduce $\nabla$ to the right of the sequence are $F$ for $\mathbf{LDL}$ based systems and $F_\rightsquigarrow$ for $\mathbf{LDL}_\rightsquigarrow$ based ones. So suppose $m = 1$ and $\mathcal{D}_0$ end with $F$ (in $\mathbf{LDL}$).
+    \begin{prooftree}
+      \AXC{$\mathcal{D}_0'$}
+      \noLine
+      \UIC{$\Gamma \Rightarrow A$}
+      \RightLabel{$F$}
+      \UIC{$\Gamma \Rightarrow \nabla \Box A$}
+    \end{prooftree}
+    Now the cut-formula must be of the form $\Box A$, so the only option for $\mathcal{D}_1$ is $L\Box$.
+    \begin{prooftree}
+      \AXC{$\mathcal{D}_1'$}
+      \noLine
+      \UIC{$\Sigma, \{\nabla^{n_i} \Box A\}_{i>0}, \nabla^{n_0} A \Rightarrow \Delta$}
+      \RightLabel{$L\Box$}
+      \UIC{$\Sigma, \{\nabla^{n_i} \Box A\}_{i>0}, \nabla^{n_0+1} \Box A \Rightarrow \Delta$}
+    \end{prooftree}
+    The desired sequent is of the form $\{\nabla^{n_i} \Gamma\}_{i>0}, \nabla^{n_0+1} \Gamma, \nabla \Sigma \Rightarrow \nabla \Delta$, which can be proved by a low rank $\nabla Cut$ (with $A$ as the cut-formula) on $\mathcal{D}_0'$ and $IH(\mathcal{D}_0, \mathcal{D}_1')$.
+    \begin{prooftree}
+      \AXC{$\mathcal{D}_0'$}
+      \noLine
+      \UIC{$\Gamma \Rightarrow A$}
+      \AXC{$\mathcal{D}_0$}
+      \noLine
+      \UIC{$\Gamma \Rightarrow \nabla \Box A$}
+      \AXC{$\mathcal{D}_1'$}
+      \noLine
+      \UIC{$\Sigma, \{\nabla^{n_i} \Box A\}_{i>0}, \nabla^{n_0} A \Rightarrow \Delta$}
+      \RightLabel{IH}
+      \BIC{$\{\nabla^{n_i} \Gamma\}_{i>0}, \nabla \Sigma, \nabla^{n_0+1} A \Rightarrow \nabla \Delta$}
+      \RightLabel{$\nabla Cut$}
+      \BIC{$\{\nabla^{n_i} \Gamma\}_{i>0}, \nabla^{n_0+1} \Gamma, \nabla \Sigma \Rightarrow \nabla \Delta$}
+    \end{prooftree}
+
+    Now suppose $\mathcal{D}_0$ ends with $F_\rightsquigarrow$ (in $\mathbf{LDL}_\rightsquigarrow$).
+    \begin{prooftree}
+      \AXC{$\mathcal{D}_0'$}
+      \noLine
+      \UIC{$\Gamma, A \Rightarrow B$}
+      \RightLabel{$L\rightsquigarrow$}
+      \UIC{$\Gamma \Rightarrow \nabla (A \rightsquigarrow B)$}
+    \end{prooftree}
+    Since the cut-formula is of the form $A \rightsquigarrow B$, $\mathcal{D}_1$ could only end with $L\rightsquigarrow$.
+    \begin{prooftree}
+      \AXC{$\mathcal{D}_1'$}
+      \noLine
+      \UIC{$\Sigma, \{\nabla^{n_i} (A \rightsquigarrow B) \}_{i>0}, \Rightarrow \nabla^{n_0} A$}
+      \AXC{$\mathcal{D}_1''$}
+      \noLine
+      \UIC{$\Sigma, \{\nabla^{n_i} (A \rightsquigarrow B) \}_{i>0}, \nabla^{n_0} B \Rightarrow \Delta$}
+      \RightLabel{$L\rightsquigarrow$}
+      \BIC{$\Sigma, \{\nabla^{n_i} (A \rightsquigarrow B)\}_{i>0}, \nabla^{n_0+1} (A \rightsquigarrow B) \Rightarrow \Delta$}
+    \end{prooftree}
+    Again, we want to prove $\{\nabla^{n_i} \Gamma\}_{i>0}, \nabla^{n_0+1} \Gamma, \nabla \Sigma \Rightarrow \nabla \Delta$. To do so, we first apply a low rank $\nabla Cut$ (with $B$ as the cut-formula) on $\mathcal{D}_0'$ and $IH(\mathcal{D}_0, \mathcal{D}_1'')$.
+    \begin{prooftree}
+      \AXC{$\mathcal{D}_0'$}
+      \noLine
+      \UIC{$\Gamma, A \Rightarrow B$}
+      \AXC{$\mathcal{D}_0$}
+      \noLine
+      \UIC{$\Gamma \Rightarrow \nabla (A \rightsquigarrow B)$}
+      \AXC{$\mathcal{D}_1''$}
+      \noLine
+      \UIC{$\Sigma, \{\nabla^{n_i} (A \rightsquigarrow B) \}_{i>0}, \nabla^{n_0} B \Rightarrow \Delta$}
+      \BIC{$\{\nabla^{n_i} \Gamma\}_{i>0}, \nabla \Sigma, \nabla^{n_0+1} B \Rightarrow \nabla \Delta$}
+      \RightLabel{$\nabla Cut$} \LeftLabel{$\mathcal{D}':~~~~~$}
+      \BIC{$\nabla^{n_0+1} \Gamma, \nabla^{n_0+1} A, \{\nabla^{n_i} \Gamma\}_{i>0}, \nabla \Sigma \Rightarrow \nabla \Delta$}
+    \end{prooftree}
+    Then cut $IH(\mathcal{D}_0, \mathcal{D}_1')$ (this time with $\nabla^{n_0+1} A$ as the cut-formula) into the resulting sequent.
+    \begin{prooftree}
+      \AXC{$\mathcal{D}_1'$}
+      \noLine
+      \UIC{$\Sigma, \{\nabla^{n_i} (A \rightsquigarrow B) \}_{i>0}, \Rightarrow \nabla^{n_0} A$}
+      \AXC{$\mathcal{D}_0$}
+      \noLine
+      \UIC{$\Gamma \Rightarrow \nabla (A \rightsquigarrow B)$}
+      \RightLabel{IH}
+      \BIC{$\{\nabla^{n_i} \Gamma\}_{i>0}, \nabla \Sigma, \Rightarrow \nabla^{n_0 + 1} A$}
+
+      \AXC{$\mathcal{D}'$}
+
+      \RightLabel{$\nabla Cut$}
+      \BIC{$(\{\nabla^{n_i} \Gamma\}_{i>0})^2, \nabla^{n_0+1} \Gamma, (\nabla \Sigma)^2 \Rightarrow \nabla \Delta$}
+      \doubleLine \RightLabel{$Lc$}
+      \UIC{$\{\nabla^{n_i} \Gamma\}_{i>0}, \nabla^{n_0+1} \Gamma, \nabla \Sigma \Rightarrow \nabla \Delta$}
+    \end{prooftree}
  \end{document}
