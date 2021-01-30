@@ -715,7 +715,7 @@ In the rest of this section, by the \emph{length of a proof-tree} $\mathcal{D}$,
 \subsection{Cut-elimination theorems}
 Although the admissibility of cut in $\mathbf{LDL}^*$ and $\mathbf{LDL}^*_{\rightsquigarrow}$ does not imply it's admissibility in $\mathbf{LDL}$ or $\mathbf{LDL}_{\rightsquigarrow}$, but as we will see, their equivalence ---by theorems \ref{thm:ldl-eq-ldls} and \ref{thm:sldl-eq-sldls} respectively--- enables us to prove statements about the cut-free system, which are otherwise not provable in the presence of the cut rule, and translate the result back into statements about the original system.
 
-For technical reasons, we will eliminate a stronger form of the cut rule, which nevertheless satisfies our goal here.
+For technical reasons, we will eliminate a stronger form of the cut rule, which nevertheless satisfies our goal here. From here on, by $\{\nabla^{n_i} A\}$ ($\{\nabla^{n_i} \Gamma\}$) we mean the multi-set $\{ \nabla^{n_0} A, \dots, \nabla^{n_k} A \}$ ($\bigcup_{A \in \Gamma} \{\nabla^{n_i} A\}$) for some sequence of natural numbers $\{n_i\}$ of length $k+1$.
 
 \begin{dfn}[Multi-cut rule] We denote by $\mathbf{LDL}^{*M}$ ($\mathbf{LDL}^{*M}_{\rightsquigarrow}$) the same system defined by $\mathbf{LDL}^*$ ($\mathbf{LDL}^*_{\rightsquigarrow}$), with the cut rule replaced by the following generalization:
 \begin{prooftree}
@@ -761,10 +761,10 @@ The proof for $\mathbf{LDL}^{*M}_{\rightsquigarrow}$ is similar, except that the
 The following theorem shows that we can imitate any instance of the cut rule in a proof-tree of lower rank.
 
 \begin{thm}\label{thm:ldls-cut-reduction}[Cut Reduction]
-Let \textbf{S} be the system $\mathbf{LDL}^{*}$ ($\mathbf{LDL}^{*}_{\rightsquigarrow}$) with any one of the rules $L$, $R'$, $F$($F_\rightsquigarrow$) or $Fu'$. If $\mathbf{S} + \nabla Cut$ proves $\Gamma \Rightarrow \nabla^m A$ and $\Sigma , \{\nabla^{n_i} A\} \Rightarrow \Delta$ with proof trees of ranks less than $\rho(A)$, then it also proves $\{\nabla^{n_i} \Gamma\} , \nabla^m\Sigma \Rightarrow \nabla^m\Delta$ also with a proof tree of a rank less than $\rho(A)$.
+Let \textbf{S} be the any of systems $\mathbf{LDL}^{*}$, $\mathbf{LDL}^{*}_{\rightsquigarrow}$, or one of them supplemented with any one of the rules $L$, $R'$, $F$($F_\rightsquigarrow$) or $Fu'$. If $\mathbf{S} + \nabla Cut$ proves $\Gamma \Rightarrow \nabla^m A$ and $\Sigma , \{\nabla^{n_i} A\} \Rightarrow \Delta$ with proof trees of ranks less than $\rho(A)$, then it also proves $\{\nabla^{n_i} \Gamma\} , \nabla^m\Sigma \Rightarrow \nabla^m\Delta$ also with a proof tree of a rank less than $\rho(A)$.
 \end{thm}
 \begin{proof}
-	We have the following proof-trees
+	We have two proof-trees
   \[
     {\mathcal{D}_0
     \atop
