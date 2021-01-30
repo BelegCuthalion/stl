@@ -972,7 +972,7 @@ Let \textbf{S} be the system $\mathbf{LDL}^{*}$ ($\mathbf{LDL}^{*}_{\rightsquiga
 
  This time, suppose $\mathcal{D}_1$ is and axiom. Again, the $Id$ case is trivial, $Ta$ won't happen, and $Ex$ is also infeasible, since all possible rules for $\mathcal{D}_0$ alter the right side of the sequent, but none of them is able to introduce $\bot$ there.
 
- Now for the rest of the proof, we will show how the construction takes place in the cases where the cut-formula is principal in the last rule of $\mathcal{D}_1$, which can be either of $L\land$, $L\lor_1$, $L\lor_2$, $L\rightarrow$, $L\Box$ or $L\rightsquigarrow$.
+ Now for the rest of the proof, we will show how the construction takes place in the cases where the cut-formula is principal in the last rule of $\mathcal{D}_1$, which can be either of $L\star (\star \in \{\land, \lor_{1/2}, \rightarrow, \Box, \rightsquigarrow\})$.
  Any of these rules imply a specific form for the cut-formula, which can also determine the rule at the end of the other proof-tree, because the cut-formula is also principal in the last rule of $\mathcal{D}_0$ (note that the only possible rules for the last rule of $\mathcal{D}_0$ are now $R\star (\star \in \{\land, \lor_{1/2}, \rightarrow, \Box, \rightsquigarrow\})$, $F$ and $F_\rightsquigarrow$).
  Now we further destruct the proof by cases for $m$.
  
@@ -1014,7 +1014,7 @@ Let \textbf{S} be the system $\mathbf{LDL}^{*}$ ($\mathbf{LDL}^{*}_{\rightsquiga
 	 \AXC{$\mathcal{D}_0'$}
 	 \noLine
 	 \UIC{$\Gamma, A \Rightarrow B$}
-	 \RightLabel{$L\rightsquigarrow$}
+	 \RightLabel{$F_\rightsquigarrow$}
 	 \UIC{$\Gamma \Rightarrow \nabla (A \rightsquigarrow B)$}
  \end{prooftree}
  Since the cut-formula is of the form $A \rightsquigarrow B$, $\mathcal{D}_1$ could only end with $L\rightsquigarrow$.
@@ -1061,6 +1061,80 @@ Let \textbf{S} be the system $\mathbf{LDL}^{*}$ ($\mathbf{LDL}^{*}_{\rightsquiga
 	 \doubleLine \RightLabel{$Lc$}
 	 \UIC{$\{\nabla^{n_i} \Gamma\}_{i>0}, \nabla^{n_0+1} \Gamma, \nabla \Sigma \Rightarrow \nabla \Delta$}
  \end{prooftree}
+ When $m = 0$, each right-rule for $\mathcal{D}_1$ determines its corresponding left-rule for $\mathcal{D}_0$.
+
+ $R\land$ and $L\land$: Suppose $\mathcal{D}_0$ ends with $R\land$ and $\mathcal{D}_1$ with either of $L\land_c ~ (c \in \{1,2\})$.
+ \begin{prooftree}
+	 \noLine
+	 \AXC{$\mathcal{D}_0'$}
+	 \UIC{$\Gamma \Rightarrow A_1$}
+	 \noLine
+	 \AXC{$\mathcal{D}_0''$}
+	 \UIC{$\Gamma \Rightarrow A_2$}
+	 \RightLabel{$R\land$}
+	 \BIC{$\Gamma \Rightarrow A_1 \land A_2$}
+	 
+	 \noLine
+	 \AXC{$\mathcal{D}_1'$}
+	 \UIC{$\Sigma , \{\nabla^{n_i} (A_1 \land A_2)\}_{i>0}, \nabla^{n_0} A_c \Rightarrow \Delta$}
+	 \RightLabel{$L\land_1$}
+	 \UIC{$\Sigma , \{\nabla^{n_i} (A_1 \land A_2)\} \Rightarrow \Delta$}
+	 
+	 \noLine
+	 \BIC{}
+ \end{prooftree}
+ $IH(\mathcal{D}_0, \mathcal{D}_1')$ proves $\{\nabla^{n_i} \Gamma\}_{i>0} , \Sigma , \nabla^{n_0} A_c \Rightarrow \Delta$. Remove $\nabla^{n_0} A_c$ with a low rank $\nabla Cut$ on this sequent and either of $\mathcal{D}_0'$ ($c = 1$) or $\mathcal{D}_0''$ ($c = 2$) to get $\{\nabla^{n_i} \Gamma\}, \Sigma \Rightarrow \Delta$.
+
+ $R\lor$ and $L\lor$: Suppose $\mathcal{D}_0$ ends with either of $R\lor_c ~ (c \in \{1,2\})$ and $\mathcal{D}_1$ with $L\lor$.
+ \begin{prooftree}
+	 \noLine
+	 \AXC{$\mathcal{D}_0'$}
+	 \UIC{$\Gamma \Rightarrow A_c$}
+	 \RightLabel{$R\lor_c$}
+	 \UIC{$\Gamma \Rightarrow A_1 \lor A_2$}
+
+	 \noLine
+	 \AXC{$\mathcal{D}_1'$}
+	 \UIC{$\Sigma , \{\nabla^{n_i} (A_1 \lor A_2)\}_{i>0} , \nabla^{n_0} A_1 \Rightarrow \Delta$}
+	 \noLine
+	 \AXC{$\mathcal{D}_1''$}
+	 \UIC{$\Sigma , \{\nabla^{n_i} (A_1 \lor A_2)\}_{i>0} , \nabla^{n_0} A_2 \Rightarrow \Delta$}
+	 \RightLabel{$L\lor$}
+	 \BIC{$\Sigma ,  \{\nabla^{n_i} (A_1 \lor A_2)\} \Rightarrow \Delta$}
+	 
+	 \noLine
+	 \BIC{}
+ \end{prooftree}
+ Using induction hypothesis, first remove $\{\nabla^{n_i} (A_1 \lor A_2)\}_{i>0}$ from the sub-tree of $\mathcal{D}_1$ that has $\nabla^{n_0} A_c$ ($IH(\mathcal{D}_0, \mathcal{D}_1')$ for $c = 1$, $IH(\mathcal{D}_0, \mathcal{D}_1'')$ for $c = 2$), to get $\{\nabla^{n_i} \Gamma\}_{i>0}, \Sigma , \nabla^{n_0} A_c \Rightarrow \Delta$. Then remove $\nabla^{n_0} A_c$ by a low rank $\nabla Cut$ on this sequent and $\mathbf{D_0}'$ to get $\{\nabla^{n_i} \Gamma\}, \Sigma \Rightarrow \Delta$.
+
+ $R\rightarrow$ and $L\rightarrow$: Suppose $\mathcal{D}_0$ and $\mathcal{D}_1$ end with $R\rightarrow$ and $L\rightarrow$ respectively.
+ \begin{prooftree}
+	 \noLine
+	 \AXC{$\mathcal{ D}_0'$}
+	 \UIC{$\Gamma, A_1 \Rightarrow A_2$}
+	 \RightLabel{$R\rightarrow$}
+	 \UIC{$\Gamma \Rightarrow A_1 \rightarrow A_2$}        
+	 \end{prooftree}
+	 \begin{prooftree}
+	 \noLine
+	 \AXC{$\mathcal{D}_1'$}
+	 \UIC{$\Sigma, \{\nabla^{n_i} (A_1 \rightarrow A_2)\}_{i>0} \Rightarrow \nabla^{n_0} A_1$}
+	 \noLine
+	 \AXC{$\mathcal{D}_1''$}
+	 \UIC{$\Sigma, \{\nabla^{n_i} (A_1 \rightarrow A_2)\}_{i>0}, \nabla^{n_0} A_2 \Rightarrow \Delta$}
+	 \RightLabel{$L\rightarrow$}
+	 \BIC{$\Sigma,  \{\nabla^{n_i} (A_1 \rightarrow A_2)\} \Rightarrow \Delta$}
+ \end{prooftree}
+ 
+ $IH(\mathcal{D}_0, \mathcal{D}_1'')$ proves $\{\nabla^{n_i} \Gamma\}_{i>0}, \Sigma, \nabla^{n_0} A_2 \Rightarrow \Delta$. Applying a low rank $\nabla Cut$ on $\mathcal{D}_0'$ and this sequent removes $\nabla^{n_0} A_2$ and introduces $\nabla^{n_0} \Gamma$ and $\nabla^{n_0} A_1$ to the left. On the other hand $IH(\mathcal{D}_0, \mathcal{D}_1')$ proves $\{\nabla^{n_i} \Gamma\}_{i>0}, \Sigma, \Rightarrow \nabla^{n_0} A_1$, which we can use to also remove $\nabla^{n_0} A_1$ with another low rank cut, and then remove the extra $\nabla^{n_0} \Gamma$ and $\Sigma$ with $Lc$.
+
+ $R\rightsquigarrow$ and $L\rightsquigarrow$: Is just like the $\rightarrow$ case. Notice that the extra $\nabla$ on the left side of the subtree of $\mathcal{D}_0$ will provide the extra $\nabla$ on the principal formula in $\mathcal{D}_1$.
+
+ There are also two cases where the sub-trees end with $F$ and $L\Box$, or with $F_\rightsquigarrow$ and $L\rightsquigarrow$ for $\mathbf{LDL}_\rightsquigarrow$, with $m = 0$. These cases are also similar to the $m = 1$ case, except that here the cut-formula is $\nabla\Box A$.
+ \vspace{5mm}
+
+ This concludes the proof the theorem in all cases. Notice that we have a construction for any two possible pair of rules, in both systems and all their variations.
+
 \end{proof}
 
 \textbf{Problem.} Do we have cut elimination theorem for the sequent-style systems we developed for $\mathbf{LDL}_{\rightsquigarrow}$ but this time plus the rule $H_{\rightsquigarrow}$? What about the system of the previous problem for $\mathbf{LDL}$ plus the rule $H$?
