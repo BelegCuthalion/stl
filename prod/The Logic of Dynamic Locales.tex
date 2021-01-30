@@ -1137,6 +1137,20 @@ Let \textbf{S} be the any of systems $\mathbf{LDL}^{*}$, $\mathbf{LDL}^{*}_{\rig
 
 \end{proof}
 
+\begin{thm}\label{thm:ldls-cut-elim}[Cut Elimination]
+	Let \textbf{S} be the any of systems $\mathbf{LDL}^{*}$, $\mathbf{LDL}^{*}_{\rightsquigarrow}$, or one of them supplemented with any one of the rules $L$, $R'$, $F$($F_\rightsquigarrow$) or $Fu'$. For any $\Gamma$ and $\Delta$, If $\Gamma \Rightarrow \Delta$ is provable by $\mathbf{S} + \nabla Cut$, then it is so by $\mathbf{S}$.
+\end{thm}
+\begin{proof}
+		First, we will show that for any non-zero-rank proof of $\Gamma \Rightarrow \Delta$ like $\mathcal{D}$ in $\mathbf{S} + \nabla Cut$, there is another proof of the same sequent with a lower rank. Suppose $\mathcal{D}$ has sub-tree(s) called $\mathcal{D}_0$ (and possibly $\mathcal{D}_1$). Using induction on $h(\mathcal{D})$, the induction hypothesis for $\mathcal{D}_i ~(i \in \{1,2\})$ gives us a proof-tree with the same conclusion, which we call $IH(\mathcal{D}_i)$, but with a lower rank, i.e. $\rho(IH(\mathcal{D}_i)) < \rho(\mathcal{D}_i)$. We now consider two cases for the last rule of $\mathcal{D}$
+
+	\begin{enumerate}[label=\Roman*]
+		\item If the last rule of $\mathcal{D}$ is of a lower rank than $\rho(\mathcal{D})$, i.e. the $\nabla Cut$ instance with the maximum rank is not the last rule in $\mathcal{D}$, then we can apply the same last rule on $IH(\mathcal{D}_i)$'s and get a proof of $\Gamma \Rightarrow \Delta$ with a lower rank.
+		
+		\item If the last rule of $\mathcal{D}$ is an instance of $\nabla Cut$ rule with a cut-formula of rank $\rho(\mathcal{D})$, then we can apply theorem \ref{thm:ldls-cut-reduction} to $IH(\mathcal{D}_0)$ and $IH(\mathcal{D}_1)$ to get the same $\nabla Cut$ with a lower rank.
+	\end{enumerate}
+	So for any proof of $\Gamma \Rightarrow \Delta$ in $\mathbf{S} + \nabla Cut$, we also have a proof with rank $0$, which is cut-free.
+\end{proof}
+
 \textbf{Problem.} Do we have cut elimination theorem for the sequent-style systems we developed for $\mathbf{LDL}_{\rightsquigarrow}$ but this time plus the rule $H_{\rightsquigarrow}$? What about the system of the previous problem for $\mathbf{LDL}$ plus the rule $H$?
 \subsection{Admissible Rules}
 \textbf{Problem.} What are the Harrop formulas here? Prove the disjunction property for the theories axiomatized by Harrop formulas, using the cut-free proofs over the logics $\mathbf{LDL}$ and $\mathbf{LDL}_{\rightsquigarrow}$. Prove the same thing via Kleene-type argument. Do we have similar thing for the logics with added rules $H$ and $H_{\rightsquigarrow}$, respectively?
