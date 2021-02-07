@@ -721,7 +721,7 @@ For technical reasons, we will eliminate a stronger form of the cut rule, which 
 \begin{prooftree}
 	\AXC{$\Gamma \Rightarrow \nabla^m A$}
 	\AXC{$\Sigma , \{\nabla^{n_i} A\} \Rightarrow \Delta$}
-	\RightLabel{$MC$}
+	\RightLabel{$\nabla Cut$}
 	\BIC{$\{\nabla^{n_i} \Gamma\} , \nabla^m \Sigma \Rightarrow \nabla^m \Delta$}
 \end{prooftree}
 where $\nabla^n$ means $\nabla$ applied $n$ times and $\{\nabla^{n_i} A\}$ for some sequence of natural numbers $n_i$ of length $l$ means $\{\nabla^{n_0} A,\dotsb, \nabla^{n_l} A\}$.
@@ -742,18 +742,18 @@ Next, we should make precise what we mean by the \emph{rank} of formulas and pro
 	\end{cases} \]
 	Notice that $\nabla$ does not increase rank.
 	
-	We also define rank for rule instances and proof-trees. Rank of a rule instance is the rank of its cut-formula if it is an instance of the $MC$ rule, and $0$ if it's not.
+	We also define rank for rule instances and proof-trees. Rank of a rule instance is the rank of its cut-formula if it is an instance of the $\nabla Cut$ rule, and $0$ if it's not.
 	For a proof tree $\mathcal{D}$, $\rho(\mathcal{D})$ is the maximum rank of its rule instances.
 \end{dfn}
 
 The following lemma will help us in the proof of the next theorem.
 
-\begin{lem}\label{lem:ldls-top-redundant} If $\mathbf{LDL}^{*M}$ ($\mathbf{LDL}^{*M}_{\rightsquigarrow}$) proves $\Gamma , (\nabla^r \top)^n \Rightarrow \Delta$, then it also proves $\Gamma \Rightarrow \Delta$ with a proof-tree of at most the same rank.
+\begin{lem}\label{lem:ldls-top-redundant} If $\mathbf{LDL}^{*M}$ ($\mathbf{LDL}^{*M}_{\rightsquigarrow}$) proves $\Gamma , \{\nabla^{n_i} \top\} \Rightarrow \Delta$, then it also proves $\Gamma \Rightarrow \Delta$ with a proof-tree of at most the same rank.
 \end{lem}
 \begin{proof}
-Suppose $\mathcal{D}$ is a proof-tree for $\Gamma , (\nabla^r \top)^n \Rightarrow \Delta$ in $\mathbf{LDL}^{*M}$. By induction on $h(\mathcal{D})$, induction hypothesis states that for an arbitrary proof tree $\mathcal{D}'$ with conclusion $\Gamma' , (\nabla^{r'} \top)^{n'} \Rightarrow \Delta'$ such that $h(\mathcal{D}') < h(\mathcal{D})$, there is a proof $\mathcal{D}''$ of $\Gamma' \Rightarrow \Delta'$ such that $\rho(\mathcal{D}'') \leq \rho(\mathcal{D}')$. Notice that induction hypothesis is applicable to any proof tree of lower length, with no restrictions on $\Gamma'$, $\Delta'$, $n'$ or $r'$.
+Suppose $\mathcal{D}$ is a proof-tree for $\Gamma , \{\nabla^{n_i} \top\} \Rightarrow \Delta$ in $\mathbf{LDL}^{*M}$. By induction on $h(\mathcal{D})$, induction hypothesis states that for an arbitrary proof tree $\mathcal{D}'$ with conclusion $\Gamma' , \{\nabla^{n_i'} \top\} \Rightarrow \Delta'$ such that $h(\mathcal{D}') < h(\mathcal{D})$, there is a proof $\mathcal{D}''$ of $\Gamma' \Rightarrow \Delta'$ such that $\rho(\mathcal{D}'') \leq \rho(\mathcal{D}')$. Notice that induction hypothesis is applicable to any proof tree of lower length, with no restrictions on $\Gamma'$, $\Delta'$, $n'$ or $r'$.
 
-Consider different cases for the last rule of $\mathcal{D}$, with possible sub-trees $\mathcal{D}_0$ and $\mathcal{D}_1$. $Ta$ and $Ex$ cases are trivially ruled out. In $Id$ case, which implies $n = 1$, we have $\Rightarrow \nabla^r \top$ by $r$ times applications of $N$ on $Ta$. In $Lw$ case, where an instance of $\top$ is principal and $n = 1$, $\mathcal{D}_0$ itself proves the desired sequent. If $n > 1$, then the induction hypothesis with $n' = n - 1$ gives the desired sequent. $Lc$ on an instance of $\top$ is similar, with $n' = n + 1$. In all other cases, just apply induction hypothesis on $\mathcal{D}_0$ (and possibly $\mathcal{D}_1$), then the same last rule. Notice that in all cases we must apply the induction hypothesis with $n' = n$ and $r' = r$, except for $N$, in which we apply it with $r' = r - 1$. Also notice that $MC$ is not used except in $MC$ case, where it is applied with the same cut-formula, so the resulting proof tree is not of a higher rank than $\mathcal{D}$.
+Consider different cases for the last rule of $\mathcal{D}$, with possible sub-trees $\mathcal{D}_0$ and $\mathcal{D}_1$. $Ta$ and $Ex$ cases are trivially ruled out. In $Id$ case, which implies $\{\nabla^{n_i} \top\} = \nabla^n \top$ for some $n$, we have $\Rightarrow \nabla^n \top$ by $n$ times applications of $N$ on $Ta$. In $Lw$ case, where $\{\nabla^{n_i} \top\} = \nabla \top$ and it is principal, $\mathcal{D}_0$ itself proves the desired sequent. If $\{\nabla^{n_i} \top\}$ has more members, then the induction hypothesis gives the desired sequent. $Lc$ on some $\nabla^{n_j} \top$ is similar. In all other cases, just apply induction hypothesis on $\mathcal{D}_0$ (and possibly $\mathcal{D}_1$), then the same last rule. Notice that in the case for $N$ we apply the induction hypothesis with $n_i' = n_i - 1$. Also notice that $\nabla Cut$ is not used except in $\nabla Cut$ case, where it is applied with the same cut-formula, so the resulting proof tree is not of a higher rank than $\mathcal{D}$.
 
 The proof for $\mathbf{LDL}^{*M}_{\rightsquigarrow}$ is similar, except that there are no cases for $\Box$, and there are cases for $\rightsquigarrow$ instead of $\rightarrow$. The case for $L\rightsquigarrow$ is handled similar to $L\rightarrow$, but in $R\rightsquigarrow$ case, we must apply the induction hypothesis with $r = r + 1$.
 \end{proof}
@@ -968,7 +968,7 @@ Let \textbf{S} be the any of systems $\mathbf{LDL}^{*}$, $\mathbf{LDL}^{*}_{\rig
  $Fu'$: This case is also handled similar to how we did the rule scheme 1.
  It suffices to apply $Fu'$ on $IH(\mathcal{D}_0', \mathcal{D}_1)$.\\
 
- The rest of the cases for $\mathcal{D}_0$ can't be solved independent of $\mathcal{D}_1$, so we will consider cases for the last rule of $\mathcal{D}_1$, again, where they're handled independent of $\mathcal{D}_0$. But this time we have much less possibilities for the opposite sub-tree, since we've already solved many of them. In fact the only possible rules for the last rule of $\mathcal{D}_0$ are now $R\star (\star \in \{\land, \lor_{1/2}, \rightarrow, \Box, \rightsquigarrow\})$ and $F$ and $F_\rightsquigarrow$.
+ The rest of the cases for $\mathcal{D}_0$ can't be solved independent of $\mathcal{D}_1$, so we will consider cases for the last rule of $\mathcal{D}_1$, again, where they're handled independent of $\mathcal{D}_0$. But this time we have much less possibilities for the opposite sub-tree, since we've already solved many of them. In fact the only possible rules for the last rule of $\mathcal{D}_0$ are now $R\star (\star \in \{\land, \lor_{1/2}, \rightarrow, \Box, \rightsquigarrow\})$, $F$ and $F_\rightsquigarrow$.
 
  This time, suppose $\mathcal{D}_1$ is and axiom. Again, the $Id$ case is trivial, $Ta$ won't happen, and $Ex$ is also infeasible, since all possible rules for $\mathcal{D}_0$ alter the right side of the sequent, but none of them is able to introduce $\bot$ there.
 
@@ -1092,18 +1092,16 @@ Let \textbf{S} be the any of systems $\mathbf{LDL}^{*}$, $\mathbf{LDL}^{*}_{\rig
 	 \UIC{$\Gamma \Rightarrow A_c$}
 	 \RightLabel{$R\lor_c$}
 	 \UIC{$\Gamma \Rightarrow A_1 \lor A_2$}
-
-	 \noLine
-	 \AXC{$\mathcal{D}_1'$}
-	 \UIC{$\Sigma , \{\nabla^{n_i} (A_1 \lor A_2)\}_{i>0} , \nabla^{n_0} A_1 \Rightarrow \Delta$}
-	 \noLine
-	 \AXC{$\mathcal{D}_1''$}
-	 \UIC{$\Sigma , \{\nabla^{n_i} (A_1 \lor A_2)\}_{i>0} , \nabla^{n_0} A_2 \Rightarrow \Delta$}
-	 \RightLabel{$L\lor$}
-	 \BIC{$\Sigma ,  \{\nabla^{n_i} (A_1 \lor A_2)\} \Rightarrow \Delta$}
-	 
-	 \noLine
-	 \BIC{}
+ \end{prooftree}
+ \begin{prooftree}
+	\noLine
+	\AXC{$\mathcal{D}_1'$}
+	\UIC{$\Sigma , \{\nabla^{n_i} (A_1 \lor A_2)\}_{i>0} , \nabla^{n_0} A_1 \Rightarrow \Delta$}
+	\noLine
+	\AXC{$\mathcal{D}_1''$}
+	\UIC{$\Sigma , \{\nabla^{n_i} (A_1 \lor A_2)\}_{i>0} , \nabla^{n_0} A_2 \Rightarrow \Delta$}
+	\RightLabel{$L\lor$}
+	\BIC{$\Sigma ,  \{\nabla^{n_i} (A_1 \lor A_2)\} \Rightarrow \Delta$}
  \end{prooftree}
  Using induction hypothesis, first remove $\{\nabla^{n_i} (A_1 \lor A_2)\}_{i>0}$ from the sub-tree of $\mathcal{D}_1$ that has $\nabla^{n_0} A_c$ ($IH(\mathcal{D}_0, \mathcal{D}_1')$ for $c = 1$, $IH(\mathcal{D}_0, \mathcal{D}_1'')$ for $c = 2$), to get $\{\nabla^{n_i} \Gamma\}_{i>0}, \Sigma , \nabla^{n_0} A_c \Rightarrow \Delta$. Then remove $\nabla^{n_0} A_c$ by a low rank $\nabla Cut$ on this sequent and $\mathbf{D_0}'$ to get $\{\nabla^{n_i} \Gamma\}, \Sigma \Rightarrow \Delta$.
 
