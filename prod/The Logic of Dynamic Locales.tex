@@ -725,6 +725,7 @@ For technical reasons, we will eliminate a stronger form of the cut rule, which 
 	\BIC{$\{\nabla^{n_i} \Gamma\} , \nabla^m \Sigma \Rightarrow \nabla^m \Delta$}
 \end{prooftree}
 where $\nabla^n$ means $\nabla$ applied $n$ times and $\{\nabla^{n_i} A\}$ for some sequence of natural numbers $n_i$ of length $l$ means $\{\nabla^{n_0} A,\dotsb, \nabla^{n_l} A\}$.
+We call $A$ the \emph{cut-formula} and denote by the tuple $(A, m, \{n_i\})$, the \emph{cut data} of such instance.
 \end{dfn}
 
 \begin{cor}\label{cor:mc-riddance} Any sequent provable in $\mathbf{LDL}^*$ ($\mathbf{LDL}^*_{\rightsquigarrow}$) is also provable in $\mathbf{LDL}^{*M}$ ($\mathbf{LDL}^{*M}_{\rightsquigarrow}$). Indeed we can just replace any instance of $cut$ with similar instance of $MC$, with $m = 0$ and $n_i = (0)$.
