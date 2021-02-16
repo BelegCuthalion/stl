@@ -786,7 +786,7 @@ Let $\mathbf{S}$ be the any of systems $\mathbf{LDL}^{*}$, $\mathbf{LDL}^{*}_{\r
 
 	First, construct the desired proof-tree in the cases that $\mathcal{D}_0$ is an axiom, independent of $\mathcal{D}_1$. The case for $Id$ is trivial, $Ex$ won't happen and $Ta$ is handled by lemma \ref{lem:ldls-top-redundant}.
 
-  In rest of the cases, we will use induction on the length of both $\mathcal{D}_0$ and $\mathcal{D}_1$ as follows; For any two proof-trees $\mathcal{D}_0'$ and $\mathcal{D}_1'$ such that $h(\mathcal{D}_0') + h(\mathcal{D}_1') < h(\mathcal{D}_0) + h(\mathcal{D}_1)$, where $\mathcal{D}_0'$ proves $\Gamma' \Rightarrow \nabla^{m'} A'$ and $\mathcal{D}_1'$ proves $\Sigma', \{\nabla^{n'_i} A'\} \Rightarrow \Delta'$ for arbitrary $\Gamma'$, $\Sigma'$, $\Delta'$, $A'$, $m'$ and $n_i'$, for which we have $\rho(\mathcal{D}_0'),\mathcal{D}_1' < \rho(A')$, the induction hypothesis give us a proof-tree $\text{IH}(\mathcal{D}_0', \mathcal{D}_1')$ that proves $\{\nabla^{n_i'}\Gamma'\}, \nabla^{m'} \Sigma' \Rightarrow \nabla^{m'} \Delta'$, and we also have $\rho(\text{IH}(\mathcal{D}_0', \mathcal{D}_1')) < \rho(A')$.
+  In rest of the cases, we will use induction on the length of both $\mathcal{D}_0$ and $\mathcal{D}_1$ as follows; For any two proof-trees $\mathcal{D}_0'$ and $\mathcal{D}_1'$ such that $h(\mathcal{D}_0') + h(\mathcal{D}_1') < h(\mathcal{D}_0) + h(\mathcal{D}_1)$, where $\mathcal{D}_0'$ proves $\Gamma' \Rightarrow \nabla^{m'} A'$ and $\mathcal{D}_1'$ proves $\Sigma', \{\nabla^{n'_i} A'\} \Rightarrow \Delta'$ for arbitrary $\Gamma'$, $\Sigma'$, $\Delta'$, $A'$, $m'$ and $n_i'$, for which we have $\rho(\mathcal{D}_0'),\mathcal{D}_1' < \rho(A')$, the induction hypothesis give us a proof-tree, denoted by $\text{IH}(\mathcal{D}_0', \mathcal{D}_1')$ where it matters, that proves $\{\nabla^{n_i'}\Gamma'\}, \nabla^{m'} \Sigma' \Rightarrow \nabla^{m'} \Delta'$, and we also have $\rho(\text{IH}(\mathcal{D}_0', \mathcal{D}_1')) < \rho(A')$.
 
 
 	Assume $\mathcal{D}_0$ ends with an instance of any of the rules $Lw$, $Lc$, $L\land_1$, $L\land_2$, $L\lor$, $L\rightarrow$, $L\rightsquigarrow$, $L\Box$, $\nabla Cut$, $N$, $Fu'$, $L$ or $R'$, again independent of $\mathcal{D}_1$. In all these cases, it suffices to use induction on the assumption(s) of this rule to remove the cut-burden from both sub-trees. Then, we can apply the same rule to get the desired sequent. Here we will only mention the cases for $L\wedge_1$, $L\vee$, $L\rightsquigarrow$, $\nabla Cut$, $N$ and $Fu'$, the last three of which may be of special concern, since they also alter the cut-burden.
@@ -996,9 +996,8 @@ But if $m>0$, the cut-data could also be $(\nabla A, m-1, \{n_i\})$, in which ca
 
  Now for the rest of the proof, we will show how the construction takes place in the cases where the cut-formula is principal in the last rule of $\mathcal{D}_1$, which can be either of $L\star (\star \in \{\land, \lor_{1/2}, \rightarrow, \Box, \rightsquigarrow\})$.
  Any of these rules imply a specific form for the cut-formula, which can also determine the rule at the end of the other proof-tree, because the cut-formula is also principal in the last rule of $\mathcal{D}_0$ (note that the only possible rules for the last rule of $\mathcal{D}_0$ are now $R\star (\star \in \{\land, \lor_{1/2}, \rightarrow, \Box, \rightsquigarrow\})$, $Fa$ and $Fa_\rightsquigarrow$).
- Now we further destruct the proof by cases for $m$.
  
- First, notice that $m > 1$ is impossible, since the only rules that introduce $\nabla$ to the right of the sequence are $Fa$ for $\mathbf{LDL}$ based systems and $Fa_\rightsquigarrow$ for $\mathbf{LDL}_\rightsquigarrow$ based ones. So suppose $m = 1$ and $\mathcal{D}_0$ end with $Fa$ (in $\mathbf{LDL}$).
+ First, notice that $m > 1$ is impossible, since the only rules that introduce $\nabla$ to the right of the sequence are $Fa$ for $\mathbf{LDL}$ based systems and $Fa_\rightsquigarrow$ for $\mathbf{LDL}_\rightsquigarrow$ based ones, which introduce a $\Box$ immediately after the $\nabla$ and implies $m = 1$. So suppose $m = 1$ and $\mathcal{D}_0$ end with $Fa$ (in $\mathbf{LDL}$).
  \begin{prooftree}
 	 \AXC{$\mathcal{D}_0'$}
 	 \noLine
@@ -1006,7 +1005,7 @@ But if $m>0$, the cut-data could also be $(\nabla A, m-1, \{n_i\})$, in which ca
 	 \RightLabel{$Fa$}
 	 \UIC{$\Gamma \Rightarrow \nabla \Box A$}
  \end{prooftree}
- Now the cut-formula must be of the form $\Box A$, so the only option for $\mathcal{D}_1$ is $L\Box$.
+ The cut-data must be of the form $(\Box A, 1, \{n_i\})$, so the only option for $\mathcal{D}_1$ is $L\Box$.
  \begin{prooftree}
 	 \AXC{$\mathcal{D}_1'$}
 	 \noLine
