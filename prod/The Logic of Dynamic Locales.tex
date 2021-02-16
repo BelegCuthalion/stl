@@ -282,9 +282,9 @@ If we also add the following rules to the system we have some variants of $\math
 	\UIC{$\Gamma, \Sigma \Rightarrow \Delta$}
 \end{prooftree}
 
-\textbf{F}
+\textbf{Fa}
 \begin{prooftree}
-	\RightLabel{$F$}
+	\RightLabel{$Fa$}
 	\AXC{$\Gamma \Rightarrow A$}
 	\UIC{$\Gamma \Rightarrow \nabla \Box A$}
 \end{prooftree}
@@ -384,11 +384,11 @@ Define the fragment $\mathbf{LDL}_{\rightsquigarrow}$ of $\mathbf{LDL}$ as the s
 \end{tabular}
 \end{center}
 
-$\mathbf{LDL}_\rightsquigarrow$ also has the same variants as $\mathbf{LDL}$, except for $F$, which is
+$\mathbf{LDL}_\rightsquigarrow$ also has the same variants as $\mathbf{LDL}$, except for $Fa$, which is
 
-\textbf{F$_\rightsquigarrow$}
+\textbf{Fa$_\rightsquigarrow$}
 \begin{prooftree}
-	\RightLabel{$F_\rightsquigarrow$}
+	\RightLabel{$Fa_\rightsquigarrow$}
 	\AXC{$\Gamma , A \Rightarrow B$}
 	\UIC{$\Gamma \Rightarrow \nabla(A \rightsquigarrow B)$}
 \end{prooftree}
@@ -762,7 +762,7 @@ The proof for $\mathbf{LDL}^{*M}_{\rightsquigarrow}$ is similar, except that the
 The following theorem shows that we can imitate any instance of the cut rule in a proof-tree of lower rank.
 
 \begin{thm}\label{thm:ldls-cut-reduction}[Cut Reduction]
-Let \textbf{S} be the any of systems $\mathbf{LDL}^{*}$, $\mathbf{LDL}^{*}_{\rightsquigarrow}$, or one of them supplemented with any one of the rules $L$, $R'$, $F$($F_\rightsquigarrow$) or $Fu'$. If $\mathbf{S} + \nabla Cut$ proves $\Gamma \Rightarrow \nabla^m A$ and $\Sigma , \{\nabla^{n_i} A\} \Rightarrow \Delta$ with proof trees of ranks less than $\rho(A)$, then it also proves $\{\nabla^{n_i} \Gamma\} , \nabla^m\Sigma \Rightarrow \nabla^m\Delta$ also with a proof tree of a rank less than $\rho(A)$.
+Let $\mathbf{S}$ be the any of systems $\mathbf{LDL}^{*}$, $\mathbf{LDL}^{*}_{\rightsquigarrow}$, or one of them supplemented with any one of the rules $L$, $R'$, $Fa$($Fa_\rightsquigarrow$) or $Fu'$. If $\mathbf{S} + \nabla Cut$ proves $\Gamma \Rightarrow \nabla^m A$ and $\Sigma , \{\nabla^{n_i} A\} \Rightarrow \Delta$ with proof trees of ranks less than $\rho(A)$, then it also proves $\{\nabla^{n_i} \Gamma\} , \nabla^m\Sigma \Rightarrow \nabla^m\Delta$ also with a proof tree of a rank less than $\rho(A)$.
 \end{thm}
 \begin{proof}
 	We have two proof-trees
@@ -951,11 +951,11 @@ Let \textbf{S} be the any of systems $\mathbf{LDL}^{*}$, $\mathbf{LDL}^{*}_{\rig
 
  $Fu'$: It suffices to apply $Fu'$ on the result of the induction.\\
 
- The rest of the cases for $\mathcal{D}_0$ can't be solved independent of $\mathcal{D}_1$, so we will consider cases for the last rule of $\mathcal{D}_1$, again, where they're handled independent of $\mathcal{D}_0$. But this time we have much less possibilities for the opposite sub-tree, since we've already solved many of them. In fact the only possible rules for the last rule of $\mathcal{D}_0$ are now $R\star (\star \in \{\land, \lor_{1/2}, \rightarrow, \Box, \rightsquigarrow\})$, $F$ and $F_\rightsquigarrow$.
+ The rest of the cases for $\mathcal{D}_0$ can't be solved independent of $\mathcal{D}_1$, so we will consider cases for the last rule of $\mathcal{D}_1$, again, where they're handled independent of $\mathcal{D}_0$. But this time we have much less possibilities for the opposite sub-tree, since we've already solved many of them. In fact the only possible rules for the last rule of $\mathcal{D}_0$ are now $R\star (\star \in \{\land, \lor_{1/2}, \rightarrow, \Box, \rightsquigarrow\})$, $Fa$ and $Fa_\rightsquigarrow$.
 
  This time, suppose $\mathcal{D}_1$ is and axiom. Again, the $Id$ case is trivial, $Ta$ won't happen, and $Ex$ is also infeasible, since all possible rules for $\mathcal{D}_0$ alter the right side of the sequent, but none of them is able to introduce $\bot$ there.
 
- Next, for cases that the cut-burden is not altered (modulo $\nabla$) in the last rule of $\mathcal{D}_1$, the construction is similar to the previous cases: Applying the same rule on the sequent that we get from the induction hypothesis. We will mention only cases for $L\wedge_1$, $R\vee_1$, $R\rightsquigarrow$ and $N$.
+ Next, for cases that the cut-burden is not altered (modulo $\nabla$) in the last rule of $\mathcal{D}_1$, the construction is similar to the previous cases: Applying the same rule on the sequent that we get from the induction hypothesis. For the sake of briefness, we will mention only cases for $L\wedge_1$, $R\vee_1$, $R\rightsquigarrow$ and $N$.
 
  $L\wedge$: Assume that $\mathcal{D}_1$ ends with $L\wedge_1$, but no member of the cut-burden is it's principal formula.
  \begin{prooftree}
@@ -995,15 +995,15 @@ If we assume that the cut-data is $(A, m, \{n_i+1\})$, from the induction hypoth
 But if $m>0$, the cut-data could also be $(\nabla A, m-1, \{n_i\})$, in which case using the induction hypothesis would suffice.
 
  Now for the rest of the proof, we will show how the construction takes place in the cases where the cut-formula is principal in the last rule of $\mathcal{D}_1$, which can be either of $L\star (\star \in \{\land, \lor_{1/2}, \rightarrow, \Box, \rightsquigarrow\})$.
- Any of these rules imply a specific form for the cut-formula, which can also determine the rule at the end of the other proof-tree, because the cut-formula is also principal in the last rule of $\mathcal{D}_0$ (note that the only possible rules for the last rule of $\mathcal{D}_0$ are now $R\star (\star \in \{\land, \lor_{1/2}, \rightarrow, \Box, \rightsquigarrow\})$, $F$ and $F_\rightsquigarrow$).
+ Any of these rules imply a specific form for the cut-formula, which can also determine the rule at the end of the other proof-tree, because the cut-formula is also principal in the last rule of $\mathcal{D}_0$ (note that the only possible rules for the last rule of $\mathcal{D}_0$ are now $R\star (\star \in \{\land, \lor_{1/2}, \rightarrow, \Box, \rightsquigarrow\})$, $Fa$ and $Fa_\rightsquigarrow$).
  Now we further destruct the proof by cases for $m$.
  
- First, notice that $m > 1$ is impossible, since the only rules that introduce $\nabla$ to the right of the sequence are $F$ for $\mathbf{LDL}$ based systems and $F_\rightsquigarrow$ for $\mathbf{LDL}_\rightsquigarrow$ based ones. So suppose $m = 1$ and $\mathcal{D}_0$ end with $F$ (in $\mathbf{LDL}$).
+ First, notice that $m > 1$ is impossible, since the only rules that introduce $\nabla$ to the right of the sequence are $Fa$ for $\mathbf{LDL}$ based systems and $Fa_\rightsquigarrow$ for $\mathbf{LDL}_\rightsquigarrow$ based ones. So suppose $m = 1$ and $\mathcal{D}_0$ end with $Fa$ (in $\mathbf{LDL}$).
  \begin{prooftree}
 	 \AXC{$\mathcal{D}_0'$}
 	 \noLine
 	 \UIC{$\Gamma \Rightarrow A$}
-	 \RightLabel{$F$}
+	 \RightLabel{$Fa$}
 	 \UIC{$\Gamma \Rightarrow \nabla \Box A$}
  \end{prooftree}
  Now the cut-formula must be of the form $\Box A$, so the only option for $\mathcal{D}_1$ is $L\Box$.
@@ -1031,12 +1031,12 @@ But if $m>0$, the cut-data could also be $(\nabla A, m-1, \{n_i\})$, in which ca
 	 \BIC{$\{\nabla^{n_i} \Gamma\}_{i>0}, \nabla^{n_0+1} \Gamma, \nabla \Sigma \Rightarrow \nabla \Delta$}
  \end{prooftree}
 
- Now suppose $\mathcal{D}_0$ ends with $F_\rightsquigarrow$ (in $\mathbf{LDL}_\rightsquigarrow$).
+ \noindent Now suppose $\mathcal{D}_0$ ends with $Fa_\rightsquigarrow$ (in $\mathbf{LDL}_\rightsquigarrow$).
  \begin{prooftree}
 	 \AXC{$\mathcal{D}_0'$}
 	 \noLine
 	 \UIC{$\Gamma, A \Rightarrow B$}
-	 \RightLabel{$F_\rightsquigarrow$}
+	 \RightLabel{$Fa_\rightsquigarrow$}
 	 \UIC{$\Gamma \Rightarrow \nabla (A \rightsquigarrow B)$}
  \end{prooftree}
  Since the cut-formula is of the form $A \rightsquigarrow B$, $\mathcal{D}_1$ could only end with $L\rightsquigarrow$.
@@ -1150,7 +1150,7 @@ But if $m>0$, the cut-data could also be $(\nabla A, m-1, \{n_i\})$, in which ca
 
  $R\rightsquigarrow$ and $L\rightsquigarrow$: Is just like the $\rightarrow$ case. Notice that the extra $\nabla$ on the left side of the subtree of $\mathcal{D}_0$ will provide the extra $\nabla$ on the principal formula in $\mathcal{D}_1$.
 
- There are also two cases where the sub-trees end with $F$ and $L\Box$, or with $F_\rightsquigarrow$ and $L\rightsquigarrow$ for $\mathbf{LDL}_\rightsquigarrow$, with $m = 0$. These cases are also similar to the $m = 1$ case, except that here the cut-formula is $\nabla\Box A$.
+ There are also two cases where the sub-trees end with $Fa$ and $L\Box$, or with $Fa_\rightsquigarrow$ and $L\rightsquigarrow$ for $\mathbf{LDL}_\rightsquigarrow$, with $m = 0$. These cases are also similar to the $m = 1$ case, except that here the cut-formula is $\nabla\Box A$.
  \vspace{5mm}
 
  This concludes the proof the theorem in all cases. Notice that we have a construction for any two possible pair of rules, in both systems and all their variations.
@@ -1158,7 +1158,7 @@ But if $m>0$, the cut-data could also be $(\nabla A, m-1, \{n_i\})$, in which ca
 \end{proof}
 
 \begin{thm}\label{thm:ldls-cut-elim}[Cut Elimination]
-	Let \textbf{S} be the any of systems $\mathbf{LDL}^{*}$, $\mathbf{LDL}^{*}_{\rightsquigarrow}$, or one of them supplemented with any one of the rules $L$, $R'$, $F$($F_\rightsquigarrow$) or $Fu'$. For any $\Gamma$ and $\Delta$, If $\Gamma \Rightarrow \Delta$ is provable by $\mathbf{S} + \nabla Cut$, then it is so by $\mathbf{S}$.
+	Let \textbf{S} be the any of systems $\mathbf{LDL}^{*}$, $\mathbf{LDL}^{*}_{\rightsquigarrow}$, or one of them supplemented with any one of the rules $L$, $R'$, $Fa$($Fa_\rightsquigarrow$) or $Fu'$. For any $\Gamma$ and $\Delta$, If $\Gamma \Rightarrow \Delta$ is provable by $\mathbf{S} + \nabla Cut$, then it is so by $\mathbf{S}$.
 \end{thm}
 \begin{proof}
 		First, we will show that for any non-zero-rank proof of $\Gamma \Rightarrow \Delta$ like $\mathcal{D}$ in $\mathbf{S} + \nabla Cut$, there is another proof of the same sequent with a lower rank. Suppose $\mathcal{D}$ has sub-tree(s) called $\mathcal{D}_0$ (and possibly $\mathcal{D}_1$). Using induction on $h(\mathcal{D})$, the induction hypothesis for $\mathcal{D}_i ~(i \in \{1,2\})$ gives us a proof-tree with the same conclusion, which we call $IH(\mathcal{D}_i)$, but with a lower rank, i.e. $\rho(IH(\mathcal{D}_i)) < \rho(\mathcal{D}_i)$. We now consider two cases for the last rule of $\mathcal{D}$
