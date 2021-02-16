@@ -725,7 +725,7 @@ For technical reasons, we will eliminate a stronger form of the cut rule, which 
 	\BIC{$\{\nabla^{n_i} \Gamma\} , \nabla^m \Sigma \Rightarrow \nabla^m \Delta$}
 \end{prooftree}
 where $\nabla^n$ means $\nabla$ applied $n$ times and $\{\nabla^{n_i} A\}$ for some sequence of natural numbers $n_i$ of length $l$ means $\{\nabla^{n_0} A,\dotsb, \nabla^{n_l} A\}$.
-We call $A$ the \emph{cut-formula} and denote by the tuple $(A, m, \{n_i\})$, the \emph{cut data} of such instance.
+We call $A$ the \emph{cut-formula} and for convenience, will refer to members of $\{\nabla^m A\} \cup \{\nabla^{n_i} A\}$ as \emph{cut-burden}. We will also denote by the tuple $(A, m, \{n_i\})$, the \emph{cut data} of such instance.
 \end{dfn}
 
 \begin{cor}\label{cor:mc-riddance} Any sequent provable in $\mathbf{LDL}^*$ ($\mathbf{LDL}^*_{\rightsquigarrow}$) is also provable in $\mathbf{LDL}^{*M}$ ($\mathbf{LDL}^{*M}_{\rightsquigarrow}$). Indeed we can just replace any instance of $cut$ with similar instance of $MC$, with $m = 0$ and $n_i = (0)$.
@@ -779,108 +779,88 @@ Let \textbf{S} be the any of systems $\mathbf{LDL}^{*}$, $\mathbf{LDL}^{*}_{\rig
   \[\mathcal{D} \atop \{\nabla^{n_i} \Gamma\} , \nabla^m \Sigma \Rightarrow \nabla^m \Delta \]
   without increasing the cut rank.
 
-  The construction takes place in different cases for the last rule that occurs in $\mathcal{D}_0$ and $\mathcal{D}_1$. 
-  We will use induction on the length of both $\mathcal{D}_0$ and $\mathcal{D}_1$ as follows; For any two proof-trees $\mathcal{D}_0'$ and $\mathcal{D}_1'$ such that $h(\mathcal{D}_0') + h(\mathcal{D}_1') < h(\mathcal{D}_0) + h(\mathcal{D}_1)$, where $\mathcal{D}_0'$ proves $\Gamma' \Rightarrow \nabla^{m'} A'$ and $\mathcal{D}_1'$ proves $\Sigma', \{\nabla^{n'_i} A'\} \Rightarrow \Delta'$ for arbitrary $\Gamma'$, $\Sigma'$, $\Delta'$, $A'$, $m'$ and $n_i'$, for which we have $\rho(\mathcal{D}_0'),\mathcal{D}_1' < \rho(A')$, the induction hypothesis give us a proof-tree $\text{IH}(\mathcal{D}_0', \mathcal{D}_1')$ that proves $\{\nabla^{n_i'}\Gamma'\}, \nabla^{m'} \Sigma' \Rightarrow \nabla^{m'} \Delta'$, and we also have $\rho(\text{IH}(\mathcal{D}_0', \mathcal{D}_1')) < \rho(A')$.
+	The construction takes place in different cases for the last rule that occurs in $\mathcal{D}_0$ and $\mathcal{D}_1$. Notice that proof of the theorem is essentially the same for all systems, modulo the cases that are specific to each system. Thus, the cases which are common between all systems are not repeated for the sake of brevity.
 
-  In the cases where it is possible, we will also consider whether the cut-formula is altered in the last rule or not and use a different strategy to construct the desired proof: In the cases where there is a principal formula other than $A$ in one of the sub-trees, the construction is independent of the other sub-tree. While for the cases that $A$ is altered (modulo $\nabla$) on both sides, the last rule in one sub-tree determines a specific form for $A$, which in turn determines the last rule of the other sub-tree.
-  
-  For many cases where $A$ is not principal, we can devise a construction independent of the last rule, if the rule is $\nabla$-invariant. To this end, we will solve the cases for two rule schemes introduced below.
+	Also notice that in some cases our construction would depend only on the last rule of one of the sub-trees, i.e. it would work no matter what the last rule in $\mathcal{D}_1$ is. so it will cover all the cases for the other sub-tree. In other cases, which are the cases that the cut-formula is altered on both sides, the last rule in one sub-tree determines a specific form for the cut-formula, which in turn determines the last rule of the other sub-tree.
 
-  \textbf{Rule Scheme 1:} Suppose $\tau$ is the last rule in $\mathcal{D}_0$ and has a principal formula other that $A$ and has assumption(s) $\mathcal{D}_0'$ (and $\mathcal{D}_0''$).
-  Also assume that $\tau$ commutes with $\nabla$, i.e. $\tau(\nabla \Pi', \nabla \Pi'') = \nabla \tau(\Pi', \Pi'')$.
-  
-    \begin{prooftree}
-      \noLine
-      \AXC{$\mathcal{D}_0'$}
-      \UIC{$\Gamma, \Pi' \Rightarrow \nabla^m A$}
-      
-      \noLine
-      \AXC{$\mathcal{D}_0''$}
-      \UIC{$\Gamma, \Pi'' \Rightarrow \nabla^m A$}
-      
-      \RightLabel{$\tau$}
-      \BIC{$\Gamma, \tau(\Pi', \Pi'') \Rightarrow \nabla^m A$}
-   \end{prooftree}
-  
-   To construct the desired proof-tree, it suffices to apply $\tau$ on $IH(\mathcal{D}_0', \mathcal{D}_1)$ (and possibly $IH(\mathcal{D}_0'', \mathcal{D}_1)$). So we would have
 
-   \begin{prooftree}
+	First, construct the desired proof-tree in the cases that $\mathcal{D}_0$ is an axiom, independent of $\mathcal{D}_1$. The case for $Id$ is trivial, $Ex$ won't happen and $Ta$ is handled by lemma \ref{lem:ldls-top-redundant}.
+
+  In rest of the cases, we will use induction on the length of both $\mathcal{D}_0$ and $\mathcal{D}_1$ as follows; For any two proof-trees $\mathcal{D}_0'$ and $\mathcal{D}_1'$ such that $h(\mathcal{D}_0') + h(\mathcal{D}_1') < h(\mathcal{D}_0) + h(\mathcal{D}_1)$, where $\mathcal{D}_0'$ proves $\Gamma' \Rightarrow \nabla^{m'} A'$ and $\mathcal{D}_1'$ proves $\Sigma', \{\nabla^{n'_i} A'\} \Rightarrow \Delta'$ for arbitrary $\Gamma'$, $\Sigma'$, $\Delta'$, $A'$, $m'$ and $n_i'$, for which we have $\rho(\mathcal{D}_0'),\mathcal{D}_1' < \rho(A')$, the induction hypothesis give us a proof-tree $\text{IH}(\mathcal{D}_0', \mathcal{D}_1')$ that proves $\{\nabla^{n_i'}\Gamma'\}, \nabla^{m'} \Sigma' \Rightarrow \nabla^{m'} \Delta'$, and we also have $\rho(\text{IH}(\mathcal{D}_0', \mathcal{D}_1')) < \rho(A')$.
+
+
+	Assume $\mathcal{D}_0$ ends with an instance of any of the rules $Lw$, $Lc$, $L\land_1$, $L\land_2$, $L\lor$, $L\rightarrow$, $L\rightsquigarrow$, $L\Box$, $\nabla Cut$, $N$, $Fu'$, $L$ or $R'$, again independent of $\mathcal{D}_1$. In all these cases, it suffices to use induction on the assumption(s) of this rule to remove the cut-burden from both sub-trees. Then, we can apply the same rule to get the desired sequent. Here we will only mention the cases for $L\wedge_1$, $L\vee$, $L\rightsquigarrow$, $\nabla Cut$, $N$ and $Fu'$, the last three of which may be of special concern, since they also alter the cut-burden.
+
+	$L\wedge_1$: If $\mathcal{D}_0$ ends with $L\wedge_1$, that is
+	\begin{prooftree}
+		\noLine
+		\AXC{$\mathcal{D}_0'$}
+		\UIC{$\Gamma, \nabla^r B \Rightarrow \nabla^m A$}
+		
+		\RightLabel{$L\wedge_1$}
+		\UIC{$\Gamma, \nabla^r (B \wedge C) \Rightarrow \nabla^m A$}
+ \end{prooftree}
+ then by applying $L\wedge_1$ on what we get from induction
+ \begin{prooftree}
+	\noLine
+	\AXC{$\mathcal{D}_0'$}
+	\UIC{$\Gamma, \nabla^r B \Rightarrow \nabla^m A$}
+	
+	\noLine
+	\AXC{$\mathcal{D}_1$}
+	\UIC{$\Sigma , \{\nabla^{n_i} A\} \Rightarrow \Delta$}
+	
+	\RightLabel{IH}
+	\BIC{$\{\nabla^{n_i} \Gamma, \nabla^{n_i+r} B\}, \nabla^m \Sigma \Rightarrow \nabla^m \Delta$}
+
+	\RightLabel{$L\wedge_1$} \doubleLine
+	\UIC{$\{\nabla^{n_i} \Gamma, \nabla^{n_i+r} (B \wedge C)\}, \nabla^m \Sigma \Rightarrow \nabla^m \Delta$}
+ \end{prooftree}
+
+ \noindent $L\vee$: If $\mathcal{D}_0$ ends with $L\vee$
+	 \begin{prooftree}
+		 \noLine
+		 \AXC{$\mathcal{D}_0'$}
+		 \UIC{$\Gamma, \nabla^r B \Rightarrow \nabla^m A$}
+		 
+		 \noLine
+		 \AXC{$\mathcal{D}_0''$}
+		 \UIC{$\Gamma, \nabla^r C \Rightarrow \nabla^m A$}
+		 
+		 \RightLabel{$L\vee$}
+		 \BIC{$\Gamma, \nabla^r (B \vee C) \Rightarrow \nabla^m A$}
+	\end{prooftree}
+	Applying $L\vee$ on the sequents that we get from induction
+	\begin{prooftree}
     \noLine
 		\AXC{$\mathcal{D}_0'$}
-		\UIC{$\Gamma, \Pi' \Rightarrow \nabla^m A$}
+		\UIC{$\Gamma, \nabla^r B \Rightarrow \nabla^m A$}
 		
 		\noLine
 		\AXC{$\mathcal{D}_1$}
 		\UIC{$\Sigma , \{\nabla^{n_i} A\} \Rightarrow \Delta$}
 		
 		\RightLabel{IH}
-		\BIC{$\{\nabla^{n_i} \Gamma, \nabla^{n_i} \Pi'\}, \nabla^m \Sigma \Rightarrow \nabla^m \Delta$}
+		\BIC{$\{\nabla^{n_i} \Gamma, \nabla^{n_i+r} B\}, \nabla^m \Sigma \Rightarrow \nabla^m \Delta$}
 		
 
     \noLine
 		\AXC{$\mathcal{D}_0''$}
-		\UIC{$\Gamma, \Pi'' \Rightarrow \nabla^m A$}
+		\UIC{$\Gamma, \nabla^r C \Rightarrow \nabla^m A$}
 		
 		\noLine
 		\AXC{$\mathcal{D}_1$}
 		\UIC{$\Sigma , \{\nabla^{n_i} A\} \Rightarrow \Delta$}
 		
 		\RightLabel{IH}
-    \BIC{$\{\nabla^{n_i} \Gamma, \nabla^{n_i} \Pi''\}, \nabla^m \Sigma \Rightarrow \nabla^m \Delta$}
+    \BIC{$\{\nabla^{n_i} \Gamma, \nabla^{n_i+r} C\}, \nabla^m \Sigma \Rightarrow \nabla^m \Delta$}
 
-		\RightLabel{$\tau$}
-		\BIC{$\{\nabla^{n_i} \Gamma, \nabla^{n_i} \tau(\Pi', \Pi'')\}, \nabla^m \Sigma \Rightarrow \nabla^m \Delta$}
-   \end{prooftree}
-   
-   \textbf{Rule Scheme 2:} Now for the other rule scheme, suppose $\tau$ is the last rule in $\mathcal{D}_1$ which is $\nabla$-invariant and has a principal formula other that $A$ and has assumption(s) $\mathcal{D}_1'$ (and $\mathcal{D}_1''$).
-     
-   \begin{prooftree}
-    \noLine
-    \AXC{$\mathcal{D}_1'$}
-    \UIC{$\Sigma, \{\nabla^{n_i} A\}, \Pi' \Rightarrow \Delta'$}
-    
-    \noLine
-    \AXC{$\mathcal{D}_1''$}
-    \UIC{$\Sigma, \{\nabla^{n_i} A\}, \Pi'' \Rightarrow \Delta''$}
-    
-    \RightLabel{$\tau$}
-    \BIC{$\Sigma, \{\nabla^{n_i} A\}, \tau(\Pi', \Pi'') \Rightarrow \tau(\Delta', \Delta'')$}
- \end{prooftree}
+		\RightLabel{$L\vee$}
+		\BIC{$\{\nabla^{n_i} \Gamma, \nabla^{n_i+r} (B \vee C)\}, \nabla^m \Sigma \Rightarrow \nabla^m \Delta$}
+	 \end{prooftree}
+
  
- Again, we just need to apply $\tau$ on $IH(\mathcal{D}_0, \mathcal{D}_1')$ (and possibly $IH(\mathcal{D}_0, \mathcal{D}_1'')$) to get
-
- \begin{prooftree}
-  \noLine
-  \AXC{$\mathcal{D}_0$}
-  \UIC{$\Gamma \Rightarrow \nabla^m A$}
-  
-  \noLine
-  \AXC{$\mathcal{D}_1'$}
-  \UIC{$\Sigma, \{\nabla^{n_i} A\}, \Pi' \Rightarrow \Delta'$}
-  
-  \RightLabel{IH}
-  \BIC{$\{\nabla^{n_i} \Gamma\}, \nabla^m \Sigma, \nabla^m \Pi' \Rightarrow \nabla^m \Delta'$}
-
-  \noLine
-  \AXC{$\mathcal{D}_0$}
-  \UIC{$\Gamma \Rightarrow \nabla^m A$}
-  
-  \noLine
-  \AXC{$\mathcal{D}_1''$}
-  \UIC{$\Sigma, \{\nabla^{n_i} A\}, \Pi'' \Rightarrow \Delta''$}
-  
-  \RightLabel{IH}
-  \BIC{$\{\nabla^{n_i} \Gamma\}, \nabla^m \Sigma, \nabla^m \Pi'' \Rightarrow \nabla^m \Delta''$}
-  
-  \RightLabel{$\tau$}
-  \BIC{$\{\nabla^{n_i} \Gamma\}, \nabla^m \Sigma, \nabla^m \tau(\Pi', \Pi''), \Rightarrow \nabla^m \tau(\Delta', \Delta'')$}
- \end{prooftree}
-
- Back to the main proof scheme, the order in which the cases are handled is as follows: First, construct the desired proof-tree in the cases that $\mathcal{D}_0$ is an axiom, independent of $\mathcal{D}_1$. The case for $Id$ is trivial, $Ex$ won't happen and $Ta$ is handled by lemma \ref{lem:ldls-top-redundant}. Then take any of the rules $Lw$, $Lc$, $L\land_1$, $L\land_2$, $L\lor$, $L\Box$, $L$ or $R'$ to be the last rule in $\mathcal{D}_0$. All these cases are instances of the first rule scheme and are handled as shown above.
- 
- There are other cases for the last rule in $\mathcal{D}_0$ that are handled independent of $\mathcal{D}_1$: $L\rightarrow$, $L\rightsquigarrow$, $\nabla Cut$, $Rw$, $N$ and $Fu'$. The desired proof-tree is constructed for these cases as follows.\\
-
- $L\rightarrow$: Suppose $\mathcal{D}_0$ ends with a $L\rightarrow$ as shown below.
+\noindent $L\rightsquigarrow$: Suppose $\mathcal{D}_0$ ends with a $L\rightsquigarrow$ as shown below.
  \begin{prooftree}
   \noLine
   \AXC{$\mathcal{D}_0'$}
@@ -888,10 +868,10 @@ Let \textbf{S} be the any of systems $\mathbf{LDL}^{*}$, $\mathbf{LDL}^{*}_{\rig
   \noLine
   \AXC{$\mathcal{D}_0''$}
   \UIC{$\Gamma , \nabla^r C \Rightarrow \nabla^m A$}
-  \RightLabel{$L\rightarrow$}
-  \BIC{$\Gamma , \nabla^{r} (B \rightarrow C) \Rightarrow \nabla^m A$}
+  \RightLabel{$L\rightsquigarrow$}
+  \BIC{$\Gamma , \nabla^{r+1} (B \rightsquigarrow C) \Rightarrow \nabla^m A$}
  \end{prooftree}
- From induction hypothesis for $\mathcal{D}_0''$ and $\mathcal{D}_1$, we have
+ From induction hypothesis we have
  \begin{prooftree}
   \noLine
   \AXC{$\mathcal{D}_0''$}
@@ -899,24 +879,27 @@ Let \textbf{S} be the any of systems $\mathbf{LDL}^{*}$, $\mathbf{LDL}^{*}_{\rig
   \noLine
   \AXC{$\mathcal{D}_1$}
   \UIC{$\Sigma , \{\nabla^{n_i} A\} \Rightarrow \Delta$}
-  \RightLabel{IH} \LeftLabel{$IH(\mathcal{D}_0'', \mathcal{D}_1):~~~~$}
+  \RightLabel{IH} \LeftLabel{$\mathcal{D}':~~~~$}
   \BIC{$\{\nabla^{n_i} \Gamma , \nabla^{n_i+r} C\} , \nabla^m \Sigma \Rightarrow \nabla^m \Delta$}
  \end{prooftree}
- In order to apply $L\rightarrow$, we must prepare the context in $\mathcal{D}_0'$ for each of $\nabla^{n_i+r}C$'s. Beginning with $n_0$, first we need to apply $N$ on $\mathcal{D}_0'$ $n_0$ times to get $\nabla^{n_0}\Gamma$ on the left and $\nabla^{n_0+r} B$ on the right side. Then we can just add the rest of the context by $Lw$.
+ In order to apply $L\rightsquigarrow$, we must prepare the context in $\mathcal{D}_0'$, for each of $\nabla^{n_i+r}C$'s. Beginning with $n_0$, first we need to apply $N$ on $\mathcal{D}_0'$ $n_0$ times to get $\nabla^{n_0}\Gamma$ on the left and $\nabla^{n_0+r} B$ on the right side. Then we can just add the rest of the context by $Lw$.
  \begin{prooftree}
   \noLine
   \AXC{$\mathcal{D}_0'$}
   \UIC{$\Gamma \Rightarrow \nabla^r B$}
-  \doubleLine \RightLabel{$N'$}
+  \doubleLine \RightLabel{$N$}
   \UIC{$\nabla^{n_0} \Gamma \Rightarrow \nabla^{n_0+r} B$}
-  \doubleLine \RightLabel{$Lw$}
+  \doubleLine \RightLabel{$Lw$} \LeftLabel{$\mathcal{D}'_{n_0}:~~~~$}
   \UIC{$\nabla^{n_0}\Gamma, \{\nabla^{n_i} \Gamma, \nabla^{n_i+r}C\}_{i>0} , \nabla^m \Sigma \Rightarrow \nabla^{n_0+r} B$}
  \end{prooftree}
- By $L\rightarrow$ we will have $\nabla^{n_0}\Gamma, \{\nabla^{n_i} \Gamma, \nabla^{n_i+r}C\}_{i>0}, \nabla^{n_0+r} (B \rightarrow C) , \nabla^m \Sigma \Rightarrow \nabla^m \Delta$. We can repeat this for all $n_i$'s to get $\{\nabla^{n_i} \Gamma, \nabla^{n_i+r}(B \rightarrow C)\}, \nabla^m \Sigma \Rightarrow \nabla^m \Delta$, which is the desired sequent.\\
+ By $L\rightsquigarrow$ on $\mathcal{D}'$ and $\mathcal{D}'_{n_0}$, we have
+ \[\nabla^{n_0}\Gamma, \{\nabla^{n_i} \Gamma, \nabla^{n_i+r}C\}_{i>0}, \nabla^{n_0+r+1} (B \rightsquigarrow C) , \nabla^m \Sigma \Rightarrow \nabla^m \Delta\]
+ We can repeat for this all of $n_i$'s to get
+ \[\{\nabla^{n_i} \Gamma, \nabla^{n_i+r+1}(B \rightsquigarrow C)\}, \nabla^m \Sigma \Rightarrow \nabla^m \Delta\]
+ which is the desired sequent.
 
- $L\rightsquigarrow$: Is just same as the last case, except that the rule $L\rightsquigarrow$ adds an additional $\nabla$ to the resulting implication on the left of the sequent, which won't effect our proof.\\
 
- $\nabla Cut$: Assume $\mathcal{D}_0$ ends with a $\nabla Cut$ on $A'$, which by assumption must be of a lower rank than $A$.
+ $\nabla Cut$: Assume $\mathcal{D}_0$ ends with a $\nabla Cut$ with cut-data $(A', m', \{n_i'\})$. Notice that by assumption, $A'$ must have a lower rank than $A$.
  \begin{prooftree}
    \noLine
    \AXC{$\mathcal{D}_0'$}
@@ -949,7 +932,7 @@ Let \textbf{S} be the any of systems $\mathbf{LDL}^{*}$, $\mathbf{LDL}^{*}_{\rig
 
    \RightLabel{$MC$}
    \BIC{$\{\nabla^{n_i}\{\nabla^{n_i'} \Gamma\}, \nabla^{n_i+m'} \Pi\} , \nabla^{m+m'}\Sigma \Rightarrow \nabla^{m+m'}\Delta$}
- \end{prooftree}\emph{}\\
+ \end{prooftree}
 
  $Rw$: In this case, $\mathcal{D}_0'$ proves $\Gamma \Rightarrow$, so we can simply construct the desired proof-tree using $N$, $Lw$ and $Rw$.
  \begin{prooftree}
@@ -962,16 +945,54 @@ Let \textbf{S} be the any of systems $\mathbf{LDL}^{*}$, $\mathbf{LDL}^{*}_{\rig
    \UIC{$\{\nabla^{n_i} \Gamma\} , \nabla^m \Sigma \Rightarrow$}
    \RightLabel{$Rw$}
    \UIC{$\{\nabla^{n_i} \Gamma\} , \nabla^m \Sigma \Rightarrow \nabla^m \Delta$}
- \end{prooftree}\emph{}\\
+ \end{prooftree}
 
- $N$: $\mathcal{D}_0$ proves $\nabla \Gamma \Rightarrow \nabla^{m+1} A$ and the cut-formula is in the form $\nabla A$. So we want to construct $\{\nabla^{n_i+1}\Gamma\}, \nabla^m \Sigma \Rightarrow \nabla^m \Delta$. Induction hypothesis for $\mathcal{D}_0'$ and $\mathcal{D}_1$ gives exactly what we want.\\
+ $N$: $\mathcal{D}_0$ proves $\nabla \Gamma \Rightarrow \nabla^{m+1} A$ and the cut-formula is in the form $\nabla A$. So we want to construct $\{\nabla^{n_i+1}\Gamma\}, \nabla^m \Sigma \Rightarrow \nabla^m \Delta$. Induction hypothesis for $\mathcal{D}_0$'s immediate sub-tree and $\mathcal{D}_1$ gives us exactly what we want.
 
- $Fu'$: This case is also handled similar to how we did the rule scheme 1.
- It suffices to apply $Fu'$ on $IH(\mathcal{D}_0', \mathcal{D}_1)$.\\
+ $Fu'$: It suffices to apply $Fu'$ on the result of the induction.\\
 
  The rest of the cases for $\mathcal{D}_0$ can't be solved independent of $\mathcal{D}_1$, so we will consider cases for the last rule of $\mathcal{D}_1$, again, where they're handled independent of $\mathcal{D}_0$. But this time we have much less possibilities for the opposite sub-tree, since we've already solved many of them. In fact the only possible rules for the last rule of $\mathcal{D}_0$ are now $R\star (\star \in \{\land, \lor_{1/2}, \rightarrow, \Box, \rightsquigarrow\})$, $F$ and $F_\rightsquigarrow$.
 
  This time, suppose $\mathcal{D}_1$ is and axiom. Again, the $Id$ case is trivial, $Ta$ won't happen, and $Ex$ is also infeasible, since all possible rules for $\mathcal{D}_0$ alter the right side of the sequent, but none of them is able to introduce $\bot$ there.
+
+ Next, for cases that the cut-burden is not altered (modulo $\nabla$) in the last rule of $\mathcal{D}_1$, the construction is similar to the previous cases: Applying the same rule on the sequent that we get from the induction hypothesis. We will mention only cases for $L\wedge_1$, $R\vee_1$, $R\rightsquigarrow$ and $N$.
+
+ $L\wedge$: Assume that $\mathcal{D}_1$ ends with $L\wedge_1$, but no member of the cut-burden is it's principal formula.
+ \begin{prooftree}
+	\AXC{$\mathcal{D}_1'$} \noLine
+	\UIC{$\Sigma, \{\nabla^{n_i} A\}, \nabla^r B \Rightarrow \Delta$}
+	\RightLabel{$L\wedge_1$}
+	\UIC{$\Sigma, \{\nabla^{n_i} A\}, \nabla^r (B \wedge C) \Rightarrow \Delta$}
+ \end{prooftree}
+ From induction hypothesis we have $\{\nabla^{n_i} \Gamma\}, \nabla^m \Sigma, \nabla^{r+m} B \Rightarrow \nabla^m \Delta$. By $L\wedge_1$ we have $\{\nabla^{n_i} \Gamma\}, \nabla^m \Sigma, \nabla^{r+m} (B \wedge C) \Rightarrow \nabla^m \Delta$.
+
+ $R\vee_1$: Suppose that $\mathcal{D}_1$ ends with $L\vee_1$ and its principal formula is not in the cut-burden.
+ \begin{prooftree}
+	\AXC{$\mathcal{D}_1'$} \noLine
+	\UIC{$\Sigma, \{\nabla^{n_i} A\} \Rightarrow \nabla^r B$}
+	\RightLabel{$L\vee_1$}
+	\UIC{$\Sigma, \{\nabla^{n_i} A\} \Rightarrow \nabla^r (B \vee C)$}
+ \end{prooftree}
+ Again, use the induction hypothesis to get $\{\nabla^{n_i} \Gamma\}, \nabla^m\Sigma \Rightarrow \nabla^{r+m} B$, then apply $L\vee_1$ to reach the desired sequent.
+
+$R\rightsquigarrow$: In the case where $\mathcal{D}_1$ ends with an $R\rightsquigarrow$, the cut-burden is altered in the premise. So the induction hypothesis has a different cut-data. nevertheless, it still commutes with $R\rightsquigarrow$.
+\begin{prooftree}
+	\AXC{$\mathcal{D}_1'$} \noLine
+	\UIC{$\nabla\Sigma, \{\nabla^{n_i+1} A\}, B \Rightarrow C$}
+	\RightLabel{$L\rightsquigarrow$}
+	\UIC{$\Sigma, \{\nabla^{n_i} A\} \Rightarrow B \rightsquigarrow C$}
+ \end{prooftree}
+From induction hypothesis, we have $\{\nabla^{n_i+1} \Gamma\}, \nabla^{m+1} \Sigma, \nabla^m B \Rightarrow \nabla^m C$. We can simply apply $R\rightsquigarrow$ to get $\{\nabla^{n_i} \Gamma\}, \nabla^m \Sigma \Rightarrow \nabla^m (B \rightsquigarrow C)$.
+
+$N$: Suppose $\mathcal{D}_1$ ends with $N$.
+\begin{prooftree}
+	\AXC{$\mathcal{D}_1'$} \noLine
+	\UIC{$\Sigma, \{\nabla^{n_i} A\} \Rightarrow \Delta$}
+	\RightLabel{$N$}
+	\UIC{$\nabla \Sigma, \{\nabla^{n_i+1} A\} \Rightarrow \nabla \Delta$}
+\end{prooftree}
+If we assume that the cut-data is $(A, m, \{n_i+1\})$, from the induction hypothesis we have $\{\nabla^{n_i} \Gamma\}, \nabla^m \Sigma \Rightarrow \nabla^m \Delta$. By $N$ we have $\{\nabla^{n_i+1} \Gamma\}, \nabla^{m+1} \Sigma \Rightarrow \nabla^{m+1} \Delta$, which is the desired sequent.
+But if $m>0$, the cut-data could also be $(\nabla A, m-1, \{n_i\})$, in which case using the induction hypothesis would suffice.
 
  Now for the rest of the proof, we will show how the construction takes place in the cases where the cut-formula is principal in the last rule of $\mathcal{D}_1$, which can be either of $L\star (\star \in \{\land, \lor_{1/2}, \rightarrow, \Box, \rightsquigarrow\})$.
  Any of these rules imply a specific form for the cut-formula, which can also determine the rule at the end of the other proof-tree, because the cut-formula is also principal in the last rule of $\mathcal{D}_0$ (note that the only possible rules for the last rule of $\mathcal{D}_0$ are now $R\star (\star \in \{\land, \lor_{1/2}, \rightarrow, \Box, \rightsquigarrow\})$, $F$ and $F_\rightsquigarrow$).
