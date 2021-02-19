@@ -1,4 +1,4 @@
-name: build-nightly
+name: build
 
 on:
   push:
@@ -15,7 +15,7 @@ jobs:
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tex_path: 'prod/The Logic of Dynamic Locales.tex'
+        tex_path: 'prod/The\ Logic\ of\ Dynamic\ Locales.tex'
     - name: Upload PDF
       uses: svenstaro/upload-release-action@v2
       with:
