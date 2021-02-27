@@ -92,30 +92,6 @@
 
 \begin{multicols}{2}
 	\begin{prooftree}
-		\RightLabel{$L\Box$}
-		\AXC{$\Gamma, {\red\nabla^n} A \Rightarrow \Delta$}
-		\UIC{$\Gamma, \nabla {\red ^{n+1}}  \Box A \Rightarrow \Delta$}
-	\end{prooftree}
-	\columnbreak
-	\begin{prooftree}
-		\RightLabel{$R\Box$}
-		\AXC{$\nabla\Gamma \Rightarrow A$}
-		\UIC{$\Gamma \Rightarrow \Box A$}
-	\end{prooftree}
-\end{multicols}
-\smallskip
-
-\begin{prooftree}
-	\RightLabel{$N$}
-	\AXC{$\Gamma \Rightarrow A {\red (/\Delta)}$}
-	\UIC{$\nabla\Gamma \Rightarrow \nabla A {\red (/\nabla\Delta)}$}
-\end{prooftree}
-
-
-\subsection*{$\mathbf{LDL}_{\rightsquigarrow}^{{\red*}}$} $:= \mathbf{LDL}^{\red*} - \{ L\rightarrow, R\rightarrow, L\Box, R\Box \} +$
-
-\begin{multicols}{2}
-	\begin{prooftree}
 		\RightLabel{$L\rightsquigarrow$}
 		\AXC{$\Gamma \Rightarrow {\red \nabla^n} A$}
 		\AXC{$\Gamma , {\red \nabla^n} B \Rightarrow \Delta$}
@@ -128,6 +104,16 @@
 		\UIC{$\Gamma \Rightarrow A \rightsquigarrow B$}
 	\end{prooftree}
 \end{multicols}
+
+\begin{prooftree}
+	\RightLabel{$N$}
+	\AXC{$\Gamma \Rightarrow A {\red (/\Delta)}$}
+	\UIC{$\nabla\Gamma \Rightarrow \nabla A {\red (/\nabla\Delta)}$}
+\end{prooftree}
+
+
+\subsection*{$\mathbf{LDL}_{\rightsquigarrow}^{{\red*}}$} $:= \mathbf{LDL}^{\red*} - \{ L\rightarrow, R\rightarrow \}$
+
 
 \subsection*{L}
 \begin{prooftree}
@@ -159,21 +145,13 @@
 	\end{prooftree}
 \end{multicols}
 
-\subsection*{F} \emph{}
+\subsection*{Fa} \emph{}
+\begin{prooftree}
+	\RightLabel{$Fa$}
+	\AXC{$\Gamma , A \Rightarrow B$}
+	\UIC{$\Gamma \Rightarrow \nabla(A \rightsquigarrow B)$}
+\end{prooftree}
 
-\begin{multicols}{2}
-	\begin{prooftree}
-		\RightLabel{$F$}
-		\AXC{$\Gamma \Rightarrow A$}
-		\UIC{$\Gamma \Rightarrow \nabla \Box A$}
-	\end{prooftree}
-	\columnbreak
-	\begin{prooftree}
-		\RightLabel{$F_\rightsquigarrow$}
-		\AXC{$\Gamma , A \Rightarrow B$}
-		\UIC{$\Gamma \Rightarrow \nabla(A \rightsquigarrow B)$}
-	\end{prooftree}
-\end{multicols}
 
 \subsection*{Fu} \emph{}
 
