@@ -20,7 +20,7 @@ jobs:
       uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: prod/ldl.pdf
+        file: prod/the-logic-of-dynamic-locales.pdf
         asset_name: ldl.pdf
         tag: b
         overwrite: true
