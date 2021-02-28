@@ -1097,10 +1097,92 @@ But if $m>0$, the cut-data could also be $(\nabla A, m-1, \{n_i\})$, in which ca
 
 \subsection{Admissible Rules}
 \textbf{Problem.} What are the Harrop formulas here? Prove the disjunction property for the theories axiomatized by Harrop formulas, using the cut-free proofs over the logics $\mathbf{LDL}$ and $\mathbf{LDL}_{\rightsquigarrow}$. Prove the same thing via Kleene-type argument. Do we have similar thing for the logics with added rules $H$ and $H_{\rightsquigarrow}$, respectively?
+
 \subsection{Interpolation}
-\textbf{Problem.} As we discussed, the system $\mathbf{LDL}$ and possibly $\mathbf{LDL}(H)$ must enjoy Craig interpolation property. What are the proofs?\\
-\\
-\textbf{Problem.} As we discussed, the system $\mathbf{LDL}_{\rightsquigarrow}$ and possibly $\mathbf{LDL}_{\rightsquigarrow}(H_{\rightsquigarrow})$ must enjoy deductive interpolation property. What are the proofs?
+In this section, we prove \emph{Craig's interpolation} theorem for $\mathbf{LDL}(\star)$ and a weaker version called \emph{deductive interpolation} for $\mathbf{LDL}_\rightsquigarrow(\star)$. For a formula $A$, by $P(A)$ we mean the set of all atomic formulas of $A$ and for a multi-set of formulas $\Gamma$, $P(\Gamma) = \bigcup_{A \in \Gamma} P(A)$.
+\begin{thm}[Craig's Interpolation for $\mathbf{LDL}(\star)$]\label{thm:ldl-craig} For any $\Gamma_1$, $\Gamma_2$ and $\Delta$, if $\mathbf{LDL}(\star) \vdash \Gamma_1 , \Gamma_2 \Rightarrow \Delta$, then there is a formula $C$ such that $P(C) \subseteq P(\Gamma_1) \cap P(\Gamma_2 , \Delta)$, $\mathbf{LDL}(\star) \vdash \Gamma_1 \Rightarrow C$ and $\mathbf{LDL}(\star) \vdash \Gamma_2 , C \Rightarrow \Delta$.
+\end{thm}
+
+\begin{proof}
+Let $\mathcal{D}$ be the $\mathbf{LDL}(\star)$ proof of $\Gamma_1 , \Gamma_2 \Rightarrow \Delta$. We will use induction on the length of $\mathcal{D}$, so for any $\Gamma_1'$, $\Gamma_2'$ and $\Delta'$ such that $\mathbf{LDL}(\star) \vdash \Gamma_1' , \Gamma_2' \Rightarrow \Delta'$ with a proof smaller than $\mathcal{D}$, the induction hypothesis (IH) gives an interpolant $C_{\langle\Gamma_1'; \Gamma_2'; \Delta'\rangle}$ for which the statement of the theorem is true. We now build the desired interpolant $C$, in different cases for the last rule of $\mathcal{D}$. In cases for left-rules, we also need to consider whether the principal formula is in $\Gamma_1$ or $\Gamma_2$ in separate cases.
+\begin{enumerate}
+	\item ($Id$) We have $\Gamma_1,\Gamma_2 = \Delta = A$.
+	\begin{enumerate}
+		\item If $\Gamma_1 = \{\}$ and $\Gamma_2 = A$, then define $C = \top$. So we have $\Rightarrow \top$ by $Ta$ and $A , \top \Rightarrow A$ by $Id$ and $Lw$.
+		
+		\item If $\Gamma_1 = A$ and $\Gamma_2 = \{\}$ then define $C = A$. So we have $A \Rightarrow A$ by $Id$.
+	\end{enumerate}
+	\item ($Ta$) Take $C = \top$.
+	
+	\item ($Ex$) Take $C = \nabla^n \bot$.
+	
+	\item ($Lw$) $\mathcal{D}$ proves $\Gamma_1' , \Gamma_2' , A \Rightarrow \Delta$ and has a sub-proof for $\Gamma_1' , \Gamma_2' \Rightarrow \Delta$, for which IH gives an interpolant $C_{\langle\Gamma_1';\Gamma_2';\Delta\rangle}$ and proofs for $\Gamma_1' \Rightarrow C_{\langle\Gamma_1';\Gamma_2';\Delta\rangle}$ and $\Gamma_2 , C_{\langle\Gamma_1';\Gamma_2';\Delta\rangle} \Rightarrow \Delta$, such that $P(C_{\langle\Gamma_1';\Gamma_2';\Delta\rangle}) \subseteq$ $ P(\Gamma_1') \cap P(\Gamma_2' , \Delta)$.
+	\begin{enumerate}
+		\item If $\Gamma_1 = \Gamma_1'$ and $\Gamma_2 = \Gamma_2' , A$, take $C = C_{\langle\Gamma_1';\Gamma_2';\Delta\rangle}$. Then we have  $\Gamma_1' \Rightarrow C$ by IH and $\Gamma_2 , A , C \Rightarrow \Delta$ by $Lw$ and IH. From IH, we also have $P(C) \subseteq P(\Gamma_1') \cap P(\Gamma_2' , A , \Delta)$, since $P$ takes ``$,$'' to ``$\cup$'', which distributes over ``$\cap$'' and is increasing with respect to ``$\subseteq$''.
+		
+		\item If $\Gamma_1 = \Gamma_1' , A$ and $\Gamma_2 = \Gamma_2'$, again take $C = C_{\langle\Gamma_1';\Gamma_2';\Delta\rangle}$. Then we have  $\Gamma_1' , A \Rightarrow C$ by $Lw$ and IH, and $\Gamma_2 , C \Rightarrow \Delta$ by IH. We also have $P(C) \subseteq P(\Gamma_1' , A) \cap P(\Gamma_2' , \Delta)$ by IH and argument similar to the previous case.
+	\end{enumerate}
+
+	\item ($Lc$) $\mathcal{D}$ proves $\Gamma_1' , \Gamma_2' , A \Rightarrow \Delta$ and has a sub-proof for $\Gamma_1' , \Gamma_2' , A , A \Rightarrow \Delta$.
+	\begin{enumerate}
+		\item If $\Gamma_1 = \Gamma_1'$ and $\Gamma_2 = \Gamma_2' , A$, take $C = C_{\langle\Gamma_1';\Gamma_2',A,A;\Delta\rangle}$. Then we have $\Gamma_1' \Rightarrow C$ by IH and $\Gamma_2' , A \Rightarrow \Delta$ by IH and $Lc$. From IH, we also have $P(C) \subseteq P(\Gamma_1') \cap P(\Gamma_2',A,\Delta)$, since $P(\Gamma,X) = P(\Gamma,X,X)$.
+		
+		\item If $\Gamma_1 = \Gamma_1' , A$ and $\Gamma_2 = \Gamma_2'$, take $C = C_{\langle\Gamma_1',A,A;\Gamma_2';\Delta\rangle}$. Then we have $\Gamma_1' , A \Rightarrow C$ by IH and $Lc$, and $\Gamma_2' \Rightarrow \Delta$ by IH. We also have $P(C) \subseteq P(\Gamma_1',A) \cap P(\Gamma_2',\Delta)$ as justified before.
+	\end{enumerate}
+
+	\item[6,7.] ($L\land_i$, {\small$i \in \{1,2\}$}) $\mathcal{D}$ proves $\Gamma_1' , \Gamma_2' , \nabla^n (A_1 \land A_2) \Rightarrow \Delta$ and has a sub-proof for $\Gamma_1' , \Gamma_2' , \nabla^n A_i \Rightarrow \Delta$.
+	\begin{enumerate}
+		\item If $\Gamma_1 = \Gamma_1'$ and $\Gamma_2 = \Gamma_2' , \nabla^n (A_1 \land A_2)$, take $C = C_{\langle\Gamma_1';\Gamma_2',\nabla^n A_i;\Delta\rangle}$. Then we have $\Gamma_1' \Rightarrow C$ by IH and $\Gamma_2' , \nabla^n (A_1 \land A_2) \Rightarrow \Delta$ by IH and $L\land_i$. From IH, we also have $P(C) \subseteq$ $P(\Gamma_1') \cap P(\Gamma_2',\nabla^n(A_1 \land A_2),\Delta)$, since $P(\nabla^n X) = P(X)$ and $P$ takes sub-formula ordering to ``$\subseteq$''.
+		
+		\item If $\Gamma_1 = \Gamma_1' , \nabla^n (A_1 \land A_2)$ and $\Gamma_2 = \Gamma_2'$, take $C = C_{\langle\Gamma_1',\nabla^n A_i;\Gamma_2';\Delta\rangle}$. Then we have $\Gamma_1' , \nabla^n (A_1 \land A_2)$ $\Rightarrow C$ by IH and $L\land_i$. Also from IH we have $\Gamma_2' \Rightarrow \Delta$. We also have $P(C) \subseteq P(\Gamma_1',\nabla^n (A_1 \land A_2))$ $\cap P(\Gamma_2',\Delta)$ as justified in the previous case.
+	\end{enumerate}
+	\setcounter{enumi}{7}
+
+	\item ($R\land$) $\mathcal{D}$ proves $\Gamma_1 , \Gamma_2 \Rightarrow A \land B$ and has sub-proofs for $\Gamma_1 , \Gamma_2 \Rightarrow A$ and $\Gamma_1 , \Gamma_2 \Rightarrow B$.\\
+	Let $C_1 = C_{\langle\Gamma_1;\Gamma_2;A\rangle}$ and $C_2 = C_{\langle\Gamma_1;\Gamma_2;B\rangle}$, and then take $C = C_1 \land C_2$.
+	We have $\Gamma_1 \Rightarrow C_1$ and $\Gamma_1 \Rightarrow C_2$, both from IH. Then by $R\land$ we have $\Gamma_1 \Rightarrow C_1 \land C_2$.
+	We also have $\Gamma_2 , C_1 \Rightarrow A$ and $\Gamma_2 , C_2 \Rightarrow B$, again from IH.
+	We can then derive $\Gamma_2 , C_1 \land C_2 \Rightarrow A$ and $\Gamma_2 , C_1 \land C_2 \Rightarrow B$, respectively by $L\land_1$ and $L\land_2$, and finally  $\Gamma_2 , C_1 \land C_2 \Rightarrow A \land B$ by $R\land$.
+	We also have $P(C_1) \subseteq P(\Gamma_1) \cap P(\Gamma_2 , A)$ and $P(C_2) \subseteq P(\Gamma_1) \cap P(\Gamma_2 , B)$. So $P(C_1 , C_2) \subseteq P(\Gamma_1) \cap P(\Gamma_2 , A , B)$ as it was justified before, and then $P(C_1 \land C_2) \subseteq P(\Gamma_1) \cap P(\Gamma_2 , A \land B)$.
+	
+	\item ($L\lor$) $\mathcal{D}$ proves $\Gamma_1' , \Gamma_2' , \nabla^n (A \lor B) \Rightarrow \Delta$ and has sub-proofs for $\Gamma_1' , \Gamma_2' , \nabla^n A \Rightarrow \Delta$ and $\Gamma_1' , \Gamma_2' , \nabla^n B \Rightarrow \Delta$.
+	\begin{enumerate}
+		\item If $\Gamma_1 = \Gamma_1'$ and $\Gamma_2 = \Gamma_2' , \nabla^n (A \lor B)$, let $C_1 = C_{\langle\Gamma_1';\Gamma_2',\nabla^n A;\Delta\rangle}$ and $C_2 = C_{\langle\Gamma_1';\Gamma_2',\nabla^n B;\Delta\rangle}$, and then take $C = C_1 \land C_2$.
+		We have $\Gamma_1' \Rightarrow C_1 \land C_2$ from IH and $R\land$.
+		From IH, by $L\land_1$ and $L\land_2$ we can derive $\Gamma_2' , \nabla^n A , C_1 \land C_2 \Rightarrow \Delta$ and $\Gamma_2' , \nabla^n B , C_1 \land C_2 \Rightarrow \Delta$ respectively, to which we apply $L\lor$ to get to $\Gamma_2' , \nabla^n (A \lor B) , C_1 \land C_2 \Rightarrow \Delta$.
+		From IH, we also have $P(C_1) \subseteq P(\Gamma_1') \cap P(\Gamma_2' , \nabla^n A , \Delta)$ and $P(C_2) \subseteq P(\Gamma_1') \cap P(\Gamma_2' , \nabla^n B , \Delta)$. Just like the previous case, we can deduce that $P(C_1 \land C_2) \subseteq P(\Gamma_1') \cap P(\Gamma_2' , \nabla^n (A \land B) , \Delta)$.
+
+		\item If $\Gamma_1 = \Gamma_1' , \nabla^n (A \lor B)$ and $\Gamma_2 = \Gamma_2'$, let $C_1 = C_{\langle\Gamma_1',\nabla^n A;\Gamma_2';\Delta\rangle}$ and $C_2 = C_{\langle\Gamma_1',\nabla^n B;\Gamma_2';\Delta\rangle}$, and then take $C = C_1 \lor C_2$.
+		From IH, by $R\lor_1$ and $R\lor_2$ we can derive $\Gamma_1' , \nabla^n A \Rightarrow C_1 \lor C_2$ and $\Gamma_1' , \nabla^n B \Rightarrow C_1 \lor C_2$ respectively, to which we apply $L\lor$ to get to $\Gamma_1' , \nabla^n (A \lor B) \Rightarrow C_1 \lor C_2$.
+		We have $\Gamma_2' , C_1 \lor C_2 \Rightarrow \Delta$ from IH and $L\lor$.
+		From IH, we also have $P(C_1) \subseteq P(\Gamma_1' , \nabla^n A) \cap$ $P(\Gamma_2' , \Delta)$ and $P(C_2) \subseteq P(\Gamma_1' , \nabla^n B) \cap P(\Gamma_2' , \Delta)$. Just like the previous case, we can deduce that $P(C_1 \lor C_2) \subseteq P(\Gamma_1' , \nabla^n (A \land B)) \cap P(\Gamma_2' , \Delta)$.
+	\end{enumerate}
+
+	\item[10,11.] ($R\lor_i$, {\small$i \in \{1,2\}$}) $\mathcal{D}$ proves $\Gamma_1 , \Gamma_2 \Rightarrow A_1 \lor A_2$ and has a sub-proof for $\Gamma_1 , \Gamma_2 \Rightarrow A_i$. Take $C = C_{\langle\Gamma_1;\Gamma_2;A_i\rangle}$. Then we have $\Gamma_1 \Rightarrow C$ from IH and $\Gamma_2 , C \Rightarrow A_1 \lor A_2$ from IH and $R\lor_i$.
+	From IH, we also have $P(C) \subseteq P(\Gamma_1) \cap P(\Gamma_2 , A_1 \lor A_2)$, as was justified before.
+	\setcounter{enumi}{11}
+	
+	\item ($L\rightarrow$) $\mathcal{D}$ proves $\Gamma_1' , \Gamma_2' , \nabla^n (A \rightarrow B) \Rightarrow \Delta$ and has sub-proofs for $\Gamma_1' , \Gamma_2' \Rightarrow \nabla^n A$ and $\Gamma_1' , \Gamma_2' , \nabla^n B \Rightarrow \Delta$.
+	\begin{enumerate}
+		\item If $\Gamma_1 = \Gamma_1'$ and $\Gamma_2 = \Gamma_2' , \nabla^n (A \rightarrow B)$, let $C_1 = C_{\langle\Gamma_1';\Gamma_2';\nabla^n A\rangle}$ and $C_2 = C_{\langle\Gamma_1';\Gamma_2',\nabla^n B;\Delta\rangle}$, and take $C = C_1 \land C_2$.
+		We have $\Gamma_1' \Rightarrow C_1 \land C_2$ from IH and $R\land$.
+		From IH, by $L\land_1$ and $L\land_2$ we can derive $\Gamma_2' , C_1 \land C_2 \Rightarrow \nabla^n A$ and $\Gamma_2' , \nabla^n B , C_1 \land C_2 \Rightarrow \Delta$ respectively, to which we apply $L\rightarrow$ to get $\Gamma_2' , \nabla^n (A \rightarrow B) , C_1 \land C_2 \Rightarrow \Delta$.
+		From IH, we also have $P(C_1) \subseteq P(\Gamma_1') \cap$ $P(\Gamma_2' , \nabla^n A)$ and $P(C_2) \subseteq P(\Gamma_1') \cap P(\Gamma_2' , \nabla^n B , \Delta)$. This implies $P(C_1 \land C_2) \subseteq P(\Gamma_1') \cap P(\Gamma_2' , \nabla^n (A \rightarrow B) , \Delta)$.
+
+		\item If $\Gamma_1 = \Gamma_1' , \nabla^n (A \rightarrow B)$ and $\Gamma_2 = \Gamma_2'$, let $C_1 = C_{\langle\Gamma_2';\Gamma_1';\nabla^n A\rangle}$ and $C_2 = C_{\langle\Gamma_1',\nabla^n B;\Gamma_2';\Delta\rangle}$, and take $C = C_1 \rightarrow C_2$.
+		From IH we have $\Gamma_1' , C_1 \Rightarrow \nabla^n A$ and $\Gamma_1' , \nabla^n B , C_1 \Rightarrow C_2$, with a $Lw$ to introduce $C_1$ to the left. From $L\rightarrow$ we get $\Gamma_1 , \nabla^n (A \rightarrow B) , C_1 \Rightarrow C_2$, to which we can apply $R\rightarrow$ to get $\Gamma_1 , \nabla^n (A \rightarrow B) \Rightarrow C_1 \rightarrow C_2$.
+
+		From IH, we have also $\Gamma_2' \Rightarrow C_1$ and $\Gamma_2' , C_2 \Rightarrow \Delta$, from which we can derive $\Gamma_2' , C_1 \rightarrow C_2 \Rightarrow \Delta$ by an application of $L\rightarrow$. IH also states that $P(C_1) \subseteq P(\Gamma_2') \cap P(\Gamma_1' , \nabla^n A)$ and $P(C_2) \subseteq P(\Gamma_1' , \nabla^n B) \cap P(\Gamma_2' , \Delta)$. Then $P(C_1 \rightarrow C_2) \subseteq P(\Gamma_1' , \nabla^n (A \rightarrow B)) \cap P(\Gamma_2' , \Delta)$.
+	\end{enumerate}
+
+	\item ($R\rightarrow$) $\mathcal{D}$ proves $\Gamma_1 , \Gamma_2 \Rightarrow A \rightarrow B$ and has a sub-proof for $\Gamma_1 , \Gamma_2 , A \Rightarrow B$. Let $C = C_{\langle\Gamma_1;\Gamma_2,A;B\rangle}$. So we have $\Gamma_1 \Rightarrow C$ and $\Gamma_2 , C \Rightarrow A \rightarrow B$ from IH and an application of $R\rightarrow$.
+	We also have $P(C) \subseteq P(\Gamma_1) \cap P(\Gamma_2 , A \rightarrow B)$ from IH and the fact that $P$ preserves sub-formula ordering in $\subseteq$.
+
+	\item ($L\rightsquigarrow$) This case is similar to $L\rightarrow$. 
+
+	\item ($N$) $\mathcal{D}$ proves $\nabla \Gamma_1 , \nabla \Gamma_2 \Rightarrow \nabla \Delta$ and has a sub-proof for $\Gamma_1 , \Gamma_2 \Rightarrow \Delta$. Just take $C = C(\Gamma_1;\Gamma_2;\Delta)$ and apply $N$ on the sequents from IH. The variable condition is also trivial.
+\end{enumerate}
+\end{proof}
 
 \begin{thebibliography}{99}
 \addcontentsline{toc}{section}{References}
