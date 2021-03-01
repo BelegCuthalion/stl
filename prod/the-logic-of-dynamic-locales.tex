@@ -1100,7 +1100,7 @@ But if $m>0$, the cut-data could also be $(\nabla A, m-1, \{n_i\})$, in which ca
 
 \subsection{Interpolation}
 In this section, we prove \emph{Craig's interpolation} theorem for $\mathbf{LDL}(\star)$ and a weaker version called \emph{deductive interpolation} for $\mathbf{LDL}_\rightsquigarrow(\star)$. For a formula $A$, by $P(A)$ we mean the set of all atomic formulas of $A$ and for a multi-set of formulas $\Gamma$, $P(\Gamma) = \bigcup_{A \in \Gamma} P(A)$.
-\begin{thm}[Craig's Interpolation for $\mathbf{LDL}(\star)$]\label{thm:ldl-craig} For any $\Gamma_1$, $\Gamma_2$ and $\Delta$, if $\mathbf{LDL}(\star) \vdash \Gamma_1 , \Gamma_2 \Rightarrow \Delta$, then there is a formula $C$ such that $P(C) \subseteq P(\Gamma_1) \cap P(\Gamma_2 , \Delta)$, $\mathbf{LDL}(\star) \vdash \Gamma_1 \Rightarrow C$ and $\mathbf{LDL}(\star) \vdash \Gamma_2 , C \Rightarrow \Delta$.
+\begin{thm}[Craig's Interpolation for $\mathbf{LDL}(\star)$]\label{thm:ldl-craig} For any $\Gamma_1$, $\Gamma_2$ and $\Delta$, and for $\star \in \{L, R', Fa\}$, if $\mathbf{LDL}(\star) \vdash \Gamma_1 , \Gamma_2 \Rightarrow \Delta$, then there is a formula $C$ such that $P(C) \subseteq P(\Gamma_1) \cap P(\Gamma_2 , \Delta)$, $\mathbf{LDL}(\star) \vdash \Gamma_1 \Rightarrow C$ and $\mathbf{LDL}(\star) \vdash \Gamma_2 , C \Rightarrow \Delta$.
 \end{thm}
 
 \begin{proof}
@@ -1185,16 +1185,28 @@ Let $\mathcal{D}$ be a proof for $\Gamma_1 , \Gamma_2 \Rightarrow \Delta$ in $\m
 		From IH, by $L\land_1$ and $L\land_2$ we can derive $\Gamma_2' , C_1 \land C_2 \Rightarrow \nabla^n A$ and $\Gamma_2' , \nabla^n B , C_1 \land C_2 \Rightarrow \Delta$ respectively, to which we apply $L\rightsquigarrow$ to get to $\Gamma_2' , \nabla^{n+1} (A \rightsquigarrow B) , C_1 \land C_2 \Rightarrow \Delta$.
 		From IH, we also have $P(C_1) \subseteq P(\Gamma_1') \cap$ $P(\Gamma_2' , \nabla^n A)$ and $P(C_2) \subseteq P(\Gamma_1') \cap P(\Gamma_2' , \nabla^n B , \Delta)$, which implies $P(C_1 \land C_2) \subseteq P(\Gamma_1') \cap P(\Gamma_2' , \nabla^{n+1} (A \rightsquigarrow B) , \Delta)$.
 
-		\item If $\Gamma_1 = \Gamma_1' , \nabla^{n+1} (A \rightsquigarrow B)$ and $\Gamma_2 = \Gamma_2'$, let $C_1 = C_{\langle\Gamma_2';\Gamma_1';\nabla^n A\rangle}$ and $C_2 = C_{\langle\Gamma_1',\nabla^n B;\Gamma_2';\Delta\rangle}$, and take $C = C_1 \rightsquigarrow C_2$.
+		\item If $\Gamma_1 = \Gamma_1' , \nabla^{n+1} (A \rightsquigarrow B)$ and $\Gamma_2 = \Gamma_2'$, let $C_1 = C_{\langle\Gamma_2';\Gamma_1';\nabla^n A\rangle}$ and $C_2 = C_{\langle\Gamma_1',\nabla^n B;\Gamma_2';\Delta\rangle}$, and take $C = C_1 \rightarrow C_2$.
 		From IH we have $\Gamma_1' , C_1 \Rightarrow \nabla^n A$. Also from IH, with a $Lw$ to add $C_1$ to the left, we have $\Gamma_1' , \nabla^n B , C_1 \Rightarrow C_2$. By $L\rightsquigarrow$ and $R\rightarrow$ we get $\Gamma_1' , \nabla^{n+1} (A \rightsquigarrow B) \Rightarrow C_1 \rightarrow C_2$.
 		We also have $\Gamma'_2, C_1 \rightarrow C_2 \Rightarrow \Delta$ from IH and $L\rightarrow$. Again from IH, we have $P(C_1) \subseteq P(\Gamma_2') \cap P(\Gamma_1' , \nabla^n A)$ and $P(C_2) \subseteq P(\Gamma_1' , \nabla^n B) \cap P(\Gamma_2' , \Delta)$, thus $P(C_1 \rightarrow C_2) \subseteq P(\Gamma_1' , \nabla^{n+1} (A \rightarrow B)) \cap P(\Gamma_2' , \Delta)$.
 	\end{enumerate}
 
-	\item ($R\rightsquigarrow$) This is also similar to the $R\rightsquigarrow$ case, except that here $\mathcal{D}$'s sub-proof proves $\nabla \Gamma_1 , \nabla \Gamma_2 , A \Rightarrow B$. Let $C' = C_{\langle\nabla\Gamma_1;\nabla\Gamma_2,A;B\rangle}$ amd take $C = \top \rightsquigarrow C'$. So we have $\nabla \Gamma_1 \Rightarrow C'$ from IH, at the right of which we can introduce $\top$ by $Lw$, and then apply $R\rightsquigarrow$ to get $\Gamma_1 \Rightarrow \top \rightsquigarrow C'$. From IH, we also have $\nabla \Gamma_2, A, C' \Rightarrow B$. On the other hand, we have $\nabla (\top \rightsquigarrow C') \Rightarrow C'$ by applying $L\rightsquigarrow$ on $\Rightarrow \top$ and $C' \Rightarrow C'$. Using this sequent and $Cut$, we can replace $C'$ with $\nabla (\top \rightsquigarrow C')$ in the former sequent to get $\nabla \Gamma_2 , A , \nabla (\top \rightsquigarrow C') \Rightarrow B$. By $R\rightsquigarrow$ we would get $\Gamma_2 , \top \rightarrow C' \Rightarrow A \rightsquigarrow B$.
+	\item ($R\rightsquigarrow$) This is also similar to the $R\rightarrow$ case, except that here $\mathcal{D}$'s sub-proof proves $\nabla \Gamma_1 , \nabla \Gamma_2 , A \Rightarrow B$. Let $C' = C_{\langle\nabla\Gamma_1;\nabla\Gamma_2,A;B\rangle}$ amd take $C = \top \rightsquigarrow C'$. So we have $\nabla \Gamma_1 \Rightarrow C'$ from IH, at the right of which we can introduce $\top$ by $Lw$, and then apply $R\rightsquigarrow$ to get $\Gamma_1 \Rightarrow \top \rightsquigarrow C'$. From IH, we also have $\nabla \Gamma_2, A, C' \Rightarrow B$. On the other hand, we have $\nabla (\top \rightsquigarrow C') \Rightarrow C'$ by applying $L\rightsquigarrow$ on $\Rightarrow \top$ and $C' \Rightarrow C'$. Using this sequent and $Cut$, we can replace $C'$ with $\nabla (\top \rightsquigarrow C')$ in the former sequent to get $\nabla \Gamma_2 , A , \nabla (\top \rightsquigarrow C') \Rightarrow B$. By $R\rightsquigarrow$ we would get $\Gamma_2 , \top \rightarrow C' \Rightarrow A \rightsquigarrow B$.
 	We also have $P(\top \rightsquigarrow C) \subseteq P(\Gamma_1) \cap P(\Gamma_2 , A \rightsquigarrow B)$ from IH and the fact that $P$ preserves sub-formula ordering in $\subseteq$ and $\top$ does not introduce new atomic formulas.
 
-
 	\item ($N$) $\mathcal{D}$ proves $\nabla \Gamma_1 , \nabla \Gamma_2 \Rightarrow \nabla \Delta$ and has a sub-proof for $\Gamma_1 , \Gamma_2 \Rightarrow \Delta$. Just take $C = C(\Gamma_1;\Gamma_2;\Delta)$ and apply $N$ on the sequents from IH. The variable condition is also trivial.
+	
+	\item ($L$) $\mathcal{D}$ proves $\Gamma_1' , \Gamma_2' , \nabla A \Rightarrow \Delta$ and has a sub-proof for $\Gamma_1' , \Gamma_2' , A \Rightarrow \Delta$.
+	\begin{enumerate}
+		\item If $\Gamma_1 = \Gamma_1'$ and $\Gamma_2 = \Gamma_2' , \nabla A$, take $C = C_{\langle\Gamma_1';\Gamma_2',A;\Delta\rangle}$. Then we have $\Gamma_1' \Rightarrow C$ by IH and $\Gamma_2' , \nabla A \Rightarrow \Delta$ by IH and $L$. From IH, it's also trivial that $P(C) \subseteq P(\Gamma_1') \cap P(\Gamma_2',\nabla A,\Delta)$.
+		
+		\item If $\Gamma_1 = \Gamma_1' , \nabla A$ and $\Gamma_2 = \Gamma_2'$, take $C = C_{\langle\Gamma_1',A;\Gamma_2';\Delta\rangle}$. Then we have $\Gamma_1' , \nabla A \Rightarrow C$ by IH and $L$, and $\Gamma_2' \Rightarrow \Delta$ by IH. We also have $P(C) \subseteq P(\Gamma_1', \nabla A) \cap P(\Gamma_2',\Delta)$
+	\end{enumerate}
+
+	\item ($R$) Assume $\Gamma_1 = \Pi_1, \Sigma_1$ and $\Gamma_2 = \Pi_2, \Sigma_2$. $\mathcal{D}$ proves $\Pi_1, \Sigma_1, \Pi_2, \Sigma_2 \Rightarrow \Delta$ and has a sub-proof for $\Pi_1, \nabla\Sigma_1, \Pi_2, \nabla\Sigma_2 \Rightarrow \Delta$.
+	Take $C =$\\ $C_{\langle\Pi_1\nabla\Sigma_1;\Pi_2\nabla\Sigma_2;\Delta\rangle}$. Then from IH and $R$ we have $\Pi_1, \Sigma_1 \Rightarrow C$ and $\Pi_2, \Sigma_2 \Rightarrow \Delta$. We also have $P(C) \subseteq P(\Pi_1,\Sigma_1) \cap P(\Pi_2,\Sigma_2,\Delta)$, since $\nabla$ does not introduce new atomic formulas and we can drop it.
+
+	\item ($Fa$) This is similar to the $R\rightarrow$ case. $\mathcal{D}$ proves $\Gamma_1 , \Gamma_2 \Rightarrow \nabla(A \rightsquigarrow B)$ and has a sub-proof for $\Gamma_1 , \Gamma_2 , A \Rightarrow B$. Let $C = C_{\langle\Gamma_1;\Gamma_2,A;B\rangle}$. So we have $\Gamma_1 \Rightarrow C$ and $\Gamma_2 , C \Rightarrow \nabla (A \rightsquigarrow B)$ from IH and an application of $Fa$.
+	It is easy to deduce $P(C) \subseteq P(\Gamma_1) \cap P(\Gamma_2 , \nabla (A \rightsquigarrow B))$ from IH.
 \end{enumerate}
 \end{proof}
 
