@@ -1213,88 +1213,28 @@ Let $\mathcal{D}$ be a proof for $\Gamma_1 , \Gamma_2 \Rightarrow \Delta$ in $\m
 \subsubsection{Interpolation for $\mathbf{LDL}_\rightsquigarrow(L)$}
 We can not prove the same result for the fragment $\mathbf{LDL}_\rightsquigarrow$, since we ought to use $\rightarrow$ to construct the interpolant in the case for $L\rightsquigarrow$. But if we add the rule $L$ to this fragment, we can prove a weaker form of interpolation using $rightsquigarrow$, as we will do in this section.
 Throughout this section, when we use plain $\vdash$ symbol without specifying the deductive system, we mean deduction in $_{\mathbf{LDL}_\rightsquigarrow(L)}$. So by $\Gamma' \Rightarrow \Delta' \vdash \Gamma \Rightarrow \Delta$ we mean that $\Gamma \Rightarrow \Delta$ is provable in $\mathbf{LDL}_\rightsquigarrow(L)+\{\Gamma' \Rightarrow \Delta'\}$.
-\begin{dfn}[Notation]\quad
-	\begin{enumerate}
-		\item Let $a$ be a finite sequence of natural numbers of length $k$ and $A$ be a formula. Recall that we use the abbreviation $\Box A = \top \rightsquigarrow A$. We will write $(\nabla\Box)^a A$ for the formula constructed from applying $a_k$ times $\Box$, $a_{k-1}$ times $\nabla$, ..., $a_2$ times $\Box$ and $a_1$ times $\nabla$ to $A$. More precisely
-		\[ (\nabla\Box)^a A = \nabla^{a_1} \Box^{a_2} \dots \nabla^{a_{k-1}} \Box^{a_k} A \]
-	
-		\item Let $\Gamma$ be a finite multi-set of formulas and $f$ a function that assigns to each member of $\Gamma$ a finite set of finite sequences of natural numbers. By $N(\Gamma, f)$ we denote the finite multi-set of formulas consisting of members of $\Gamma$ like $A$, with some $\nabla$'s and $\Box$'s as defined by memebers of $f(A)$, i.e.
-		\[ N(\Gamma, f) = \{ \nabla^{a_1} \Box^{a_2} \dots \nabla^{a_{k-1}} \Box^{a_k} A : A \in \Gamma ~\&~ a \in f(A) ~\&~ |a| = k \} \]
-		\[ = \{ (\nabla\Box)^a A : A \in \Gamma ~\&~ a \in f(A) \} \]
-		So for any $B \in N(\Gamma, f)$, there is $A$ in $\Gamma$ such that $B = \nabla^{a_1} \Box^{a_2} \dots \nabla^{a_{k-1}} \Box^{a_k} A$, for some finite sequence of natural numbers $a_1.\dots,a_k$. \\
-		By $N(A,f)$ we mean $N(\{A\},f)$. We might also write $N(\Gamma)$ when $f$ is not important.
-	\end{enumerate}		
-\end{dfn}
-
 \begin{lem}
-	\label{lem:box-rule} $A \Rightarrow B \vdash_{\mathbf{LDL}_\rightsquigarrow(\star)} \Box A \Rightarrow \Box B$.
-\end{lem}
-\begin{proof}\quad
-	\begin{prooftree}
-		\AXC{}
-		\RightLabel{$Ta$}
-		\UIC{$\Rightarrow \top$}
-		\AXC{$A \Rightarrow B$}
-		\RightLabel{$L\rightsquigarrow$}
-		\BIC{$\nabla (\top \rightsquigarrow A) \Rightarrow B$}
-		\RightLabel{$Lw$}
-		\UIC{$\nabla (\top \rightsquigarrow A) , \top \Rightarrow B$}
-		\RightLabel{$R\rightsquigarrow$}
-		\UIC{$\top \rightsquigarrow A \Rightarrow \top \rightsquigarrow B$}
-	\end{prooftree}
-\end{proof}
-
-\begin{lem}
-	\label{lem:nabla-box-rule} For any finite sequence of natural numbers $a$, $A \Rightarrow B \vdash_{\mathbf{LDL}_\rightsquigarrow(\star)} (\nabla\Box)^a A \Rightarrow (\nabla\Box)^a B$.
-\end{lem}
-\begin{proof}\quad
-	\begin{prooftree}
-		\AXC{} \noLine
-		\UIC{$A \Rightarrow B$}
-		\RightLabel{Lemma \ref{lem:box-rule}$^{a_k}$} \doubleLine
-		\UIC{$\Box^{a_k} A \Rightarrow \Box^{a_k} B$}
-		\RightLabel{$N^{a_{k-1}}$} \doubleLine
-		\UIC{$\nabla^{a_{k-1}} \Box^{a_k} A \Rightarrow \nabla^{a_{k-1}} \Box^{a_k} B$} \noLine
-		\UIC{\vdots} \noLine
-		\UIC{$\nabla^{a_3} \dots \nabla^{a_{k-1}} \Box^{a_k} A \Rightarrow \nabla^{a_3} \dots \nabla^{a_{k-1}} \Box^{a_k} B$}
-		\RightLabel{Lemma \ref{lem:box-rule}$^{a_2}$} \doubleLine
-		\UIC{$\Box^{a_2} \nabla^{a_3} \dots \nabla^{a_{k-1}} \Box^{a_k} A \Rightarrow \Box^{a_2} \nabla^{a_3} \dots \nabla^{a_{k-1}} \Box^{a_k} B$}
-		\RightLabel{$N^{a_1}$} \doubleLine
-		\UIC{$\nabla^{a_1} \Box^{a_2} \dots \nabla^{a_{k-1}} \Box^{a_k} A \Rightarrow \nabla^{a_1} \Box^{a_2} \dots \nabla^{a_{k-1}} \Box^{a_k} B$}
-	\end{prooftree}
-\end{proof}
-
-\begin{lem}
-	\label{lem:vdash} $\Rightarrow A \vdash \Gamma \Rightarrow \Delta$ if and only if $\vdash N(A, f) , \Gamma \Rightarrow \Delta$ for some $f$.
+	\label{lem:vdash} $\Rightarrow A \vdash \Gamma \Rightarrow \Delta$ if and only if $\Gamma, \nabla^n A \Rightarrow \Delta$ for some $n$.
 \end{lem}
 \begin{proof}
-	I. Suppose we have $\Rightarrow A$ and $N(A, f) , \Gamma \Rightarrow \Delta$ for some $f$. First for any $a \in f(A)$, construct $\Rightarrow \nabla^{a_1} \Box^{a_2} \dots \nabla^{a_{k-1}} \Box^{a_k} A$ from $\Rightarrow A$ as follows: Introduce $\top$ in the left side with $Lw$ and apply $R\rightsquigarrow$ to get $\Rightarrow \top \rightsquigarrow A$. Repeat $a_k$ times to get $\Rightarrow \Box^{a_k} A$. Then $a_{k-1}$ applications of $N$ yields $\Rightarrow \nabla^{a_{k-1}} \Box^{b_k} A$. Repeat this process for all elements of $a$, and do this for all $a \in f(A)$. Now $Cut$ all of them into $N(A, f) , \Gamma \Rightarrow \Delta$ to get $\Gamma \Rightarrow \Delta$. \\
+	I. Suppose we have $\Gamma, \nabla^n A \Rightarrow \Delta$ for some $n$. Assuning $\Rightarrow A$, we can first prove $\Rightarrow \nabla^n A$ by $n$ applications of $N$, and then $Cut$ it into $\Gamma, \nabla^n A \Rightarrow \Delta$ to get $\Gamma \Rightarrow \Delta$.
 
-	II. For the other direction, we can prove a stronger version: Suppose $\Rightarrow A \vdash \Gamma \Rightarrow \Delta$ by a proof tree $\mathcal{D}$. We want to prove $\vdash \{ \nabla^a \Box^b A\}_{(a,b) \in I} , \Gamma \Rightarrow \Delta$ for some finite set of pairs of natural numbers $I$. By induction on the length of $\mathcal{D}$, for any $\Gamma'$, $\Delta'$ and any $\mathbf{LDL}_\rightsquigarrow(L)+A$ proof tree $\mathcal{D}'$ which proves $\Gamma' \Rightarrow \Delta'$ in lower length than $\mathcal{D}$, we can assume there is an $\mathbf{LDL}_\rightsquigarrow(L)$ proof tree IH($\mathcal{D}'$) that proves $\{\nabla^a \Box^b A\}_{(a,b) \in I_{IH(\mathcal{D}')}} , \Gamma' \Rightarrow \Delta'$ for some set of pairs of natural numbers $I_{IH(\mathcal{D}')}$.
+	II. For the other direction, using theorems \ref{thm:ldl-eq-ldls} and \ref{thm:ldls-cut-elim}, suppose $\Gamma \Rightarrow \Delta$ has a cut-free proof-tree in $\mathbf{LDL}^*_\rightsquigarrow(L)+A$, and it suffices to prove its equivalent $\nabla^n A, \Gamma \Rightarrow \Delta$ for some $n$ in $\mathbf{LDL}^*_\rightsquigarrow(L)$. By induction on the length of $\mathcal{D}$, we can assume that there is such equivalent in $\mathbf{LDL}^*_\rightsquigarrow(L)$ for the possible sub-proof(s) of $\mathcal{D}$.
 
-	For different possible rules in $\mathbf{LDL}_\rightsquigarrow(L)+A$ as the last rule of $\mathcal{D}$, we will construct an $\mathbf{LDL}_\rightsquigarrow(L)$ proof of $\{ \nabla^a \Box^b A\}_{(a,b) \in I} , \Gamma \Rightarrow \Delta$ for some finite set of pairs natural numbers $I$. In all cases, the possible immediate sub-trees of $\mathcal{D}$ are called $\mathcal{D}_0$ and $\mathcal{D}_1$.
-	\begin{enumerate}
-		\setcounter{enumi}{-1}
-		\item ($\Rightarrow A$) This implies $\Gamma = \{\}$ and $\Delta = A$. Then we have $A \Rightarrow A$ by $Id$.
+	Now for different possible rules in $\mathbf{LDL}^*_\rightsquigarrow(L)+A$ as the last rule of $\mathcal{D}$, we will construct an $\mathbf{LDL}^*_\rightsquigarrow(L)$ proof of $\nabla^n A , \Gamma \Rightarrow \Delta$ for some $n$. In all cases, the possible immediate sub-trees of $\mathcal{D}$ are called $\mathcal{D}_0$ and $\mathcal{D}_1$.
+	
+	If $\mathcal{D}$ is just $\Rightarrow A$, then $\Gamma = \{\}$ and $\Delta = A$. We have $A \Rightarrow A$ by $Id$ with $n = 0$.
 
-		\item ($Id$) This implies $\Gamma = \Delta = A$. Then $A \Rightarrow A$ by $Id$.
+	If $\mathcal{D}$ is any of the axioms $Id$, $Ta$ or $Ex$, then we can add $A$ to the left side of the same axioms in $\mathbf{LDL}^*_\rightsquigarrow(L)$ to construct the desired sequent.
 
-		\item ($Ta$) This implies $\Gamma = \{\}$ and $\Delta = \top$. We have $\Rightarrow \top$ by $Ta$.
+	If $\mathcal{D}$ ends one of the rules with one assumption, i.e. $Lw$, $Lc$,$Rw$, $L\land_1$, $L\land_2$, $R\lor_1$, $R\lor_2$, $N$ or $L$, just apply the same rule on IH($\mathcal{D}_0$).
 
-		\item ($Ex$) This implies $\Gamma = \bot$ and $\Delta = \{\}$. We have $\bot \Rightarrow$ by $Ex$.
+	In the $Cut$ case we can also do the same, applying $Cut$ on IH($\mathcal{D}_0$) and IH($\mathcal{D}_1$), since $Cut$ is a context-free rule.
 
-		\item[4-11.] ($Lw$),($Lc$),($Rw$),($L\land_1$),($L\land_2$),($R\lor_1$),($R\lor_2$),($L$) Just apply the same rule on IH($\mathcal{D}_0$). Notice that $I$ would be the same set we get from the induction hypothesis.
-		\setcounter{enumi}{11}
+	If $\mathcal{D}$ ends with $R\rightsquigarrow$ we can do the same only if there is at least one $\nabla$ on $A$ in the left side of the sequent that we get from IH. Otherwise we can just add it with $L$ so we can then apply $R\rightsquigarrow$.
 
-		\item ($N$) Same as the previous cases, except that $I = \{ (a + 1 , b) : (a , b) \in I_{IH(\mathcal{D}_0)} \}$, where $I_{IH(\mathcal{D}_0)}$ is the set from the induction hypothesis.
+	For the context-sensitive rules with two assumptions, i.e. $R\land$, $L\lor$, and $L\rightsquigarrow$ we must first equalize the number of $\nabla$'s on $A$ in the left side of the sequents that we get from IH, then we can apply the same rule.
 
-		\item ($Cut$) Just apply $Cut$ on IH($\mathcal{D}_0$) and IH($\mathcal{D}_1$). Notice that $I = I_{IH(\mathcal{D}_0)} \cup I_{IH(\mathcal{D}_1)}$.
-
-		\item[14-16.] ($R\land$),($L\lor$),($L\rightsquigarrow$) Same as the $Cut$ case, except that before applying the corresponding rule to IH($\mathcal{D}_0$) and IH($\mathcal{D}_1$), we must first equalize their contexts using enough applications of $Lw$, to $\{ \nabla^a \Box^b A \}_{(a,b) \in I_{IH(\mathcal{D}_0)} \cup I_{IH(\mathcal{D}_1)}}$.
-		\setcounter{enumi}{16}
-
-		\item ($R\rightsquigarrow$) If $a = 0$ for some $(a,b) \in I_{IH(\mathcal{D}_0)}$, then $R\rightsquigarrow$ is not applicable on IH($\mathcal{D}_0$). We have $\nabla \Box^{b+1} A \Rightarrow \Box^b A$ from lemma \ref{lem:l-nabla-box}. For all such $(0,b) \in I_{IH(\mathcal{D}_0)}$ we first $Cut$ this into IH($\mathcal{D}_0$), so that the context has at least one $\nabla$ before applying $R\rightsquigarrow$. Notice that $I = \{ (a, b) : (a+1, b) \in I \} \cup$ $\{ (0, b+1) : (0, b) \in I \}$.
-	\end{enumerate}
 \end{proof}
 
 \begin{thm}[Deductive Interpolation for $\mathbf{LDL}_\rightsquigarrow(L)$] For any $\Delta'$ and $\Delta$, if $\Rightarrow \Delta' \vdash \Rightarrow \Delta$ then there exists a formula $C$ such that
@@ -1305,101 +1245,95 @@ Throughout this section, when we use plain $\vdash$ symbol without specifying th
 	\end{enumerate}
 \end{thm}
 \begin{proof}
-	In case $\Delta' = \{\}$, just take $C = \bot$. Now let's assume $\Delta' = A$ for some formula $A$. We will prove the following stronger version: For any $\Gamma_1$, $\Gamma_2$ and $\Delta$, if $\vdash \Gamma_1 , \Gamma_2 \Rightarrow \Delta$ then there is a formula $C$ and a finite multi-set of formulas $\Pi$, consisting of members of $\Gamma_1$ with some $\nabla$ and $\Box$, such that
+	In case $\Delta' = \{\}$, just take $C = \bot$. Now let's assume $\Delta' = A$ for some formula $A$. We will prove the following stronger version: For any $\Gamma_1$, $\Gamma_2$ and $\Delta$, if $\vdash \Gamma_1 , \Gamma_2 \Rightarrow \Delta$ then there is a formula $C$ and a natural number $m$ such that
 	\begin{enumerate}[label=(\arabic**)]
-		\item $\vdash \Pi \Rightarrow C$,
-		\item $\vdash \Gamma_2 , C \Rightarrow \Delta$,
+		\item $\vdash \nabla^{m_1} \Gamma_1 \Rightarrow C$,
+		\item $\vdash \nabla^{m_2} \Gamma_2 , C \Rightarrow \Delta$,
 		\item $P(C) \subseteq P(\Gamma_1) \cap P(\Gamma_2,\Delta)$, and
-		\item for any $B$ in $\Pi$ there is $A$ in $\Gamma_1$ such that $B = \nabla^{n_0} \Box^{n_1} \dots \nabla^{n_{k-1}} \Box^{n_k} A$ for some finite sequence of natural numbers $n_1,...,n_k$.
 	\end{enumerate}
-	Using the notation defined above we will omit (4*) and replace $\Pi$ in (1*) by $N(\Gamma_1, f)$ for some $f$.
 
-	Then to prove the original statement, first convert the proof-tree for $\Rightarrow A \vdash \Rightarrow \Delta$ to a cut-free proof-tree for $\{\nabla^a\Box^b A : (a,b) \in I\} \Rightarrow \Delta$ in $\mathbf{LDL}^*_\rightsquigarrow(L)$ using lemma \ref{lem:vdash} and theorems \ref{thm:ldls-cut-elim} and \ref{thm:ldl-eq-ldls}, and then taking $\Gamma_1 = \{\nabla^a \Box^b A : (a,b) \in I \}$, $\Gamma_2 = \{\}$ proves the original statement of the theorem. Notice that we can again translate (2*) and (3*) to (2) and (3) respectively, using \ref{lem:vdash}, \ref{thm:ldls-cut-elim} and \ref{thm:ldl-eq-ldls}. To convert (1*) $\vdash \{\nabla^a \Box^b \nabla^c \Box^d A : (a,b) \in I , (c,d) \in J \} \Rightarrow C$ to to (1) $\Rightarrow A \vdash C$ we must construct $\Rightarrow \nabla^a \Box^b \nabla^c \Box^d A$ for each $(a,b)$ and $(c,d)$ in $I$ and $J$ from $\Rightarrow A$, in a manner similar to the proof of \ref{lem:vdash}, and then cut them to get $\Rightarrow \Delta$.
-
-	Now back to the stronger form, using induction on the length of $\mathcal{D}$, we can assume for any $\Gamma_1'$, $\Gamma_2'$, $\Delta'$ and $\mathcal{D}'$, where $\mathcal{D}'$ is a $\mathbf{LDL}^*_\rightsquigarrow(L)$ proof for $\Gamma_1' , \Gamma_2' \Rightarrow \Delta'$ and $h(\mathcal{D}')<h(\mathcal{D})$, there is a formula $C_{\langle \Gamma_1';\Gamma_2';\Delta' \rangle}$, more concisely $C'$, and a finite multi-set of formulas $\Pi'$ ($= N(\Gamma_1', f)$ for some proper f) such that
-	\begin{enumerate}[label=(\arabic*')]
-		\item $\vdash \Pi' \Rightarrow C'$,
-		\item $\vdash \Gamma_2' , C' \Rightarrow \Delta'$,
-		\item $P(C') \subseteq P(\Gamma_1') \cap P(\Gamma_2',\Delta')$, and
-		\item for any $B$ in $\Pi'$ there is $A$ in $\Gamma_1'$ such that $B = \nabla^{n_0} \Box^{n_1} \dots \nabla^{n_{k-1}} \Box^{n_k} A$ for some finite sequence of natural numbers $n_1,...,n_k$.
-	\end{enumerate}
-	Now construct proper $C$ and $\Pi$ for different cases for the last rule of $\mathcal{D}$. In each case, the immediate sub-trees of $\mathcal{D}$ are denoted by $\mathcal{D}_i (i \in \{0,1\})$.
+	Then, to prove the original version, first convert the proof-tree for $\Rightarrow A \vdash \Rightarrow \Delta$ to $\nabla^r A \Rightarrow \Delta$ for some $r$ using lemma \ref{lem:vdash} and take $\Gamma_1 = \{\nabla^r A \}$ and $\Gamma_2 = \{\}$. Notice that we can translate $(1^*)$ and $(2^*)$ back to $(\mathit{1})$ and $(\mathit{2})$ respectively, using the other direction of lemma \ref{lem:vdash}.
+	
+	By theorem \ref{thm:ldls-cut-elim}, we can assume that $\Gamma_1, \Gamma_2 \Rightarrow \Delta$ has a cut-free proof-tree like $\mathcal{D}$. Now using induction on the length of $\mathcal{D}$, we can assume that the stronger statement holds for the assumption(s) of $\mathcal{D}$ like $\Gamma_1', \Gamma_2' \Rightarrow \Delta'$ by an interpolant that we call $C_{\langle\Gamma_1';\Gamma_2';\Delta'\rangle}$.
+	Now construct proper $C$ for different cases for the last rule of $\mathcal{D}$. In each case, the immediate sub-trees of $\mathcal{D}$ are denoted by $\mathcal{D}_i (i \in \{0,1\})$.
 	\begin{enumerate}
-		\item ($Id$) We have $\Gamma_1,\Gamma_2 = \Delta = A$.
+		\item ($Id$) We have $\Gamma_1,\Gamma_2 = \Delta = A$ for some formula $A$.
 		\begin{enumerate}
-			\item If $\Gamma_1 = \{\}$ and $\Gamma_2 = A$, then let $C = \top$. So we have $\Rightarrow \top$ by $Ta$ and $A , \top \Rightarrow A$ by $Id$ and $Lw$.
+			\item If $\Gamma_1 = \{\}$ and $\Gamma_2 = A$, then take $C = \top$. So we have $\Rightarrow \top$ by $Ta$ and $A , \top \Rightarrow A$ by $Id$ and $Lw$.
 
-			\item If $\Gamma_1 = A$ and $\Gamma_2 = \{\}$ then let $C = A$. So we have $A \Rightarrow A$ by $Id$.
+			\item If $\Gamma_1 = A$ and $\Gamma_2 = \{\}$, take $C = A$, and we have $A \Rightarrow A$ by $Id$.
 		\end{enumerate}
 		\item ($Ta$) Take $C = \top$.
 
 		\item ($Ex$) Take $C = \nabla^n \bot$.
 
-		\item ($Lw$) $\mathcal{D}$ proves $\Gamma_1' , \Gamma_2' , A \Rightarrow \Delta$ and has a sub-proof for $\Gamma_1' , \Gamma_2' \Rightarrow \Delta$, for which IH gives an interpolant $C_{\langle\Gamma_1';\Gamma_2';\Delta\rangle}$, a multi-set $\Pi$ consisting of formulas made up of some $\nabla$'s and $\Box$'s applied to members of $\Gamma_1'$, and proofs for $\Pi \Rightarrow C_{\langle\Gamma_1';\Gamma_2';\Delta\rangle}$ and $\Gamma_2 , C_{\langle\Gamma_1';\Gamma_2';\Delta\rangle} \Rightarrow \Delta$, such that $P(C_{\langle\Gamma_1';\Gamma_2';\Delta\rangle}) \subseteq$ $ P(\Gamma_1') \cap P(\Gamma_2' , \Delta)$.
+		\item ($Lw$) $\mathcal{D}$ proves $\Gamma_1' , \Gamma_2' , A \Rightarrow \Delta$ and has a sub-proof for $\Gamma_1' , \Gamma_2' \Rightarrow \Delta$, for which IH gives an interpolant $C_{\langle\Gamma_1';\Gamma_2';\Delta\rangle}$, natural numbers $m_1$ and $m_2$ and proofs for $\nabla^{m_1} \Gamma_1' \Rightarrow C_{\langle\Gamma_1';\Gamma_2';\Delta\rangle}$ and $\nabla^{m_2} \Gamma_2 , C_{\langle\Gamma_1';\Gamma_2';\Delta\rangle} \Rightarrow \Delta$, such that $P(C_{\langle\Gamma_1';\Gamma_2';\Delta\rangle}) \subseteq$ $ P(\Gamma_1') \cap P(\Gamma_2' , \Delta)$.
 		\begin{enumerate}
-			\item If $\Gamma_1 = \Gamma_1'$ and $\Gamma_2 = \Gamma_2' , A$, take $C = C_{\langle\Gamma_1';\Gamma_2';\Delta\rangle}$. Then we have  $\Pi \Rightarrow C$ by IH and $\Gamma_2 , A , C \Rightarrow \Delta$ by $Lw$ and IH. From IH, we also have $P(C) \subseteq P(\Gamma_1') \cap P(\Gamma_2' , A , \Delta)$, since $P$ takes ``$,$'' to ``$\cup$'', which distributes over ``$\cap$'' and is increasing with respect to ``$\subseteq$''.
+			\item If $\Gamma_1 = \Gamma_1'$ and $\Gamma_2 = \Gamma_2' , A$, take $C = C_{\langle\Gamma_1';\Gamma_2';\Delta\rangle}$. Then by IH we have  $\nabla^{m_1} \Gamma_1' \Rightarrow C$ and $\nabla^{m_2} \Gamma_2' , A , C \Rightarrow \Delta$ by $Lw$ and IH. From IH, we also have $P(C) \subseteq P(\Gamma_1') \cap P(\Gamma_2' , A , \Delta)$, since $P$ takes ``$,$'' to ``$\cup$'', which distributes over ``$\cap$'' and is increasing with respect to ``$\subseteq$''.
 
-			\item If $\Gamma_1 = \Gamma_1' , A$ and $\Gamma_2 = \Gamma_2'$, again take $C = C_{\langle\Gamma_1';\Gamma_2';\Delta\rangle}$. Then we have  $\Pi , A \Rightarrow C$ by $Lw$ and IH, and $\Gamma_2 , C \Rightarrow \Delta$ by IH. We also have $P(C) \subseteq P(\Gamma_1' , A) \cap P(\Gamma_2' , \Delta)$ by IH and argument similar to the previous case.
+			\item If $\Gamma_1 = \Gamma_1' , A$ and $\Gamma_2 = \Gamma_2'$, again take $C = C_{\langle\Gamma_1';\Gamma_2';\Delta\rangle}$. Then we have  $\nabla^{m_1} \Gamma_1' , A \Rightarrow C$ by $Lw$ and IH, and $\nabla^{m_2} \Gamma_2' , C \Rightarrow \Delta$ by IH. We also have $P(C) \subseteq P(\Gamma_1' , A) \cap P(\Gamma_2' , \Delta)$ by IH and argument similar to the previous case.
 		\end{enumerate}
 
 		\item ($Lc$) $\mathcal{D}$ proves $\Gamma_1' , \Gamma_2' , A \Rightarrow \Delta$ and has a sub-proof for $\Gamma_1' , \Gamma_2' , A , A \Rightarrow \Delta$.
 		\begin{enumerate}
-			\item If $\Gamma_1 = \Gamma_1'$ and $\Gamma_2 = \Gamma_2' , A$, take $C = C_{\langle\Gamma_1';\Gamma_2',A,A;\Delta\rangle}$. Then we have $\Pi \Rightarrow C$ by IH and $\Gamma_2' , A \Rightarrow \Delta$ by IH and $Lc$. From IH, we also have $P(C) \subseteq P(\Gamma_1') \cap P(\Gamma_2',A,\Delta)$, since $P(\Gamma,X) = P(\Gamma,X,X)$.
+			\item If $\Gamma_1 = \Gamma_1'$ and $\Gamma_2 = \Gamma_2' , A$, take $C = C_{\langle\Gamma_1';\Gamma_2',A,A;\Delta\rangle}$. Then we have $\nabla^{m_1} \Gamma_1' \Rightarrow C$ by IH and $\nabla^{m_2}\Gamma_2' , \nabla^{m_2} A , C \Rightarrow \Delta$ by IH and $Lc$. From IH, we can also deduce $P(C) \subseteq P(\Gamma_1') \cap P(\Gamma_2',A,\Delta)$ similarly.
 			
-			\item If $\Gamma_1 = \Gamma_1' , A$ and $\Gamma_2 = \Gamma_2'$, take $C = C_{\langle\Gamma_1',A,A;\Gamma_2';\Delta\rangle}$. Then we have $N(\Gamma_1',A,A,f) \Rightarrow C$ by IH (which is just $N(\Gamma_1',A,f')$ for some $f'$), and $\Gamma_2' \Rightarrow \Delta$ by IH. We also have $P(C) \subseteq P(\Gamma_1',A) \cap$ $P(\Gamma_2',\Delta)$ as justified before.
+			\item If $\Gamma_1 = \Gamma_1' , A$ and $\Gamma_2 = \Gamma_2'$, take $C = C_{\langle\Gamma_1',A,A;\Gamma_2';\Delta\rangle}$. Then we have $\nabla^{m_1} \Gamma_1', \nabla^{m_1} A \Rightarrow C$ by IH and $Lc$, and $\nabla^{m_2} \Gamma_2' , C \Rightarrow \Delta$ by IH. We also have $P(C) \subseteq P(\Gamma_1',A) \cap$ $P(\Gamma_2',\Delta)$ as justified before.
 		\end{enumerate}
 
 		\item[6,7.] ($L\land_i$, {\small$i \in \{1,2\}$}) $\mathcal{D}$ proves $\Gamma_1' , \Gamma_2' , \nabla^n (A_1 \land A_2) \Rightarrow \Delta$ and has a sub-proof for $\Gamma_1' , \Gamma_2' , \nabla^n A_i \Rightarrow \Delta$.
 		\begin{enumerate}
-			\item If $\Gamma_1 = \Gamma_1'$ and $\Gamma_2 = \Gamma_2' , \nabla^n (A_1 \land A_2)$, take $C = C_{\langle\Gamma_1';\Gamma_2',\nabla^n A_i;\Delta\rangle}$. Then we have $\Pi \Rightarrow C$ by IH and $\Gamma_2' , \nabla^n (A_1 \land A_2) \Rightarrow \Delta$ by IH and $L\land_i$. From IH, we also have $P(C) \subseteq$ $P(\Gamma_1')$ $\cap P(\Gamma_2',\nabla^n(A_1 \land A_2),\Delta)$, since $P(\nabla^n X) = P(X)$ and $P$ takes sub-formula ordering to ``$\subseteq$''.
+			\item If $\Gamma_1 = \Gamma_1'$ and $\Gamma_2 = \Gamma_2' , \nabla^n (A_1 \land A_2)$, take $C = C_{\langle\Gamma_1';\Gamma_2',\nabla^n A_i;\Delta\rangle}$. Then we have $\nabla^{m_1} \Gamma_1' \Rightarrow C$ by IH and $\nabla^{m_2} \Gamma_2' , \nabla^{n+m_2} (A_1 \land A_2), C \Rightarrow \Delta$ by IH and $L\land_i$. From IH, we also have $P(C) \subseteq$ $P(\Gamma_1') \cap P(\Gamma_2',\nabla^n(A_1 \land A_2),\Delta)$, since $P(\nabla^n X) = P(X)$ and $P$ takes sub-formula ordering to ``$\subseteq$''.
 			
-			\item If $\Gamma_1 = \Gamma_1' , \nabla^n (A_1 \land A_2)$ and $\Gamma_2 = \Gamma_2'$, take $C = C_{\langle\Gamma_1',\nabla^n A_i;\Gamma_2';\Delta\rangle}$. Then we have $N(\Gamma_1',\nabla^n A_i,f)$ $\Rightarrow C$ by IH. For any $a \in f(\nabla^n A_i)$, we have $(\nabla\Box)^a \nabla^n (A_1 \land A_2) \Rightarrow (\nabla\Box)^a \nabla^n A_i$ from lemmas \ref{lem:nabla-box-rule} and \ref{thm:ldl-eq-ldls}, from which we can get $N(\Gamma_1',\nabla^n (A_1 \land A_2),f') \Rightarrow C$ using $Cut$. Also from IH we have $\Gamma_2' \Rightarrow \Delta$. We also have $P(C) \subseteq P(\Gamma_1',\nabla^n (A_1 \land A_2))$ $\cap P(\Gamma_2',\Delta)$ as justified in the previous case.
+			\item If $\Gamma_1 = \Gamma_1' , \nabla^n (A_1 \land A_2)$ and $\Gamma_2 = \Gamma_2'$, take $C = C_{\langle\Gamma_1',\nabla^n A_i;\Gamma_2';\Delta\rangle}$. Then we have $\nabla^{m_1} \Gamma_1',\nabla^{n+m_1} (A_1 \wedge A_2) \Rightarrow C$ by IH and $L\wedge_i$. Also from IH we have $\nabla^{m_2} \Gamma_2', C \Rightarrow \Delta$. We also have $P(C) \subseteq P(\Gamma_1',\nabla^n (A_1 \land A_2))$ $\cap P(\Gamma_2',\Delta)$ as justified in the previous case.
 		\end{enumerate}
 		\setcounter{enumi}{7}
 
-		\item ($R\land$) $\mathcal{D}$ proves $\Gamma_1 , \Gamma_2 \Rightarrow A \land B$ and has sub-proofs for $\Gamma_1 , \Gamma_2 \Rightarrow A$ and $\Gamma_1 , \Gamma_2 \Rightarrow B$.\\
+		\item ($R\land$) $\mathcal{D}$ proves $\Gamma_1 , \Gamma_2 \Rightarrow A \land B$ and has sub-proofs for $\Gamma_1 , \Gamma_2 \Rightarrow A$ and $\Gamma_1 , \Gamma_2 \Rightarrow B$.
 		Let $C_1 = C_{\langle\Gamma_1;\Gamma_2;A\rangle}$ and $C_2 = C_{\langle\Gamma_1;\Gamma_2;B\rangle}$, and then take $C = C_1 \land C_2$.
-		We have $N(\Gamma_1,f_1) \Rightarrow C_1$ and $N(\Gamma_1,f_2) \Rightarrow C_2$, both from IH, to which we apply proper $Lw$ and equalize their contexts to get $N(\Gamma_1,f) \Rightarrow C_1$ and $N(\Gamma_1,f) \Rightarrow C_2$ for some $f$. Then by $R\land$ we have $N(\Gamma_1,f) \Rightarrow C_1 \land C_2$.
-		We also have $\Gamma_2 , C_1 \Rightarrow A$ and $\Gamma_2 , C_2 \Rightarrow B$, again from IH.
-		We can then derive $\Gamma_2 , C_1 \land C_2 \Rightarrow A$ and $\Gamma_2 , C_1 \land C_2 \Rightarrow B$, respectively by $L\land_1$ and $L\land_2$, and finally  $\Gamma_2 , C_1 \land C_2 \Rightarrow A \land B$ by $R\land$.
-		We also have $P(C_1) \subseteq P(\Gamma_1) \cap P(\Gamma_2 , A)$ and $P(C_2) \subseteq P(\Gamma_1) \cap P(\Gamma_2 , B)$. So $P(C_1 , C_2) \subseteq P(\Gamma_1) \cap P(\Gamma_2 , A , B)$ as it was justified before, and then $P(C_1 \land C_2) \subseteq P(\Gamma_1) \cap P(\Gamma_2 , A \land B)$.
+		We have $\nabla^{m_1'} \Gamma_1 \Rightarrow C_1$ and $\nabla^{m_1''} \Gamma_1 \Rightarrow C_2$, both from IH, to which we apply proper number of $L$'s and equalize their contexts to be able to derive $\nabla^{m_1} \Gamma_1 \Rightarrow C_1 \wedge C_2$ by $R\wedge$ for some $m_1$.
+		We also have $\nabla^{m_2'} \Gamma_2 , C_1 \Rightarrow A$ and $\nabla^{m_2''} \Gamma_2 , C_2 \Rightarrow B$, again from IH.
+		We can then derive $\nabla^{m_2'} \Gamma_2 , C_1 \land C_2 \Rightarrow A$ and $\nabla^{m_2''} \Gamma_2 , C_1 \land C_2 \Rightarrow B$, respectively by $L\land_1$ and $L\land_2$, and finally  $\nabla^{m_2} \Gamma_2 , C_1 \land C_2 \Rightarrow A \land B$ by $L$ and $R\land$.
+		We also have $P(C_1) \subseteq P(\Gamma_1) \cap P(\Gamma_2 , A)$ and $P(C_2) \subseteq P(\Gamma_1) \cap P(\Gamma_2 , B)$. So $P(C_1 \land C_2) \subseteq P(\Gamma_1) \cap P(\Gamma_2 , A \land B)$ as it was justified before.
 
 		\item ($L\lor$) $\mathcal{D}$ proves $\Gamma_1' , \Gamma_2' , \nabla^n (A \lor B) \Rightarrow \Delta$ and has sub-proofs for $\Gamma_1' , \Gamma_2' , \nabla^n A \Rightarrow \Delta$ and $\Gamma_1' , \Gamma_2' ,$ $\nabla^n B \Rightarrow \Delta$.
 		\begin{enumerate}
 			\item If $\Gamma_1 = \Gamma_1'$ and $\Gamma_2 = \Gamma_2' , \nabla^n (A \lor B)$, let $C_1 = C_{\langle\Gamma_1';\Gamma_2',\nabla^n A;\Delta\rangle}$ and $C_2 = C_{\langle\Gamma_1';\Gamma_2',\nabla^n B;\Delta\rangle}$, and then take $C = C_1 \land C_2$.
-			We have $N(\Gamma_1',f_1) \Rightarrow C_1$ and $N(\Gamma_1',f_2) \Rightarrow C_2$ from IH, to which we apply $R\land$ after equalizing their contexts with $Lw$, to get $N(\Gamma_1',f) \Rightarrow C_1 \land C_2$ for some $f$.
-			From IH, by $L\land_1$ and $L\land_2$ we can derive $\Gamma_2' , \nabla^n A , C_1 \land C_2 \Rightarrow \Delta$ and $\Gamma_2' , \nabla^n B , C_1 \land C_2 \Rightarrow \Delta$ respectively, to which we apply $L\lor$ to get to $\Gamma_2' , \nabla^n (A \lor B) , C_1 \land C_2 \Rightarrow \Delta$.
+			We have $\nabla^{m_1'} \Gamma_1' \Rightarrow C_1$ and $\nabla^{m_1''} \Gamma_1' \Rightarrow C_2$ from IH, to which we apply $R\land$ after equalizing their contexts with $L$, to get $\nabla^{m_1} \Gamma_1' \Rightarrow C_1 \land C_2$ for some $m_1$.
+			From IH, by $L\land_1$ and $L\land_2$ we can derive $\nabla^{m_2'}\Gamma_2' , \nabla^n A , C_1 \land C_2 \Rightarrow \Delta$ and $\nabla^{m_2''} \Gamma_2' , \nabla^n B , C_1 \land C_2 \Rightarrow \Delta$ respectively, to which we apply $L$ and $L\lor$ to get to $\nabla^{m_2} \Gamma_2' , \nabla^n (A \lor B) , C_1 \land C_2 \Rightarrow \Delta$.
 			From IH, we also have $P(C_1) \subseteq P(\Gamma_1') \cap P(\Gamma_2' , \nabla^n A , \Delta)$ and $P(C_2) \subseteq P(\Gamma_1') \cap P(\Gamma_2' , \nabla^n B , \Delta)$. Just like the previous case, we can deduce that $P(C_1 \land C_2) \subseteq P(\Gamma_1') \cap P(\Gamma_2' , \nabla^n (A \land B) , \Delta)$.
 
 			\item If $\Gamma_1 = \Gamma_1' , \nabla^n (A \lor B)$ and $\Gamma_2 = \Gamma_2'$, let $C_1 = C_{\langle\Gamma_1',\nabla^n A;\Gamma_2';\Delta\rangle}$ and $C_2 = C_{\langle\Gamma_1',\nabla^n B;\Gamma_2';\Delta\rangle}$, and then take $C = C_1 \lor C_2$.
-			From IH, by $R\lor_1$ and $R\lor_2$ we can derive $N(\Gamma_1',\nabla^n A,f_1) \Rightarrow C_1 \lor C_2$ and $N(\Gamma_1',\nabla^n B,f_2) \Rightarrow C_1 \lor C_2$ respectively, to which we apply $L\vee$ to get to $N(\Gamma_1',\nabla^n (A \lor B),f) \Rightarrow C_1 \lor C_2$ for some $f$.
-			We have $\Gamma_2' , C_1 \lor C_2 \Rightarrow \Delta$ from IH and $L\lor$.
-			From IH, we also have $P(C_1) \subseteq P(\Gamma_1' , \nabla^n A) \cap$ $P(\Gamma_2' , \Delta)$ and $P(C_2) \subseteq P(\Gamma_1' , \nabla^n B) \cap P(\Gamma_2' , \Delta)$. Just like the previous case, we can deduce that $P(C_1 \lor C_2) \subseteq P(\Gamma_1' , \nabla^n (A \land B)) \cap P(\Gamma_2' , \Delta)$.
+			From IH, by $R\lor_1$ and $R\lor_2$ we can derive $\nabla^{m_1'} \Gamma_1',\nabla^{n+m_1'} A \Rightarrow C_1 \lor C_2$ and $\nabla^{m_1''} \Gamma_1', \nabla^{n+m_1''} B \Rightarrow C_1 \lor C_2$ respectively, to which we apply $L$ and $L\vee$ to get to $\nabla^{m_1} \Gamma_1', \nabla^{n+m_1} (A \lor B) \Rightarrow C_1 \lor C_2$ for some $m_1$.
+			From IH, we also have $\nabla^{m_2} \Gamma_2' , C_1 \lor C_2 \Rightarrow \Delta$ with $L$ and $L\lor$.
+			Also $P(C_1) \subseteq P(\Gamma_1' , \nabla^n A) \cap$ $P(\Gamma_2' , \Delta)$ and $P(C_2) \subseteq P(\Gamma_1' , \nabla^n B) \cap P(\Gamma_2' , \Delta)$. Just like the previous case, we can deduce that $P(C_1 \lor C_2) \subseteq P(\Gamma_1' , \nabla^n (A \land B)) \cap P(\Gamma_2' , \Delta)$.
 		\end{enumerate}
 
-		\item[10,11.] ($R\lor_i$, {\small$i \in \{1,2\}$}) $\mathcal{D}$ proves $\Gamma_1 , \Gamma_2 \Rightarrow A_1 \lor A_2$ and has a sub-proof for $\Gamma_1 , \Gamma_2 \Rightarrow A_i$. Take $C = C_{\langle\Gamma_1;\Gamma_2;A_i\rangle}$. Then we have $N(\Gamma_1,f) \Rightarrow C$ from IH and $\Gamma_2 , C \Rightarrow A_1 \lor A_2$ from IH and $R\lor_i$.
+		\item[10,11.] ($R\lor_i$, {\small$i \in \{1,2\}$}) $\mathcal{D}$ proves $\Gamma_1 , \Gamma_2 \Rightarrow A_1 \lor A_2$ and has a sub-proof for $\Gamma_1 , \Gamma_2 \Rightarrow A_i$. Take $C = C_{\langle\Gamma_1;\Gamma_2;A_i\rangle}$. Then we have $\nabla^m \Gamma_1 \Rightarrow C$ from IH/ and $\nabla^{m_2} \Gamma_2 , C \Rightarrow A_1 \lor A_2$ from IH and $R\lor_i$.
 		From IH, we also have $P(C) \subseteq P(\Gamma_1) \cap P(\Gamma_2 , A_1 \lor A_2)$, as was justified before.
 		\setcounter{enumi}{11}
 
 		\item ($L\rightsquigarrow$) $\mathcal{D}$ proves $\Gamma_1' , \Gamma_2' , \nabla^{n+1} (A \rightsquigarrow B) \Rightarrow \Delta$ and has sub-proofs for $\Gamma_1' , \Gamma_2' \Rightarrow \nabla^n A$ and $\Gamma_1' , \Gamma_2' , \nabla^n B \Rightarrow \Delta$.
 		\begin{enumerate}
-			\item If $\Gamma_1 = \Gamma_1'$ and $\Gamma_2 = \Gamma_2' , \nabla^{n+1} (A \rightsquigarrow B)$, let $C_1 = C_{\langle\Gamma_1';\Gamma_2';\nabla^n A\rangle}$ and $C_2 = C_{\langle\Gamma_1';\Gamma_2',\nabla^n B;\Delta\rangle}$, and take $C = C_1 \land C_2$.
-			We have $N(\Gamma_1',f) \Rightarrow C_1 \land C_2$ from IH and $R\land$.
-			From IH, by $L\land_1$ and $L\land_2$ we can derive $\Gamma_2' , C_1 \land C_2 \Rightarrow \nabla^n A$ and $\Gamma_2' , \nabla^n B , C_1 \land C_2 \Rightarrow \Delta$ respectively, to which we apply $L\rightsquigarrow$ to get to $\Gamma_2' , \nabla^{n+1} (A \rightsquigarrow B) , C_1 \land C_2 \Rightarrow \Delta$.
-			From IH, we also have $P(C_1) \subseteq P(\Gamma_1') \cap$ $P(\Gamma_2' , \nabla^n A)$ and $P(C_2) \subseteq P(\Gamma_1') \cap P(\Gamma_2' , \nabla^n B , \Delta)$. This implies $P(C_1 \land C_2) \subseteq P(\Gamma_1') \cap P(\Gamma_2' , \nabla^{n+1} (A \rightsquigarrow B) , \Delta)$.
+			\item If $\Gamma_1 = \Gamma_1'$ and $\Gamma_2 = \Gamma_2' , \nabla^{n+1} (A \rightsquigarrow B)$, let $C_1 = C_{\langle\Gamma_1';\Gamma_2';\nabla^n A\rangle}$ and $C_2 = C_{\langle\Gamma_1';\Gamma_2',\nabla^n B;\Delta\rangle}$.
+			We have $\nabla^{m_1} \Gamma_1' \Rightarrow C_1 \land C_2$ from IH and $R\land$.
+			From IH we can derive $\nabla^{m_2'} \Gamma_2' , C_1 \land C_2 \Rightarrow \nabla^n A$ and $\nabla^{m_2''} \Gamma_2' , \nabla^{n+m_2''} B , C_1 \land C_2 \Rightarrow \Delta$, by $L\land_1$ and $L\land_2$ respectively. Applying $N$ for $m_2''$ times on the former sequent, and also applying $L$ for $m_2''$ times on $\nabla^{m_2'} \Gamma_2'$ and $m_2''$ times on $C_1 \wedge C_2$ in the latter sequent, we would get $\nabla^{m_2'+m_2''} \Gamma_2' , \nabla^{m_2''} (C_1 \land C_2) \Rightarrow \nabla^{n+m_2''} A$ and $\nabla^{m_2'+m_2''} \Gamma_2' , \nabla^{n+m_2''} B , \nabla^{m_2''} (C_1 \land C_2) \Rightarrow \Delta$, on which we can apply $L\rightsquigarrow$ to derive $\nabla^{m_2'+m_2''} \Gamma_2' , \nabla^{n+m_2''+1} (A \rightsquigarrow B) , \nabla^{m_2''} (C_1 \land C_2) \Rightarrow \Delta$. So we will take $C = \nabla^{m_2''}(C_1 \wedge C_2)$.
+			From IH, we also have $P(C_1) \subseteq P(\Gamma_1') \cap$ $P(\Gamma_2' , \nabla^n A)$ and $P(C_2) \subseteq P(\Gamma_1') \cap P(\Gamma_2' , \nabla^n B , \Delta)$. This implies $P(\nabla^{m_2''}(C_1 \land C_2)‎) \subseteq P(\Gamma_1') \cap P(\Gamma_2' , \nabla^{n+1} (A \rightsquigarrow B) , \Delta)$.
 
-			\item If $\Gamma_1 = \Gamma_1' , \nabla^{n+1} (A \rightsquigarrow B)$ and $\Gamma_2 = \Gamma_2'$, let $C_1 = C_{\langle\Gamma_2';\Gamma_1';\nabla^n A\rangle}$ and $C_2 = C_{\langle\Gamma_1',\nabla^n B;\Gamma_2';\Delta\rangle}$, and take $C = \nabla (C_1 \rightsquigarrow C_2)$.
-			From IH we have $\Gamma_1' , C_1 \Rightarrow \nabla^n A$. Also from IH, with a $Lw$ to add $C_1$ to the left, we have $N(\Gamma_1',\nabla^n B,f_1) , C_1 \Rightarrow C_2$. By applying $L\rightsquigarrow$ we get $N(\Gamma_1,\nabla^{n+1}(A \rightsquigarrow B),f) , C_1 \Rightarrow C_2$ for some $f$. By lemma \ref{lem:l-nabla-box} and $Cut$ we can add a $\nabla\Box$ to all formulas in $N(\Gamma_1',\nabla^{n+1}(A \rightsquigarrow B),f)$, so we can move $C_1$ to the right by $R\rightsquigarrow$. With $N'$ we will have $N(\Gamma_1',\nabla^{n+1}(A \rightsquigarrow B),f') , \Rightarrow \nabla (C_1 \rightsquigarrow C_2)$ for some $f'$.
-			From IH we also have $N(\Gamma_2',f_2) \Rightarrow C_1$ and $\Gamma_2' , C_2 \Rightarrow \Delta$. With proper applications of $Lw$, we can equalize their contexts to $N(\Gamma_2',f_2) , \Gamma_2' \Rightarrow C_1$ and $N(\Gamma_2',f_2) , \Gamma_2' , C_2 \Rightarrow \Delta$, from which we then derive $N(\Gamma_2',f_2) , \Gamma_2' , \nabla (C_1 \rightsquigarrow C_2) \Rightarrow \Delta$ by an application of $L\rightsquigarrow$. We also have from IH $P(C_1) \subseteq P(\Gamma_2') \cap P(\Gamma_1' , \nabla^n A)$ and $P(C_2) \subseteq P(\Gamma_1' , \nabla^n B) \cap P(\Gamma_2' , \Delta)$. Then $P(\nabla (C_1 \rightsquigarrow C_2)) \subseteq P(\Gamma_1' , \nabla^{n+1} (A \rightsquigarrow B)) \cap P(\Gamma_2' , \Delta)$.
+			\item If $\Gamma_1 = \Gamma_1' , \nabla^{n+1} (A \rightsquigarrow B)$ and $\Gamma_2 = \Gamma_2'$, let $C_1 = C_{\langle\Gamma_2';\Gamma_1';\nabla^n A\rangle}$ and $C_2 = C_{\langle\Gamma_1',\nabla^n B;\Gamma_2';\Delta\rangle}$.
+			From IH we have $\nabla^{m_1'} \Gamma_1', \nabla^{m_1'} C_1 \Rightarrow \nabla^{n+m_1'} A$ and $\nabla^{m_1''} \Gamma_1',\nabla^{n+m_1''} B \Rightarrow C_2$. Like the previous case, we can first equalize their contexts using $N$, $L$ and $Lw$, and then apply a $L\rightsquigarrow$ to get $\nabla^{m_1} \Gamma_1',\nabla^{n+m_1+1}(A \rightsquigarrow B) , \nabla^{m_1} C_1 \Rightarrow C_2$ where $m_1 = m_1'+m_1''$. We can make sure that the context has at least one $\nabla$ using $L$, and then move $\nabla^{m_1} C_1$ to the right, using $R\rightsquigarrow$, and have $\nabla^{m_1} \Gamma_1',\nabla^{n+m_1+1}(A \rightsquigarrow B) \Rightarrow \nabla^{m_1} C_1 \rightsquigarrow C_2$. Finally, we can apply $N$ to also add a $\nabla$ to the right side.
+			From IH we also have $\nabla^{m_2'} \Gamma_2' \Rightarrow C_1$ and $\nabla^{m_2''} \Gamma_2' , C_2 \Rightarrow \Delta$. By propers applications of $N$ and $L$ turn these sequents to $\nabla^{m_1+m_2} \Gamma_2' \Rightarrow \nabla^{m_1} C_1$ and $\nabla^{m_1+m_2} \Gamma_2' , C_2 \Rightarrow \Delta$, where $m_2 = m_2'+m_2''$. Then by $L\rightsquigarrow$ we have $\nabla^{m_1+m_2} \Gamma_2' , \nabla (\nabla^{m_1} C_1 \rightsquigarrow C_2) \Rightarrow \Delta$. So we can take $C = \nabla (\nabla^{m_1} C_1 \rightsquigarrow C_2)$. We also have from IH $P(C_1) \subseteq P(\Gamma_2') \cap P(\Gamma_1' , \nabla^n A)$ and $P(C_2) \subseteq P(\Gamma_1' , \nabla^n B) \cap P(\Gamma_2' , \Delta)$. Then $P(\nabla (C_1 \rightsquigarrow C_2)) \subseteq P(\Gamma_1' , \nabla^{n+1} (A \rightsquigarrow B)) \cap P(\Gamma_2' , \Delta)$.
 		\end{enumerate}
 
-		\item ($N'$) $\mathcal{D}$ proves $\nabla \Gamma_1 , \nabla \Gamma_2 \Rightarrow \nabla \Delta$ and has a sub-proof for $\Gamma_1 , \Gamma_2 \Rightarrow \Delta$. Just take $C = C(\Gamma_1;\Gamma_2;\Delta)$ and apply $N'$ on the sequents from IH. todo The variable condition is also trivial from IH.
+		\item ($R\rightsquigarrow$) $\mathcal{D}$ proves $\Gamma_1, \Gamma_2 \Rightarrow A \rightsquigarrow B$ and has a sub-proof for $\nabla \Gamma_1, \nabla \Gamma_2, A \Rightarrow B$. Take $C = C_{\langle\nabla\Gamma_1;\nabla\Gamma_2,A;B\rangle}$. We would have $\nabla^{m_1+1}\Gamma_1 \Rightarrow C$ from IH and $\nabla^{m_2}\Gamma_2, C \Rightarrow A \rightsquigarrow B$ from IH, $L$ and $R\rightsquigarrow$. From IH, we also have $P(C) \subseteq P(\nabla\Gamma_1) \cap P(\nabla\Gamma_2,A,B)$. It is easy to see that this implies $P(C) \subseteq P(\Gamma_1) \cap P(\Gamma_2,A \rightsquigarrow B)$.
+
+		\item ($N$) $\mathcal{D}$ proves $\nabla \Gamma_1 , \nabla \Gamma_2 \Rightarrow \nabla \Delta$ and has a sub-proof for $\Gamma_1 , \Gamma_2 \Rightarrow \Delta$. Just take $C = \nabla C(\Gamma_1;\Gamma_2;\Delta)$ and apply $N$ on the sequents from IH. The variable condition is also trivial from IH.
 		
 		\item ($L$) $\mathcal{D}$ proves $\Gamma_1' , \Gamma_2' , \nabla A \Rightarrow \Delta$ and has a sub-proof for $\Gamma_1' , \Gamma_2' , A \Rightarrow \Delta$.
 		\begin{enumerate}
-			\item If $\Gamma_1 = \Gamma_1'$ and $\Gamma_2 = \Gamma_2' , A$, take $C = C_{\langle\Gamma_1';\Gamma_2',A;\Delta\rangle}$. Then we have $\Pi \Rightarrow C$ by IH and $\Gamma_2' , \nabla A \Rightarrow \Delta$ by IH and $L$. From IH, we can also deduce $P(C) \subseteq P(\Gamma_1') \cap P(\Gamma_2',\nabla A,\Delta)$, since $\nabla$ does not introduce new propositional variables.
+			\item If $\Gamma_1 = \Gamma_1'$ and $\Gamma_2 = \Gamma_2' , A$, take $C = C_{\langle\Gamma_1';\Gamma_2',A;\Delta\rangle}$. Then we have $\nabla^{m_1} \Gamma_1' \Rightarrow C$ by IH and $\nabla^{m_2}\Gamma_2' , \nabla A \Rightarrow \Delta$ by IH and $L$. From IH, we can also deduce $P(C) \subseteq P(\Gamma_1') \cap P(\Gamma_2',\nabla A,\Delta)$, since $\nabla$ does not introduce new propositional variables.
 			
-			\item If $\Gamma_1 = \Gamma_1' , A$ and $\Gamma_2 = \Gamma_2'$, take $C = C_{\langle\Gamma_1',A,A;\Gamma_2';\Delta\rangle}$. Then we have $N(\Gamma_1',A,A,f) \Rightarrow C$ by IH (which is just $N(\Gamma_1',A,f')$ for some $f'$), and $\Gamma_2' \Rightarrow \Delta$ by IH. We also have $P(C) \subseteq P(\Gamma_1',A) \cap$ $P(\Gamma_2',\Delta)$ as justified before.
+			\item If $\Gamma_1 = \Gamma_1' , A$ and $\Gamma_2 = \Gamma_2'$, take $C = C_{\langle\Gamma_1',A;\Gamma_2';\Delta\rangle}$. Then we have $\nabla^{m_1}\Gamma_1', \nabla^{m_1+1}A \Rightarrow C$ by IH and $L$, and $\nabla^{m_2}\Gamma_2' \Rightarrow \Delta$ by IH. We also have $P(C) \subseteq P(\Gamma_1',A) \cap$ $P(\Gamma_2',\Delta)$ as justified before.
 		\end{enumerate}
 	\end{enumerate}
 \end{proof}
