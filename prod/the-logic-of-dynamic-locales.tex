@@ -377,7 +377,7 @@ Write the easier part. The harder part must be essentially to completeness theor
 \subsection{Sequent-style Systems}
 In this section we will introduce two slightly modified systems $\mathbf{LDL}^*$ and $\mathbf{LDL}_{\rightsquigarrow}^*$, equivalent to $\mathbf{LDL}$ and $\mathbf{LDL}_{\rightsquigarrow}$ respectively. Their advantage is that they are, as it will be shown, cut-free.
 
-Define $\mathbf{LDL}^*$ on the language $\mathcal{L}$, as the logic of the sequent-style system define by the same rules of $\mathbf{LDL}$, except that the rules $Ex$, $L\wedge_1$, $L\wedge_2$, $L\vee$, $L\rightarrow$, $L\rightsquigarrow$ and $N$ are replaced by the following generalized rules respectively.
+Define $\mathbf{LDL}^*$ on the language $\mathcal{L}$, as the logic of the sequent-style system defined by the same rules as $\mathbf{LDL}$, except that the rules $Ex$, $L\wedge_1$, $L\wedge_2$, $L\vee$, $L\rightarrow$, $L\rightsquigarrow$ and $N$ are replaced by the following generalized rules respectively.
 
 	 \begin{center}
 		\begin{tabular}{c}
@@ -446,13 +446,13 @@ Define $\mathbf{LDL}^*$ on the language $\mathcal{L}$, as the logic of the seque
 	 \end{tabular}
 	 \end{center}
 
-Similarly for $\mathbf{LDL}_{\rightsquigarrow}$, the equivalent but cut-free logic $\mathbf{LDL}^*_{\rightsquigarrow}$ is defined by dropping the implication rules from $\mathbf{LDL}^*$. For both $\mathbf{LDL}^*$ and $\mathbf{LDL}_\rightsquigarrow$ we can also define extensions by adding any of the rules $L$, $R$, $Fa$ or $Fu$.
+Similarly for $\mathbf{LDL}_{\rightsquigarrow}$, the equivalent but cut-free calculus $\mathbf{LDL}^*_{\rightsquigarrow}$ is defined by dropping the implication rules from $\mathbf{LDL}^*$. For both $\mathbf{LDL}^*$ and $\mathbf{LDL}^*_\rightsquigarrow$ we can also define extensions by adding any of the rules $L$, $R$, $Fa$ or $Fu$.
 
 The following lemmas are used in their subsequent theorem, which shows that the cut-free systems have exactly the same power as their original counterparts.
-Observe that the the proof-trees in lemmas \ref{lem:l-nabla-dist-and}-\ref{lem:l-nabla-dist-si} are constructible in $\mathbf{LDL}_\rightsquigarrow$ or any of its extensions (including $\mathbf{LDL}$ and its extensions). So we denote any of these systems by a placeholder $\mathbf{LDL}_\rightsquigarrow(\star)$ for the sake of brevity. In lemma \ref{lem:l-nabla-dist-imp}, the same goes for $\mathbf{LDL}$ and its extensions, which are denoted by $\mathbf{LDL}(\star)$. We will also use the same notation later to refer to these systems for short. But notice that wherever there are more than one of these notations in a statement, like in \ref{thm:ldl-eq-ldls}-\ref{thm:ldls-cut-elim}, we are talking about the same system everywhere. So treat $\star$ as some variable ranging over the set $\{L\rightarrow, R\rightarrow, L, R, Fa, Fu\}$ (taking $\mathbf{LDL}$ as $\mathbf{LDL}_\rightsquigarrow(L\rightarrow,R\rightarrow)$).
+Observe that the proof-trees in Lemmas \ref{lem:l-nabla-dist-and}-\ref{lem:l-nabla-dist-si} are constructible in $\mathbf{LDL}_\rightsquigarrow$ or any of its extensions (including $\mathbf{LDL}$ and its extensions). So we denote any of these systems by a placeholder $\mathbf{LDL}_\rightsquigarrow(\star)$ for the sake of brevity. In Lemma \ref{lem:l-nabla-dist-imp}, the same goes for $\mathbf{LDL}$ and its extensions, which are denoted by $\mathbf{LDL}(\star)$. We will also use the same notation later to refer to these systems for short. But notice that wherever there are more than one of these notations in a statement, like in \ref{thm:ldl-eq-ldls}-\ref{thm:ldls-cut-elim}, we are talking about the same system everywhere. So treat $\star$ as some variable ranging over the set $\{L\rightarrow, R\rightarrow, L, R, Fa, Fu\}$ (taking $\mathbf{LDL}$ as $\mathbf{LDL}_\rightsquigarrow(L\rightarrow,R\rightarrow)$).
 
 
-\begin{lem}\label{lem:l-nabla-dist-and} For all $n > 0$, $\mathbf{LDL}_\rightsquigarrow(\star) \vdash \nabla^n (A \land B) \Rightarrow \nabla^n A \land \nabla^n B$.
+\begin{lem}\label{lem:l-nabla-dist-and} For all $n \ge 0$, $\mathbf{LDL}_\rightsquigarrow(\star) \vdash \nabla^n (A \land B) \Rightarrow \nabla^n A \land \nabla^n B$.
 \end{lem}
 \begin{proof}\quad
 	\begin{prooftree}
@@ -512,7 +512,7 @@ Observe that the the proof-trees in lemmas \ref{lem:l-nabla-dist-and}-\ref{lem:l
 
 \begin{lem}\label{lem:l-nabla-dist-or} $\mathbf{LDL}_\rightsquigarrow(\star) \vdash \nabla (A \lor B) \Rightarrow \nabla A \lor \nabla B$.
 \end{lem}
-\begin{proof} Let $\mathcal{D}$ be a proof-tree we can construct for $\nabla (\top \rightsquigarrow (\nabla A \lor \nabla B)) \Rightarrow \nabla A \lor \nabla B$ from lemma \ref{lem:l-nabla-box}.
+\begin{proof} Let $\mathcal{D}$ be a proof-tree we can construct for $\nabla (\top \rightsquigarrow (\nabla A \lor \nabla B)) \Rightarrow \nabla A \lor \nabla B$ from Lemma \ref{lem:l-nabla-box}.
 
 	\begin{prooftree}
 		\AXC{}
@@ -547,9 +547,9 @@ Observe that the the proof-trees in lemmas \ref{lem:l-nabla-dist-and}-\ref{lem:l
 	\end{prooftree}
 \end{proof}
 
-\begin{lem}\label{lem:l-nabla-n-dist-or} For all $n > 0$, $\mathbf{LDL}_\rightsquigarrow(\star) \vdash \nabla^n (A \lor B) \Rightarrow \nabla^n A \lor \nabla^n B$.
+\begin{lem}\label{lem:l-nabla-n-dist-or} For all $n \ge 0$, $\mathbf{LDL}_\rightsquigarrow(\star) \vdash \nabla^n (A \lor B) \Rightarrow \nabla^n A \lor \nabla^n B$.
 \end{lem}
-\begin{proof} Let $\mathcal{D}_1$ be the proof-tree of lemma \ref{lem:l-nabla-dist-or}, which proves the case for $n = 1$. For any $n > 1$ we have
+\begin{proof} The proof is trivial when $n = 0$. Let $\mathcal{D}_1$ be the proof-tree of Lemma \ref{lem:l-nabla-dist-or}, which proves the case for $n = 1$. For any $n > 1$ we have
 
 	\begin{prooftree}
 		\AXC{$\mathcal{D}_{n-1}$}
@@ -569,7 +569,7 @@ Observe that the the proof-trees in lemmas \ref{lem:l-nabla-dist-and}-\ref{lem:l
 
 \begin{lem}\label{lem:l-nabla-bot} $\mathbf{LDL}_\rightsquigarrow(\star) \vdash \nabla \bot \Rightarrow \bot$.
 \end{lem}
-\begin{proof} Let $\mathcal{D}$ be a proof-tree for $\nabla (\top \rightsquigarrow \bot) \Rightarrow \bot$ which we have by lemma \ref{lem:l-nabla-box}.
+\begin{proof} Let $\mathcal{D}$ be a proof-tree for $\nabla (\top \rightsquigarrow \bot) \Rightarrow \bot$ which we have by Lemma \ref{lem:l-nabla-box}.
 	\begin{prooftree}
 		\AXC{}
 		\RightLabel{$Ex$}
@@ -588,7 +588,7 @@ Observe that the the proof-trees in lemmas \ref{lem:l-nabla-dist-and}-\ref{lem:l
 
 \begin{lem}\label{lem:l-nabla-n-bot} For $n > 0$, $\mathbf{LDL}_\rightsquigarrow(\star) \vdash \nabla^n \bot \Rightarrow \bot$.
 \end{lem}
-\begin{proof} We will prove a stronger version: For $n \geq m > 0$, $\mathbf{LDL} \vdash \nabla^n \bot \Rightarrow \nabla^{n-m} \bot$. Let $\mathcal{D}_1$ be the proof-tree of lemma \ref{lem:l-nabla-bot} which handles $n = m = 1$. Using induction om $m$, and denoting by IH the proof-tree for $\nabla^n \bot \Rightarrow \nabla^{n-(m-1)} \bot$ from the induction hypothesis, we have for $n > 1$
+\begin{proof} We will prove a stronger version: For $n \geq m > 0$, $\mathbf{LDL} \vdash \nabla^n \bot \Rightarrow \nabla^{n-m} \bot$. Let $\mathcal{D}_1$ be the proof-tree of Lemma \ref{lem:l-nabla-bot} which handles $n = m = 1$. Using induction on $m$, and denoting the proof-tree for $\nabla^n \bot \Rightarrow \nabla^{n-(m-1)} \bot$ from the induction hypothesis by IH, we have for $n > 1$
 	\begin{prooftree}
 		\AXC{IH}
 		\noLine
@@ -605,7 +605,7 @@ Observe that the the proof-trees in lemmas \ref{lem:l-nabla-dist-and}-\ref{lem:l
 	\end{prooftree}
 \end{proof}
 
-\begin{lem}\label{lem:l-nabla-dist-si} For any $n > 0$, $\mathbf{LDL}_{\rightsquigarrow}(\star) \vdash \nabla^n (A \rightsquigarrow B) \Rightarrow \nabla^n A \rightsquigarrow \nabla^n B$.
+\begin{lem}\label{lem:l-nabla-dist-si} For any $n \ge 0$, $\mathbf{LDL}_{\rightsquigarrow}(\star) \vdash \nabla^n (A \rightsquigarrow B) \Rightarrow \nabla^n A \rightsquigarrow \nabla^n B$.
 \end{lem}
 \begin{proof}\quad
 	\begin{prooftree}
@@ -629,7 +629,7 @@ Observe that the the proof-trees in lemmas \ref{lem:l-nabla-dist-and}-\ref{lem:l
 \end{proof}
 
 
-\begin{lem}\label{lem:l-nabla-dist-imp} For any $n > 0$, $\mathbf{LDL}(\star) \vdash \nabla^n (A \rightarrow B) \Rightarrow \nabla^n A \rightarrow \nabla^n B$.
+\begin{lem}\label{lem:l-nabla-dist-imp} For any $n \ge 0$, $\mathbf{LDL}(\star) \vdash \nabla^n (A \rightarrow B) \Rightarrow \nabla^n A \rightarrow \nabla^n B$.
 \end{lem}
 \begin{proof}\quad
 	\begin{prooftree}
@@ -663,13 +663,13 @@ The theorem below shows that the original systems (and their extensions) deduce 
 	One direction easily follows from the fact that all rules of $\mathbf{LDL}_\rightsquigarrow(\star)$ are just instances of $\mathbf{LDL}_\rightsquigarrow^*(\star)$'s rules.
 	For the other direction, we will use case analysis for the last rule in the proof-tree of $\Gamma \Rightarrow \Delta$ in $\mathbf{LDL}_\rightsquigarrow^*(\star)$, which we call $\mathcal{D}$, and construct a proof-tree for it in $\mathbf{LDL}_\rightsquigarrow(\star)$ in each case.
 	
-	First observe that $Id$ and $Ta$ are present in $\mathbf{LDL}_\rightsquigarrow(\star)$ and lemma \ref{lem:l-nabla-n-bot} handles the $Ex$ case.
+	First, observe that $Id$ and $Ta$ are present in $\mathbf{LDL}_\rightsquigarrow(\star)$ and Lemma \ref{lem:l-nabla-n-bot} handles the $Ex$ case.
 	For the other rules, use induction on the length of $\mathcal{D}$; the induction hypothesis will provide a proof-tree in $\mathbf{LDL}_\rightsquigarrow(\star)$ for the sub-tree(s) of $\mathcal{D}$.
 	For the rules that are common between two systems (or their extensions), just apply the same rule (in $\mathbf{LDL}_\rightsquigarrow(\star)$) on the proof-tree(s) from the induction hypothesis to reach the desired sequent. For example, if $\mathcal{D}$ ends with $R\vee$, then just apply $R\vee$ (in $\mathbf{LDL}_\rightsquigarrow(\star)$) on the proof-tree that we get from the induction hypothesis.
-	In cases of $\mathbf{LDL}_\rightsquigarrow^*(\star)$'s stronger rules, i.e. $L\land_1$, $L\land_2$, $L\lor$, $L\rightarrow$ and $L\rightsquigarrow$, do the same, and also $cut$ the sequents proved in lemmas \ref{lem:l-nabla-dist-and}, \ref{lem:l-nabla-dist-or}, \ref{lem:l-nabla-dist-imp} or \ref{lem:l-nabla-dist-si} into the resulting sequent.
+	In cases of $\mathbf{LDL}_\rightsquigarrow^*(\star)$'s stronger rules, i.e. $L\land_1$, $L\land_2$, $L\lor$, $L\rightarrow$ and $L\rightsquigarrow$, do the same, and also $cut$ the sequents proved in Lemmas \ref{lem:l-nabla-dist-and}, \ref{lem:l-nabla-dist-or}, \ref{lem:l-nabla-dist-imp} or \ref{lem:l-nabla-dist-si} into the resulting sequent.
 	The case for $N$ divides to two further cases. One case is when $\Delta = A$ for some formula $A$, which is again handled by applying $N$ on the sequent from the induction hypothesis.
 	The other case is when $\Delta = \{\}$, so we have $\Gamma \Rightarrow$ from induction hypothesis, on the right of which we first introduce $\bot$ using $Rw$, and then apply $N$.
-	Then we can $cut$ it into the sequent proved in lemma \ref{lem:l-nabla-bot}, and then into $Ex$, to derive $\nabla \Gamma \Rightarrow$ as was desired.
+	Then we can $cut$ it into the sequent proved in Lemma \ref{lem:l-nabla-bot}, and then into $Ex$, to derive $\nabla \Gamma \Rightarrow$ as was desired.
 \end{proof}
 
 \subsection{Cut-elimination theorems}
@@ -679,16 +679,19 @@ For technical reasons, we will eliminate a stronger form of the cut rule, which 
 \begin{dfn}[$\nabla Cut$ rule]\label{def:n-cut} We denote by $\mathbf{LDL}^M_\rightsquigarrow(\star)$ the same systems defined by $\mathbf{LDL}^*_\rightsquigarrow(\star)$, except that the $Cut$ rule is replaced by the following generalization:
 \begin{prooftree}
 	\AXC{$\Gamma \Rightarrow \nabla^m A$}
-	\AXC{$\Sigma , \{\nabla^{n_i} A\} \Rightarrow \Delta$}
+	\AXC{$\Sigma , \{\nabla^{n_i} A\}_{i \leq l} \Rightarrow \Delta$}
 	\RightLabel{$\nabla Cut$}
-	\BIC{$\{\nabla^{n_i} \Gamma\} , \nabla^m \Sigma \Rightarrow \nabla^m \Delta$}
+	\BIC{$\{\nabla^{n_i} \Gamma\}_{i \leq l} , \nabla^m \Sigma \Rightarrow \nabla^m \Delta$}
 \end{prooftree}
-where $\nabla^n$ means $\nabla$ applied $n$ times, $\{\nabla^{n_i} A\}$ means $\{\nabla^{n_0} A,\dotsb, \nabla^{n_l} A\}$ and $\{\nabla^{n_i} \Gamma\}$ means $\bigcup_{A \in \Gamma} \{\nabla^{n_i} A\}$ for some sequence of natural numbers $n_i$ of length $l+1$.
-We call $A$ the \emph{cut-formula} and for convenience, will refer to members of $\{\nabla^m A\} \cup \{\nabla^{n_i} A\}$ as \emph{cut-burden}. We will also denote by the tuple $(A, m, \{n_i\})$, the \emph{cut-data} of such instance.
+where $\nabla^n$ means $\nabla$ applied $n$ times, $\{\nabla^{n_i} A\}_{i \leq l}$ means $\{\nabla^{n_0} A,\dotsb, \nabla^{n_l} A\}$ and $\{\nabla^{n_i} \Gamma\}_{i \leq l}$ means $\bigcup_{A \in \Gamma} \{\nabla^{n_i} A\}_{i \leq l}$ for some finite sequence of natural numbers $\{n_i\}_{i \leq l}$ of length $l+1$.
+We will refer to members of $\{\nabla^m A\} \cup \{\nabla^{n_i} A\}_{i \leq l}$ as the \emph{cut-burden}. We will also denote by the tuple $(A, m, \{n_i\}_{i \leq l})$, the \emph{cut-data} of such instance.
 \end{dfn}
 
-\begin{cor}\label{cor:mc-riddance} Any sequent provable in $\mathbf{LDL}^*_\rightsquigarrow(\star)$ is also provable in $\mathbf{LDL}^M_\rightsquigarrow(\star)$. Indeed we can just replace any instance of $Cut$ with similar instance of $\nabla Cut$, with $m = 0$ and $n_i = (0)$.
-\end{cor}
+\begin{thm}\label{cor:mc-riddance} Any sequent provable in $\mathbf{LDL}^*_\rightsquigarrow(\star)$ is also provable in $\mathbf{LDL}^M_\rightsquigarrow(\star)$.
+\end{thm}
+\begin{proof}
+	We can just replace any instance of $Cut$ on a cut-formula $A$ with similar instance of $\nabla Cut$ on cut-data $(A, 0, \{0\})$.
+\end{proof}
 
 Next, we should define a measure for cut-complexity for formulas, and then extend it to rule instances and proof-trees.
 
@@ -701,25 +704,25 @@ Next, we should define a measure for cut-complexity for formulas, and then exten
 	\end{cases} \]
 	Notice that $\nabla$ does not increase the rank of a formula.
 	
-	We also define rank for rule instances and proof-trees as follows. Rank of a rule instance is the rank of its cut-formula if it is an instance of the $\nabla Cut$ rule, and $0$ if it's not.
+	We also define rank for rule instances and proof-trees as follows. Rank of and instance of the $\nabla Cut$ rule with cut-data $(A, m, \{n_i\}_{i \leq l})$ is defined to be the rank of $A$. Rank of any other rule instance is $0$.
 	For a proof tree $\mathcal{D}$, $\rho(\mathcal{D})$ is the maximum rank of all of its rule instances.
 \end{dfn}
 
 The following lemma will help handling of a case in the main theorem.
 
-\begin{lem}\label{lem:ldls-top-redundant} If $\mathbf{LDL}^M_\rightsquigarrow(\star)$ proves $\Gamma , \{\nabla^{n_i} \top\} \Rightarrow \Delta$, then it also proves $\Gamma \Rightarrow \Delta$ with a proof-tree of at most the same rank.
+\begin{lem}\label{lem:ldls-top-redundant} If $\mathbf{LDL}^M_\rightsquigarrow(\star)$ proves $\Gamma , \{\nabla^{n_i} \top\}_{i \leq l} \Rightarrow \Delta$, then it also proves $\Gamma \Rightarrow \Delta$ with a proof-tree of at most the same rank.
 \end{lem}
 \begin{proof}
-Suppose $\mathcal{D}$ is a proof-tree for $\Gamma , \{\nabla^{n_i} \top\} \Rightarrow \Delta$ in $\mathbf{LDL}^M(\star)$ and consider different cases for the last rule of $\mathcal{D}$ with possible sub-trees $\mathcal{D}_0$ and $\mathcal{D}_1$.
+Suppose $\mathcal{D}$ is a proof-tree for $\Gamma , \{\nabla^{n_i} \top\}_{i \leq l} \Rightarrow \Delta$ in $\mathbf{LDL}^M(\star)$ and consider different cases for the last rule of $\mathcal{D}$ with possible sub-trees $\mathcal{D}_0$ and $\mathcal{D}_1$.
 By induction on $\mathcal{D}$ we can assume that the theorem holds for $\mathcal{D}_0$ and $\mathcal{D}_1$.
-First observe that $Ta$ and $Ex$ cases are trivially ruled out. In $Id$ case, which implies $\{\nabla^{n_i} \top\} = \nabla^n \top$ for some $n$, we have $\Rightarrow \nabla^n \top$ by $n$ times applications of $N$ on $Ta$. In $Lw$ case, where $\{\nabla^{n_i} \top\} = \nabla \top$ and it is principal, $\mathcal{D}_0$ itself proves the desired sequent. If $\{\nabla^{n_i} \top\}$ has more members, then the induction hypothesis gives the desired sequent. The cases for $Lc$ or $L$ on some $\nabla^{n_j} \top$ are similar. In all other cases, just apply induction hypothesis on $\mathcal{D}_0$ (and possibly $\mathcal{D}_1$), then the same last rule. Notice that $\nabla Cut$ is not used except in $\nabla Cut$ case, where it is applied with the same cut-formula, so the resulting proof tree will not be of a higher rank than $\mathcal{D}$.
-The proof for $\mathbf{LDL}^M_{\rightsquigarrow}(\star)$ is similar, except that there are no cases $\rightarrow$.
+First, observe that $Ta$ and $Ex$ cases are trivially ruled out. In $Id$ case, which implies $l = 0$, we have $\Rightarrow \nabla^{n_0} \top$ by $n_0$ times applications of $N$ on $Ta$. In $Lw$ case, where $l = 0$ and $\nabla^{n_0} \top$ is principal, $\mathcal{D}_0$ itself proves the desired sequent, but if $l > 0$, then the induction hypothesis gives the desired sequent. The cases for $Lc$ or $L$ on some $\nabla^{n_j} \top$  are similar. In all other cases, just apply induction hypothesis on $\mathcal{D}_0$ (and possibly $\mathcal{D}_1$), and then apply the same last rule. Notice that $\nabla Cut$ is not used except in $\nabla Cut$ case, where it is applied with the same rank, so the resulting proof-tree will not be of a higher rank than that of $\mathcal{D}$.
+The proof for $\mathbf{LDL}^M_{\rightsquigarrow}(\star)$ is similar, except that there are no cases for $\rightarrow$.
 \end{proof}
 
 The following theorem shows that we can imitate any instance of the cut rule in a proof-tree of lower rank.
 
 \begin{thm}\label{thm:ldls-cut-reduction}[Cut Reduction]
-If $\mathbf{LDL}^M_\rightsquigarrow(\star)$ proves $\Gamma \Rightarrow \nabla^m A$ and\\\ $\Sigma , \{\nabla^{n_i} A\} \Rightarrow \Delta$ with proof trees of ranks less than $\rho(A)$, then it also proves $\{\nabla^{n_i} \Gamma\} , \nabla^m\Sigma \Rightarrow \nabla^m\Delta$ also with a proof tree of a rank less than $\rho(A)$.
+If $\mathbf{LDL}^M_\rightsquigarrow(\star)$ proves $\Gamma \Rightarrow \nabla^m A$ and\\\ $\Sigma , \{\nabla^{n_i} A\}_{i \leq l} \Rightarrow \Delta$ with proof-trees of ranks less than $\rho(A)$, then it also proves $\{\nabla^{n_i} \Gamma\}_{i \leq l} , \nabla^m\Sigma \Rightarrow \nabla^m\Delta$ also with a proof tree of a rank less than $\rho(A)$.
 \end{thm}
 \begin{proof}
 	We have two proof-trees
@@ -730,20 +733,20 @@ If $\mathbf{LDL}^M_\rightsquigarrow(\star)$ proves $\Gamma \Rightarrow \nabla^m 
     \hspace{3em}
     {\mathcal{D}_1
     \atop
-    \Sigma , \{\nabla^{n_i} A\} \Rightarrow \Delta}
+    \Sigma , \{\nabla^{n_i} A\}_{i \leq l} \Rightarrow \Delta}
   \]
   both of a lower rank than that of $A$, and we want to construct a proof-tree
-  \[\mathcal{D} \atop \{\nabla^{n_i} \Gamma\} , \nabla^m \Sigma \Rightarrow \nabla^m \Delta \]
+  \[\mathcal{D} \atop \{\nabla^{n_i} \Gamma\}_{i \leq l} , \nabla^m \Sigma \Rightarrow \nabla^m \Delta \]
   without increasing the cut rank.
 
-	The construction takes place in different cases for the last rule that occurs in $\mathcal{D}_0$ and $\mathcal{D}_1$. Notice that proof of the theorem is essentially the same for all systems, modulo the cases that are specific to each system. Thus, the cases which are common between all systems are not repeated for the sake of brevity.
+	The construction takes place in different cases for the last rule that occurs in $\mathcal{D}_0$ and $\mathcal{D}_1$. Notice that the proof of the theorem is essentially the same for all systems, modulo the cases that are specific to each system. Thus, the cases which are common between all systems are not repeated for the sake of brevity.
 
-	Also notice that in some cases our construction would depend only on the last rule of one of the sub-trees, i.e. it would work no matter what the last rule in $\mathcal{D}_1$ is. so it will cover all the cases for the other sub-tree. In other cases, which are the cases that the cut-formula is altered on both sides, the last rule in one sub-tree determines a specific form for the cut-formula, which in turn determines the last rule of the other sub-tree.
+	Also notice that in some cases our construction would depend only on the last rule of one of the sub-trees, i.e., it would work no matter what the last rule in the other proof-tree is. Therefore it will cover all the cases for the other sub-tree. These cases make up the first two parts of the proof. In the third part we will address the cases where our construction depends on the last rule in both sub-trees, which are the cases that the cut-data is altered on both sides. In these cases, the last rule in one sub-tree determines a specific form for the cut-data, which in turn determines the last rule of the other sub-tree.
 
 
-	First, construct the desired proof-tree in the cases that $\mathcal{D}_0$ is an axiom, independent of $\mathcal{D}_1$. The case for $Id$ is trivial, $Ex$ won't happen and $Ta$ is handled by lemma \ref{lem:ldls-top-redundant}.
+	First, construct the desired proof-tree in the cases that $\mathcal{D}_0$ is an axiom, independent of $\mathcal{D}_1$. The case for $Id$ is trivial, $Ex$ won't happen and $Ta$ is handled by Lemma \ref{lem:ldls-top-redundant}.
 
-  In rest of the cases, we will use induction on the length of both $\mathcal{D}_0$ and $\mathcal{D}_1$ as follows; For any two proof-trees $\mathcal{D}_0'$ and $\mathcal{D}_1'$ such that $h(\mathcal{D}_0') + h(\mathcal{D}_1') < h(\mathcal{D}_0) + h(\mathcal{D}_1)$, where $\mathcal{D}_0'$ proves $\Gamma' \Rightarrow \nabla^{m'} A'$ and $\mathcal{D}_1'$ proves $\Sigma', \{\nabla^{n'_i} A'\} \Rightarrow \Delta'$ for arbitrary $\Gamma'$, $\Sigma'$, $\Delta'$, $A'$, $m'$ and $n_i'$, for which we have $\rho(\mathcal{D}_0'),\mathcal{D}_1' < \rho(A')$, the induction hypothesis give us a proof-tree, denoted by $\text{IH}(\mathcal{D}_0', \mathcal{D}_1')$ where it matters, that proves $\{\nabla^{n_i'}\Gamma'\}, \nabla^{m'} \Sigma' \Rightarrow \nabla^{m'} \Delta'$, and we also have $\rho(\text{IH}(\mathcal{D}_0', \mathcal{D}_1')) < \rho(A')$.
+  In rest of the cases, we will use induction on the length of both $\mathcal{D}_0$ and $\mathcal{D}_1$ as follows; For any two proof-trees $\mathcal{D}_0'$ and $\mathcal{D}_1'$ such that $h(\mathcal{D}_0') + h(\mathcal{D}_1') < h(\mathcal{D}_0) + h(\mathcal{D}_1)$, where $\mathcal{D}_0'$ proves $\Gamma' \Rightarrow \nabla^{m'} A'$ and $\mathcal{D}_1'$ proves $\Sigma', \{\nabla^{n'_i} A'\}_{i \leq l} \Rightarrow \Delta'$ for arbitrary $\Gamma'$, $\Sigma'$, $\Delta'$, $A'$, $m'$ and $n_i'$ of length $l'+1$, for which we have $\rho(\mathcal{D}_0'),\rho(\mathcal{D}_1') < \rho(A')$, the induction hypothesis give us a proof-tree, denoted by $\text{IH}(\mathcal{D}_0', \mathcal{D}_1')$ where it matters, that proves $\{\nabla^{n_i'}\Gamma'\}_{i \leq l'}, \nabla^{m'} \Sigma' \Rightarrow \nabla^{m'} \Delta'$, and we also have $\rho(\text{IH}(\mathcal{D}_0', \mathcal{D}_1')) < \rho(A')$.
 
 
 	Assume $\mathcal{D}_0$ ends with an instance of any of the rules $Lw$, $Lc$, $L\land_1$, $L\land_2$, $L\lor$, $L\rightarrow$, $L\rightsquigarrow$, $\nabla Cut$, $N$, $Fu'$, $L$ or $R'$, again independent of $\mathcal{D}_1$. In all these cases, it suffices to use induction on the assumption(s) of this rule to remove the cut-burden from both sub-trees. Then, we can apply the same rule to get the desired sequent. Here we will only mention the cases for $L\wedge_1$, $L\vee$, $L\rightsquigarrow$, $\nabla Cut$, $N$ and $Fu'$, the last three of which may be of special concern, since they also alter the cut-burden. The other cases are similar.
@@ -765,13 +768,13 @@ If $\mathbf{LDL}^M_\rightsquigarrow(\star)$ proves $\Gamma \Rightarrow \nabla^m 
 	
 	\noLine
 	\AXC{$\mathcal{D}_1$}
-	\UIC{$\Sigma , \{\nabla^{n_i} A\} \Rightarrow \Delta$}
+	\UIC{$\Sigma , \{\nabla^{n_i} A\}_{i \leq l} \Rightarrow \Delta$}
 	
 	\RightLabel{IH}
-	\BIC{$\{\nabla^{n_i} \Gamma, \nabla^{n_i+r} B\}, \nabla^m \Sigma \Rightarrow \nabla^m \Delta$}
+	\BIC{$\{\nabla^{n_i} \Gamma, \nabla^{n_i+r} B\}_{i \leq l}, \nabla^m \Sigma \Rightarrow \nabla^m \Delta$}
 
 	\RightLabel{$L\wedge_1$} \doubleLine
-	\UIC{$\{\nabla^{n_i} \Gamma, \nabla^{n_i+r} (B \wedge C)\}, \nabla^m \Sigma \Rightarrow \nabla^m \Delta$}
+	\UIC{$\{\nabla^{n_i} \Gamma, \nabla^{n_i+r} (B \wedge C)\}_{i \leq l}, \nabla^m \Sigma \Rightarrow \nabla^m \Delta$}
  \end{prooftree}
 
  \noindent $L\vee$: If $\mathcal{D}_0$ ends with $L\vee$
@@ -795,10 +798,10 @@ If $\mathbf{LDL}^M_\rightsquigarrow(\star)$ proves $\Gamma \Rightarrow \nabla^m 
 		
 		\noLine
 		\AXC{$\mathcal{D}_1$}
-		\UIC{$\Sigma , \{\nabla^{n_i} A\} \Rightarrow \Delta$}
+		\UIC{$\Sigma , \{\nabla^{n_i} A\}_{i \leq l} \Rightarrow \Delta$}
 		
 		\RightLabel{IH}
-		\BIC{$\{\nabla^{n_i} \Gamma, \nabla^{n_i+r} B\}, \nabla^m \Sigma \Rightarrow \nabla^m \Delta$}
+		\BIC{$\{\nabla^{n_i} \Gamma, \nabla^{n_i+r} B\}_{i \leq l}, \nabla^m \Sigma \Rightarrow \nabla^m \Delta$}
 		
 
     \noLine
@@ -807,13 +810,13 @@ If $\mathbf{LDL}^M_\rightsquigarrow(\star)$ proves $\Gamma \Rightarrow \nabla^m 
 		
 		\noLine
 		\AXC{$\mathcal{D}_1$}
-		\UIC{$\Sigma , \{\nabla^{n_i} A\} \Rightarrow \Delta$}
+		\UIC{$\Sigma , \{\nabla^{n_i} A\}_{i \leq l} \Rightarrow \Delta$}
 		
 		\RightLabel{IH}
-    \BIC{$\{\nabla^{n_i} \Gamma, \nabla^{n_i+r} C\}, \nabla^m \Sigma \Rightarrow \nabla^m \Delta$}
+    \BIC{$\{\nabla^{n_i} \Gamma, \nabla^{n_i+r} C\}_{i \leq l}, \nabla^m \Sigma \Rightarrow \nabla^m \Delta$}
 
 		\RightLabel{$L\vee$}
-		\BIC{$\{\nabla^{n_i} \Gamma, \nabla^{n_i+r} (B \vee C)\}, \nabla^m \Sigma \Rightarrow \nabla^m \Delta$}
+		\BIC{$\{\nabla^{n_i} \Gamma, \nabla^{n_i+r} (B \vee C)\}_{i \leq l}, \nabla^m \Sigma \Rightarrow \nabla^m \Delta$}
 	 \end{prooftree}
 
  
@@ -828,35 +831,46 @@ If $\mathbf{LDL}^M_\rightsquigarrow(\star)$ proves $\Gamma \Rightarrow \nabla^m 
   \RightLabel{$L\rightsquigarrow$}
   \BIC{$\Gamma , \nabla^{r+1} (B \rightsquigarrow C) \Rightarrow \nabla^m A$}
  \end{prooftree}
- From induction hypothesis we have
+ Let $IH(\mathcal{D}_0'', \mathcal{D}_1)$ be called $\mathcal{D}'$.
  \begin{prooftree}
   \noLine
   \AXC{$\mathcal{D}_0''$}
   \UIC{$\Gamma , \nabla^r C \Rightarrow \nabla^m A$}
   \noLine
   \AXC{$\mathcal{D}_1$}
-  \UIC{$\Sigma , \{\nabla^{n_i} A\} \Rightarrow \Delta$}
+  \UIC{$\Sigma , \{\nabla^{n_i} A\}_{i \leq l} \Rightarrow \Delta$}
   \RightLabel{IH} \LeftLabel{$\mathcal{D}':~~~~$}
-  \BIC{$\{\nabla^{n_i} \Gamma , \nabla^{n_i+r} C\} , \nabla^m \Sigma \Rightarrow \nabla^m \Delta$}
+  \BIC{$\{\nabla^{n_i} \Gamma , \nabla^{n_i+r} C\}_{i \leq l} , \nabla^m \Sigma \Rightarrow \nabla^m \Delta$}
  \end{prooftree}
- In order to apply $L\rightsquigarrow$, we must prepare the context in $\mathcal{D}_0'$, for each of $\nabla^{n_i+r}C$'s. Beginning with $n_0$, first we need to apply $N$ on $\mathcal{D}_0'$ $n_0$ times to get $\nabla^{n_0}\Gamma$ on the left and $\nabla^{n_0+r} B$ on the right side. Then we can just add the rest of the context by $Lw$.
+ In order to apply $L\rightsquigarrow$, we must prepare the context in $\mathcal{D}_0'$, for each of $\nabla^{n_i+r}C$'s. Beginning with $j = 0$, first apply $N$ on $\mathcal{D}_0'$ $n_0$ times to get $\nabla^{n_0}\Gamma \Rightarrow \nabla^{n_0+r} B$. Then we can just add the rest of the context by $Lw$.
  \begin{prooftree}
   \noLine
   \AXC{$\mathcal{D}_0'$}
   \UIC{$\Gamma \Rightarrow \nabla^r B$}
   \doubleLine \RightLabel{$N$}
   \UIC{$\nabla^{n_0} \Gamma \Rightarrow \nabla^{n_0+r} B$}
-  \doubleLine \RightLabel{$Lw$} \LeftLabel{$\mathcal{D}'_{n_0}:~~~~$}
-  \UIC{$\nabla^{n_0}\Gamma, \{\nabla^{n_i} \Gamma, \nabla^{n_i+r}C\}_{i>0} , \nabla^m \Sigma \Rightarrow \nabla^{n_0+r} B$}
+  \doubleLine \RightLabel{$Lw$}
+  \UIC{$\{\nabla^{n_i} \Gamma\}_{i \leq l}, \{\nabla^{n_i+r}C\}_{i \leq l}^{i \neq 0} , \nabla^m \Sigma \Rightarrow \nabla^{n_0+r} B$}
  \end{prooftree}
- By $L\rightsquigarrow$ on $\mathcal{D}'$ and $\mathcal{D}'_{n_0}$, we have
- \[\nabla^{n_0}\Gamma, \{\nabla^{n_i} \Gamma, \nabla^{n_i+r}C\}_{i>0}, \nabla^{n_0+r+1} (B \rightsquigarrow C) , \nabla^m \Sigma \Rightarrow \nabla^m \Delta\]
- We can repeat for this all of $n_i$'s to get
- \[\{\nabla^{n_i} \Gamma, \nabla^{n_i+r+1}(B \rightsquigarrow C)\}, \nabla^m \Sigma \Rightarrow \nabla^m \Delta\]
- which is the desired sequent.
+ Let the outcome of applying $L\rightsquigarrow$ on this sequent and $\mathcal{D}'$ be called $\mathcal{D}'_{n_0}$:
+ \[\mathcal{D}'_{n_0}:~~~~\{\nabla^{n_i} \Gamma\}_{i \leq l}, \{\nabla^{n_i+r}C\}_{i \leq l}^{i \neq 0}, \nabla^{n_0+r+1} (B \rightsquigarrow C) , \nabla^m \Sigma \Rightarrow \nabla^m \Delta\]
+ Now for all $0 < j \leq l$, we construct $\mathcal{D}_{n_j}$ similarly.
+ \begin{prooftree}
+  \noLine
+  \AXC{$\mathcal{D}_0'$}
+  \UIC{$\Gamma \Rightarrow \nabla^r B$}
+  \doubleLine \RightLabel{$N$}
+  \UIC{$\nabla^{n_j} \Gamma \Rightarrow \nabla^{n_j+r} B$}
+  \doubleLine \RightLabel{$Lw$}
+  \UIC{$\{\nabla^{n_i} \Gamma\}_{i \leq l}, \{\nabla^{n_i+r}C\}_{j < i \leq l}, \{ \nabla^{n_i+r+1} (B \rightsquigarrow C) \}_{i < j}, \nabla^m \Sigma \Rightarrow \nabla^{n_j+r} B$}
+ \end{prooftree}
+ Applying $L\rightsquigarrow$ on this sequent and $\mathcal{D}_{n_{j-1}}$ we would get
+ \[\mathcal{D}'_{n_j}:~~~~\{\nabla^{n_i} \Gamma\}_{i \leq l}, \{\nabla^{n_i+r}C\}_{j < i \leq l}, \{ \nabla^{n_i+r+1} (B \rightsquigarrow C) \}_{i \leq j}, \nabla^m \Sigma \Rightarrow \nabla^m \Delta\]
+ $\mathcal{D}_{n_l}$ is exactly what we want:
+ \[\{\nabla^{n_i} \Gamma, \nabla^{n_i+r+1}(B \rightsquigarrow C)\}_{i \leq l}, \nabla^m \Sigma \Rightarrow \nabla^m \Delta\]
 
 
- $\nabla Cut$: Assume $\mathcal{D}_0$ ends with a $\nabla Cut$ with cut-data $(A', m', \{n_i'\})$. Notice that by assumption, $A'$ must have a lower rank than $A$.
+ $\nabla Cut$: Assume $\mathcal{D}_0$ ends with a $\nabla Cut$ with cut-data $(A', m', \{n_i'\}_{i \leq l'})$. Recall that by assumption, $A'$ must have a lower rank than $A$.
  \begin{prooftree}
    \noLine
    \AXC{$\mathcal{D}_0'$}
@@ -864,12 +878,12 @@ If $\mathbf{LDL}^M_\rightsquigarrow(\star)$ proves $\Gamma \Rightarrow \nabla^m 
    
    \noLine
    \AXC{$\mathcal{D}_0''$}
-   \UIC{$\Pi , \{\nabla^{n_i'} A'\} \Rightarrow \nabla^m A$}
+	 \UIC{$\Pi , \{\nabla^{n_i'} A'\}_{i \leq l'} \Rightarrow \nabla^m A$}
    
    \RightLabel{$\nabla Cut$}
-   \BIC{$\{\nabla^{n_i'} \Gamma\} , \nabla^{m'} \Pi \Rightarrow \nabla^{m+m'} A$}
+   \BIC{$\{\nabla^{n_i'} \Gamma\}_{i \leq l'} , \nabla^{m'} \Pi \Rightarrow \nabla^{m+m'} A$}
  \end{prooftree}
- We must construct a proof-tree for $\{\nabla^{n_i}\{\nabla^{n_i'} \Gamma\}, \nabla^{n_i+m'} \Pi\} , \nabla^{m+m'}\Sigma \Rightarrow \nabla^{m+m'}\Delta$. We can use the induction hypothesis to remove $A$ first, then cut $A'$.
+ We must construct a proof-tree for $\{\nabla^{n_i + n_j'} \Gamma\}_{j \leq l'}^{i \leq l}, \{\nabla^{n_i+m'} \Pi\}_{i \leq l} , \nabla^{m+m'}\Sigma$ $\Rightarrow \nabla^{m+m'}\Delta$. We can use the induction hypothesis first to remove $A$, and then use a low rank $\nabla Cut$ to remove $A'$.
  \begin{prooftree}
    \noLine
    \AXC{$\mathcal{D}_0'$}
@@ -877,18 +891,18 @@ If $\mathbf{LDL}^M_\rightsquigarrow(\star)$ proves $\Gamma \Rightarrow \nabla^m 
    
    \noLine
    \AXC{$\mathcal{D}_0''$}
-   \UIC{$\Pi , \{\nabla^{n_i'} A'\} \Rightarrow \nabla^m A$}
+	 \UIC{$\Pi , \{\nabla^{n_i'} A'\}_{i \leq l'} \Rightarrow \nabla^m A$}
 
    \noLine
    \AXC{$\mathcal{D}_1$}
-   \UIC{$\Sigma , \{\nabla^{n_i} A\} \Rightarrow \Delta$}
+   \UIC{$\Sigma , \{\nabla^{n_i} A\}_{i \leq l} \Rightarrow \Delta$}
 
    \RightLabel{IH}
-   \BIC{$\{\nabla^{n_i} \Pi , \nabla^{n_i}\{\nabla^{n_i'} A'\}\} , \nabla^m \Sigma \Rightarrow \nabla^m \Delta$}
+   \BIC{$\{\nabla^{n_i} \Pi\}_{i \leq l} , \{\nabla^{n_i + n_j'} A'\}_{j \leq l'}^{i \leq l} , \nabla^m \Sigma \Rightarrow \nabla^m \Delta$}
    
 
-   \RightLabel{$MC$}
-   \BIC{$\{\nabla^{n_i}\{\nabla^{n_i'} \Gamma\}, \nabla^{n_i+m'} \Pi\} , \nabla^{m+m'}\Sigma \Rightarrow \nabla^{m+m'}\Delta$}
+   \RightLabel{$\nabla Cut$}
+   \BIC{$\{\nabla^{n_i + n_j'} \Gamma\}_{j \leq l'}^{i \leq l}, \{\nabla^{n_i+m'} \Pi\}_{i \leq l} , \nabla^{m+m'}\Sigma$ $\Rightarrow \nabla^{m+m'}\Delta$}
  \end{prooftree}
 
  $Rw$: In this case, $\mathcal{D}_0'$ proves $\Gamma \Rightarrow$, so we can simply construct the desired proof-tree using $N$, $Lw$ and $Rw$.
@@ -899,62 +913,62 @@ If $\mathbf{LDL}^M_\rightsquigarrow(\star)$ proves $\Gamma \Rightarrow \nabla^m 
    \doubleLine \RightLabel{$N$}
    \UIC{$\nabla^{n_0} \Gamma \Rightarrow$}
    \doubleLine \RightLabel{$Lw$}
-   \UIC{$\{\nabla^{n_i} \Gamma\} , \nabla^m \Sigma \Rightarrow$}
+   \UIC{$\{\nabla^{n_i} \Gamma\}_{i \leq l} , \nabla^m \Sigma \Rightarrow$}
    \RightLabel{$Rw$}
-   \UIC{$\{\nabla^{n_i} \Gamma\} , \nabla^m \Sigma \Rightarrow \nabla^m \Delta$}
+   \UIC{$\{\nabla^{n_i} \Gamma\}_{i \leq l} , \nabla^m \Sigma \Rightarrow \nabla^m \Delta$}
  \end{prooftree}
 
- $N$: $\mathcal{D}_0$ proves $\nabla \Gamma \Rightarrow \nabla^{m+1} A$ and the cut-formula is in the form $\nabla A$. So we want to construct $\{\nabla^{n_i+1}\Gamma\}, \nabla^m \Sigma \Rightarrow \nabla^m \Delta$. Induction hypothesis for $\mathcal{D}_0$'s immediate sub-tree and $\mathcal{D}_1$ gives us exactly what we want.
+ $N$: $\mathcal{D}_0$ proves $\nabla \Gamma \Rightarrow \nabla^{m+1} A$ and $\mathcal{D}_1$ proves $\Sigma, \{\nabla^{n_i} A\}_{i<l} \Rightarrow \Delta$. There are two cases: The cut-data could be $(A, m+1, \{n_i\}_{i \leq l})$, or if for all $i \leq l$ we have $0 < n_i$, then the cut-data could also be $(\nabla A, m, \{n_i-1\}_{i \leq l})$. Induction hypothesis for $\mathcal{D}_0$'s immediate sub-tree and $\mathcal{D}_1$ gives us $\{\nabla^{n_i}\Gamma\}_{i \leq l}, \nabla^m \Sigma \Rightarrow \nabla^m \Delta$, which handles the latter case, and an application of $N$ on this sequent would handle the former.
 
  $Fu'$: It suffices to apply $Fu'$ on the result of the induction.\\
 
- The rest of the cases for $\mathcal{D}_0$ can't be solved independent of $\mathcal{D}_1$, so we will consider cases for the last rule of $\mathcal{D}_1$, again, where they're handled independent of $\mathcal{D}_0$. But this time we have much less possibilities for the opposite sub-tree, since we've already solved many of them. In fact the only possible rules for the last rule of $\mathcal{D}_0$ are now $R\star (\star \in \{\land, \lor_{1/2}, \rightarrow, \rightsquigarrow\})$ and $Fa$.
+ The rest of the cases for $\mathcal{D}_0$ can't be solved independent of $\mathcal{D}_1$, so in the second part of the cases, we will consider the last rule of $\mathcal{D}_1$, again, where the solution could be constructed independent of $\mathcal{D}_0$. But this time we have less possibilities for the opposite sub-tree, since we've already solved most of them. In fact the only possible rules as the last rule of $\mathcal{D}_0$ are now $R\star (\star \in \{\land, \lor_{1/2}, \rightarrow, \rightsquigarrow\})$ and $Fa$.
 
- This time, suppose $\mathcal{D}_1$ is and axiom. Again, the $Id$ case is trivial, $Ta$ won't happen, and $Ex$ is also infeasible, since all possible rules for $\mathcal{D}_0$ alter the right side of the sequent, but none of them is able to introduce $\bot$ there.
-
- Next, for cases that the cut-burden is not altered (modulo $\nabla$) in the last rule of $\mathcal{D}_1$, the construction is similar to the previous cases: Applying the same rule on the sequent that we get from the induction hypothesis. For the sake of briefness, we will mention only cases for $L\wedge_1$, $R\vee_1$, $R\rightsquigarrow$ and $N$.
+ Suppose $\mathcal{D}_1$ is an axiom. Again, the $Id$ case is trivial, $Ta$ won't happen, and $Ex$ is also infeasible, since all possible cases for $\mathcal{D}_0$ alter the right side of the sequent, but none of them is able to introduce $\bot$ there.
+ In the remaining cases, assuming the cut-data is $(A, m, \{n_i\}_{i \leq l})$, in the cases where none of $\nabla^{n_i} A$'s are altered in the last rule of $\mathcal{D}_1$ modulo their number of $\nabla$'s, the construction is similar to the first part: Applying the same rule on the sequent that we get from the induction hypothesis. But if a member of the cut-burden is principal in the last rule of $\mathcal{D}_1$, which is considered in the last part, we must also use the induction hypothesis for $\mathcal{D}_0$, both with a different cut-data. We now address the second part of the cases. For the sake of briefness, we will only explain the cases for $L\wedge_1$, $R\vee_1$, $R\rightsquigarrow$ and $N$, the last two of which are of special concern, since we must use induction hypothesis with different $\{n_i\}_{i \leq l}$ there. The rest are handled similarly.
 
  $L\wedge$: Assume that $\mathcal{D}_1$ ends with $L\wedge_1$, but no member of the cut-burden is it's principal formula.
  \begin{prooftree}
 	\AXC{$\mathcal{D}_1'$} \noLine
-	\UIC{$\Sigma, \{\nabla^{n_i} A\}, \nabla^r B \Rightarrow \Delta$}
+	\UIC{$\Sigma, \{\nabla^{n_i} A\}_{i \leq l}, \nabla^r B \Rightarrow \Delta$}
 	\RightLabel{$L\wedge_1$}
-	\UIC{$\Sigma, \{\nabla^{n_i} A\}, \nabla^r (B \wedge C) \Rightarrow \Delta$}
+	\UIC{$\Sigma, \{\nabla^{n_i} A\}_{i \leq l}, \nabla^r (B \wedge C) \Rightarrow \Delta$}
  \end{prooftree}
- From induction hypothesis we have $\{\nabla^{n_i} \Gamma\}, \nabla^m \Sigma, \nabla^{r+m} B \Rightarrow \nabla^m \Delta$. By $L\wedge_1$ we have $\{\nabla^{n_i} \Gamma\}, \nabla^m \Sigma, \nabla^{r+m} (B \wedge C) \Rightarrow \nabla^m \Delta$.
+ From induction hypothesis we have $\{\nabla^{n_i} \Gamma\}_{i \leq l}, \nabla^m \Sigma, \nabla^{r+m} B \Rightarrow \nabla^m \Delta$. By $L\wedge_1$ we have $\{\nabla^{n_i} \Gamma\}_{i \leq l}, \nabla^m \Sigma, \nabla^{r+m} (B \wedge C) \Rightarrow \nabla^m \Delta$.
 
- $R\vee_1$: Suppose that $\mathcal{D}_1$ ends with $L\vee_1$ and its principal formula is not in the cut-burden.
+ $R\vee_1$: Suppose that $\mathcal{D}_1$ ends with $R\vee_1$.
  \begin{prooftree}
 	\AXC{$\mathcal{D}_1'$} \noLine
-	\UIC{$\Sigma, \{\nabla^{n_i} A\} \Rightarrow \nabla^r B$}
-	\RightLabel{$L\vee_1$}
-	\UIC{$\Sigma, \{\nabla^{n_i} A\} \Rightarrow \nabla^r (B \vee C)$}
+	\UIC{$\Sigma, \{\nabla^{n_i} A\}_{i \leq l} \Rightarrow \nabla^r B$}
+	\RightLabel{$R\vee_1$}
+	\UIC{$\Sigma, \{\nabla^{n_i} A\}_{i \leq l} \Rightarrow \nabla^r (B \vee C)$}
  \end{prooftree}
- Again, use the induction hypothesis to get $\{\nabla^{n_i} \Gamma\}, \nabla^m\Sigma \Rightarrow \nabla^{r+m} B$, then apply $L\vee_1$ to reach the desired sequent.
+ Again, use the induction hypothesis to get $\{\nabla^{n_i} \Gamma\}_{i \leq l}, \nabla^m\Sigma \Rightarrow \nabla^{r+m} B$, then apply $R\vee_1$ to reach the desired sequent.
 
-$R\rightsquigarrow$: In the case where $\mathcal{D}_1$ ends with an $R\rightsquigarrow$, the cut-burden is altered in the premise. So the induction hypothesis has a different cut-data. nevertheless, it still commutes with $R\rightsquigarrow$.
+$R\rightsquigarrow$: In the case where $\mathcal{D}_1$ ends with an $R\rightsquigarrow$, the cut-burden is altered in the premise.
 \begin{prooftree}
 	\AXC{$\mathcal{D}_1'$} \noLine
-	\UIC{$\nabla\Sigma, \{\nabla^{n_i+1} A\}, B \Rightarrow C$}
-	\RightLabel{$L\rightsquigarrow$}
-	\UIC{$\Sigma, \{\nabla^{n_i} A\} \Rightarrow B \rightsquigarrow C$}
+	\UIC{$\nabla\Sigma, \{\nabla^{n_i+1} A\}_{i \leq l}, B \Rightarrow C$}
+	\RightLabel{$R\rightsquigarrow$}
+	\UIC{$\Sigma, \{\nabla^{n_i} A\}_{i \leq l} \Rightarrow B \rightsquigarrow C$}
  \end{prooftree}
-From induction hypothesis, we have $\{\nabla^{n_i+1} \Gamma\}, \nabla^{m+1} \Sigma, \nabla^m B \Rightarrow \nabla^m C$. We can simply apply $R\rightsquigarrow$ to get $\{\nabla^{n_i} \Gamma\}, \nabla^m \Sigma \Rightarrow \nabla^m (B \rightsquigarrow C)$.
+ The induction hypothesis has a different cut-data, nevertheless, it still commutes with $R\rightsquigarrow$.
+From induction hypothesis, we have $\{\nabla^{n_i+1} \Gamma\}_{i \leq l}, \nabla^{m+1} \Sigma,$ $\nabla^m B \Rightarrow \nabla^m C$. We can simply apply $R\rightsquigarrow$ to get $\{\nabla^{n_i} \Gamma\}_{i \leq l}, \nabla^m \Sigma \Rightarrow \nabla^m (B \rightsquigarrow C)$.
 
 $N$: Suppose $\mathcal{D}_1$ ends with $N$.
 \begin{prooftree}
 	\AXC{$\mathcal{D}_1'$} \noLine
-	\UIC{$\Sigma, \{\nabla^{n_i} A\} \Rightarrow \Delta$}
+	\UIC{$\Sigma, \{\nabla^{n_i} A\}_{i \leq l} \Rightarrow \Delta$}
 	\RightLabel{$N$}
-	\UIC{$\nabla \Sigma, \{\nabla^{n_i+1} A\} \Rightarrow \nabla \Delta$}
+	\UIC{$\nabla \Sigma, \{\nabla^{n_i+1} A\}_{i \leq l} \Rightarrow \nabla \Delta$}
 \end{prooftree}
-If we assume that the cut-data is $(A, m, \{n_i+1\})$, from the induction hypothesis we have $\{\nabla^{n_i} \Gamma\}, \nabla^m \Sigma \Rightarrow \nabla^m \Delta$. By $N$ we have $\{\nabla^{n_i+1} \Gamma\}, \nabla^{m+1} \Sigma \Rightarrow \nabla^{m+1} \Delta$, which is the desired sequent.
-But if $m>0$, the cut-data could also be $(\nabla A, m-1, \{n_i\})$, in which case using the induction hypothesis would suffice.
+If we assume that the cut-data is $(A, m, \{n_i+1\}_{i \leq l})$, from the induction hypothesis we have $\{\nabla^{n_i} \Gamma\}_{i \leq l}, \nabla^m \Sigma \Rightarrow \nabla^m \Delta$. By $N$ we have $\{\nabla^{n_i+1} \Gamma\}_{i \leq l},$ $\nabla^{m+1} \Sigma \Rightarrow \nabla^{m+1} \Delta$, which is the desired sequent.
+But if $m>0$, the cut-data could also be $(\nabla A, m-1, \{n_i\}_{i \leq l})$, in which case using the induction hypothesis would suffice.
 
- Now for the rest of the proof, we will show how the construction takes place in the cases where the cut-formula is principal in the last rule of $\mathcal{D}_1$, which can be either of $L\star (\star \in \{\land, \lor_{1/2}, \rightarrow, \rightsquigarrow\})$.
- Any of these rules imply a specific form for the cut-formula, which can also determine the rule at the end of the other proof-tree, because the cut-formula is also principal in the last rule of $\mathcal{D}_0$ (note that the only possible rules for the last rule of $\mathcal{D}_0$ are now $R\star (\star \in \{\land, \lor_{1/2}, \rightarrow, \rightsquigarrow\})$ and $Fa$.
+ Now in the last part of the proof, we will show how the construction takes place in the cases where a member of cut-burden is principal in the last rule of $\mathcal{D}_1$, which can be either of $L\star (\star \in \{\land, \lor_{1/2}, \rightarrow, \rightsquigarrow\})$.
+ Any of these rules also determine the rule at the end of the other proof-tree, because $\nabla^m A$ is also principal in the last rule of $\mathcal{D}_0$. Recall that the only possible rules as the last rule of $\mathcal{D}_0$ are now $R\star (\star \in \{\land, \lor_{1/2}, \rightarrow, \rightsquigarrow\})$ and $Fa$, which all have a principal formula on the right side of the sequent.
  
- First, notice that $m > 1$ is impossible, since the only rule that introduces $\nabla$ to the right of the sequence is $Fa$, which introduces a $\rightsquigarrow$ immediately after the $\nabla$ and implies $m = 1$. So suppose $m = 1$ and $\mathcal{D}_0$ end with $Fa$.
+ First, notice that $m > 1$ is impossible, since the only rule that introduces $\nabla$ to the right of a sequent is $Fa$, which introduces a $\rightsquigarrow$ immediately after the $\nabla$ and implies $m = 1$. So suppose $m = 1$ and $\mathcal{D}_0$ end with $Fa$.
  \begin{prooftree}
 	 \AXC{$\mathcal{D}_0'$}
 	 \noLine
@@ -962,18 +976,18 @@ But if $m>0$, the cut-data could also be $(\nabla A, m-1, \{n_i\})$, in which ca
 	 \RightLabel{$Fa$}
 	 \UIC{$\Gamma \Rightarrow \nabla (A \rightsquigarrow B)$}
  \end{prooftree}
- The cut-data must be of the form $(A \rightsquigarrow B, 1, \{n_i\})$, so the only option for $\mathcal{D}_1$ is $L\rightsquigarrow$.
+ The cut-data must be of the form $(A \rightsquigarrow B, 1, \{n_i\}_{i \leq l})$, so the only option for $\mathcal{D}_1$ is $L\rightsquigarrow$, with a principal formula from the cut-burden, like $\nabla^{n_j} (A \rightsquigarrow B)$ for some $j \leq l$ such that $0 < n_j$.
  \begin{prooftree}
 	 \AXC{$\mathcal{D}_1'$}
 	 \noLine
-	 \UIC{$\Sigma, \{\nabla^{n_i} (A \rightsquigarrow B) \}_{i>0}, \Rightarrow \nabla^{n_0} A$}
+	 \UIC{$\Sigma, \{\nabla^{n_i} (A \rightsquigarrow B) \}_{i \leq l}^{i \neq j}, \Rightarrow \nabla^{n_j-1} A$}
 	 \AXC{$\mathcal{D}_1''$}
 	 \noLine
-	 \UIC{$\Sigma, \{\nabla^{n_i} (A \rightsquigarrow B) \}_{i>0}, \nabla^{n_0} B \Rightarrow \Delta$}
+	 \UIC{$\Sigma, \{\nabla^{n_i} (A \rightsquigarrow B) \}_{i \leq l}^{i \neq j}, \nabla^{n_j-1} B \Rightarrow \Delta$}
 	 \RightLabel{$L\rightsquigarrow$}
-	 \BIC{$\Sigma, \{\nabla^{n_i} (A \rightsquigarrow B)\}_{i>0}, \nabla^{n_0+1} (A \rightsquigarrow B) \Rightarrow \Delta$}
+	 \BIC{$\Sigma, \{\nabla^{n_i} (A \rightsquigarrow B)\}_{i \leq l}^{i \neq j}, \nabla^{n_j} (A \rightsquigarrow B) \Rightarrow \Delta$}
  \end{prooftree}
- We want to prove $\{\nabla^{n_i} \Gamma\}_{i>0}, \nabla^{n_0+1} \Gamma, \nabla \Sigma \Rightarrow \nabla \Delta$. To do so, we first apply a low rank $\nabla Cut$ (with $(B, 0, (n_0+1))$ as the cut-data) on $\mathcal{D}_0'$ and $IH(\mathcal{D}_0, \mathcal{D}_1'')$.
+ First, apply a low rank $\nabla Cut$ (with $(B, 0, \{n_j\})$ as the cut-data) on $\mathcal{D}_0'$ and $IH(\mathcal{D}_0, \mathcal{D}_1'')$. Let the resulting sequent be called $\mathcal{D}'$.
  \begin{prooftree}
 	 \AXC{$\mathcal{D}_0'$}
 	 \noLine
@@ -983,31 +997,33 @@ But if $m>0$, the cut-data could also be $(\nabla A, m-1, \{n_i\})$, in which ca
 	 \UIC{$\Gamma \Rightarrow \nabla (A \rightsquigarrow B)$}
 	 \AXC{$\mathcal{D}_1''$}
 	 \noLine
-	 \UIC{$\Sigma, \{\nabla^{n_i} (A \rightsquigarrow B) \}_{i>0}, \nabla^{n_0} B \Rightarrow \Delta$}
-	 \BIC{$\{\nabla^{n_i} \Gamma\}_{i>0}, \nabla \Sigma, \nabla^{n_0+1} B \Rightarrow \nabla \Delta$}
+	 \UIC{$\Sigma, \{\nabla^{n_i} (A \rightsquigarrow B) \}_{i \leq l}^{i \neq j}, \nabla^{n_j-1} B \Rightarrow \Delta$}
+	 \RightLabel{IH}
+	 \BIC{$\{\nabla^{n_i} \Gamma\}_{i \leq l}^{i \neq j}, \nabla \Sigma, \nabla^{n_j} B \Rightarrow \nabla \Delta$}
 	 \RightLabel{$\nabla Cut$} \LeftLabel{$\mathcal{D}':~~~~~$}
-	 \BIC{$\nabla^{n_0+1} \Gamma, \nabla^{n_0+1} A, \{\nabla^{n_i} \Gamma\}_{i>0}, \nabla \Sigma \Rightarrow \nabla \Delta$}
+	 \BIC{$\nabla^{n_j} A, \{\nabla^{n_i} \Gamma\}_{i \leq l}, \nabla \Sigma \Rightarrow \nabla \Delta$}
  \end{prooftree}
- Then cut $IH(\mathcal{D}_0, \mathcal{D}_1')$ (this time with $\nabla^{n_0+1} A$ as the cut-formula) into the resulting sequent.
+ Then cut $IH(\mathcal{D}_0, \mathcal{D}_1')$ (this time with $(\nabla^{n_j} A, 0, \{0\})$ as the cut-data) into the resulting sequent.
  \begin{prooftree}
+	\AXC{$\mathcal{D}_0$}
+	\noLine
+	\UIC{$\Gamma \Rightarrow \nabla (A \rightsquigarrow B)$}
 	 \AXC{$\mathcal{D}_1'$}
 	 \noLine
-	 \UIC{$\Sigma, \{\nabla^{n_i} (A \rightsquigarrow B) \}_{i>0}, \Rightarrow \nabla^{n_0} A$}
-	 \AXC{$\mathcal{D}_0$}
-	 \noLine
-	 \UIC{$\Gamma \Rightarrow \nabla (A \rightsquigarrow B)$}
+	 \UIC{$\Sigma, \{\nabla^{n_i} (A \rightsquigarrow B) \}_{i \leq l}^{i \neq j}, \Rightarrow \nabla^{n_j-1} A$}
 	 \RightLabel{IH}
-	 \BIC{$\{\nabla^{n_i} \Gamma\}_{i>0}, \nabla \Sigma, \Rightarrow \nabla^{n_0 + 1} A$}
+	 \BIC{$\{\nabla^{n_i} \Gamma\}_{i \leq l}^{i \neq j}, \nabla \Sigma, \Rightarrow \nabla^{n_j} A$}
 
 	 \AXC{$\mathcal{D}'$}
 
 	 \RightLabel{$\nabla Cut$}
-	 \BIC{$(\{\nabla^{n_i} \Gamma\}_{i>0})^2, \nabla^{n_0+1} \Gamma, (\nabla \Sigma)^2 \Rightarrow \nabla \Delta$}
+	 \BIC{$\{\nabla^{n_i} \Gamma\}_{i \leq l}^{i \neq j}, \{\nabla^{n_i} \Gamma\}_{i \leq l}, (\nabla \Sigma)^2 \Rightarrow \nabla \Delta$}
 	 \doubleLine \RightLabel{$Lc$}
-	 \UIC{$\{\nabla^{n_i} \Gamma\}_{i>0}, \nabla^{n_0+1} \Gamma, \nabla \Sigma \Rightarrow \nabla \Delta$}
+	 \UIC{$\{\nabla^{n_i} \Gamma\}_{i \leq l}, \nabla \Sigma \Rightarrow \nabla \Delta$}
  \end{prooftree}
-
- \noindent When $m = 0$, each right-rule for $\mathcal{D}_1$ determines its corresponding left-rule for $\mathcal{D}_0$.
+ And that's the sequent that we wanted.
+ 
+ Now we can assume $m = 0$. Each right-rule for $\mathcal{D}_1$ determines its corresponding left-rule for $\mathcal{D}_0$.
 
  $R\land$ and $L\land$: Suppose $\mathcal{D}_0$ ends with $R\land$ and $\mathcal{D}_1$ with either of $L\land_c ~ (c \in \{1,2\})$.
  \begin{prooftree}
@@ -1022,14 +1038,14 @@ But if $m>0$, the cut-data could also be $(\nabla A, m-1, \{n_i\})$, in which ca
 	 
 	 \noLine
 	 \AXC{$\mathcal{D}_1'$}
-	 \UIC{$\Sigma , \{\nabla^{n_i} (A_1 \land A_2)\}_{i>0}, \nabla^{n_0} A_c \Rightarrow \Delta$}
+	 \UIC{$\Sigma , \{\nabla^{n_i} (A_1 \land A_2)\}_{i \leq l}^{i \neq j}, \nabla^{n_j} A_c \Rightarrow \Delta$}
 	 \RightLabel{$L\land_1$}
-	 \UIC{$\Sigma , \{\nabla^{n_i} (A_1 \land A_2)\} \Rightarrow \Delta$}
+	 \UIC{$\Sigma , \{\nabla^{n_i} (A_1 \land A_2)\}_{i \leq l} \Rightarrow \Delta$}
 	 
 	 \noLine
 	 \BIC{}
  \end{prooftree}
- $IH(\mathcal{D}_0, \mathcal{D}_1')$ proves $\{\nabla^{n_i} \Gamma\}_{i>0} , \Sigma , \nabla^{n_0} A_c \Rightarrow \Delta$. Remove $\nabla^{n_0} A_c$ with a low rank $\nabla Cut$ on this sequent and either of $\mathcal{D}_0'$ ($c = 1$) or $\mathcal{D}_0''$ ($c = 2$) to get $\{\nabla^{n_i} \Gamma\}, \Sigma \Rightarrow \Delta$.
+ $IH(\mathcal{D}_0, \mathcal{D}_1')$ proves $\{\nabla^{n_i} \Gamma\}_{i \leq l}^{i \neq j}, \Sigma , \nabla^{n_j} A_c \Rightarrow \Delta$. Remove $\nabla^{n_j} A_c$ with a low rank $\nabla Cut$ on this sequent and either of $\mathcal{D}_0'$ (if $c = 1$) or $\mathcal{D}_0''$ (if $c = 2$) to get $\{\nabla^{n_i} \Gamma\}_{i \leq l}, \Sigma \Rightarrow \Delta$.
 
  $R\lor$ and $L\lor$: Suppose $\mathcal{D}_0$ ends with either of $R\lor_c ~ (c \in \{1,2\})$ and $\mathcal{D}_1$ with $L\lor$.
  \begin{prooftree}
@@ -1042,14 +1058,14 @@ But if $m>0$, the cut-data could also be $(\nabla A, m-1, \{n_i\})$, in which ca
  \begin{prooftree}
 	\noLine
 	\AXC{$\mathcal{D}_1'$}
-	\UIC{$\Sigma , \{\nabla^{n_i} (A_1 \lor A_2)\}_{i>0} , \nabla^{n_0} A_1 \Rightarrow \Delta$}
+	\UIC{$\Sigma , \{\nabla^{n_i} (A_1 \lor A_2)\}_{i \leq l}^{i \neq j} , \nabla^{n_j} A_1 \Rightarrow \Delta$}
 	\noLine
 	\AXC{$\mathcal{D}_1''$}
-	\UIC{$\Sigma , \{\nabla^{n_i} (A_1 \lor A_2)\}_{i>0} , \nabla^{n_0} A_2 \Rightarrow \Delta$}
+	\UIC{$\Sigma , \{\nabla^{n_i} (A_1 \lor A_2)\}_{i \leq l}^{i \neq j} , \nabla^{n_j} A_2 \Rightarrow \Delta$}
 	\RightLabel{$L\lor$}
-	\BIC{$\Sigma ,  \{\nabla^{n_i} (A_1 \lor A_2)\} \Rightarrow \Delta$}
+	\BIC{$\Sigma ,  \{\nabla^{n_i} (A_1 \lor A_2)\}_{i \leq l} \Rightarrow \Delta$}
  \end{prooftree}
- Using induction hypothesis, first remove $\{\nabla^{n_i} (A_1 \lor A_2)\}_{i>0}$ from the sub-tree of $\mathcal{D}_1$ that has $\nabla^{n_0} A_c$ ($IH(\mathcal{D}_0, \mathcal{D}_1')$ for $c = 1$, $IH(\mathcal{D}_0, \mathcal{D}_1'')$ for $c = 2$), to get $\{\nabla^{n_i} \Gamma\}_{i>0}, \Sigma , \nabla^{n_0} A_c \Rightarrow \Delta$. Then remove $\nabla^{n_0} A_c$ by a low rank $\nabla Cut$ on this sequent and $\mathcal{D}_0'$ to get $\{\nabla^{n_i} \Gamma\}, \Sigma \Rightarrow \Delta$.
+ Using induction hypothesis, first remove $\{\nabla^{n_i} (A_1 \lor A_2)\}_{i \leq l}^{i \neq j}$ from the sub-tree of $\mathcal{D}_1$ which has $\nabla^{n_j} A_c$ on its left side (by $IH(\mathcal{D}_0, \mathcal{D}_1')$ for $c = 1$, $IH(\mathcal{D}_0, \mathcal{D}_1'')$ for $c = 2$), to get $\{\nabla^{n_i} \Gamma\}_{i \leq l}^{i \neq j}, \Sigma , \nabla^{n_j} A_c \Rightarrow \Delta$. Then remove $\nabla^{n_j} A_c$ by a low rank $\nabla Cut$ on this sequent and $\mathcal{D}_0'$ to get $\{\nabla^{n_i} \Gamma\}_{i \leq l}, \Sigma \Rightarrow \Delta$.
 
  $R\rightarrow$ and $L\rightarrow$: Suppose $\mathcal{D}_0$ and $\mathcal{D}_1$ end with $R\rightarrow$ and $L\rightarrow$ respectively.
  \begin{prooftree}
@@ -1062,27 +1078,27 @@ But if $m>0$, the cut-data could also be $(\nabla A, m-1, \{n_i\})$, in which ca
 	 \begin{prooftree}
 	 \noLine
 	 \AXC{$\mathcal{D}_1'$}
-	 \UIC{$\Sigma, \{\nabla^{n_i} (A_1 \rightarrow A_2)\}_{i>0} \Rightarrow \nabla^{n_0} A_1$}
+	 \UIC{$\Sigma, \{\nabla^{n_i} (A_1 \rightarrow A_2)\}_{i \leq l}^{i \neq j} \Rightarrow \nabla^{n_j} A_1$}
 	 \noLine
 	 \AXC{$\mathcal{D}_1''$}
-	 \UIC{$\Sigma, \{\nabla^{n_i} (A_1 \rightarrow A_2)\}_{i>0}, \nabla^{n_0} A_2 \Rightarrow \Delta$}
+	 \UIC{$\Sigma, \{\nabla^{n_i} (A_1 \rightarrow A_2)\}_{i \leq l}^{i \neq j}, \nabla^{n_j} A_2 \Rightarrow \Delta$}
 	 \RightLabel{$L\rightarrow$}
-	 \BIC{$\Sigma,  \{\nabla^{n_i} (A_1 \rightarrow A_2)\} \Rightarrow \Delta$}
+	 \BIC{$\Sigma,  \{\nabla^{n_i} (A_1 \rightarrow A_2)\}_{i \leq l} \Rightarrow \Delta$}
  \end{prooftree}
  
- $IH(\mathcal{D}_0, \mathcal{D}_1'')$ proves $\{\nabla^{n_i} \Gamma\}_{i>0}, \Sigma, \nabla^{n_0} A_2 \Rightarrow \Delta$. Applying a low rank $\nabla Cut$ on $\mathcal{D}_0'$ and this sequent removes $\nabla^{n_0} A_2$ and introduces $\nabla^{n_0} \Gamma$ and $\nabla^{n_0} A_1$ to the left. On the other hand $IH(\mathcal{D}_0, \mathcal{D}_1')$ proves $\{\nabla^{n_i} \Gamma\}_{i>0}, \Sigma, \Rightarrow \nabla^{n_0} A_1$, which we can use to also remove $\nabla^{n_0} A_1$ with another low rank cut, and then remove the extra $\nabla^{n_0} \Gamma$ and $\Sigma$ with $Lc$.
+ $IH(\mathcal{D}_0, \mathcal{D}_1'')$ proves $\{\nabla^{n_i} \Gamma\}_{i \leq l}^{i \neq j}, \Sigma, \nabla^{n_j} A_2 \Rightarrow \Delta$. Applying a low rank $\nabla Cut$ on $\mathcal{D}_0'$ and $IH(\mathcal{D}_0, \mathcal{D}_1'')$ removes $\nabla^{n_j} A_2$ and introduces $\nabla^{n_j} \Gamma$ and $\nabla^{n_j} A_1$ to the left. On the other hand $IH(\mathcal{D}_0, \mathcal{D}_1')$ proves $\{\nabla^{n_i} \Gamma\}_{i \leq l}^{i \neq j}, \Sigma, \Rightarrow \nabla^{n_j} A_1$, which we can use to also remove $\nabla^{n_j} A_1$ with another low rank cut. Then it suffices to remove the extra $\{\nabla^{n_i} \Gamma\}_{i \leq l}^{i \neq j}$ and $\Sigma$ with $Lc$.
 
- $R\rightsquigarrow$ and $L\rightsquigarrow$: Is just like the $\rightarrow$ case. Notice that the extra $\nabla$ on the left side of the subtree of $\mathcal{D}_0$ will provide the extra $\nabla$ on the principal formula in $\mathcal{D}_1$.
+ $R\rightsquigarrow$ and $L\rightsquigarrow$: Is just like the $\rightarrow$ case. Notice that the extra $\nabla$ on the left side of the immediate sub-tree of $\mathcal{D}_0$ will provide the extra $\nabla$ on the principal formula in $\mathcal{D}_1$.
 
- $Fa$ and $L\rightsquigarrow$: This is also similar to the $m = 1$ case, except that here the cut-data is $(\nabla (A \rightsquigarrow B), 0, \{n_i\})$.
+ $Fa$ and $L\rightsquigarrow$: This is also similar to the $m = 1$ case, except that here the cut-data is $(\nabla (A \rightsquigarrow B), 0, \{n_i\}_{i \leq l})$.
  \vspace{5mm}
 
- This concludes the proof the theorem in all cases. Notice that we have a construction for any two possible pair of rules, in both systems and all their variations.
+ Now we have a construction for any two possible pair of rules, in both systems and all their variations. This concludes the proof of the theorem in all cases.
 
 \end{proof}
 
 \begin{thm}\label{thm:ldls-cut-elim}[Cut Elimination]
-	For any $\Gamma$ and $\Delta$, If $\Gamma \Rightarrow \Delta$ is provable by $\mathbf{LDL}^*_\rightsquigarrow(\star)$, then it is so by $\mathbf{LDL}^*_\rightsquigarrow(\star)-\{Cut\}$.
+	For any $\Gamma$ and $\Delta$, if $\Gamma \Rightarrow \Delta$ is provable by $\mathbf{LDL}^*_\rightsquigarrow(\star)$, then it is so by $\mathbf{LDL}^*_\rightsquigarrow(\star)-\{Cut\}$.
 \end{thm}
 \begin{proof}
 		First, we will show that for any non-zero-rank proof of $\Gamma \Rightarrow \Delta$ like $\mathcal{D}$ in $\mathbf{LDL}^*_\rightsquigarrow(\star)$, there is another proof of the same sequent with a lower rank. Suppose $\mathcal{D}$ has sub-tree(s) called $\mathcal{D}_0$ (and possibly $\mathcal{D}_1$). Using induction on $h(\mathcal{D})$, the induction hypothesis for $\mathcal{D}_i ~(i \in \{0,1\})$ gives us a proof-tree with the same conclusion, which we call $IH(\mathcal{D}_i)$, but with a lower rank, i.e. $\rho(IH(\mathcal{D}_i)) < \rho(\mathcal{D}_i)$. We now consider two cases for the last rule of $\mathcal{D}$
@@ -1090,21 +1106,21 @@ But if $m>0$, the cut-data could also be $(\nabla A, m-1, \{n_i\})$, in which ca
 	\begin{enumerate}[label=\Roman*]
 		\item If the last rule of $\mathcal{D}$ is of a lower rank than $\rho(\mathcal{D})$, i.e. the $Cut$ instance with the maximum rank is not the last rule in $\mathcal{D}$, then we can apply the same last rule on $IH(\mathcal{D}_i)$'s and get a proof of $\Gamma \Rightarrow \Delta$ with a lower rank.
 		
-		\item If the last rule of $\mathcal{D}$ is an instance of $Cut$ rule with a cut-formula of rank $\rho(\mathcal{D})$, then we can apply theorem \ref{thm:ldls-cut-reduction} to $IH(\mathcal{D}_0)$ and $IH(\mathcal{D}_1)$ to get the same $Cut$ with a lower rank. (Recall that $\nabla Cut$ is just a generalization of $Cut$, so the theorem applies.)
+		\item If the last rule of $\mathcal{D}$ is an instance of $Cut$ rule of rank $\rho(\mathcal{D})$, then we can apply theorem \ref{thm:ldls-cut-reduction} to $IH(\mathcal{D}_0)$ and $IH(\mathcal{D}_1)$ to get the same $Cut$ with a lower rank. (Recall that $\nabla Cut$ is just a generalization of $Cut$, so the theorem applies.)
 	\end{enumerate}
-	So for any proof of $\Gamma \Rightarrow \Delta$ in $\mathbf{LDL}^*_\rightsquigarrow(\star)$, we also have a proof with rank $0$, which is cut-free.
+	So for any proof of $\Gamma \Rightarrow \Delta$ in $\mathbf{LDL}^*_\rightsquigarrow(\star)$, we also have a proof of rank $0$, which is cut-free.
 \end{proof}
 
 \subsection{Admissible Rules}
 \textbf{Problem.} What are the Harrop formulas here? Prove the disjunction property for the theories axiomatized by Harrop formulas, using the cut-free proofs over the logics $\mathbf{LDL}$ and $\mathbf{LDL}_{\rightsquigarrow}$. Prove the same thing via Kleene-type argument. Do we have similar thing for the logics with added rules $H$ and $H_{\rightsquigarrow}$, respectively?
 
 \subsection{Interpolation}
-In this section, we prove \emph{Craig's interpolation} theorem for $\mathbf{LDL}(\star)$ and a weaker version called \emph{deductive interpolation} for $\mathbf{LDL}_\rightsquigarrow(\star)$. For a formula $A$, by $P(A)$ we mean the set of all atomic formulas of $A$ and for a multi-set of formulas $\Gamma$, $P(\Gamma) = \bigcup_{A \in \Gamma} P(A)$.
-\begin{thm}[Craig's Interpolation for $\mathbf{LDL}(\star)$]\label{thm:ldl-craig} For any $\Gamma_1$, $\Gamma_2$ and $\Delta$, and for $\star \in \{L, R', Fa\}$, if $\mathbf{LDL}(\star) \vdash \Gamma_1 , \Gamma_2 \Rightarrow \Delta$, then there is a formula $C$ such that $P(C) \subseteq P(\Gamma_1) \cap P(\Gamma_2 , \Delta)$, $\mathbf{LDL}(\star) \vdash \Gamma_1 \Rightarrow C$ and $\mathbf{LDL}(\star) \vdash \Gamma_2 , C \Rightarrow \Delta$.
+In this section, we prove \emph{Craig's interpolation} theorem for $\mathbf{LDL}(\star)$ and a weaker version called \emph{deductive interpolation} for $\mathbf{LDL}_\rightsquigarrow(\star)$. For a formula $A$, by $V(A)$ we mean the set of all atomic formulas of $A$ and for a multi-set of formulas $\Gamma$, $V(\Gamma) = \bigcup_{A \in \Gamma} V(A)$.
+\begin{thm}[Craig's Interpolation for $\mathbf{LDL}(\star)$]\label{thm:ldl-craig} For any $\Gamma_1$, $\Gamma_2$ and $\Delta$, and for $\star \in \{L, R', Fa\}$, if $\mathbf{LDL}(\star) \vdash \Gamma_1 , \Gamma_2 \Rightarrow \Delta$, then there is a formula $C$ such that $V(C) \subseteq V(\Gamma_1) \cap V(\Gamma_2 , \Delta)$, $\mathbf{LDL}(\star) \vdash \Gamma_1 \Rightarrow C$ and $\mathbf{LDL}(\star) \vdash \Gamma_2 , C \Rightarrow \Delta$.
 \end{thm}
 
 \begin{proof}
-Let $\mathcal{D}$ be a proof for $\Gamma_1 , \Gamma_2 \Rightarrow \Delta$ in $\mathbf{LDL}(\star)-\{Cut\}$ (by theorem \ref{thm:ldls-cut-elim}). We will use induction on the length of $\mathcal{D}$, so for a smaller proof-tree for some $\Gamma_1' , \Gamma_2' \Rightarrow \Delta'$, the induction hypothesis (IH) provides an interpolant $C_{\langle\Gamma_1'; \Gamma_2'; \Delta'\rangle}$ for which the statement of the theorem is true. We now build the desired interpolant $C$, in different cases for the last rule of $\mathcal{D}$. In cases for left-rules, we also need to consider whether the principal formula is in $\Gamma_1$ or $\Gamma_2$ in separate cases.
+Let $\mathcal{D}$ be a cut-free proof for $\Gamma_1 , \Gamma_2 \Rightarrow \Delta$ (by theorem \ref{thm:ldls-cut-elim}). We will use induction on the length of $\mathcal{D}$, so for a smaller proof-tree for some $\Gamma_1' , \Gamma_2' \Rightarrow \Delta'$, the induction hypothesis (IH) provides an interpolant $C_{\langle\Gamma_1'; \Gamma_2'; \Delta'\rangle}$ for which the statement of the theorem is true. We now build the desired interpolant $C$, in different cases for the last rule of $\mathcal{D}$. In cases for left-rules, we also need to consider whether the principal formula is in $\Gamma_1$ or $\Gamma_2$ in separate cases.
 \begin{enumerate}
 	\item ($Id$) We have $\Gamma_1,\Gamma_2 = \Delta = A$.
 	\begin{enumerate}
@@ -1116,25 +1132,25 @@ Let $\mathcal{D}$ be a proof for $\Gamma_1 , \Gamma_2 \Rightarrow \Delta$ in $\m
 	
 	\item ($Ex$) Take $C = \nabla^n \bot$.
 	
-	\item ($Lw$) $\mathcal{D}$ proves $\Gamma_1' , \Gamma_2' , A \Rightarrow \Delta$ and has a sub-proof for $\Gamma_1' , \Gamma_2' \Rightarrow \Delta$, for which IH gives an interpolant $C_{\langle\Gamma_1';\Gamma_2';\Delta\rangle}$ and proofs for $\Gamma_1' \Rightarrow C_{\langle\Gamma_1';\Gamma_2';\Delta\rangle}$ and $\Gamma_2 , C_{\langle\Gamma_1';\Gamma_2';\Delta\rangle} \Rightarrow \Delta$, such that $P(C_{\langle\Gamma_1';\Gamma_2';\Delta\rangle}) \subseteq$ $ P(\Gamma_1') \cap P(\Gamma_2' , \Delta)$.
+	\item ($Lw$) $\mathcal{D}$ proves $\Gamma_1' , \Gamma_2' , A \Rightarrow \Delta$ and has a sub-proof for $\Gamma_1' , \Gamma_2' \Rightarrow \Delta$, for which IH gives an interpolant $C_{\langle\Gamma_1';\Gamma_2';\Delta\rangle}$ and proofs for $\Gamma_1' \Rightarrow C_{\langle\Gamma_1';\Gamma_2';\Delta\rangle}$ and $\Gamma_2 , C_{\langle\Gamma_1';\Gamma_2';\Delta\rangle} \Rightarrow \Delta$, such that $V(C_{\langle\Gamma_1';\Gamma_2';\Delta\rangle}) \subseteq$ $ V(\Gamma_1') \cap V(\Gamma_2' , \Delta)$.
 	\begin{enumerate}
-		\item If $\Gamma_1 = \Gamma_1'$ and $\Gamma_2 = \Gamma_2' , A$, take $C = C_{\langle\Gamma_1';\Gamma_2';\Delta\rangle}$. Then we have  $\Gamma_1' \Rightarrow C$ by IH and $\Gamma_2 , A , C \Rightarrow \Delta$ by $Lw$ and IH. From IH, we also have $P(C) \subseteq P(\Gamma_1') \cap P(\Gamma_2' , A , \Delta)$, since $P$ takes ``$,$'' to ``$\cup$'', which distributes over ``$\cap$'' and is increasing with respect to ``$\subseteq$''.
+		\item If $\Gamma_1 = \Gamma_1'$ and $\Gamma_2 = \Gamma_2' , A$, take $C = C_{\langle\Gamma_1';\Gamma_2';\Delta\rangle}$. Then we have  $\Gamma_1' \Rightarrow C$ by IH and $\Gamma_2 , A , C \Rightarrow \Delta$ by $Lw$ and IH. From IH, we also have $V(C) \subseteq V(\Gamma_1') \cap V(\Gamma_2' , A , \Delta)$, since $P$ takes ``$,$'' to ``$\cup$'', which distributes over ``$\cap$'' and is increasing with respect to ``$\subseteq$''.
 		
-		\item If $\Gamma_1 = \Gamma_1' , A$ and $\Gamma_2 = \Gamma_2'$, again take $C = C_{\langle\Gamma_1';\Gamma_2';\Delta\rangle}$. Then we have  $\Gamma_1' , A \Rightarrow C$ by $Lw$ and IH, and $\Gamma_2 , C \Rightarrow \Delta$ by IH. We also have $P(C) \subseteq P(\Gamma_1' , A) \cap P(\Gamma_2' , \Delta)$ by IH and argument similar to the previous case.
+		\item If $\Gamma_1 = \Gamma_1' , A$ and $\Gamma_2 = \Gamma_2'$, again take $C = C_{\langle\Gamma_1';\Gamma_2';\Delta\rangle}$. Then we have  $\Gamma_1' , A \Rightarrow C$ by $Lw$ and IH, and $\Gamma_2 , C \Rightarrow \Delta$ by IH. We also have $V(C) \subseteq V(\Gamma_1' , A) \cap V(\Gamma_2' , \Delta)$ by IH and argument similar to the previous case.
 	\end{enumerate}
 
 	\item ($Lc$) $\mathcal{D}$ proves $\Gamma_1' , \Gamma_2' , A \Rightarrow \Delta$ and has a sub-proof for $\Gamma_1' , \Gamma_2' , A , A \Rightarrow \Delta$.
 	\begin{enumerate}
-		\item If $\Gamma_1 = \Gamma_1'$ and $\Gamma_2 = \Gamma_2' , A$, take $C = C_{\langle\Gamma_1';\Gamma_2',A,A;\Delta\rangle}$. Then we have $\Gamma_1' \Rightarrow C$ by IH and $\Gamma_2' , A \Rightarrow \Delta$ by IH and $Lc$. From IH, we also have $P(C) \subseteq P(\Gamma_1') \cap P(\Gamma_2',A,\Delta)$, since $P(\Gamma,X) = P(\Gamma,X,X)$.
+		\item If $\Gamma_1 = \Gamma_1'$ and $\Gamma_2 = \Gamma_2' , A$, take $C = C_{\langle\Gamma_1';\Gamma_2',A,A;\Delta\rangle}$. Then we have $\Gamma_1' \Rightarrow C$ by IH and $\Gamma_2' , A \Rightarrow \Delta$ by IH and $Lc$. From IH, we also have $V(C) \subseteq V(\Gamma_1') \cap V(\Gamma_2',A,\Delta)$, since $V(\Gamma,X) = V(\Gamma,X,X)$.
 		
-		\item If $\Gamma_1 = \Gamma_1' , A$ and $\Gamma_2 = \Gamma_2'$, take $C = C_{\langle\Gamma_1',A,A;\Gamma_2';\Delta\rangle}$. Then we have $\Gamma_1' , A \Rightarrow C$ by IH and $Lc$, and $\Gamma_2' \Rightarrow \Delta$ by IH. We also have $P(C) \subseteq P(\Gamma_1',A) \cap P(\Gamma_2',\Delta)$ as justified before.
+		\item If $\Gamma_1 = \Gamma_1' , A$ and $\Gamma_2 = \Gamma_2'$, take $C = C_{\langle\Gamma_1',A,A;\Gamma_2';\Delta\rangle}$. Then we have $\Gamma_1' , A \Rightarrow C$ by IH and $Lc$, and $\Gamma_2' \Rightarrow \Delta$ by IH. We also have $V(C) \subseteq V(\Gamma_1',A) \cap V(\Gamma_2',\Delta)$ as justified before.
 	\end{enumerate}
 
 	\item[6,7.] ($L\land_i$, {\small$i \in \{1,2\}$}) $\mathcal{D}$ proves $\Gamma_1' , \Gamma_2' , \nabla^n (A_1 \land A_2) \Rightarrow \Delta$ and has a sub-proof for $\Gamma_1' , \Gamma_2' , \nabla^n A_i \Rightarrow \Delta$.
 	\begin{enumerate}
-		\item If $\Gamma_1 = \Gamma_1'$ and $\Gamma_2 = \Gamma_2' , \nabla^n (A_1 \land A_2)$, take $C = C_{\langle\Gamma_1';\Gamma_2',\nabla^n A_i;\Delta\rangle}$. Then we have $\Gamma_1' \Rightarrow C$ by IH and $\Gamma_2' , \nabla^n (A_1 \land A_2) \Rightarrow \Delta$ by IH and $L\land_i$. From IH, we also have $P(C) \subseteq$ $P(\Gamma_1') \cap P(\Gamma_2',\nabla^n(A_1 \land A_2),\Delta)$, since $P(\nabla^n X) = P(X)$ and $P$ takes sub-formula ordering to ``$\subseteq$''.
+		\item If $\Gamma_1 = \Gamma_1'$ and $\Gamma_2 = \Gamma_2' , \nabla^n (A_1 \land A_2)$, take $C = C_{\langle\Gamma_1';\Gamma_2',\nabla^n A_i;\Delta\rangle}$. Then we have $\Gamma_1' \Rightarrow C$ by IH and $\Gamma_2' , \nabla^n (A_1 \land A_2) \Rightarrow \Delta$ by IH and $L\land_i$. From IH, we also have $V(C) \subseteq$ $V(\Gamma_1') \cap V(\Gamma_2',\nabla^n(A_1 \land A_2),\Delta)$, since $V(\nabla^n X) = V(X)$ and $P$ takes sub-formula ordering to ``$\subseteq$''.
 		
-		\item If $\Gamma_1 = \Gamma_1' , \nabla^n (A_1 \land A_2)$ and $\Gamma_2 = \Gamma_2'$, take $C = C_{\langle\Gamma_1',\nabla^n A_i;\Gamma_2';\Delta\rangle}$. Then we have $\Gamma_1' , \nabla^n (A_1 \land A_2)$ $\Rightarrow C$ by IH and $L\land_i$. Also from IH we have $\Gamma_2' \Rightarrow \Delta$. We also have $P(C) \subseteq P(\Gamma_1',\nabla^n (A_1 \land A_2))$ $\cap P(\Gamma_2',\Delta)$ as justified in the previous case.
+		\item If $\Gamma_1 = \Gamma_1' , \nabla^n (A_1 \land A_2)$ and $\Gamma_2 = \Gamma_2'$, take $C = C_{\langle\Gamma_1',\nabla^n A_i;\Gamma_2';\Delta\rangle}$. Then we have $\Gamma_1' , \nabla^n (A_1 \land A_2)$ $\Rightarrow C$ by IH and $L\land_i$. Also from IH we have $\Gamma_2' \Rightarrow \Delta$. We also have $V(C) \subseteq V(\Gamma_1',\nabla^n (A_1 \land A_2))$ $\cap V(\Gamma_2',\Delta)$ as justified in the previous case.
 	\end{enumerate}
 	\setcounter{enumi}{7}
 
@@ -1143,23 +1159,23 @@ Let $\mathcal{D}$ be a proof for $\Gamma_1 , \Gamma_2 \Rightarrow \Delta$ in $\m
 	We have $\Gamma_1 \Rightarrow C_1$ and $\Gamma_1 \Rightarrow C_2$, both from IH. Then by $R\land$ we have $\Gamma_1 \Rightarrow C_1 \land C_2$.
 	We also have $\Gamma_2 , C_1 \Rightarrow A$ and $\Gamma_2 , C_2 \Rightarrow B$, again from IH.
 	We can then derive $\Gamma_2 , C_1 \land C_2 \Rightarrow A$ and $\Gamma_2 , C_1 \land C_2 \Rightarrow B$, respectively by $L\land_1$ and $L\land_2$, and finally  $\Gamma_2 , C_1 \land C_2 \Rightarrow A \land B$ by $R\land$.
-	We also have $P(C_1) \subseteq P(\Gamma_1) \cap P(\Gamma_2 , A)$ and $P(C_2) \subseteq P(\Gamma_1) \cap P(\Gamma_2 , B)$. So $P(C_1 , C_2) \subseteq P(\Gamma_1) \cap P(\Gamma_2 , A , B)$ as it was justified before, and then $P(C_1 \land C_2) \subseteq P(\Gamma_1) \cap P(\Gamma_2 , A \land B)$.
+	We also have $V(C_1) \subseteq V(\Gamma_1) \cap V(\Gamma_2 , A)$ and $V(C_2) \subseteq V(\Gamma_1) \cap V(\Gamma_2 , B)$. So $V(C_1 , C_2) \subseteq V(\Gamma_1) \cap V(\Gamma_2 , A , B)$ as it was justified before, and then $V(C_1 \land C_2) \subseteq V(\Gamma_1) \cap V(\Gamma_2 , A \land B)$.
 	
 	\item ($L\lor$) $\mathcal{D}$ proves $\Gamma_1' , \Gamma_2' , \nabla^n (A \lor B) \Rightarrow \Delta$ and has sub-proofs for $\Gamma_1' , \Gamma_2' , \nabla^n A \Rightarrow \Delta$ and $\Gamma_1' , \Gamma_2' , \nabla^n B \Rightarrow \Delta$.
 	\begin{enumerate}
 		\item If $\Gamma_1 = \Gamma_1'$ and $\Gamma_2 = \Gamma_2' , \nabla^n (A \lor B)$, let $C_1 = C_{\langle\Gamma_1';\Gamma_2',\nabla^n A;\Delta\rangle}$ and $C_2 = C_{\langle\Gamma_1';\Gamma_2',\nabla^n B;\Delta\rangle}$, and then take $C = C_1 \land C_2$.
 		We have $\Gamma_1' \Rightarrow C_1 \land C_2$ from IH and $R\land$.
 		From IH, by $L\land_1$ and $L\land_2$ we can derive $\Gamma_2' , \nabla^n A , C_1 \land C_2 \Rightarrow \Delta$ and $\Gamma_2' , \nabla^n B , C_1 \land C_2 \Rightarrow \Delta$ respectively, to which we apply $L\lor$ to get to $\Gamma_2' , \nabla^n (A \lor B) , C_1 \land C_2 \Rightarrow \Delta$.
-		From IH, we also have $P(C_1) \subseteq P(\Gamma_1') \cap P(\Gamma_2' , \nabla^n A , \Delta)$ and $P(C_2) \subseteq P(\Gamma_1') \cap P(\Gamma_2' , \nabla^n B , \Delta)$. Just like the previous case, we can deduce that $P(C_1 \land C_2) \subseteq P(\Gamma_1') \cap P(\Gamma_2' , \nabla^n (A \land B) , \Delta)$.
+		From IH, we also have $V(C_1) \subseteq V(\Gamma_1') \cap V(\Gamma_2' , \nabla^n A , \Delta)$ and $V(C_2) \subseteq V(\Gamma_1') \cap V(\Gamma_2' , \nabla^n B , \Delta)$. Just like the previous case, we can deduce that $V(C_1 \land C_2) \subseteq V(\Gamma_1') \cap V(\Gamma_2' , \nabla^n (A \land B) , \Delta)$.
 
 		\item If $\Gamma_1 = \Gamma_1' , \nabla^n (A \lor B)$ and $\Gamma_2 = \Gamma_2'$, let $C_1 = C_{\langle\Gamma_1',\nabla^n A;\Gamma_2';\Delta\rangle}$ and $C_2 = C_{\langle\Gamma_1',\nabla^n B;\Gamma_2';\Delta\rangle}$, and then take $C = C_1 \lor C_2$.
 		From IH, by $R\lor_1$ and $R\lor_2$ we can derive $\Gamma_1' , \nabla^n A \Rightarrow C_1 \lor C_2$ and $\Gamma_1' , \nabla^n B \Rightarrow C_1 \lor C_2$ respectively, to which we apply $L\lor$ to get to $\Gamma_1' , \nabla^n (A \lor B) \Rightarrow C_1 \lor C_2$.
 		We have $\Gamma_2' , C_1 \lor C_2 \Rightarrow \Delta$ from IH and $L\lor$.
-		From IH, we also have $P(C_1) \subseteq P(\Gamma_1' , \nabla^n A) \cap$ $P(\Gamma_2' , \Delta)$ and $P(C_2) \subseteq P(\Gamma_1' , \nabla^n B) \cap P(\Gamma_2' , \Delta)$. Just like the previous case, we can deduce that $P(C_1 \lor C_2) \subseteq P(\Gamma_1' , \nabla^n (A \land B)) \cap P(\Gamma_2' , \Delta)$.
+		From IH, we also have $V(C_1) \subseteq V(\Gamma_1' , \nabla^n A) \cap$ $V(\Gamma_2' , \Delta)$ and $V(C_2) \subseteq V(\Gamma_1' , \nabla^n B) \cap V(\Gamma_2' , \Delta)$. Just like the previous case, we can deduce that $V(C_1 \lor C_2) \subseteq V(\Gamma_1' , \nabla^n (A \land B)) \cap V(\Gamma_2' , \Delta)$.
 	\end{enumerate}
 
 	\item[10,11.] ($R\lor_i$, {\small$i \in \{1,2\}$}) $\mathcal{D}$ proves $\Gamma_1 , \Gamma_2 \Rightarrow A_1 \lor A_2$ and has a sub-proof for $\Gamma_1 , \Gamma_2 \Rightarrow A_i$. Take $C = C_{\langle\Gamma_1;\Gamma_2;A_i\rangle}$. Then we have $\Gamma_1 \Rightarrow C$ from IH and $\Gamma_2 , C \Rightarrow A_1 \lor A_2$ from IH and $R\lor_i$.
-	From IH, we also have $P(C) \subseteq P(\Gamma_1) \cap P(\Gamma_2 , A_1 \lor A_2)$, as was justified before.
+	From IH, we also have $V(C) \subseteq V(\Gamma_1) \cap V(\Gamma_2 , A_1 \lor A_2)$, as was justified before.
 	\setcounter{enumi}{11}
 	
 	\item ($L\rightarrow$) $\mathcal{D}$ proves $\Gamma_1' , \Gamma_2' , \nabla^n (A \rightarrow B) \Rightarrow \Delta$ and has sub-proofs for $\Gamma_1' , \Gamma_2' \Rightarrow \nabla^n A$ and $\Gamma_1' , \Gamma_2' , \nabla^n B \Rightarrow \Delta$.
@@ -1167,61 +1183,61 @@ Let $\mathcal{D}$ be a proof for $\Gamma_1 , \Gamma_2 \Rightarrow \Delta$ in $\m
 		\item If $\Gamma_1 = \Gamma_1'$ and $\Gamma_2 = \Gamma_2' , \nabla^n (A \rightarrow B)$, let $C_1 = C_{\langle\Gamma_1';\Gamma_2';\nabla^n A\rangle}$ and $C_2 = C_{\langle\Gamma_1';\Gamma_2',\nabla^n B;\Delta\rangle}$, and take $C = C_1 \land C_2$.
 		We have $\Gamma_1' \Rightarrow C_1 \land C_2$ from IH and $R\land$.
 		From IH, by $L\land_1$ and $L\land_2$ we can derive $\Gamma_2' , C_1 \land C_2 \Rightarrow \nabla^n A$ and $\Gamma_2' , \nabla^n B , C_1 \land C_2 \Rightarrow \Delta$ respectively, to which we apply $L\rightarrow$ to get $\Gamma_2' , \nabla^n (A \rightarrow B) , C_1 \land C_2 \Rightarrow \Delta$.
-		From IH, we also have $P(C_1) \subseteq P(\Gamma_1') \cap$ $P(\Gamma_2' , \nabla^n A)$ and $P(C_2) \subseteq P(\Gamma_1') \cap P(\Gamma_2' , \nabla^n B , \Delta)$. This implies $P(C_1 \land C_2) \subseteq P(\Gamma_1') \cap P(\Gamma_2' , \nabla^n (A \rightarrow B) , \Delta)$.
+		From IH, we also have $V(C_1) \subseteq V(\Gamma_1') \cap$ $V(\Gamma_2' , \nabla^n A)$ and $V(C_2) \subseteq V(\Gamma_1') \cap V(\Gamma_2' , \nabla^n B , \Delta)$. This implies $V(C_1 \land C_2) \subseteq V(\Gamma_1') \cap V(\Gamma_2' , \nabla^n (A \rightarrow B) , \Delta)$.
 
 		\item If $\Gamma_1 = \Gamma_1' , \nabla^n (A \rightarrow B)$ and $\Gamma_2 = \Gamma_2'$, let $C_1 = C_{\langle\Gamma_2';\Gamma_1';\nabla^n A\rangle}$ and $C_2 = C_{\langle\Gamma_1',\nabla^n B;\Gamma_2';\Delta\rangle}$, and take $C = C_1 \rightarrow C_2$.
 		From IH we have $\Gamma_1' , C_1 \Rightarrow \nabla^n A$ and $\Gamma_1' , \nabla^n B , C_1 \Rightarrow C_2$, with a $Lw$ to introduce $C_1$ to the left. From $L\rightarrow$ we get $\Gamma_1 , \nabla^n (A \rightarrow B) , C_1 \Rightarrow C_2$, to which we can apply $R\rightarrow$ to get $\Gamma_1' , \nabla^n (A \rightarrow B) \Rightarrow C_1 \rightarrow C_2$.
 
-		From IH, we have also $\Gamma_2' \Rightarrow C_1$ and $\Gamma_2' , C_2 \Rightarrow \Delta$, from which we can derive $\Gamma_2' , C_1 \rightarrow C_2 \Rightarrow \Delta$ by an application of $L\rightarrow$. IH also states that $P(C_1) \subseteq P(\Gamma_2') \cap P(\Gamma_1' , \nabla^n A)$ and $P(C_2) \subseteq P(\Gamma_1' , \nabla^n B) \cap P(\Gamma_2' , \Delta)$. Then $P(C_1 \rightarrow C_2) \subseteq P(\Gamma_1' , \nabla^n (A \rightarrow B)) \cap P(\Gamma_2' , \Delta)$.
+		From IH, we have also $\Gamma_2' \Rightarrow C_1$ and $\Gamma_2' , C_2 \Rightarrow \Delta$, from which we can derive $\Gamma_2' , C_1 \rightarrow C_2 \Rightarrow \Delta$ by an application of $L\rightarrow$. IH also states that $V(C_1) \subseteq V(\Gamma_2') \cap V(\Gamma_1' , \nabla^n A)$ and $V(C_2) \subseteq V(\Gamma_1' , \nabla^n B) \cap V(\Gamma_2' , \Delta)$. Then $V(C_1 \rightarrow C_2) \subseteq V(\Gamma_1' , \nabla^n (A \rightarrow B)) \cap V(\Gamma_2' , \Delta)$.
 	\end{enumerate}
 
 	\item ($R\rightarrow$) $\mathcal{D}$ proves $\Gamma_1 , \Gamma_2 \Rightarrow A \rightarrow B$ and has a sub-proof for $\Gamma_1 , \Gamma_2 , A \Rightarrow B$. Let $C = C_{\langle\Gamma_1;\Gamma_2,A;B\rangle}$. So we have $\Gamma_1 \Rightarrow C$ and $\Gamma_2 , C \Rightarrow A \rightarrow B$ from IH and an application of $R\rightarrow$.
-	We also have $P(C) \subseteq P(\Gamma_1) \cap P(\Gamma_2 , A \rightarrow B)$ from IH and the fact that $P$ preserves sub-formula ordering in $\subseteq$.
+	We also have $V(C) \subseteq V(\Gamma_1) \cap V(\Gamma_2 , A \rightarrow B)$ from IH and the fact that $P$ preserves sub-formula ordering in $\subseteq$.
 
 	\item ($L\rightsquigarrow$) This case is similar to $L\rightarrow$. $\mathcal{D}$ proves $\Gamma_1' , \Gamma_2' , \nabla^{n+1} (A \rightsquigarrow B) \Rightarrow \Delta$ and has sub-proofs for $\Gamma_1' , \Gamma_2' \Rightarrow \nabla^n A$ and $\Gamma_1' , \Gamma_2' , \nabla^n B \Rightarrow \Delta$.
 	\begin{enumerate}
 		\item If $\Gamma_1 = \Gamma_1'$ and $\Gamma_2 = \Gamma_2' , \nabla^{n+1} (A \rightsquigarrow B)$, let $C_1 = C_{\langle\Gamma_1';\Gamma_2';\nabla^n A\rangle}$ and $C_2 = C_{\langle\Gamma_1';\Gamma_2',\nabla^n B;\Delta\rangle}$, and take $C = C_1 \land C_2$.
 		We have $\Gamma_1' \Rightarrow C_1 \land C_2$ from IH and $R\land$.
 		From IH, by $L\land_1$ and $L\land_2$ we can derive $\Gamma_2' , C_1 \land C_2 \Rightarrow \nabla^n A$ and $\Gamma_2' , \nabla^n B , C_1 \land C_2 \Rightarrow \Delta$ respectively, to which we apply $L\rightsquigarrow$ to get to $\Gamma_2' , \nabla^{n+1} (A \rightsquigarrow B) , C_1 \land C_2 \Rightarrow \Delta$.
-		From IH, we also have $P(C_1) \subseteq P(\Gamma_1') \cap$ $P(\Gamma_2' , \nabla^n A)$ and $P(C_2) \subseteq P(\Gamma_1') \cap P(\Gamma_2' , \nabla^n B , \Delta)$, which implies $P(C_1 \land C_2) \subseteq P(\Gamma_1') \cap P(\Gamma_2' , \nabla^{n+1} (A \rightsquigarrow B) , \Delta)$.
+		From IH, we also have $V(C_1) \subseteq V(\Gamma_1') \cap$ $V(\Gamma_2' , \nabla^n A)$ and $V(C_2) \subseteq V(\Gamma_1') \cap V(\Gamma_2' , \nabla^n B , \Delta)$, which implies $V(C_1 \land C_2) \subseteq V(\Gamma_1') \cap V(\Gamma_2' , \nabla^{n+1} (A \rightsquigarrow B) , \Delta)$.
 
 		\item If $\Gamma_1 = \Gamma_1' , \nabla^{n+1} (A \rightsquigarrow B)$ and $\Gamma_2 = \Gamma_2'$, let $C_1 = C_{\langle\Gamma_2';\Gamma_1';\nabla^n A\rangle}$ and $C_2 = C_{\langle\Gamma_1',\nabla^n B;\Gamma_2';\Delta\rangle}$, and take $C = C_1 \rightarrow C_2$.
 		From IH we have $\Gamma_1' , C_1 \Rightarrow \nabla^n A$. Also from IH, with a $Lw$ to add $C_1$ to the left, we have $\Gamma_1' , \nabla^n B , C_1 \Rightarrow C_2$. By $L\rightsquigarrow$ and $R\rightarrow$ we get $\Gamma_1' , \nabla^{n+1} (A \rightsquigarrow B) \Rightarrow C_1 \rightarrow C_2$.
-		We also have $\Gamma'_2, C_1 \rightarrow C_2 \Rightarrow \Delta$ from IH and $L\rightarrow$. Again from IH, we have $P(C_1) \subseteq P(\Gamma_2') \cap P(\Gamma_1' , \nabla^n A)$ and $P(C_2) \subseteq P(\Gamma_1' , \nabla^n B) \cap P(\Gamma_2' , \Delta)$, thus $P(C_1 \rightarrow C_2) \subseteq P(\Gamma_1' , \nabla^{n+1} (A \rightarrow B)) \cap P(\Gamma_2' , \Delta)$.
+		We also have $\Gamma'_2, C_1 \rightarrow C_2 \Rightarrow \Delta$ from IH and $L\rightarrow$. Again from IH, we have $V(C_1) \subseteq V(\Gamma_2') \cap V(\Gamma_1' , \nabla^n A)$ and $V(C_2) \subseteq V(\Gamma_1' , \nabla^n B) \cap V(\Gamma_2' , \Delta)$, thus $V(C_1 \rightarrow C_2) \subseteq V(\Gamma_1' , \nabla^{n+1} (A \rightarrow B)) \cap V(\Gamma_2' , \Delta)$.
 	\end{enumerate}
 
 	\item ($R\rightsquigarrow$) This is also similar to the $R\rightarrow$ case, except that here $\mathcal{D}$'s sub-proof proves $\nabla \Gamma_1 , \nabla \Gamma_2 , A \Rightarrow B$. Let $C' = C_{\langle\nabla\Gamma_1;\nabla\Gamma_2,A;B\rangle}$ amd take $C = \top \rightsquigarrow C'$. So we have $\nabla \Gamma_1 \Rightarrow C'$ from IH, at the right of which we can introduce $\top$ by $Lw$, and then apply $R\rightsquigarrow$ to get $\Gamma_1 \Rightarrow \top \rightsquigarrow C'$. From IH, we also have $\nabla \Gamma_2, A, C' \Rightarrow B$. On the other hand, we have $\nabla (\top \rightsquigarrow C') \Rightarrow C'$ by applying $L\rightsquigarrow$ on $\Rightarrow \top$ and $C' \Rightarrow C'$. Using this sequent and $Cut$, we can replace $C'$ with $\nabla (\top \rightsquigarrow C')$ in the former sequent to get $\nabla \Gamma_2 , A , \nabla (\top \rightsquigarrow C') \Rightarrow B$. By $R\rightsquigarrow$ we would get $\Gamma_2 , \top \rightarrow C' \Rightarrow A \rightsquigarrow B$.
-	We also have $P(\top \rightsquigarrow C) \subseteq P(\Gamma_1) \cap P(\Gamma_2 , A \rightsquigarrow B)$ from IH and the fact that $P$ preserves sub-formula ordering in $\subseteq$ and $\top$ does not introduce new atomic formulas.
+	We also have $V(\top \rightsquigarrow C) \subseteq V(\Gamma_1) \cap V(\Gamma_2 , A \rightsquigarrow B)$ from IH and the fact that $P$ preserves sub-formula ordering in $\subseteq$ and $\top$ does not introduce new atomic formulas.
 
 	\item ($N$) $\mathcal{D}$ proves $\nabla \Gamma_1 , \nabla \Gamma_2 \Rightarrow \nabla \Delta$ and has a sub-proof for $\Gamma_1 , \Gamma_2 \Rightarrow \Delta$. Just take $C = C(\Gamma_1;\Gamma_2;\Delta)$ and apply $N$ on the sequents from IH. The variable condition is also trivial.
 	
 	\item ($L$) $\mathcal{D}$ proves $\Gamma_1' , \Gamma_2' , \nabla A \Rightarrow \Delta$ and has a sub-proof for $\Gamma_1' , \Gamma_2' , A \Rightarrow \Delta$.
 	\begin{enumerate}
-		\item If $\Gamma_1 = \Gamma_1'$ and $\Gamma_2 = \Gamma_2' , \nabla A$, take $C = C_{\langle\Gamma_1';\Gamma_2',A;\Delta\rangle}$. Then we have $\Gamma_1' \Rightarrow C$ by IH and $\Gamma_2' , \nabla A \Rightarrow \Delta$ by IH and $L$. From IH, it's also trivial that $P(C) \subseteq P(\Gamma_1') \cap P(\Gamma_2',\nabla A,\Delta)$.
+		\item If $\Gamma_1 = \Gamma_1'$ and $\Gamma_2 = \Gamma_2' , \nabla A$, take $C = C_{\langle\Gamma_1';\Gamma_2',A;\Delta\rangle}$. Then we have $\Gamma_1' \Rightarrow C$ by IH and $\Gamma_2' , \nabla A \Rightarrow \Delta$ by IH and $L$. From IH, it's also trivial that $V(C) \subseteq V(\Gamma_1') \cap V(\Gamma_2',\nabla A,\Delta)$.
 		
-		\item If $\Gamma_1 = \Gamma_1' , \nabla A$ and $\Gamma_2 = \Gamma_2'$, take $C = C_{\langle\Gamma_1',A;\Gamma_2';\Delta\rangle}$. Then we have $\Gamma_1' , \nabla A \Rightarrow C$ by IH and $L$, and $\Gamma_2' \Rightarrow \Delta$ by IH. We also have $P(C) \subseteq P(\Gamma_1', \nabla A) \cap P(\Gamma_2',\Delta)$
+		\item If $\Gamma_1 = \Gamma_1' , \nabla A$ and $\Gamma_2 = \Gamma_2'$, take $C = C_{\langle\Gamma_1',A;\Gamma_2';\Delta\rangle}$. Then we have $\Gamma_1' , \nabla A \Rightarrow C$ by IH and $L$, and $\Gamma_2' \Rightarrow \Delta$ by IH. We also have $V(C) \subseteq V(\Gamma_1', \nabla A) \cap V(\Gamma_2',\Delta)$
 	\end{enumerate}
 
 	\item ($R$) Assume $\Gamma_1 = \Pi_1, \Sigma_1$ and $\Gamma_2 = \Pi_2, \Sigma_2$. $\mathcal{D}$ proves $\Pi_1, \Sigma_1, \Pi_2, \Sigma_2 \Rightarrow \Delta$ and has a sub-proof for $\Pi_1, \nabla\Sigma_1, \Pi_2, \nabla\Sigma_2 \Rightarrow \Delta$.
-	Take $C =$\\ $C_{\langle\Pi_1\nabla\Sigma_1;\Pi_2\nabla\Sigma_2;\Delta\rangle}$. Then from IH and $R$ we have $\Pi_1, \Sigma_1 \Rightarrow C$ and $\Pi_2, \Sigma_2 \Rightarrow \Delta$. We also have $P(C) \subseteq P(\Pi_1,\Sigma_1) \cap P(\Pi_2,\Sigma_2,\Delta)$, since $\nabla$ does not introduce new atomic formulas and we can drop it.
+	Take $C =$\\ $C_{\langle\Pi_1\nabla\Sigma_1;\Pi_2\nabla\Sigma_2;\Delta\rangle}$. Then from IH and $R$ we have $\Pi_1, \Sigma_1 \Rightarrow C$ and $\Pi_2, \Sigma_2 \Rightarrow \Delta$. We also have $V(C) \subseteq V(\Pi_1,\Sigma_1) \cap V(\Pi_2,\Sigma_2,\Delta)$, since $\nabla$ does not introduce new atomic formulas and we can drop it.
 
 	\item ($Fa$) This is similar to the $R\rightarrow$ case. $\mathcal{D}$ proves $\Gamma_1 , \Gamma_2 \Rightarrow \nabla(A \rightsquigarrow B)$ and has a sub-proof for $\Gamma_1 , \Gamma_2 , A \Rightarrow B$. Let $C = C_{\langle\Gamma_1;\Gamma_2,A;B\rangle}$. So we have $\Gamma_1 \Rightarrow C$ and $\Gamma_2 , C \Rightarrow \nabla (A \rightsquigarrow B)$ from IH and an application of $Fa$.
-	It is easy to deduce $P(C) \subseteq P(\Gamma_1) \cap P(\Gamma_2 , \nabla (A \rightsquigarrow B))$ from IH.
+	It is easy to deduce $V(C) \subseteq V(\Gamma_1) \cap V(\Gamma_2 , \nabla (A \rightsquigarrow B))$ from IH.
 \end{enumerate}
 \end{proof}
 
 \subsubsection{Interpolation for $\mathbf{LDL}_\rightsquigarrow(L)$}
-We can not prove the same result for the fragment $\mathbf{LDL}_\rightsquigarrow$, since we ought to use $\rightarrow$ to construct the interpolant in the case for $L\rightsquigarrow$. But if we add the rule $L$ to this fragment, we can prove a weaker form of interpolation using $rightsquigarrow$, as we will do in this section.
+We can not prove the same result for the fragment $\mathbf{LDL}_\rightsquigarrow$, since we ought to use $\rightarrow$ to construct the interpolant in the case for $L\rightsquigarrow$. But if we add the rule $L$ to this fragment, we can prove a weaker form of interpolation using $\rightsquigarrow$, as we will do in this section.
 Throughout this section, when we use plain $\vdash$ symbol without specifying the deductive system, we mean deduction in $_{\mathbf{LDL}_\rightsquigarrow(L)}$. So by $\Gamma' \Rightarrow \Delta' \vdash \Gamma \Rightarrow \Delta$ we mean that $\Gamma \Rightarrow \Delta$ is provable in $\mathbf{LDL}_\rightsquigarrow(L)+\{\Gamma' \Rightarrow \Delta'\}$.
 \begin{lem}
-	\label{lem:vdash} $\Rightarrow A \vdash \Gamma \Rightarrow \Delta$ if and only if $\Gamma, \nabla^n A \Rightarrow \Delta$ for some $n$.
+	\label{lem:vdash} $\Rightarrow A \vdash \Gamma \Rightarrow \Delta$ if and only if $\Gamma, \nabla^n A \Rightarrow \Delta$, for some $n$.
 \end{lem}
 \begin{proof}
 	I. Suppose we have $\Gamma, \nabla^n A \Rightarrow \Delta$ for some $n$. Assuning $\Rightarrow A$, we can first prove $\Rightarrow \nabla^n A$ by $n$ applications of $N$, and then $Cut$ it into $\Gamma, \nabla^n A \Rightarrow \Delta$ to get $\Gamma \Rightarrow \Delta$.
 
-	II. For the other direction, using theorems \ref{thm:ldl-eq-ldls} and \ref{thm:ldls-cut-elim}, suppose $\Gamma \Rightarrow \Delta$ has a cut-free proof-tree in $\mathbf{LDL}^*_\rightsquigarrow(L)+A$, and it suffices to prove its equivalent $\nabla^n A, \Gamma \Rightarrow \Delta$ for some $n$ in $\mathbf{LDL}^*_\rightsquigarrow(L)$. By induction on the length of $\mathcal{D}$, we can assume that there is such equivalent in $\mathbf{LDL}^*_\rightsquigarrow(L)$ for the possible sub-proof(s) of $\mathcal{D}$.
+	II. For the other direction, using theorems \ref{thm:ldl-eq-ldls} and \ref{thm:ldls-cut-elim}, suppose $\Gamma \Rightarrow \Delta$ has a cut-free proof-tree in $\mathbf{LDL}^*_\rightsquigarrow(L)+\{\Rightarrow A\}$, and it suffices to prove its equivalent $\nabla^n A, \Gamma \Rightarrow \Delta$ for some $n$ in $\mathbf{LDL}^*_\rightsquigarrow(L)$. By induction on the length of $\mathcal{D}$, we can assume that there is such equivalent in $\mathbf{LDL}^*_\rightsquigarrow(L)$ for the possible sub-proof(s) of $\mathcal{D}$.
 
-	Now for different possible rules in $\mathbf{LDL}^*_\rightsquigarrow(L)+A$ as the last rule of $\mathcal{D}$, we will construct an $\mathbf{LDL}^*_\rightsquigarrow(L)$ proof of $\nabla^n A , \Gamma \Rightarrow \Delta$ for some $n$. In all cases, the possible immediate sub-trees of $\mathcal{D}$ are called $\mathcal{D}_0$ and $\mathcal{D}_1$.
+	Now for different possible rules in $\mathbf{LDL}^*_\rightsquigarrow(L)+\{\Rightarrow A\}$ as the last rule of $\mathcal{D}$, we will construct an $\mathbf{LDL}^*_\rightsquigarrow(L)$ proof of $\nabla^n A , \Gamma \Rightarrow \Delta$ for some $n$. In all cases, the possible immediate sub-trees of $\mathcal{D}$ are called $\mathcal{D}_0$ and $\mathcal{D}_1$.
 	
 	If $\mathcal{D}$ is just $\Rightarrow A$, then $\Gamma = \{\}$ and $\Delta = A$. We have $A \Rightarrow A$ by $Id$ with $n = 0$.
 
@@ -1237,22 +1253,22 @@ Throughout this section, when we use plain $\vdash$ symbol without specifying th
 
 \end{proof}
 
-\begin{thm}[Deductive Interpolation for $\mathbf{LDL}_\rightsquigarrow(L)$] For any $\Delta'$ and $\Delta$, if $\Rightarrow \Delta' \vdash \Rightarrow \Delta$ then there exists a formula $C$ such that
+\begin{thm}[Deductive Interpolation for $\mathbf{LDL}_\rightsquigarrow(L)$] For any $\Delta'$ and $\Delta$, if $\Rightarrow \Delta' \vdash\ \Rightarrow \Delta$ then there exists a formula $C$ such that
 	\begin{enumerate}[label=(\arabic*)]
-		\item $\Rightarrow \Delta' \vdash \Rightarrow C$,
-		\item $\Rightarrow C \vdash \Rightarrow \Delta$ and
-		\item $P(C) \subseteq P(\Delta') \cap P(\Delta)$.
+		\item $\Rightarrow \Delta' \vdash\ \Rightarrow C$,
+		\item $\Rightarrow C \vdash\ \Rightarrow \Delta$ and
+		\item $V(C) \subseteq V(\Delta') \cap V(\Delta)$.
 	\end{enumerate}
 \end{thm}
 \begin{proof}
-	In case $\Delta' = \{\}$, just take $C = \bot$. Now let's assume $\Delta' = A$ for some formula $A$. We will prove the following stronger version: For any $\Gamma_1$, $\Gamma_2$ and $\Delta$, if $\vdash \Gamma_1 , \Gamma_2 \Rightarrow \Delta$ then there is a formula $C$ and a natural number $m$ such that
+	In case $\Delta' = \{\}$, just take $C = \bot$. Now let's assume $\Delta' = A$ for some formula $A$. We will prove the following stronger version: For any $\Gamma_1$, $\Gamma_2$ and $\Delta$, if $\vdash \Gamma_1 , \Gamma_2 \Rightarrow \Delta$ then there is a formula $C$ and natural numbers $m_1$ and $m_2$ such that
 	\begin{enumerate}[label=(\arabic**)]
 		\item $\vdash \nabla^{m_1} \Gamma_1 \Rightarrow C$,
 		\item $\vdash \nabla^{m_2} \Gamma_2 , C \Rightarrow \Delta$,
-		\item $P(C) \subseteq P(\Gamma_1) \cap P(\Gamma_2,\Delta)$, and
+		\item $V(C) \subseteq V(\Gamma_1) \cap V(\Gamma_2,\Delta)$, and
 	\end{enumerate}
 
-	Then, to prove the original version, first convert the proof-tree for $\Rightarrow A \vdash \Rightarrow \Delta$ to $\nabla^r A \Rightarrow \Delta$ for some $r$ using lemma \ref{lem:vdash} and take $\Gamma_1 = \{\nabla^r A \}$ and $\Gamma_2 = \{\}$. Notice that we can translate $(1^*)$ and $(2^*)$ back to $(\mathit{1})$ and $(\mathit{2})$ respectively, using the other direction of lemma \ref{lem:vdash}.
+	Then, to prove the original version, first convert the proof-tree for $\Rightarrow A \vdash \Rightarrow \Delta$ to $\nabla^r A \Rightarrow \Delta$ for some $r$ using Lemma \ref{lem:vdash} and take $\Gamma_1 = \{\nabla^r A \}$ and $\Gamma_2 = \{\}$. Notice that we can translate $(1^*)$ and $(2^*)$ back to $(\mathit{1})$ and $(\mathit{2})$ respectively, using the other direction of Lemma \ref{lem:vdash}.
 	
 	By theorem \ref{thm:ldls-cut-elim}, we can assume that $\Gamma_1, \Gamma_2 \Rightarrow \Delta$ has a cut-free proof-tree like $\mathcal{D}$. Now using induction on the length of $\mathcal{D}$, we can assume that the stronger statement holds for the assumption(s) of $\mathcal{D}$ like $\Gamma_1', \Gamma_2' \Rightarrow \Delta'$ by an interpolant that we call $C_{\langle\Gamma_1';\Gamma_2';\Delta'\rangle}$.
 	Now construct proper $C$ for different cases for the last rule of $\mathcal{D}$. In each case, the immediate sub-trees of $\mathcal{D}$ are denoted by $\mathcal{D}_i (i \in \{0,1\})$.
@@ -1267,25 +1283,25 @@ Throughout this section, when we use plain $\vdash$ symbol without specifying th
 
 		\item ($Ex$) Take $C = \nabla^n \bot$.
 
-		\item ($Lw$) $\mathcal{D}$ proves $\Gamma_1' , \Gamma_2' , A \Rightarrow \Delta$ and has a sub-proof for $\Gamma_1' , \Gamma_2' \Rightarrow \Delta$, for which IH gives an interpolant $C_{\langle\Gamma_1';\Gamma_2';\Delta\rangle}$, natural numbers $m_1$ and $m_2$ and proofs for $\nabla^{m_1} \Gamma_1' \Rightarrow C_{\langle\Gamma_1';\Gamma_2';\Delta\rangle}$ and $\nabla^{m_2} \Gamma_2 , C_{\langle\Gamma_1';\Gamma_2';\Delta\rangle} \Rightarrow \Delta$, such that $P(C_{\langle\Gamma_1';\Gamma_2';\Delta\rangle}) \subseteq$ $ P(\Gamma_1') \cap P(\Gamma_2' , \Delta)$.
+		\item ($Lw$) $\mathcal{D}$ proves $\Gamma_1' , \Gamma_2' , A \Rightarrow \Delta$ and has a sub-proof for $\Gamma_1' , \Gamma_2' \Rightarrow \Delta$, for which IH gives an interpolant $C_{\langle\Gamma_1';\Gamma_2';\Delta\rangle}$, natural numbers $m_1$ and $m_2$ and proofs for $\nabla^{m_1} \Gamma_1' \Rightarrow C_{\langle\Gamma_1';\Gamma_2';\Delta\rangle}$ and $\nabla^{m_2} \Gamma_2 , C_{\langle\Gamma_1';\Gamma_2';\Delta\rangle} \Rightarrow \Delta$, such that $V(C_{\langle\Gamma_1';\Gamma_2';\Delta\rangle}) \subseteq$ $ V(\Gamma_1') \cap V(\Gamma_2' , \Delta)$.
 		\begin{enumerate}
-			\item If $\Gamma_1 = \Gamma_1'$ and $\Gamma_2 = \Gamma_2' , A$, take $C = C_{\langle\Gamma_1';\Gamma_2';\Delta\rangle}$. Then by IH we have  $\nabla^{m_1} \Gamma_1' \Rightarrow C$ and $\nabla^{m_2} \Gamma_2' , A , C \Rightarrow \Delta$ by $Lw$ and IH. From IH, we also have $P(C) \subseteq P(\Gamma_1') \cap P(\Gamma_2' , A , \Delta)$, since $P$ takes ``$,$'' to ``$\cup$'', which distributes over ``$\cap$'' and is increasing with respect to ``$\subseteq$''.
+			\item If $\Gamma_1 = \Gamma_1'$ and $\Gamma_2 = \Gamma_2' , A$, take $C = C_{\langle\Gamma_1';\Gamma_2';\Delta\rangle}$. Then by IH we have  $\nabla^{m_1} \Gamma_1' \Rightarrow C$ and $\nabla^{m_2} \Gamma_2' , A , C \Rightarrow \Delta$ by $Lw$ and IH. From IH, we also have $V(C) \subseteq V(\Gamma_1') \cap V(\Gamma_2' , A , \Delta)$, since $P$ takes ``$,$'' to ``$\cup$'', which distributes over ``$\cap$'' and is increasing with respect to ``$\subseteq$''.
 
-			\item If $\Gamma_1 = \Gamma_1' , A$ and $\Gamma_2 = \Gamma_2'$, again take $C = C_{\langle\Gamma_1';\Gamma_2';\Delta\rangle}$. Then we have  $\nabla^{m_1} \Gamma_1' , A \Rightarrow C$ by $Lw$ and IH, and $\nabla^{m_2} \Gamma_2' , C \Rightarrow \Delta$ by IH. We also have $P(C) \subseteq P(\Gamma_1' , A) \cap P(\Gamma_2' , \Delta)$ by IH and argument similar to the previous case.
+			\item If $\Gamma_1 = \Gamma_1' , A$ and $\Gamma_2 = \Gamma_2'$, again take $C = C_{\langle\Gamma_1';\Gamma_2';\Delta\rangle}$. Then we have  $\nabla^{m_1} \Gamma_1' , A \Rightarrow C$ by $Lw$ and IH, and $\nabla^{m_2} \Gamma_2' , C \Rightarrow \Delta$ by IH. We also have $V(C) \subseteq V(\Gamma_1' , A) \cap V(\Gamma_2' , \Delta)$ by IH and argument similar to the previous case.
 		\end{enumerate}
 
 		\item ($Lc$) $\mathcal{D}$ proves $\Gamma_1' , \Gamma_2' , A \Rightarrow \Delta$ and has a sub-proof for $\Gamma_1' , \Gamma_2' , A , A \Rightarrow \Delta$.
 		\begin{enumerate}
-			\item If $\Gamma_1 = \Gamma_1'$ and $\Gamma_2 = \Gamma_2' , A$, take $C = C_{\langle\Gamma_1';\Gamma_2',A,A;\Delta\rangle}$. Then we have $\nabla^{m_1} \Gamma_1' \Rightarrow C$ by IH and $\nabla^{m_2}\Gamma_2' , \nabla^{m_2} A , C \Rightarrow \Delta$ by IH and $Lc$. From IH, we can also deduce $P(C) \subseteq P(\Gamma_1') \cap P(\Gamma_2',A,\Delta)$ similarly.
+			\item If $\Gamma_1 = \Gamma_1'$ and $\Gamma_2 = \Gamma_2' , A$, take $C = C_{\langle\Gamma_1';\Gamma_2',A,A;\Delta\rangle}$. Then we have $\nabla^{m_1} \Gamma_1' \Rightarrow C$ by IH and $\nabla^{m_2}\Gamma_2' , \nabla^{m_2} A , C \Rightarrow \Delta$ by IH and $Lc$. From IH, we can also deduce $V(C) \subseteq V(\Gamma_1') \cap V(\Gamma_2',A,\Delta)$ similarly.
 			
-			\item If $\Gamma_1 = \Gamma_1' , A$ and $\Gamma_2 = \Gamma_2'$, take $C = C_{\langle\Gamma_1',A,A;\Gamma_2';\Delta\rangle}$. Then we have $\nabla^{m_1} \Gamma_1', \nabla^{m_1} A \Rightarrow C$ by IH and $Lc$, and $\nabla^{m_2} \Gamma_2' , C \Rightarrow \Delta$ by IH. We also have $P(C) \subseteq P(\Gamma_1',A) \cap$ $P(\Gamma_2',\Delta)$ as justified before.
+			\item If $\Gamma_1 = \Gamma_1' , A$ and $\Gamma_2 = \Gamma_2'$, take $C = C_{\langle\Gamma_1',A,A;\Gamma_2';\Delta\rangle}$. Then we have $\nabla^{m_1} \Gamma_1', \nabla^{m_1} A \Rightarrow C$ by IH and $Lc$, and $\nabla^{m_2} \Gamma_2' , C \Rightarrow \Delta$ by IH. We also have $V(C) \subseteq V(\Gamma_1',A) \cap$ $V(\Gamma_2',\Delta)$ as justified before.
 		\end{enumerate}
 
 		\item[6,7.] ($L\land_i$, {\small$i \in \{1,2\}$}) $\mathcal{D}$ proves $\Gamma_1' , \Gamma_2' , \nabla^n (A_1 \land A_2) \Rightarrow \Delta$ and has a sub-proof for $\Gamma_1' , \Gamma_2' , \nabla^n A_i \Rightarrow \Delta$.
 		\begin{enumerate}
-			\item If $\Gamma_1 = \Gamma_1'$ and $\Gamma_2 = \Gamma_2' , \nabla^n (A_1 \land A_2)$, take $C = C_{\langle\Gamma_1';\Gamma_2',\nabla^n A_i;\Delta\rangle}$. Then we have $\nabla^{m_1} \Gamma_1' \Rightarrow C$ by IH and $\nabla^{m_2} \Gamma_2' , \nabla^{n+m_2} (A_1 \land A_2), C \Rightarrow \Delta$ by IH and $L\land_i$. From IH, we also have $P(C) \subseteq$ $P(\Gamma_1') \cap P(\Gamma_2',\nabla^n(A_1 \land A_2),\Delta)$, since $P(\nabla^n X) = P(X)$ and $P$ takes sub-formula ordering to ``$\subseteq$''.
+			\item If $\Gamma_1 = \Gamma_1'$ and $\Gamma_2 = \Gamma_2' , \nabla^n (A_1 \land A_2)$, take $C = C_{\langle\Gamma_1';\Gamma_2',\nabla^n A_i;\Delta\rangle}$. Then we have $\nabla^{m_1} \Gamma_1' \Rightarrow C$ by IH and $\nabla^{m_2} \Gamma_2' , \nabla^{n+m_2} (A_1 \land A_2), C \Rightarrow \Delta$ by IH and $L\land_i$. From IH, we also have $V(C) \subseteq$ $V(\Gamma_1') \cap V(\Gamma_2',\nabla^n(A_1 \land A_2),\Delta)$, since $V(\nabla^n X) = V(X)$ and $P$ takes sub-formula ordering to ``$\subseteq$''.
 			
-			\item If $\Gamma_1 = \Gamma_1' , \nabla^n (A_1 \land A_2)$ and $\Gamma_2 = \Gamma_2'$, take $C = C_{\langle\Gamma_1',\nabla^n A_i;\Gamma_2';\Delta\rangle}$. Then we have $\nabla^{m_1} \Gamma_1',\nabla^{n+m_1} (A_1 \wedge A_2) \Rightarrow C$ by IH and $L\wedge_i$. Also from IH we have $\nabla^{m_2} \Gamma_2', C \Rightarrow \Delta$. We also have $P(C) \subseteq P(\Gamma_1',\nabla^n (A_1 \land A_2))$ $\cap P(\Gamma_2',\Delta)$ as justified in the previous case.
+			\item If $\Gamma_1 = \Gamma_1' , \nabla^n (A_1 \land A_2)$ and $\Gamma_2 = \Gamma_2'$, take $C = C_{\langle\Gamma_1',\nabla^n A_i;\Gamma_2';\Delta\rangle}$. Then we have $\nabla^{m_1} \Gamma_1',\nabla^{n+m_1} (A_1 \wedge A_2) \Rightarrow C$ by IH and $L\wedge_i$. Also from IH we have $\nabla^{m_2} \Gamma_2', C \Rightarrow \Delta$. We also have $V(C) \subseteq V(\Gamma_1',\nabla^n (A_1 \land A_2))$ $\cap V(\Gamma_2',\Delta)$ as justified in the previous case.
 		\end{enumerate}
 		\setcounter{enumi}{7}
 
@@ -1294,23 +1310,23 @@ Throughout this section, when we use plain $\vdash$ symbol without specifying th
 		We have $\nabla^{m_1'} \Gamma_1 \Rightarrow C_1$ and $\nabla^{m_1''} \Gamma_1 \Rightarrow C_2$, both from IH, to which we apply proper number of $L$'s and equalize their contexts to be able to derive $\nabla^{m_1} \Gamma_1 \Rightarrow C_1 \wedge C_2$ by $R\wedge$ for some $m_1$.
 		We also have $\nabla^{m_2'} \Gamma_2 , C_1 \Rightarrow A$ and $\nabla^{m_2''} \Gamma_2 , C_2 \Rightarrow B$, again from IH.
 		We can then derive $\nabla^{m_2'} \Gamma_2 , C_1 \land C_2 \Rightarrow A$ and $\nabla^{m_2''} \Gamma_2 , C_1 \land C_2 \Rightarrow B$, respectively by $L\land_1$ and $L\land_2$, and finally  $\nabla^{m_2} \Gamma_2 , C_1 \land C_2 \Rightarrow A \land B$ by $L$ and $R\land$.
-		We also have $P(C_1) \subseteq P(\Gamma_1) \cap P(\Gamma_2 , A)$ and $P(C_2) \subseteq P(\Gamma_1) \cap P(\Gamma_2 , B)$. So $P(C_1 \land C_2) \subseteq P(\Gamma_1) \cap P(\Gamma_2 , A \land B)$ as it was justified before.
+		We also have $V(C_1) \subseteq V(\Gamma_1) \cap V(\Gamma_2 , A)$ and $V(C_2) \subseteq V(\Gamma_1) \cap V(\Gamma_2 , B)$. So $V(C_1 \land C_2) \subseteq V(\Gamma_1) \cap V(\Gamma_2 , A \land B)$ as it was justified before.
 
 		\item ($L\lor$) $\mathcal{D}$ proves $\Gamma_1' , \Gamma_2' , \nabla^n (A \lor B) \Rightarrow \Delta$ and has sub-proofs for $\Gamma_1' , \Gamma_2' , \nabla^n A \Rightarrow \Delta$ and $\Gamma_1' , \Gamma_2' ,$ $\nabla^n B \Rightarrow \Delta$.
 		\begin{enumerate}
 			\item If $\Gamma_1 = \Gamma_1'$ and $\Gamma_2 = \Gamma_2' , \nabla^n (A \lor B)$, let $C_1 = C_{\langle\Gamma_1';\Gamma_2',\nabla^n A;\Delta\rangle}$ and $C_2 = C_{\langle\Gamma_1';\Gamma_2',\nabla^n B;\Delta\rangle}$, and then take $C = C_1 \land C_2$.
 			We have $\nabla^{m_1'} \Gamma_1' \Rightarrow C_1$ and $\nabla^{m_1''} \Gamma_1' \Rightarrow C_2$ from IH, to which we apply $R\land$ after equalizing their contexts with $L$, to get $\nabla^{m_1} \Gamma_1' \Rightarrow C_1 \land C_2$ for some $m_1$.
 			From IH, by $L\land_1$ and $L\land_2$ we can derive $\nabla^{m_2'}\Gamma_2' , \nabla^n A , C_1 \land C_2 \Rightarrow \Delta$ and $\nabla^{m_2''} \Gamma_2' , \nabla^n B , C_1 \land C_2 \Rightarrow \Delta$ respectively, to which we apply $L$ and $L\lor$ to get to $\nabla^{m_2} \Gamma_2' , \nabla^n (A \lor B) , C_1 \land C_2 \Rightarrow \Delta$.
-			From IH, we also have $P(C_1) \subseteq P(\Gamma_1') \cap P(\Gamma_2' , \nabla^n A , \Delta)$ and $P(C_2) \subseteq P(\Gamma_1') \cap P(\Gamma_2' , \nabla^n B , \Delta)$. Just like the previous case, we can deduce that $P(C_1 \land C_2) \subseteq P(\Gamma_1') \cap P(\Gamma_2' , \nabla^n (A \land B) , \Delta)$.
+			From IH, we also have $V(C_1) \subseteq V(\Gamma_1') \cap V(\Gamma_2' , \nabla^n A , \Delta)$ and $V(C_2) \subseteq V(\Gamma_1') \cap V(\Gamma_2' , \nabla^n B , \Delta)$. Just like the previous case, we can deduce that $V(C_1 \land C_2) \subseteq V(\Gamma_1') \cap V(\Gamma_2' , \nabla^n (A \land B) , \Delta)$.
 
 			\item If $\Gamma_1 = \Gamma_1' , \nabla^n (A \lor B)$ and $\Gamma_2 = \Gamma_2'$, let $C_1 = C_{\langle\Gamma_1',\nabla^n A;\Gamma_2';\Delta\rangle}$ and $C_2 = C_{\langle\Gamma_1',\nabla^n B;\Gamma_2';\Delta\rangle}$, and then take $C = C_1 \lor C_2$.
 			From IH, by $R\lor_1$ and $R\lor_2$ we can derive $\nabla^{m_1'} \Gamma_1',\nabla^{n+m_1'} A \Rightarrow C_1 \lor C_2$ and $\nabla^{m_1''} \Gamma_1', \nabla^{n+m_1''} B \Rightarrow C_1 \lor C_2$ respectively, to which we apply $L$ and $L\vee$ to get to $\nabla^{m_1} \Gamma_1', \nabla^{n+m_1} (A \lor B) \Rightarrow C_1 \lor C_2$ for some $m_1$.
 			From IH, we also have $\nabla^{m_2} \Gamma_2' , C_1 \lor C_2 \Rightarrow \Delta$ with $L$ and $L\lor$.
-			Also $P(C_1) \subseteq P(\Gamma_1' , \nabla^n A) \cap$ $P(\Gamma_2' , \Delta)$ and $P(C_2) \subseteq P(\Gamma_1' , \nabla^n B) \cap P(\Gamma_2' , \Delta)$. Just like the previous case, we can deduce that $P(C_1 \lor C_2) \subseteq P(\Gamma_1' , \nabla^n (A \land B)) \cap P(\Gamma_2' , \Delta)$.
+			Also $V(C_1) \subseteq V(\Gamma_1' , \nabla^n A) \cap$ $V(\Gamma_2' , \Delta)$ and $V(C_2) \subseteq V(\Gamma_1' , \nabla^n B) \cap V(\Gamma_2' , \Delta)$. Just like the previous case, we can deduce that $V(C_1 \lor C_2) \subseteq V(\Gamma_1' , \nabla^n (A \land B)) \cap V(\Gamma_2' , \Delta)$.
 		\end{enumerate}
 
 		\item[10,11.] ($R\lor_i$, {\small$i \in \{1,2\}$}) $\mathcal{D}$ proves $\Gamma_1 , \Gamma_2 \Rightarrow A_1 \lor A_2$ and has a sub-proof for $\Gamma_1 , \Gamma_2 \Rightarrow A_i$. Take $C = C_{\langle\Gamma_1;\Gamma_2;A_i\rangle}$. Then we have $\nabla^m \Gamma_1 \Rightarrow C$ from IH/ and $\nabla^{m_2} \Gamma_2 , C \Rightarrow A_1 \lor A_2$ from IH and $R\lor_i$.
-		From IH, we also have $P(C) \subseteq P(\Gamma_1) \cap P(\Gamma_2 , A_1 \lor A_2)$, as was justified before.
+		From IH, we also have $V(C) \subseteq V(\Gamma_1) \cap V(\Gamma_2 , A_1 \lor A_2)$, as was justified before.
 		\setcounter{enumi}{11}
 
 		\item ($L\rightsquigarrow$) $\mathcal{D}$ proves $\Gamma_1' , \Gamma_2' , \nabla^{n+1} (A \rightsquigarrow B) \Rightarrow \Delta$ and has sub-proofs for $\Gamma_1' , \Gamma_2' \Rightarrow \nabla^n A$ and $\Gamma_1' , \Gamma_2' , \nabla^n B \Rightarrow \Delta$.
@@ -1318,22 +1334,22 @@ Throughout this section, when we use plain $\vdash$ symbol without specifying th
 			\item If $\Gamma_1 = \Gamma_1'$ and $\Gamma_2 = \Gamma_2' , \nabla^{n+1} (A \rightsquigarrow B)$, let $C_1 = C_{\langle\Gamma_1';\Gamma_2';\nabla^n A\rangle}$ and $C_2 = C_{\langle\Gamma_1';\Gamma_2',\nabla^n B;\Delta\rangle}$.
 			We have $\nabla^{m_1} \Gamma_1' \Rightarrow C_1 \land C_2$ from IH and $R\land$.
 			From IH we can derive $\nabla^{m_2'} \Gamma_2' , C_1 \land C_2 \Rightarrow \nabla^n A$ and $\nabla^{m_2''} \Gamma_2' , \nabla^{n+m_2''} B , C_1 \land C_2 \Rightarrow \Delta$, by $L\land_1$ and $L\land_2$ respectively. Applying $N$ for $m_2''$ times on the former sequent, and also applying $L$ for $m_2''$ times on $\nabla^{m_2'} \Gamma_2'$ and $m_2''$ times on $C_1 \wedge C_2$ in the latter sequent, we would get $\nabla^{m_2'+m_2''} \Gamma_2' , \nabla^{m_2''} (C_1 \land C_2) \Rightarrow \nabla^{n+m_2''} A$ and $\nabla^{m_2'+m_2''} \Gamma_2' , \nabla^{n+m_2''} B , \nabla^{m_2''} (C_1 \land C_2) \Rightarrow \Delta$, on which we can apply $L\rightsquigarrow$ to derive $\nabla^{m_2'+m_2''} \Gamma_2' , \nabla^{n+m_2''+1} (A \rightsquigarrow B) , \nabla^{m_2''} (C_1 \land C_2) \Rightarrow \Delta$. So we will take $C = \nabla^{m_2''}(C_1 \wedge C_2)$.
-			From IH, we also have $P(C_1) \subseteq P(\Gamma_1') \cap$ $P(\Gamma_2' , \nabla^n A)$ and $P(C_2) \subseteq P(\Gamma_1') \cap P(\Gamma_2' , \nabla^n B , \Delta)$. This implies $P(\nabla^{m_2''}(C_1 \land C_2)‎) \subseteq P(\Gamma_1') \cap P(\Gamma_2' , \nabla^{n+1} (A \rightsquigarrow B) , \Delta)$.
+			From IH, we also have $V(C_1) \subseteq V(\Gamma_1') \cap$ $V(\Gamma_2' , \nabla^n A)$ and $V(C_2) \subseteq V(\Gamma_1') \cap V(\Gamma_2' , \nabla^n B , \Delta)$. This implies $V(\nabla^{m_2''}(C_1 \land C_2)‎) \subseteq V(\Gamma_1') \cap V(\Gamma_2' , \nabla^{n+1} (A \rightsquigarrow B) , \Delta)$.
 
 			\item If $\Gamma_1 = \Gamma_1' , \nabla^{n+1} (A \rightsquigarrow B)$ and $\Gamma_2 = \Gamma_2'$, let $C_1 = C_{\langle\Gamma_2';\Gamma_1';\nabla^n A\rangle}$ and $C_2 = C_{\langle\Gamma_1',\nabla^n B;\Gamma_2';\Delta\rangle}$.
 			From IH we have $\nabla^{m_1'} \Gamma_1', \nabla^{m_1'} C_1 \Rightarrow \nabla^{n+m_1'} A$ and $\nabla^{m_1''} \Gamma_1',\nabla^{n+m_1''} B \Rightarrow C_2$. Like the previous case, we can first equalize their contexts using $N$, $L$ and $Lw$, and then apply a $L\rightsquigarrow$ to get $\nabla^{m_1} \Gamma_1',\nabla^{n+m_1+1}(A \rightsquigarrow B) , \nabla^{m_1} C_1 \Rightarrow C_2$ where $m_1 = m_1'+m_1''$. We can make sure that the context has at least one $\nabla$ using $L$, and then move $\nabla^{m_1} C_1$ to the right, using $R\rightsquigarrow$, and have $\nabla^{m_1} \Gamma_1',\nabla^{n+m_1+1}(A \rightsquigarrow B) \Rightarrow \nabla^{m_1} C_1 \rightsquigarrow C_2$. Finally, we can apply $N$ to also add a $\nabla$ to the right side.
-			From IH we also have $\nabla^{m_2'} \Gamma_2' \Rightarrow C_1$ and $\nabla^{m_2''} \Gamma_2' , C_2 \Rightarrow \Delta$. By propers applications of $N$ and $L$ turn these sequents to $\nabla^{m_1+m_2} \Gamma_2' \Rightarrow \nabla^{m_1} C_1$ and $\nabla^{m_1+m_2} \Gamma_2' , C_2 \Rightarrow \Delta$, where $m_2 = m_2'+m_2''$. Then by $L\rightsquigarrow$ we have $\nabla^{m_1+m_2} \Gamma_2' , \nabla (\nabla^{m_1} C_1 \rightsquigarrow C_2) \Rightarrow \Delta$. So we can take $C = \nabla (\nabla^{m_1} C_1 \rightsquigarrow C_2)$. We also have from IH $P(C_1) \subseteq P(\Gamma_2') \cap P(\Gamma_1' , \nabla^n A)$ and $P(C_2) \subseteq P(\Gamma_1' , \nabla^n B) \cap P(\Gamma_2' , \Delta)$. Then $P(\nabla (C_1 \rightsquigarrow C_2)) \subseteq P(\Gamma_1' , \nabla^{n+1} (A \rightsquigarrow B)) \cap P(\Gamma_2' , \Delta)$.
+			From IH we also have $\nabla^{m_2'} \Gamma_2' \Rightarrow C_1$ and $\nabla^{m_2''} \Gamma_2' , C_2 \Rightarrow \Delta$. By propers applications of $N$ and $L$ turn these sequents to $\nabla^{m_1+m_2} \Gamma_2' \Rightarrow \nabla^{m_1} C_1$ and $\nabla^{m_1+m_2} \Gamma_2' , C_2 \Rightarrow \Delta$, where $m_2 = m_2'+m_2''$. Then by $L\rightsquigarrow$ we have $\nabla^{m_1+m_2} \Gamma_2' , \nabla (\nabla^{m_1} C_1 \rightsquigarrow C_2) \Rightarrow \Delta$. So we can take $C = \nabla (\nabla^{m_1} C_1 \rightsquigarrow C_2)$. We also have from IH $V(C_1) \subseteq V(\Gamma_2') \cap V(\Gamma_1' , \nabla^n A)$ and $V(C_2) \subseteq V(\Gamma_1' , \nabla^n B) \cap V(\Gamma_2' , \Delta)$. Then $V(\nabla (C_1 \rightsquigarrow C_2)) \subseteq V(\Gamma_1' , \nabla^{n+1} (A \rightsquigarrow B)) \cap V(\Gamma_2' , \Delta)$.
 		\end{enumerate}
 
-		\item ($R\rightsquigarrow$) $\mathcal{D}$ proves $\Gamma_1, \Gamma_2 \Rightarrow A \rightsquigarrow B$ and has a sub-proof for $\nabla \Gamma_1, \nabla \Gamma_2, A \Rightarrow B$. Take $C = C_{\langle\nabla\Gamma_1;\nabla\Gamma_2,A;B\rangle}$. We would have $\nabla^{m_1+1}\Gamma_1 \Rightarrow C$ from IH and $\nabla^{m_2}\Gamma_2, C \Rightarrow A \rightsquigarrow B$ from IH, $L$ and $R\rightsquigarrow$. From IH, we also have $P(C) \subseteq P(\nabla\Gamma_1) \cap P(\nabla\Gamma_2,A,B)$. It is easy to see that this implies $P(C) \subseteq P(\Gamma_1) \cap P(\Gamma_2,A \rightsquigarrow B)$.
+		\item ($R\rightsquigarrow$) $\mathcal{D}$ proves $\Gamma_1, \Gamma_2 \Rightarrow A \rightsquigarrow B$ and has a sub-proof for $\nabla \Gamma_1, \nabla \Gamma_2, A \Rightarrow B$. Take $C = C_{\langle\nabla\Gamma_1;\nabla\Gamma_2,A;B\rangle}$. We would have $\nabla^{m_1+1}\Gamma_1 \Rightarrow C$ from IH and $\nabla^{m_2}\Gamma_2, C \Rightarrow A \rightsquigarrow B$ from IH, $L$ and $R\rightsquigarrow$. From IH, we also have $V(C) \subseteq V(\nabla\Gamma_1) \cap V(\nabla\Gamma_2,A,B)$. It is easy to see that this implies $V(C) \subseteq V(\Gamma_1) \cap V(\Gamma_2,A \rightsquigarrow B)$.
 
 		\item ($N$) $\mathcal{D}$ proves $\nabla \Gamma_1 , \nabla \Gamma_2 \Rightarrow \nabla \Delta$ and has a sub-proof for $\Gamma_1 , \Gamma_2 \Rightarrow \Delta$. Just take $C = \nabla C(\Gamma_1;\Gamma_2;\Delta)$ and apply $N$ on the sequents from IH. The variable condition is also trivial from IH.
 		
 		\item ($L$) $\mathcal{D}$ proves $\Gamma_1' , \Gamma_2' , \nabla A \Rightarrow \Delta$ and has a sub-proof for $\Gamma_1' , \Gamma_2' , A \Rightarrow \Delta$.
 		\begin{enumerate}
-			\item If $\Gamma_1 = \Gamma_1'$ and $\Gamma_2 = \Gamma_2' , A$, take $C = C_{\langle\Gamma_1';\Gamma_2',A;\Delta\rangle}$. Then we have $\nabla^{m_1} \Gamma_1' \Rightarrow C$ by IH and $\nabla^{m_2}\Gamma_2' , \nabla A \Rightarrow \Delta$ by IH and $L$. From IH, we can also deduce $P(C) \subseteq P(\Gamma_1') \cap P(\Gamma_2',\nabla A,\Delta)$, since $\nabla$ does not introduce new propositional variables.
+			\item If $\Gamma_1 = \Gamma_1'$ and $\Gamma_2 = \Gamma_2' , A$, take $C = C_{\langle\Gamma_1';\Gamma_2',A;\Delta\rangle}$. Then we have $\nabla^{m_1} \Gamma_1' \Rightarrow C$ by IH and $\nabla^{m_2}\Gamma_2' , \nabla A \Rightarrow \Delta$ by IH and $L$. From IH, we can also deduce $V(C) \subseteq V(\Gamma_1') \cap V(\Gamma_2',\nabla A,\Delta)$, since $\nabla$ does not introduce new propositional variables.
 			
-			\item If $\Gamma_1 = \Gamma_1' , A$ and $\Gamma_2 = \Gamma_2'$, take $C = C_{\langle\Gamma_1',A;\Gamma_2';\Delta\rangle}$. Then we have $\nabla^{m_1}\Gamma_1', \nabla^{m_1+1}A \Rightarrow C$ by IH and $L$, and $\nabla^{m_2}\Gamma_2' \Rightarrow \Delta$ by IH. We also have $P(C) \subseteq P(\Gamma_1',A) \cap$ $P(\Gamma_2',\Delta)$ as justified before.
+			\item If $\Gamma_1 = \Gamma_1' , A$ and $\Gamma_2 = \Gamma_2'$, take $C = C_{\langle\Gamma_1',A;\Gamma_2';\Delta\rangle}$. Then we have $\nabla^{m_1}\Gamma_1', \nabla^{m_1+1}A \Rightarrow C$ by IH and $L$, and $\nabla^{m_2}\Gamma_2' \Rightarrow \Delta$ by IH. We also have $V(C) \subseteq V(\Gamma_1',A) \cap$ $V(\Gamma_2',\Delta)$ as justified before.
 		\end{enumerate}
 	\end{enumerate}
 \end{proof}
