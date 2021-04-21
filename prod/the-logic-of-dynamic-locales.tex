@@ -1103,9 +1103,6 @@ But if $m>0$, the cut-data could also be $(\nabla A, m-1, \{n_i\}_{i \leq l})$, 
 	So for any proof of $\Gamma \Rightarrow \Delta$ in $\mathbf{GLDL}_{/\rightarrow}(S)$, we also have a proof of rank $0$, which is cut-free.
 \end{proof}
 
-\subsection{Admissible Rules}
-\textbf{Problem.} What are the Harrop formulas here? Prove the disjunction property for the theories axiomatized by Harrop formulas, using the cut-free proofs over the logics $\mathbf{LDL}$ and $\mathbf{LDL}_{\rightsquigarrow}$. Prove the same thing via Kleene-type argument. Do we have similar thing for the logics with added rules $H$ and $H_{\rightsquigarrow}$, respectively?
-
 \subsection{Interpolation}
 In this section, we prove \emph{Craig's interpolation} theorem for $\mathbf{LDL}$ and all its extensions, and a weaker version called \emph{deductive interpolation} for any extension of $\mathbf{LDL}_{/\rightarrow}$ containing $L$. For a formula $A$, by $V(A)$ we mean the set of all atomic formulas of $A$ and for a multi-set of formulas $\Gamma$, $V(\Gamma) = \bigcup_{A \in \Gamma} V(A)$.
 \begin{thm}[Craig's Interpolation for $\mathbf{LDL}$]\label{thm:ldl-craig} For any $\Gamma_1$, $\Gamma_2$ and $\Delta$, and for $S \subseteq \{L, R, Fa, Fu\}$, if $\mathbf{LDL}(S) \vdash \Gamma_1 , \Gamma_2 \Rightarrow \Delta$, then there is a formula $C$ such that $V(C) \subseteq V(\Gamma_1) \cap V(\Gamma_2 , \Delta)$, $\mathbf{LDL}(S) \vdash \Gamma_1 \Rightarrow C$ and $\mathbf{LDL}(S) \vdash \Gamma_2 , C \Rightarrow \Delta$.
