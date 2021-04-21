@@ -1248,23 +1248,17 @@ Throughout this section, when we use plain $\vdash$ symbol without specifying th
 	If $\mathcal{D}$ ends with $R\rightsquigarrow$ or $Fu$, we can do the same only if there is at least one $\nabla$ on $A$ in the left side of the sequent that we get from IH. Otherwise we can just add it with $L$, and then apply $R\rightsquigarrow$ or $Fu$.
 \end{proof}
 
-\begin{thm}[Deductive Interpolation for $\mathbf{LDL}_{/\rightarrow}$] For any $\Delta'$ and $\Delta$, if $\Rightarrow \Delta' \vdash\ \Rightarrow \Delta$ then there exists a formula $C$ such that
-	\begin{enumerate}[label=(\arabic*)]
-		\item $\Rightarrow \Delta' \vdash\ \Rightarrow C$,
-		\item $\Rightarrow C \vdash\ \Rightarrow \Delta$ and
-		\item $V(C) \subseteq V(\Delta') \cap V(\Delta)$.
-	\end{enumerate}
-\end{thm}
-\begin{proof}
-	In case $\Delta' = \{\}$, just take $C = \bot$. Now let's assume $\Delta' = A$ for some formula $A$. We will prove the following stronger version: For any $\Gamma_1$, $\Gamma_2$ and $\Delta$, if $\vdash \Gamma_1 , \Gamma_2 \Rightarrow \Delta$ then there is a formula $C$ and natural numbers $m_1$ and $m_2$ such that
+The deductive interpolation is stated in the next corollary. First we need to prove a slightly stronger version for technical reasons.
+
+\begin{thm}\label{thm:ldls-dedint}
+	For any $\Gamma_1$, $\Gamma_2$ and $\Delta$, if $\vdash \Gamma_1 , \Gamma_2 \Rightarrow \Delta$ then there is a formula $C$ and natural numbers $m_1$ and $m_2$ such that
 	\begin{enumerate}[label=(\arabic**)]
 		\item $\vdash \nabla^{m_1} \Gamma_1 \Rightarrow C$,
 		\item $\vdash \nabla^{m_2} \Gamma_2 , C \Rightarrow \Delta$,
 		\item $V(C) \subseteq V(\Gamma_1) \cap V(\Gamma_2,\Delta)$, and
 	\end{enumerate}
-
-	Then, to prove the original version, first convert the proof-tree for $\Rightarrow A \vdash \Rightarrow \Delta$ to $\nabla^r A \Rightarrow \Delta$ for some $r$ using Lemma \ref{lem:vdash} and take $\Gamma_1 = \{\nabla^r A \}$ and $\Gamma_2 = \{\}$. Notice that we can translate $(1^*)$ and $(2^*)$ back to $(\mathit{1})$ and $(\mathit{2})$ respectively, using the other direction of Lemma \ref{lem:vdash}.
-	
+\end{thm}
+\begin{proof}
 	By theorem \ref{thm:ldls-cut-elim}, we can assume that $\Gamma_1, \Gamma_2 \Rightarrow \Delta$ has a cut-free proof-tree like $\mathcal{D}$. Now using induction on the length of $\mathcal{D}$, we can assume that the stronger statement holds for the assumption(s) of $\mathcal{D}$ like $\Gamma_1', \Gamma_2' \Rightarrow \Delta'$ by an interpolant that we call $C_{\langle\Gamma_1';\Gamma_2';\Delta'\rangle}$.
 	Now construct proper $C$ for different cases for the last rule of $\mathcal{D}$. In each case, the immediate sub-trees of $\mathcal{D}$ are denoted by $\mathcal{D}_i (i \in \{0,1\})$.
 	\begin{enumerate}
@@ -1357,6 +1351,16 @@ Throughout this section, when we use plain $\vdash$ symbol without specifying th
 	\end{enumerate}
 \end{proof}
 
+\begin{cor}[Deductive Interpolation for $\mathbf{LDL}_{/\rightarrow}$] For any $\Delta'$ and $\Delta$, if $\Rightarrow \Delta' \vdash\ \Rightarrow \Delta$ then there exists a formula $C$ such that
+	\begin{enumerate}[label=(\arabic*)]
+		\item $\Rightarrow \Delta' \vdash\ \Rightarrow C$,
+		\item $\Rightarrow C \vdash\ \Rightarrow \Delta$ and
+		\item $V(C) \subseteq V(\Delta') \cap V(\Delta)$.
+	\end{enumerate}
+\end{cor}
+\begin{proof}
+	In case $\Delta' = \{\}$, just take $C = \bot$. Now let's assume $\Delta' = A$ for some formula $A$. First, convert the proof-tree for $\Rightarrow A \vdash \Rightarrow \Delta$ to $\nabla^n A \Rightarrow \Delta$ for some $n$ using Lemma \ref{lem:vdash}, and then use Theorem \ref{thm:ldls-dedint} with $\Gamma_1 = \{\nabla^n A \}$ and $\Gamma_2 = \{\}$. Notice that we can translate results $(\mathit{1}^*)$ and $(\mathit{2}^*)$ from Theorem \ref{thm:ldls-dedint} back to $(\mathit{1})$ and $(\mathit{2})$ respectively, using the other direction of Lemma \ref{lem:vdash}.
+\end{proof}
 \begin{thebibliography}{99}
 \addcontentsline{toc}{section}{References}
 
