@@ -269,38 +269,33 @@ In the following, we will define the logic of dynamic locales, denoted by $\math
  \end{tabular}
  \end{center}
 
-If we also add the following rules to the system we will have these variants of $\mathbf{LDL}$; \textbf{LDL(L)}, \textbf{LDL(R)}, \textbf{LDL(Fa)} and \textbf{LDL(Fu)} respectively.
+If we also add one or more of the following rules to the system, we will have an \emph{extension of} $\mathbf{LDL}$, which are denoted by $\mathbf{LDL}(S)$ where $S$ is any combination of these rules:
 
 
-\textbf{L}
 \begin{prooftree}
 	\RightLabel{$L$}
 	\AXC{$\Gamma, A \Rightarrow \Delta$}
 	\UIC{$\Gamma, \nabla A \Rightarrow \Delta$}
 \end{prooftree}
 
-\textbf{R}
 \begin{prooftree}
 	\RightLabel{$R$}
 	\AXC{$\nabla \Gamma, \Sigma \Rightarrow \Delta$}
 	\UIC{$\Gamma, \Sigma \Rightarrow \Delta$}
 \end{prooftree}
 
-\textbf{Fa}
 \begin{prooftree}
 	\RightLabel{$Fa$}
 	\AXC{$\Gamma , A \Rightarrow B$}
 	\UIC{$\Gamma \Rightarrow \nabla(A \rightsquigarrow B)$}
 \end{prooftree}
 
-\textbf{Fu}
 \begin{prooftree}
 	\RightLabel{$Fu$}
 	\AXC{$\nabla \Gamma \Rightarrow \nabla A$}
 	\UIC{$\Gamma \Rightarrow A$}
 \end{prooftree}
 
-From here on, we will refer to all these systems as \emph{extensions of} $\mathbf{LDL}$.
 
 \begin{dfn}\label{t4-1}(Topological Semantics)
 Let $\mathcal{D}=(\mathscr{X}, \nabla_{\mathcal{D}})$ be a dynamic locale and $V:\mathcal{L} \to\mathscr{X}$ be an assignment. A tuple $(\mathcal{D}, V)$ is called a topological model if:
@@ -449,10 +444,11 @@ Define $\mathbf{GLDL}$ on the language $\mathcal{L}$, as the logic of the sequen
 Similarly for $\mathbf{LDL}_{/\rightarrow}$, the equivalent but cut-free calculus $\mathbf{GLDL}_{/\rightarrow}$ is defined by dropping the implication rules from $\mathbf{GLDL}$. For both $\mathbf{GLDL}$ and $\mathbf{GLDL}_{/\rightarrow}$ we can also define extensions by adding any of the rules $L$, $R$, $Fa$ or $Fu$.
 
 The following lemmas are used in their subsequent theorem, which shows that the cut-free systems have exactly the same power as their original counterparts.
-Observe that the proof-trees in Lemmas \ref{lem:l-nabla-dist-and}-\ref{lem:l-nabla-dist-si} are constructible in $\mathbf{LDL}_{/\rightarrow}$ or any of its extensions (including $\mathbf{LDL}$ and its extensions). So we denote any of these systems by a placeholder $\mathbf{LDL}_{/\rightarrow}(\star)$ for the sake of brevity. In Lemma \ref{lem:l-nabla-dist-imp}, the same goes for $\mathbf{LDL}$ and its extensions, which are denoted by $\mathbf{LDL}(\star)$. We will also use the same notation later to refer to these systems for short. But notice that wherever there are more than one of these notations in a statement, like in \ref{thm:ldl-eq-ldls}-\ref{thm:ldls-cut-elim}, we are talking about the same system everywhere. So treat $\star$ as some variable ranging over the set $\{L\rightarrow, R\rightarrow, L, R, Fa, Fu\}$ (taking $\mathbf{LDL}$ as $\mathbf{LDL}_{/\rightarrow}(L\rightarrow,R\rightarrow)$).
+Observe that the proof-trees in Lemmas \ref{lem:l-nabla-dist-and}-\ref{lem:l-nabla-dist-si} are constructible in $\mathbf{LDL}_{/\rightarrow}$ or any of its extensions (including $\mathbf{LDL}$ and its extensions). So we denote any of these systems by a placeholder $\mathbf{LDL}_{/\rightarrow}(S)$ for the sake of brevity, where $S$ ranges over all subsets of $\{L\rightarrow, R\rightarrow, L, R, Fa, Fu\}$ (taking $\mathbf{LDL}$ as $\mathbf{LDL}_{/\rightarrow}(L\rightarrow,R\rightarrow)$).
+In Lemma \ref{lem:l-nabla-dist-imp}, the same goes for $\mathbf{LDL}$ and its extensions, which are denoted by $\mathbf{LDL}(S)$ for all $S \subseteq \{L, R, Fa, Fu\}$. We will also use the same notation later to refer to these systems.
 
 
-\begin{lem}\label{lem:l-nabla-dist-and} For all $n \ge 0$, $\mathbf{LDL}_{/\rightarrow}(\star) \vdash \nabla^n (A \land B) \Rightarrow \nabla^n A \land \nabla^n B$.
+\begin{lem}\label{lem:l-nabla-dist-and} For all $n \ge 0$, $\mathbf{LDL}_{/\rightarrow}(S) \vdash \nabla^n (A \land B) \Rightarrow \nabla^n A \land \nabla^n B$.
 \end{lem}
 \begin{proof}\quad
 	\begin{prooftree}
@@ -477,7 +473,7 @@ Observe that the proof-trees in Lemmas \ref{lem:l-nabla-dist-and}-\ref{lem:l-nab
 	\end{prooftree}
 \end{proof}
 
-\begin{lem} \label{lem:l-nabla-box} $\mathbf{LDL}_{/\rightarrow}(\star) \vdash \nabla (\top \rightsquigarrow A) \Rightarrow A$.
+\begin{lem} \label{lem:l-nabla-box} $\mathbf{LDL}_{/\rightarrow}(S) \vdash \nabla (\top \rightsquigarrow A) \Rightarrow A$.
 \end{lem}
 \begin{proof}\quad
 	\begin{prooftree}
@@ -494,7 +490,7 @@ Observe that the proof-trees in Lemmas \ref{lem:l-nabla-dist-and}-\ref{lem:l-nab
 	\end{prooftree}
 \end{proof}
 
-\begin{lem}\label{lem:l-box-nabla} $\mathbf{LDL}_{/\rightarrow}(\star) \vdash A \Rightarrow \top \rightsquigarrow \nabla A$.
+\begin{lem}\label{lem:l-box-nabla} $\mathbf{LDL}_{/\rightarrow}(S) \vdash A \Rightarrow \top \rightsquigarrow \nabla A$.
 \end{lem}
 \begin{proof}\quad
 	\begin{prooftree}
@@ -510,7 +506,7 @@ Observe that the proof-trees in Lemmas \ref{lem:l-nabla-dist-and}-\ref{lem:l-nab
 	\end{prooftree}
 \end{proof}
 
-\begin{lem}\label{lem:l-nabla-dist-or} $\mathbf{LDL}_{/\rightarrow}(\star) \vdash \nabla (A \lor B) \Rightarrow \nabla A \lor \nabla B$.
+\begin{lem}\label{lem:l-nabla-dist-or} $\mathbf{LDL}_{/\rightarrow}(S) \vdash \nabla (A \lor B) \Rightarrow \nabla A \lor \nabla B$.
 \end{lem}
 \begin{proof} Let $\mathcal{D}$ be a proof-tree we can construct for $\nabla (\top \rightsquigarrow (\nabla A \lor \nabla B)) \Rightarrow \nabla A \lor \nabla B$ from Lemma \ref{lem:l-nabla-box}.
 
@@ -547,7 +543,7 @@ Observe that the proof-trees in Lemmas \ref{lem:l-nabla-dist-and}-\ref{lem:l-nab
 	\end{prooftree}
 \end{proof}
 
-\begin{lem}\label{lem:l-nabla-n-dist-or} For all $n \ge 0$, $\mathbf{LDL}_{/\rightarrow}(\star) \vdash \nabla^n (A \lor B) \Rightarrow \nabla^n A \lor \nabla^n B$.
+\begin{lem}\label{lem:l-nabla-n-dist-or} For all $n \ge 0$, $\mathbf{LDL}_{/\rightarrow}(S) \vdash \nabla^n (A \lor B) \Rightarrow \nabla^n A \lor \nabla^n B$.
 \end{lem}
 \begin{proof} The proof is trivial when $n = 0$. Let $\mathcal{D}_1$ be the proof-tree of Lemma \ref{lem:l-nabla-dist-or}, which proves the case for $n = 1$. For any $n > 1$ we have
 
@@ -567,7 +563,7 @@ Observe that the proof-trees in Lemmas \ref{lem:l-nabla-dist-and}-\ref{lem:l-nab
 	\end{prooftree}
 \end{proof}
 
-\begin{lem}\label{lem:l-nabla-bot} $\mathbf{LDL}_{/\rightarrow}(\star) \vdash \nabla \bot \Rightarrow \bot$.
+\begin{lem}\label{lem:l-nabla-bot} $\mathbf{LDL}_{/\rightarrow}(S) \vdash \nabla \bot \Rightarrow \bot$.
 \end{lem}
 \begin{proof} Let $\mathcal{D}$ be a proof-tree for $\nabla (\top \rightsquigarrow \bot) \Rightarrow \bot$ which we have by Lemma \ref{lem:l-nabla-box}.
 	\begin{prooftree}
@@ -586,7 +582,7 @@ Observe that the proof-trees in Lemmas \ref{lem:l-nabla-dist-and}-\ref{lem:l-nab
 	\end{prooftree}	
 \end{proof}
 
-\begin{lem}\label{lem:l-nabla-n-bot} For $n > 0$, $\mathbf{LDL}_{/\rightarrow}(\star) \vdash \nabla^n \bot \Rightarrow \bot$.
+\begin{lem}\label{lem:l-nabla-n-bot} For $n > 0$, $\mathbf{LDL}_{/\rightarrow}(S) \vdash \nabla^n \bot \Rightarrow \bot$.
 \end{lem}
 \begin{proof} We will prove a stronger version: For $n \geq m > 0$, $\mathbf{LDL} \vdash \nabla^n \bot \Rightarrow \nabla^{n-m} \bot$. Let $\mathcal{D}_1$ be the proof-tree of Lemma \ref{lem:l-nabla-bot} which handles $n = m = 1$. Using induction on $m$, and denoting the proof-tree for $\nabla^n \bot \Rightarrow \nabla^{n-(m-1)} \bot$ from the induction hypothesis by IH, we have for $n > 1$
 	\begin{prooftree}
@@ -605,7 +601,7 @@ Observe that the proof-trees in Lemmas \ref{lem:l-nabla-dist-and}-\ref{lem:l-nab
 	\end{prooftree}
 \end{proof}
 
-\begin{lem}\label{lem:l-nabla-dist-si} For any $n \ge 0$, $\mathbf{LDL}_{/\rightarrow}(\star) \vdash \nabla^n (A \rightsquigarrow B) \Rightarrow \nabla^n A \rightsquigarrow \nabla^n B$.
+\begin{lem}\label{lem:l-nabla-dist-si} For any $n \ge 0$, $\mathbf{LDL}_{/\rightarrow}(S) \vdash \nabla^n (A \rightsquigarrow B) \Rightarrow \nabla^n A \rightsquigarrow \nabla^n B$.
 \end{lem}
 \begin{proof}\quad
 	\begin{prooftree}
@@ -629,7 +625,7 @@ Observe that the proof-trees in Lemmas \ref{lem:l-nabla-dist-and}-\ref{lem:l-nab
 \end{proof}
 
 
-\begin{lem}\label{lem:l-nabla-dist-imp} For any $n \ge 0$, $\mathbf{LDL}(\star) \vdash \nabla^n (A \rightarrow B) \Rightarrow \nabla^n A \rightarrow \nabla^n B$.
+\begin{lem}\label{lem:l-nabla-dist-imp} For any $n \ge 0$, $\mathbf{LDL}(S) \vdash \nabla^n (A \rightarrow B) \Rightarrow \nabla^n A \rightarrow \nabla^n B$.
 \end{lem}
 \begin{proof}\quad
 	\begin{prooftree}
@@ -657,26 +653,26 @@ In the rest of this section, by the \emph{length of a proof-tree} $\mathcal{D}$,
 The theorem below shows that the original systems (and their extensions) deduce exactly the same sequents as the cut-free systems (and their extensions).
 
 \begin{thm}\label{thm:ldl-eq-ldls}
-	For any sequent $\Gamma \Rightarrow \Delta$ in the language $\mathcal{L}$, $\mathbf{LDL}_{/\rightarrow}(\star) \vdash \Gamma \Rightarrow \Delta$ iff $\mathbf{GLDL}_{/\rightarrow}(\star) \vdash \Gamma \Rightarrow \Delta$.
+	Let $S \subseteq \{L\rightarrow, R\rightarrow, L, R, Fa, Fu\}$. For any sequent $\Gamma \Rightarrow \Delta$ in the language $\mathcal{L}$, $\mathbf{LDL}_{/\rightarrow}(S) \vdash \Gamma \Rightarrow \Delta$ iff $\mathbf{GLDL}_{/\rightarrow}(S) \vdash \Gamma \Rightarrow \Delta$.
 \end{thm}
 \begin{proof}
-	One direction easily follows from the fact that all rules of $\mathbf{LDL}_{/\rightarrow}(\star)$ are just instances of $\mathbf{GLDL}_{/\rightarrow}(\star)$'s rules.
-	For the other direction, we will use case analysis for the last rule in the proof-tree of $\Gamma \Rightarrow \Delta$ in $\mathbf{GLDL}_{/\rightarrow}(\star)$, which we call $\mathcal{D}$, and construct a proof-tree for it in $\mathbf{LDL}_{/\rightarrow}(\star)$ in each case.
+	One direction easily follows from the fact that all rules of $\mathbf{LDL}_{/\rightarrow}(S)$ are just instances of $\mathbf{GLDL}_{/\rightarrow}(S)$'s rules.
+	For the other direction, we will use case analysis for the last rule in the proof-tree of $\Gamma \Rightarrow \Delta$ in $\mathbf{GLDL}_{/\rightarrow}(S)$, which we call $\mathcal{D}$, and construct a proof-tree for it in $\mathbf{LDL}_{/\rightarrow}(S)$ in each case.
 	
-	First, observe that $Id$ and $Ta$ are present in $\mathbf{LDL}_{/\rightarrow}(\star)$ and Lemma \ref{lem:l-nabla-n-bot} handles the $Ex$ case.
-	For the other rules, use induction on the length of $\mathcal{D}$; the induction hypothesis will provide a proof-tree in $\mathbf{LDL}_{/\rightarrow}(\star)$ for the sub-tree(s) of $\mathcal{D}$.
-	For the rules that are common between two systems (or their extensions), just apply the same rule (in $\mathbf{LDL}_{/\rightarrow}(\star)$) on the proof-tree(s) from the induction hypothesis to reach the desired sequent. For example, if $\mathcal{D}$ ends with $R\vee$, then just apply $R\vee$ (in $\mathbf{LDL}_{/\rightarrow}(\star)$) on the proof-tree that we get from the induction hypothesis.
-	In cases of $\mathbf{GLDL}_{/\rightarrow}(\star)$'s stronger rules, i.e. $L\land_1$, $L\land_2$, $L\lor$, $L\rightarrow$ and $L\rightsquigarrow$, do the same, and also $cut$ the sequents proved in Lemmas \ref{lem:l-nabla-dist-and}, \ref{lem:l-nabla-dist-or}, \ref{lem:l-nabla-dist-imp} or \ref{lem:l-nabla-dist-si} into the resulting sequent.
-	The case for $N$ divides to two further cases. One case is when $\Delta = A$ for some formula $A$, which is again handled by applying $N$ on the sequent from the induction hypothesis.
-	The other case is when $\Delta = \{\}$, so we have $\Gamma \Rightarrow$ from induction hypothesis, on the right of which we first introduce $\bot$ using $Rw$, and then apply $N$.
-	Then we can $cut$ it into the sequent proved in Lemma \ref{lem:l-nabla-bot}, and then into $Ex$, to derive $\nabla \Gamma \Rightarrow$ as was desired.
+	First, observe that $Id$ and $Ta$ are present in $\mathbf{LDL}_{/\rightarrow}(S)$ and Lemma \ref{lem:l-nabla-n-bot} handles the $Ex$ case.
+	For the other rules, use induction on the length of $\mathcal{D}$; the induction hypothesis will provide a proof-tree in $\mathbf{LDL}_{/\rightarrow}(S)$ for the sub-tree(s) of $\mathcal{D}$.
+	For the rules that are common between two systems, just apply the same rule (in $\mathbf{LDL}_{/\rightarrow}(S)$) on the proof-tree(s) from the induction hypothesis to reach the desired sequent. For example, if $\mathcal{D}$ ends with $R\vee$, it suffices to apply $R\vee$ (of $\mathbf{LDL}_{/\rightarrow}(S)$) on the proof-tree that we get from the induction hypothesis.
+	In the cases for $\mathbf{GLDL}_{/\rightarrow}(S)$'s stronger rules, which are $L\land_1$, $L\land_2$, $L\lor$, $L\rightarrow$ and $L\rightsquigarrow$, do the same, and also cut the sequents proved in Lemmas \ref{lem:l-nabla-dist-and}, \ref{lem:l-nabla-dist-or}, \ref{lem:l-nabla-dist-imp} or \ref{lem:l-nabla-dist-si} into the resulting sequent.
+	The case for $N$ divides into two further cases. One case is when $\Delta = A$ for some formula $A$, which is again handled by applying $N$ on the sequent from the induction hypothesis.
+	The other case is when $\Delta = \{\}$, so we have $\Gamma \Rightarrow$ from the induction hypothesis, on the right of which we first introduce $\bot$ using $Rw$, and then apply $N$.
+	Then we can cut it into the sequent proved in Lemma \ref{lem:l-nabla-bot}, and then into $Ex$, to derive $\nabla \Gamma \Rightarrow$ as was desired.
 \end{proof}
 
 \subsection{Cut-elimination theorems}
-Although the admissibility of cut in $\mathbf{GLDL}_{/\rightarrow}(\star)$ does not imply it's admissibility in $\mathbf{LDL}_{/\rightarrow}(\star)$, but as we will see, their equivalence---by theorem \ref{thm:ldl-eq-ldls}---enables us to prove statements about the cut-free system, which are otherwise not provable in the presence of the cut rule, and then translate the result back into statements about the original system.
+Although the admissibility of cut in $\mathbf{GLDL}_{/\rightarrow}(S)$ does not imply it's admissibility in $\mathbf{LDL}_{/\rightarrow}(S)$, but as we will see, their equivalence---by theorem \ref{thm:ldl-eq-ldls}---enables us to prove statements about the cut-free system, which are otherwise not easily provable in the presence of the cut rule, and then translate the result back into a statement about the original system.
 
-For technical reasons, we will eliminate a stronger form of the cut rule, which nevertheless satisfies our goal here.
-\begin{dfn}[$\nabla Cut$ rule]\label{def:n-cut} We denote by $\mathbf{GLDL}^C_{/\rightarrow}(\star)$ the same systems defined by $\mathbf{GLDL}_{/\rightarrow}(\star)$, except that the $Cut$ rule is replaced by the following generalization:
+For technical reasons, we will work with a stronger form of the cut rule, which nevertheless satisfies our goal here.
+\begin{dfn}[$\nabla Cut$ rule]\label{def:n-cut} Let $S \subseteq \{L\rightarrow, R\rightarrow, L, R, Fa, Fu\}$. We denote by $\mathbf{GLDL}^C_{/\rightarrow}(S)$ the same systems defined by $\mathbf{GLDL}_{/\rightarrow}(S)$, except that the $Cut$ rule is replaced by the following generalization:
 \begin{prooftree}
 	\AXC{$\Gamma \Rightarrow \nabla^m A$}
 	\AXC{$\Sigma , \{\nabla^{n_i} A\}_{i \leq l} \Rightarrow \Delta$}
@@ -687,7 +683,7 @@ where $\nabla^n$ means $\nabla$ applied $n$ times, $\{\nabla^{n_i} A\}_{i \leq l
 We will refer to members of $\{\nabla^m A\} \cup \{\nabla^{n_i} A\}_{i \leq l}$ as the \emph{cut-burden}. We will also denote by the tuple $(A, m, \{n_i\}_{i \leq l})$, the \emph{cut-data} of such instance.
 \end{dfn}
 
-\begin{thm}\label{cor:mc-riddance} Any sequent provable in $\mathbf{GLDL}_{/\rightarrow}(\star)$ is also provable in $\mathbf{GLDL}^C_{/\rightarrow}(\star)$.
+\begin{thm}\label{cor:mc-riddance} Any sequent provable in $\mathbf{GLDL}_{/\rightarrow}(S)$ is also provable in $\mathbf{GLDL}^C_{/\rightarrow}(S)$ (for $S \subseteq \{L\rightarrow, R\rightarrow, L, R, Fa, Fu\}$).
 \end{thm}
 \begin{proof}
 	We can just replace any instance of $Cut$ on a cut-formula $A$ with similar instance of $\nabla Cut$ on cut-data $(A, 0, \{0\})$.
@@ -710,19 +706,18 @@ Next, we should define a measure for cut-complexity for formulas, and then exten
 
 The following lemma will help handling of a case in the main theorem.
 
-\begin{lem}\label{lem:ldls-top-redundant} If $\mathbf{GLDL}^C_{/\rightarrow}(\star)$ proves $\Gamma , \{\nabla^{n_i} \top\}_{i \leq l} \Rightarrow \Delta$, then it also proves $\Gamma \Rightarrow \Delta$ with a proof-tree of at most the same rank.
+\begin{lem}\label{lem:ldls-top-redundant} If $\mathbf{GLDL}^C_{/\rightarrow}(S)$ proves $\Gamma , \{\nabla^{n_i} \top\}_{i \leq l} \Rightarrow \Delta$, then it also proves $\Gamma \Rightarrow \Delta$ with a proof-tree of at most the same rank (for $S \subseteq \{L\rightarrow, R\rightarrow, L, R, Fa, Fu\}$).
 \end{lem}
 \begin{proof}
-Suppose $\mathcal{D}$ is a proof-tree for $\Gamma , \{\nabla^{n_i} \top\}_{i \leq l} \Rightarrow \Delta$ in $\mathbf{GLDL}^C(\star)$ and consider different cases for the last rule of $\mathcal{D}$ with possible sub-trees $\mathcal{D}_0$ and $\mathcal{D}_1$.
+Suppose $\mathcal{D}$ is a proof-tree for $\Gamma , \{\nabla^{n_i} \top\}_{i \leq l} \Rightarrow \Delta$ in $\mathbf{GLDL}_{/\rightarrow}^C(S)$ and consider different cases for the last rule of $\mathcal{D}$ with possible sub-trees $\mathcal{D}_0$ and $\mathcal{D}_1$.
 By induction on $\mathcal{D}$ we can assume that the theorem holds for $\mathcal{D}_0$ and $\mathcal{D}_1$.
 First, observe that $Ta$ and $Ex$ cases are trivially ruled out. In $Id$ case, which implies $l = 0$, we have $\Rightarrow \nabla^{n_0} \top$ by $n_0$ times applications of $N$ on $Ta$. In $Lw$ case, where $l = 0$ and $\nabla^{n_0} \top$ is principal, $\mathcal{D}_0$ itself proves the desired sequent, but if $l > 0$, then the induction hypothesis gives the desired sequent. The cases for $Lc$ or $L$ on some $\nabla^{n_j} \top$  are similar. In all other cases, just apply induction hypothesis on $\mathcal{D}_0$ (and possibly $\mathcal{D}_1$), and then apply the same last rule. Notice that $\nabla Cut$ is not used except in $\nabla Cut$ case, where it is applied with the same rank, so the resulting proof-tree will not be of a higher rank than that of $\mathcal{D}$.
-The proof for $\mathbf{GLDL}^C_{/\rightarrow}(\star)$ is similar, except that there are no cases for $\rightarrow$.
 \end{proof}
 
 The following theorem shows that we can imitate any instance of the cut rule in a proof-tree of lower rank.
 
 \begin{thm}\label{thm:ldls-cut-reduction}[Cut Reduction]
-If $\mathbf{GLDL}^C_{/\rightarrow}(\star)$ proves $\Gamma \Rightarrow \nabla^m A$ and\\\ $\Sigma , \{\nabla^{n_i} A\}_{i \leq l} \Rightarrow \Delta$ with proof-trees of ranks less than $\rho(A)$, then it also proves $\{\nabla^{n_i} \Gamma\}_{i \leq l} , \nabla^m\Sigma \Rightarrow \nabla^m\Delta$ also with a proof tree of a rank less than $\rho(A)$.
+If $\mathbf{GLDL}^C_{/\rightarrow}(S)$ proves $\Gamma \Rightarrow \nabla^m A$ and\\\ $\Sigma , \{\nabla^{n_i} A\}_{i \leq l} \Rightarrow \Delta$ with proof-trees of ranks less than $\rho(A)$, then it also proves $\{\nabla^{n_i} \Gamma\}_{i \leq l} , \nabla^m\Sigma \Rightarrow \nabla^m\Delta$ also with a proof tree of a rank less than $\rho(A)$ (for $S \subseteq \{L\rightarrow, R\rightarrow, L, R, Fa, Fu\}$).
 \end{thm}
 \begin{proof}
 	We have two proof-trees
@@ -739,17 +734,14 @@ If $\mathbf{GLDL}^C_{/\rightarrow}(\star)$ proves $\Gamma \Rightarrow \nabla^m A
   \[\mathcal{D} \atop \{\nabla^{n_i} \Gamma\}_{i \leq l} , \nabla^m \Sigma \Rightarrow \nabla^m \Delta \]
   without increasing the cut rank.
 
-	The construction takes place in different cases for the last rule that occurs in $\mathcal{D}_0$ and $\mathcal{D}_1$. Notice that the proof of the theorem is essentially the same for all systems, modulo the cases that are specific to each system. Thus, the cases which are common between all systems are not repeated for the sake of brevity.
+	The construction takes place in different cases for the last rule that occurs in $\mathcal{D}_0$ and $\mathcal{D}_1$. Notice that the proof of the theorem is essentially the same for all systems, modulo the cases that are specific to each system. Thus, the cases which are common between all systems are not repeated for the sake of brevity. Also notice that the resulting proof-tree in each case is constructed using the core system plus the same rule of that case, so it will work for any extension containing that rule.
 
-	Also notice that in some cases our construction would depend only on the last rule of one of the sub-trees, i.e., it would work no matter what the last rule in the other proof-tree is. Therefore it will cover all the cases for the other sub-tree. These cases make up the first two parts of the proof. In the third part we will address the cases where our construction depends on the last rule in both sub-trees, which are the cases that the cut-data is altered on both sides. In these cases, the last rule in one sub-tree determines a specific form for the cut-data, which in turn determines the last rule of the other sub-tree.
+	In many cases, our construction would depend only on the last rule of one of the sub-trees, i.e., it would work no matter what the last rule in the other sub-tree is. Therefore it will cover all the cases for the other sub-tree. These cases make up the first two parts of the proof. In the third part we will address the cases where our construction depends on the last rule in both sub-trees, which are the cases that the cut-burden is altered on both sides. In these cases, the last rule in one sub-tree determines a specific form for the formulas of the cut-burden, which in turn determines the last rule of the other sub-tree.
 
+	In first two groups of the cases, we will need induction on the length of either of the sub-trees. But in the third part, we will use induction simultaneously on both $\mathcal{D}_0$ and $\mathcal{D}_1$, which goes as follows. For any two proof-trees $\mathcal{D}_0'$ and $\mathcal{D}_1'$ such that $h(\mathcal{D}_0') + h(\mathcal{D}_1') < h(\mathcal{D}_0) + h(\mathcal{D}_1)$, where $\mathcal{D}_0'$ proves $\Gamma' \Rightarrow \nabla^{m'} A'$ and $\mathcal{D}_1'$ proves $\Sigma', \{\nabla^{n'_i} A'\}_{i \leq l} \Rightarrow \Delta'$ for arbitrary $\Gamma'$, $\Sigma'$, $\Delta'$, $A'$, $m'$ and $n_i'$ of length $l'+1$, for which we have $\rho(\mathcal{D}_0'),\rho(\mathcal{D}_1') < \rho(A')$, the induction hypothesis give us a proof-tree, denoted by $\text{IH}(\mathcal{D}_0', \mathcal{D}_1')$ where it matters, that proves $\{\nabla^{n_i'}\Gamma'\}_{i \leq l'}, \nabla^{m'} \Sigma' \Rightarrow \nabla^{m'} \Delta'$, and we also have $\rho(\text{IH}(\mathcal{D}_0', \mathcal{D}_1')) < \rho(A')$.
 
-	First, construct the desired proof-tree in the cases that $\mathcal{D}_0$ is an axiom, independent of $\mathcal{D}_1$. The case for $Id$ is trivial, $Ex$ won't happen and $Ta$ is handled by Lemma \ref{lem:ldls-top-redundant}.
-
-  In rest of the cases, we will use induction on the length of both $\mathcal{D}_0$ and $\mathcal{D}_1$ as follows; For any two proof-trees $\mathcal{D}_0'$ and $\mathcal{D}_1'$ such that $h(\mathcal{D}_0') + h(\mathcal{D}_1') < h(\mathcal{D}_0) + h(\mathcal{D}_1)$, where $\mathcal{D}_0'$ proves $\Gamma' \Rightarrow \nabla^{m'} A'$ and $\mathcal{D}_1'$ proves $\Sigma', \{\nabla^{n'_i} A'\}_{i \leq l} \Rightarrow \Delta'$ for arbitrary $\Gamma'$, $\Sigma'$, $\Delta'$, $A'$, $m'$ and $n_i'$ of length $l'+1$, for which we have $\rho(\mathcal{D}_0'),\rho(\mathcal{D}_1') < \rho(A')$, the induction hypothesis give us a proof-tree, denoted by $\text{IH}(\mathcal{D}_0', \mathcal{D}_1')$ where it matters, that proves $\{\nabla^{n_i'}\Gamma'\}_{i \leq l'}, \nabla^{m'} \Sigma' \Rightarrow \nabla^{m'} \Delta'$, and we also have $\rho(\text{IH}(\mathcal{D}_0', \mathcal{D}_1')) < \rho(A')$.
-
-
-	Assume $\mathcal{D}_0$ ends with an instance of any of the rules $Lw$, $Lc$, $L\land_1$, $L\land_2$, $L\lor$, $L\rightarrow$, $L\rightsquigarrow$, $\nabla Cut$, $N$, $Fu$, $L$ or $R$, again independent of $\mathcal{D}_1$. In all these cases, it suffices to use induction on the assumption(s) of this rule to remove the cut-burden from both sub-trees. Then, we can apply the same rule to get the desired sequent. Here we will only mention the cases for $L\wedge_1$, $L\vee$, $L\rightsquigarrow$, $\nabla Cut$, $N$ and $Fu$, the last three of which may be of special concern, since they also alter the cut-burden. The other cases are similar.
+	Starting the construction in the first part, first assume that $\mathcal{D}_0$ is an axiom. No matter what $\mathcal{D}_1$ ends with, the case for $Id$ is trivial, $Ex$ won't happen and $Ta$ is handled by Lemma \ref{lem:ldls-top-redundant}.
+	Now assume $\mathcal{D}_0$ ends with an instance of any of the rules $Lw$, $Lc$, $L\land_1$, $L\land_2$, $L\lor$, $L\rightarrow$, $L\rightsquigarrow$, $\nabla Cut$, $N$, $Fu$, $L$ or $R$. In all these cases---again, independent of $\mathcal{D}_1$---it suffices to use induction on the assumption(s) of this rule and $\mathcal{D}_1$ to remove the cut-burden from both sub-trees. Then, we can apply the same rule to get the desired sequent. Here we will only mention the cases for $L\wedge_1$, $L\vee$, $L\rightsquigarrow$, $\nabla Cut$, $N$ and $Fu$, the last three of which may be of special concern, since they also alter the cut-burden. The other cases are similar.
 
 	$L\wedge_1$: If $\mathcal{D}_0$ ends with $L\wedge_1$, that is
 	\begin{prooftree}
@@ -1098,29 +1090,31 @@ But if $m>0$, the cut-data could also be $(\nabla A, m-1, \{n_i\}_{i \leq l})$, 
 \end{proof}
 
 \begin{thm}\label{thm:ldls-cut-elim}[Cut Elimination]
-	For any $\Gamma$ and $\Delta$, if $\Gamma \Rightarrow \Delta$ is provable by $\mathbf{GLDL}_{/\rightarrow}(\star)$, then it is so by $\mathbf{GLDL}_{/\rightarrow}(\star)-\{Cut\}$.
+	For any $\Gamma$ and $\Delta$, if $\Gamma \Rightarrow \Delta$ is provable by $\mathbf{GLDL}_{/\rightarrow}(S)$, then it is so by $\mathbf{GLDL}_{/\rightarrow}(S)-\{Cut\}$ (for $S \subseteq \{L\rightarrow, R\rightarrow, L, R, Fa, Fu\}$).
 \end{thm}
 \begin{proof}
-		First, we will show that for any non-zero-rank proof of $\Gamma \Rightarrow \Delta$ like $\mathcal{D}$ in $\mathbf{GLDL}_{/\rightarrow}(\star)$, there is another proof of the same sequent with a lower rank. Suppose $\mathcal{D}$ has sub-tree(s) called $\mathcal{D}_0$ (and possibly $\mathcal{D}_1$). Using induction on $h(\mathcal{D})$, the induction hypothesis for $\mathcal{D}_i ~(i \in \{0,1\})$ gives us a proof-tree with the same conclusion, which we call $IH(\mathcal{D}_i)$, but with a lower rank, i.e. $\rho(IH(\mathcal{D}_i)) < \rho(\mathcal{D}_i)$. We now consider two cases for the last rule of $\mathcal{D}$
+		First, we will show that for any non-zero-rank proof of $\Gamma \Rightarrow \Delta$ like $\mathcal{D}$ in $\mathbf{GLDL}_{/\rightarrow}(S)$, there is another proof of the same sequent with a lower rank. Suppose $\mathcal{D}$ has sub-tree(s) called $\mathcal{D}_0$ (and possibly $\mathcal{D}_1$). Using induction on $h(\mathcal{D})$, the induction hypothesis for $\mathcal{D}_i ~(i \in \{0,1\})$ gives us a proof-tree with the same conclusion, which we call $IH(\mathcal{D}_i)$, but with a lower rank, i.e. $\rho(IH(\mathcal{D}_i)) < \rho(\mathcal{D}_i)$. We now consider two cases for the last rule of $\mathcal{D}$
 
 	\begin{enumerate}[label=\Roman*]
 		\item If the last rule of $\mathcal{D}$ is of a lower rank than $\rho(\mathcal{D})$, i.e. the $Cut$ instance with the maximum rank is not the last rule in $\mathcal{D}$, then we can apply the same last rule on $IH(\mathcal{D}_i)$'s and get a proof of $\Gamma \Rightarrow \Delta$ with a lower rank.
 		
 		\item If the last rule of $\mathcal{D}$ is an instance of $Cut$ rule of rank $\rho(\mathcal{D})$, then we can apply theorem \ref{thm:ldls-cut-reduction} to $IH(\mathcal{D}_0)$ and $IH(\mathcal{D}_1)$ to get the same $Cut$ with a lower rank. (Recall that $\nabla Cut$ is just a generalization of $Cut$, so the theorem applies.)
 	\end{enumerate}
-	So for any proof of $\Gamma \Rightarrow \Delta$ in $\mathbf{GLDL}_{/\rightarrow}(\star)$, we also have a proof of rank $0$, which is cut-free.
+	So for any proof of $\Gamma \Rightarrow \Delta$ in $\mathbf{GLDL}_{/\rightarrow}(S)$, we also have a proof of rank $0$, which is cut-free.
 \end{proof}
 
 \subsection{Admissible Rules}
 \textbf{Problem.} What are the Harrop formulas here? Prove the disjunction property for the theories axiomatized by Harrop formulas, using the cut-free proofs over the logics $\mathbf{LDL}$ and $\mathbf{LDL}_{\rightsquigarrow}$. Prove the same thing via Kleene-type argument. Do we have similar thing for the logics with added rules $H$ and $H_{\rightsquigarrow}$, respectively?
 
 \subsection{Interpolation}
-In this section, we prove \emph{Craig's interpolation} theorem for $\mathbf{LDL}(\star)$ and a weaker version called \emph{deductive interpolation} for $\mathbf{LDL}_{/\rightarrow}(\star)$. For a formula $A$, by $V(A)$ we mean the set of all atomic formulas of $A$ and for a multi-set of formulas $\Gamma$, $V(\Gamma) = \bigcup_{A \in \Gamma} V(A)$.
-\begin{thm}[Craig's Interpolation for $\mathbf{LDL}(\star)$]\label{thm:ldl-craig} For any $\Gamma_1$, $\Gamma_2$ and $\Delta$, and for $\star \in \{L, R, Fa\}$, if $\mathbf{LDL}(\star) \vdash \Gamma_1 , \Gamma_2 \Rightarrow \Delta$, then there is a formula $C$ such that $V(C) \subseteq V(\Gamma_1) \cap V(\Gamma_2 , \Delta)$, $\mathbf{LDL}(\star) \vdash \Gamma_1 \Rightarrow C$ and $\mathbf{LDL}(\star) \vdash \Gamma_2 , C \Rightarrow \Delta$.
+In this section, we prove \emph{Craig's interpolation} theorem for $\mathbf{LDL}$ and all its extensions, and a weaker version called \emph{deductive interpolation} for any extension of $\mathbf{LDL}_{/\rightarrow}$ containing $L$. For a formula $A$, by $V(A)$ we mean the set of all atomic formulas of $A$ and for a multi-set of formulas $\Gamma$, $V(\Gamma) = \bigcup_{A \in \Gamma} V(A)$.
+\begin{thm}[Craig's Interpolation for $\mathbf{LDL}$]\label{thm:ldl-craig} For any $\Gamma_1$, $\Gamma_2$ and $\Delta$, and for $S \subseteq \{L, R, Fa, Fu\}$, if $\mathbf{LDL}(S) \vdash \Gamma_1 , \Gamma_2 \Rightarrow \Delta$, then there is a formula $C$ such that $V(C) \subseteq V(\Gamma_1) \cap V(\Gamma_2 , \Delta)$, $\mathbf{LDL}(S) \vdash \Gamma_1 \Rightarrow C$ and $\mathbf{LDL}(S) \vdash \Gamma_2 , C \Rightarrow \Delta$.
 \end{thm}
 
 \begin{proof}
-Let $\mathcal{D}$ be a cut-free proof for $\Gamma_1 , \Gamma_2 \Rightarrow \Delta$ (by theorem \ref{thm:ldls-cut-elim}). We will use induction on the length of $\mathcal{D}$, so for a smaller proof-tree for some $\Gamma_1' , \Gamma_2' \Rightarrow \Delta'$, the induction hypothesis (IH) provides an interpolant $C_{\langle\Gamma_1'; \Gamma_2'; \Delta'\rangle}$ for which the statement of the theorem is true. We now build the desired interpolant $C$, in different cases for the last rule of $\mathcal{D}$. In cases for left-rules, we also need to consider whether the principal formula is in $\Gamma_1$ or $\Gamma_2$ in separate cases.
+Let $\mathcal{D}$ be a cut-free proof for $\Gamma_1 , \Gamma_2 \Rightarrow \Delta$ in $\mathbf{GLDL}(S)$, from Theorems \ref{thm:ldl-eq-ldls} and \ref{thm:ldls-cut-elim}. We will find an interpolant which satisfies the statement of the theorem for $\mathbf{GLDL}(S)$, nevertheless, it can be translated back to $\mathbf{LDL}(S)$, again by Theorem \ref{thm:ldl-eq-ldls}.
+
+We will use induction on the length of $\mathcal{D}$: For any smaller proof-tree which proves $\Gamma_1' , \Gamma_2' \Rightarrow \Delta'$, the induction hypothesis (IH) provides an interpolant, which we call $C_{\langle\Gamma_1'; \Gamma_2'; \Delta'\rangle}$, for which the statement of the theorem is true. We now build the desired interpolant $C$, in different cases for the last rule of $\mathcal{D}$. In cases for left-rules, we also need to consider whether the principal formula is in $\Gamma_1$ or $\Gamma_2$ in separate cases.
 \begin{enumerate}
 	\item ($Id$) We have $\Gamma_1,\Gamma_2 = \Delta = A$.
 	\begin{enumerate}
@@ -1132,9 +1126,9 @@ Let $\mathcal{D}$ be a cut-free proof for $\Gamma_1 , \Gamma_2 \Rightarrow \Delt
 	
 	\item ($Ex$) Take $C = \nabla^n \bot$.
 	
-	\item ($Lw$) $\mathcal{D}$ proves $\Gamma_1' , \Gamma_2' , A \Rightarrow \Delta$ and has a sub-proof for $\Gamma_1' , \Gamma_2' \Rightarrow \Delta$, for which IH gives an interpolant $C_{\langle\Gamma_1';\Gamma_2';\Delta\rangle}$ and proofs for $\Gamma_1' \Rightarrow C_{\langle\Gamma_1';\Gamma_2';\Delta\rangle}$ and $\Gamma_2 , C_{\langle\Gamma_1';\Gamma_2';\Delta\rangle} \Rightarrow \Delta$, such that $V(C_{\langle\Gamma_1';\Gamma_2';\Delta\rangle}) \subseteq$ $ V(\Gamma_1') \cap V(\Gamma_2' , \Delta)$.
+	\item ($Lw$) $\mathcal{D}$ proves $\Gamma_1' , \Gamma_2' , A \Rightarrow \Delta$ and has a sub-proof for $\Gamma_1' , \Gamma_2' \Rightarrow \Delta$, for which IH gives an interpolant $C_{\langle\Gamma_1';\Gamma_2';\Delta\rangle}$ and proofs for $\Gamma_1' \Rightarrow C_{\langle\Gamma_1';\Gamma_2';\Delta\rangle}$ and $\Gamma_2' , C_{\langle\Gamma_1';\Gamma_2';\Delta\rangle} \Rightarrow \Delta$, such that $V(C_{\langle\Gamma_1';\Gamma_2';\Delta\rangle}) \subseteq$ $ V(\Gamma_1') \cap V(\Gamma_2' , \Delta)$.
 	\begin{enumerate}
-		\item If $\Gamma_1 = \Gamma_1'$ and $\Gamma_2 = \Gamma_2' , A$, take $C = C_{\langle\Gamma_1';\Gamma_2';\Delta\rangle}$. Then we have  $\Gamma_1' \Rightarrow C$ by IH and $\Gamma_2 , A , C \Rightarrow \Delta$ by $Lw$ and IH. From IH, we also have $V(C) \subseteq V(\Gamma_1') \cap V(\Gamma_2' , A , \Delta)$, since $P$ takes ``$,$'' to ``$\cup$'', which distributes over ``$\cap$'' and is increasing with respect to ``$\subseteq$''.
+		\item If $\Gamma_1 = \Gamma_1'$ and $\Gamma_2 = \Gamma_2' , A$, then take $C = C_{\langle\Gamma_1';\Gamma_2';\Delta\rangle}$. We have  $\Gamma_1' \Rightarrow C$ by IH and $\Gamma_2 , A , C \Rightarrow \Delta$ by $Lw$ and IH. From IH, we also have $V(C) \subseteq V(\Gamma_1') \cap V(\Gamma_2' , A , \Delta)$, since $P$ takes ``$,$'' to ``$\cup$'', which distributes over ``$\cap$'' and is increasing with respect to ``$\subseteq$''.
 		
 		\item If $\Gamma_1 = \Gamma_1' , A$ and $\Gamma_2 = \Gamma_2'$, again take $C = C_{\langle\Gamma_1';\Gamma_2';\Delta\rangle}$. Then we have  $\Gamma_1' , A \Rightarrow C$ by $Lw$ and IH, and $\Gamma_2 , C \Rightarrow \Delta$ by IH. We also have $V(C) \subseteq V(\Gamma_1' , A) \cap V(\Gamma_2' , \Delta)$ by IH and argument similar to the previous case.
 	\end{enumerate}
@@ -1219,41 +1213,42 @@ Let $\mathcal{D}$ be a cut-free proof for $\Gamma_1 , \Gamma_2 \Rightarrow \Delt
 	\end{enumerate}
 
 	\item ($R$) Assume $\Gamma_1 = \Pi_1, \Sigma_1$ and $\Gamma_2 = \Pi_2, \Sigma_2$. $\mathcal{D}$ proves $\Pi_1, \Sigma_1, \Pi_2, \Sigma_2 \Rightarrow \Delta$ and has a sub-proof for $\Pi_1, \nabla\Sigma_1, \Pi_2, \nabla\Sigma_2 \Rightarrow \Delta$.
-	Take $C =$\\ $C_{\langle\Pi_1\nabla\Sigma_1;\Pi_2\nabla\Sigma_2;\Delta\rangle}$. Then from IH and $R$ we have $\Pi_1, \Sigma_1 \Rightarrow C$ and $\Pi_2, \Sigma_2 \Rightarrow \Delta$. We also have $V(C) \subseteq V(\Pi_1,\Sigma_1) \cap V(\Pi_2,\Sigma_2,\Delta)$, since $\nabla$ does not introduce new atomic formulas and we can drop it.
+	Take $C =$\\ $C_{\langle\Pi_1\nabla\Sigma_1;\Pi_2\nabla\Sigma_2;\Delta\rangle}$. Then from IH and $R$ we have $\Pi_1, \Sigma_1 \Rightarrow C$ and $\Pi_2, \Sigma_2, C \Rightarrow \Delta$. We also have $V(C) \subseteq V(\Pi_1,\Sigma_1) \cap V(\Pi_2,\Sigma_2,\Delta)$, since $\nabla$ does not introduce new atomic formulas and we can drop it.
 
 	\item ($Fa$) This is similar to the $R\rightarrow$ case. $\mathcal{D}$ proves $\Gamma_1 , \Gamma_2 \Rightarrow \nabla(A \rightsquigarrow B)$ and has a sub-proof for $\Gamma_1 , \Gamma_2 , A \Rightarrow B$. Let $C = C_{\langle\Gamma_1;\Gamma_2,A;B\rangle}$. So we have $\Gamma_1 \Rightarrow C$ and $\Gamma_2 , C \Rightarrow \nabla (A \rightsquigarrow B)$ from IH and an application of $Fa$.
 	It is easy to deduce $V(C) \subseteq V(\Gamma_1) \cap V(\Gamma_2 , \nabla (A \rightsquigarrow B))$ from IH.
+
+	\item ($Fu$) $\mathcal{D}$ proves $\Gamma_1, \Gamma_2 \Rightarrow \Delta$ and has a sub-proof for $\nabla \Gamma_1, \nabla \Gamma_2 \Rightarrow \nabla \Delta$. Let $C' = C_{\langle\nabla\Gamma_1;\nabla\Gamma_2;\nabla\Delta\rangle}$ and take $C = \top \rightsquigarrow C'$. We can derive $\Gamma_1 \Rightarrow \top \rightsquigarrow C'$ by $Lw$ and $R\rightsquigarrow$ on the sequent that we get from IH. On the other hand, Lemma \ref{lem:l-nabla-box} gives us $\nabla (\top \rightsquigarrow C') \Rightarrow C'$, which can be cut into $\nabla \Gamma_2, C' \Rightarrow \nabla \Delta$, to get $\nabla \Gamma_2, \nabla (\top \rightsquigarrow C') \Rightarrow \nabla \Delta$. By $Fu$ we have $\Gamma_2, \top \rightsquigarrow C' \Rightarrow \Delta$. The variable condition also holds, since $V(C') = V(\top \rightsquigarrow C')$.
 \end{enumerate}
 \end{proof}
 
-\subsubsection{Interpolation for $\mathbf{LDL}_{/\rightarrow}(L)$}
-We can not prove the same result for the fragment $\mathbf{LDL}_{/\rightarrow}$, since we ought to use $\rightarrow$ to construct the interpolant in the case for $L\rightsquigarrow$. But if we add the rule $L$ to this fragment, we can prove a weaker form of interpolation using $\rightsquigarrow$, as we will do in this section.
-Throughout this section, when we use plain $\vdash$ symbol without specifying the deductive system, we mean deduction in $_{\mathbf{LDL}_{/\rightarrow}(L)}$. So by $\Gamma' \Rightarrow \Delta' \vdash \Gamma \Rightarrow \Delta$ we mean that $\Gamma \Rightarrow \Delta$ is provable in $\mathbf{LDL}_{/\rightarrow}(L)+\{\Gamma' \Rightarrow \Delta'\}$.
+\subsubsection{Interpolation for $\mathbf{LDL}_{/\rightarrow}$}
+We can not prove the same result for the fragment $\mathbf{LDL}_{/\rightarrow}$, since we ought to use $\rightarrow$ to construct the interpolant in the  $L\rightsquigarrow$ case of the last theorem. But if we add the rule $L$ to this fragment, we can prove a weaker form of interpolation using $\rightsquigarrow$, as we will do in this section.
+Throughout this section, when we use plain $\vdash$ symbol without specifying the deductive system, we mean deduction in $\mathbf{LDL}_{/\rightarrow}(S, L)$ where $S \subseteq \{L\rightarrow, R\rightarrow, R, Fu, Fa\}$. So by $\Gamma' \Rightarrow \Delta' \vdash \Gamma \Rightarrow \Delta$ we mean that $\Gamma \Rightarrow \Delta$ is provable in $\mathbf{LDL}_{/\rightarrow}(S)+\{\Gamma' \Rightarrow \Delta'\}$.
 \begin{lem}
 	\label{lem:vdash} $\Rightarrow A \vdash \Gamma \Rightarrow \Delta$ if and only if $\Gamma, \nabla^n A \Rightarrow \Delta$, for some $n$.
 \end{lem}
 \begin{proof}
 	I. Suppose we have $\Gamma, \nabla^n A \Rightarrow \Delta$ for some $n$. Assuning $\Rightarrow A$, we can first prove $\Rightarrow \nabla^n A$ by $n$ applications of $N$, and then $Cut$ it into $\Gamma, \nabla^n A \Rightarrow \Delta$ to get $\Gamma \Rightarrow \Delta$.
 
-	II. For the other direction, using theorems \ref{thm:ldl-eq-ldls} and \ref{thm:ldls-cut-elim}, suppose $\Gamma \Rightarrow \Delta$ has a cut-free proof-tree in $\mathbf{GLDL}_{/\rightarrow}(L)+\{\Rightarrow A\}$, and it suffices to prove its equivalent $\nabla^n A, \Gamma \Rightarrow \Delta$ for some $n$ in $\mathbf{GLDL}_{/\rightarrow}(L)$. By induction on the length of $\mathcal{D}$, we can assume that there is such equivalent in $\mathbf{GLDL}_{/\rightarrow}(L)$ for the possible sub-proof(s) of $\mathcal{D}$.
+	II. For the other direction, suppose $\Gamma \Rightarrow \Delta$ has a proof-tree like $\mathcal{D}$ in $\mathbf{LDL}_{/\rightarrow}(S,L)+\{\Rightarrow A\}$. It suffices to prove $\nabla^n A, \Gamma \Rightarrow \Delta$ for some $n$ in $\mathbf{LDL}_{/\rightarrow}(S,L)$. By induction on the length of $\mathcal{D}$, we can assume that the statement of the theorem holds for the possible sub-tree(s) of $\mathcal{D}$.
 
-	Now for different possible rules in $\mathbf{GLDL}_{/\rightarrow}(L)+\{\Rightarrow A\}$ as the last rule of $\mathcal{D}$, we will construct an $\mathbf{GLDL}_{/\rightarrow}(L)$ proof of $\nabla^n A , \Gamma \Rightarrow \Delta$ for some $n$. In all cases, the possible immediate sub-trees of $\mathcal{D}$ are called $\mathcal{D}_0$ and $\mathcal{D}_1$.
+	Now for different cases for the last rule of $\mathcal{D}$, we will construct the desired proof. In all cases, the possible immediate sub-trees of $\mathcal{D}$ are called $\mathcal{D}_0$ and $\mathcal{D}_1$.
 	
-	If $\mathcal{D}$ is just $\Rightarrow A$, then $\Gamma = \{\}$ and $\Delta = A$. We have $A \Rightarrow A$ by $Id$ with $n = 0$.
+	If $\mathcal{D}$ is just $\Rightarrow A$, then $\Gamma$ and $\Delta$ must be $\{\}$ and $A$ respectively. So we would have $A \Rightarrow A$ by $Id$ with $n = 0$.
 
-	If $\mathcal{D}$ is any of the axioms $Id$, $Ta$ or $Ex$, then we can add $A$ to the left side of the same axioms in $\mathbf{GLDL}_{/\rightarrow}(L)$ to construct the desired sequent.
+	If $\mathcal{D}$ is any of the axioms $Id$, $Ta$ or $Ex$, then we can add $A$ to the left side of the same axioms to construct the desired sequent with $n = 0$.
 
-	If $\mathcal{D}$ ends one of the rules with one assumption, i.e. $Lw$, $Lc$,$Rw$, $L\land_1$, $L\land_2$, $R\lor_1$, $R\lor_2$, $N$ or $L$, just apply the same rule on IH($\mathcal{D}_0$).
+	If $\mathcal{D}$ ends with any of the rules with one assumption, which are $Lw$, $Lc$,$Rw$, $L\land_1$, $L\land_2$, $R\lor_1$, $R\lor_2$, $N$, $L$, $R$ or $Fa$, just apply the same rule on IH($\mathcal{D}_0$).
 
-	In the $Cut$ case we can also do the same, applying $Cut$ on IH($\mathcal{D}_0$) and IH($\mathcal{D}_1$), since $Cut$ is a context-free rule.
+	If $\mathcal{D}$ ends with $Cut$, we can also do the same, applying $Cut$ on IH($\mathcal{D}_0$) and IH($\mathcal{D}_1$), since $Cut$ is a context-free rule.
 
-	If $\mathcal{D}$ ends with $R\rightsquigarrow$ we can do the same only if there is at least one $\nabla$ on $A$ in the left side of the sequent that we get from IH. Otherwise we can just add it with $L$ so we can then apply $R\rightsquigarrow$.
+	For the context-sensitive rules with two assumptions, which are $R\land$, $L\lor$, and $L\rightsquigarrow$, we must first equalize the number of $\nabla$'s on $A$ in the left side of the sequents that we get from IH, then we can apply the same rule.
 
-	For the context-sensitive rules with two assumptions, i.e. $R\land$, $L\lor$, and $L\rightsquigarrow$ we must first equalize the number of $\nabla$'s on $A$ in the left side of the sequents that we get from IH, then we can apply the same rule.
-
+	If $\mathcal{D}$ ends with $R\rightsquigarrow$ or $Fu$, we can do the same only if there is at least one $\nabla$ on $A$ in the left side of the sequent that we get from IH. Otherwise we can just add it with $L$, and then apply $R\rightsquigarrow$ or $Fu$.
 \end{proof}
 
-\begin{thm}[Deductive Interpolation for $\mathbf{LDL}_{/\rightarrow}(L)$] For any $\Delta'$ and $\Delta$, if $\Rightarrow \Delta' \vdash\ \Rightarrow \Delta$ then there exists a formula $C$ such that
+\begin{thm}[Deductive Interpolation for $\mathbf{LDL}_{/\rightarrow}$] For any $\Delta'$ and $\Delta$, if $\Rightarrow \Delta' \vdash\ \Rightarrow \Delta$ then there exists a formula $C$ such that
 	\begin{enumerate}[label=(\arabic*)]
 		\item $\Rightarrow \Delta' \vdash\ \Rightarrow C$,
 		\item $\Rightarrow C \vdash\ \Rightarrow \Delta$ and
@@ -1343,7 +1338,7 @@ Throughout this section, when we use plain $\vdash$ symbol without specifying th
 
 		\item ($R\rightsquigarrow$) $\mathcal{D}$ proves $\Gamma_1, \Gamma_2 \Rightarrow A \rightsquigarrow B$ and has a sub-proof for $\nabla \Gamma_1, \nabla \Gamma_2, A \Rightarrow B$. Take $C = C_{\langle\nabla\Gamma_1;\nabla\Gamma_2,A;B\rangle}$. We would have $\nabla^{m_1+1}\Gamma_1 \Rightarrow C$ from IH and $\nabla^{m_2}\Gamma_2, C \Rightarrow A \rightsquigarrow B$ from IH, $L$ and $R\rightsquigarrow$. From IH, we also have $V(C) \subseteq V(\nabla\Gamma_1) \cap V(\nabla\Gamma_2,A,B)$. It is easy to see that this implies $V(C) \subseteq V(\Gamma_1) \cap V(\Gamma_2,A \rightsquigarrow B)$.
 
-		\item ($N$) $\mathcal{D}$ proves $\nabla \Gamma_1 , \nabla \Gamma_2 \Rightarrow \nabla \Delta$ and has a sub-proof for $\Gamma_1 , \Gamma_2 \Rightarrow \Delta$. Just take $C = \nabla C(\Gamma_1;\Gamma_2;\Delta)$ and apply $N$ on the sequents from IH. The variable condition is also trivial from IH.
+		\item ($N$) $\mathcal{D}$ proves $\nabla \Gamma_1 , \nabla \Gamma_2 \Rightarrow \nabla \Delta$ and has a sub-proof for $\Gamma_1 , \Gamma_2 \Rightarrow \Delta$. Just take $C = \nabla C_{\langle\Gamma_1;\Gamma_2;\Delta\rangle}$ and apply $N$ on the sequents from IH. The variable condition is also trivial from IH.
 		
 		\item ($L$) $\mathcal{D}$ proves $\Gamma_1' , \Gamma_2' , \nabla A \Rightarrow \Delta$ and has a sub-proof for $\Gamma_1' , \Gamma_2' , A \Rightarrow \Delta$.
 		\begin{enumerate}
@@ -1351,6 +1346,14 @@ Throughout this section, when we use plain $\vdash$ symbol without specifying th
 			
 			\item If $\Gamma_1 = \Gamma_1' , A$ and $\Gamma_2 = \Gamma_2'$, take $C = C_{\langle\Gamma_1',A;\Gamma_2';\Delta\rangle}$. Then we have $\nabla^{m_1}\Gamma_1', \nabla^{m_1+1}A \Rightarrow C$ by IH and $L$, and $\nabla^{m_2}\Gamma_2' \Rightarrow \Delta$ by IH. We also have $V(C) \subseteq V(\Gamma_1',A) \cap$ $V(\Gamma_2',\Delta)$ as justified before.
 		\end{enumerate}
+
+		\item ($R$) Assume $\Gamma_1 = \Pi_1, \Sigma_1$ and $\Gamma_2 = \Pi_2, \Sigma_2$. $\mathcal{D}$ proves $\Pi_1, \Sigma_1, \Pi_2, \Sigma_2 \Rightarrow \Delta$ and has a sub-proof for $\Pi_1, \nabla\Sigma_1, \Pi_2, \nabla\Sigma_2 \Rightarrow \Delta$.
+		We can take $C_{\langle\Pi_1\nabla\Sigma_1;\Pi_2\nabla\Sigma_2;\Delta\rangle}$ as the desired interpolant $C$, because we have $\nabla^{m_1}\Pi_1,$ $\nabla^{m_1}\Sigma_1 \Rightarrow C$ and $\nabla^{m_2}\Pi_2, \nabla^{m_2}\Sigma_2, C \Rightarrow \Delta$ from IH, so it is also an interpolant for $\mathcal{D}$. We also have $V(C) \subseteq V(\Pi_1,\Sigma_1) \cap V(\Pi_2,\Sigma_2,\Delta)$, since $\nabla$ does not introduce new atomic formulas and we can drop it.
+
+		\item ($Fa$) $\mathcal{D}$ proves $\Gamma_1 , \Gamma_2 \Rightarrow \nabla(A \rightsquigarrow B)$ and has a sub-proof for $\Gamma_1 , \Gamma_2 , A \Rightarrow B$. Let $C = C_{\langle\Gamma_1;\Gamma_2,A;B\rangle}$. So we have $\nabla^{m_1}\Gamma_1 \Rightarrow C$ and $\nabla^{m_2}\Gamma_2 , C \Rightarrow \nabla (A \rightsquigarrow B)$ from IH and an application of $Fa$.
+		It is easy to deduce $V(C) \subseteq V(\Gamma_1) \cap V(\Gamma_2 , \nabla (A \rightsquigarrow B))$ from IH.
+
+		\item ($Fu$) $\mathcal{D}$ proves $\Gamma_1, \Gamma_2 \Rightarrow \Delta$ and has a sub-proof for $\nabla \Gamma_1, \nabla \Gamma_2 \Rightarrow \nabla \Delta$. Take $C = C_{\langle\nabla\Gamma_1;\nabla\Gamma_2;\nabla\Delta\rangle}$. We have $\nabla^{m_1+1}\Gamma_1 \Rightarrow C$ from IH. We also have $\nabla^{m_2+1} \Gamma_2, C \Rightarrow \nabla \Delta$ from IH. We can derive $\nabla^{m_2} \Gamma_2, C \Rightarrow \Delta$ by $L$ and $Fu$. The variable condition is also resulted from IH.
 	\end{enumerate}
 \end{proof}
 
