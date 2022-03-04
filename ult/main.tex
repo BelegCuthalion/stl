@@ -29,149 +29,136 @@ Consider the language $\mathcal{L}=\langle \wedge, \vee, \top, \bot, \nabla, \ri
 \begin{flushleft}
  \textbf{Axioms:}
 \end{flushleft}
-\begin{center}
- \begin{tabular}{c c c}
- \AxiomC{}
- \RightLabel{$Id$}
- \UnaryInfC{$ A \Rightarrow A$}
- \DisplayProof \;\;\;
- &
- \AxiomC{}
- \RightLabel{$Ta$}
- \UnaryInfC{$ \Rightarrow \top$}
- \DisplayProof\;\;\;
- &
- \AxiomC{}
- \RightLabel{$Ex$}
- \UnaryInfC{$ \bot \Rightarrow $}
- \DisplayProof
- \\[3ex]
-\end{tabular}
-\end{center}
+
+\begin{multicols}{3}
+	\begin{prooftree}
+		\AXC{}
+		\RightLabel{$Id$}
+		\UIC{$ A \Rightarrow A$}
+	\end{prooftree}
+	\columnbreak
+	\begin{prooftree}
+		\AXC{}
+		\RightLabel{$Ta$}
+		\UIC{$ \Rightarrow \top$}
+	\end{prooftree}
+	\columnbreak
+	\begin{prooftree}
+		\AXC{}
+		\RightLabel{$Ex$}
+		\UIC{$ \bot \Rightarrow $}		
+	\end{prooftree}
+\end{multicols}
 
 \begin{flushleft}
  		\textbf{Structural Rules:}
 \end{flushleft}
-
-\begin{center}
- \begin{tabular}{c c c}
- \AxiomC{$ \Gamma \Rightarrow \Delta$}
- \RightLabel{$L w$}
- \UnaryInfC{$ \Gamma, A \Rightarrow \Delta$}
- \DisplayProof
- &
- \AxiomC{$ \Gamma \Rightarrow $}
-\RightLabel{$R w$}
- \UnaryInfC{$\Gamma \Rightarrow A$}
- \DisplayProof
- &
- \AxiomC{$ \Gamma, A, A \Rightarrow \Delta$}
-\RightLabel{$Lc$}
- \UnaryInfC{$\Gamma, A \Rightarrow \Delta$}
- \DisplayProof
-  \\[3ex]
-\end{tabular}
-\end{center}
+\begin{multicols}{3}
+	\begin{prooftree}
+		\AXC{$ \Gamma \Rightarrow \Delta$}
+		\RightLabel{$L w$}
+		\UIC{$ \Gamma, A \Rightarrow \Delta$}
+	\end{prooftree}
+	\columnbreak
+	\begin{prooftree}
+		\AXC{$ \Gamma \Rightarrow $}
+		\RightLabel{$R w$}
+		 \UIC{$\Gamma \Rightarrow A$}		
+	\end{prooftree}
+	\columnbreak
+	\begin{prooftree}
+		\AXC{$ \Gamma, A, A \Rightarrow \Delta$}
+		\RightLabel{$Lc$}
+		\UIC{$\Gamma, A \Rightarrow \Delta$}		
+	\end{prooftree}
+\end{multicols}
 
 \begin{flushleft}
  		\textbf{Cut:}
 \end{flushleft}
 \begin{center}
-  	\begin{tabular}{c}
-
-		\AxiomC{$ \Gamma \Rightarrow A$}
-		\AxiomC{$\Pi, A \Rightarrow \Delta$}
+	\begin{prooftree}
+		\AXC{$ \Gamma \Rightarrow A$}
+		\AXC{$\Pi, A \Rightarrow \Delta$}
 		\RightLabel{$cut$}
-		\BinaryInfC{$ \Pi, \Gamma \Rightarrow \Delta$}
-		\DisplayProof
-		 \\[3ex]
-		\end{tabular}
+		\BIC{$ \Pi, \Gamma \Rightarrow \Delta$}
+	\end{prooftree}
 \end{center}
 
 \begin{flushleft}
  \textbf{Conjunction Rules:}
 \end{flushleft}
-\begin{center}
- \begin{tabular}{c c c}
-\AxiomC{$ \Gamma, A \Rightarrow \Delta$}
- \RightLabel{$L \wedge_1$}
- \UnaryInfC{$ \Gamma, A \wedge B \Rightarrow \Delta$}
- \DisplayProof
- &
- \AxiomC{$ \Gamma, B \Rightarrow \Delta$}
- \RightLabel{$L \wedge_2$}
- \UnaryInfC{$\Gamma, A \wedge B \Rightarrow \Delta$}
- \DisplayProof
-	   		&
-   		\AxiomC{$\Gamma \Rightarrow A$}
-   		\AxiomC{$\Gamma \Rightarrow B$}
-   		\RightLabel{$R \wedge$}
-   		\BinaryInfC{$ \Gamma \Rightarrow A \wedge B $}
-   		\DisplayProof
-   			\\[3 ex]
-\end{tabular}
-\end{center}
+\begin{multicols}{3}
+	\begin{prooftree}
+		\AXC{$ \Gamma, A \Rightarrow \Delta$}
+		\RightLabel{$L \wedge_1$}
+		\UIC{$ \Gamma, A \wedge B \Rightarrow \Delta$}		
+	\end{prooftree}
+	\columnbreak
+	\begin{prooftree}
+		\AXC{$ \Gamma, B \Rightarrow \Delta$}
+		\RightLabel{$L \wedge_2$}
+		\UIC{$\Gamma, A \wedge B \Rightarrow \Delta$}		
+	\end{prooftree}
+	\columnbreak
+	\begin{prooftree}
+		\AXC{$\Gamma \Rightarrow A$}
+		\AXC{$\Gamma \Rightarrow B$}
+		\RightLabel{$R \wedge$}
+		\BIC{$ \Gamma \Rightarrow A \wedge B $}		
+	\end{prooftree}
+\end{multicols}
 
 \begin{flushleft}
  \textbf{Disjunction Rules:}
 \end{flushleft}
-\vspace{.001pt}
-\begin{center}
- \begin{tabular}{c c c}
- \AxiomC{$ \Gamma, A \Rightarrow \Delta$}
- \AxiomC{$\Gamma, B \Rightarrow \Delta$}
- \RightLabel{$L \vee_1$}
- \BinaryInfC{$ \Gamma, A \vee B \Rightarrow \Delta$}
- \DisplayProof
- &
- \AxiomC{$\Gamma \Rightarrow A$}
- \RightLabel{$R \vee_2$}
- \UnaryInfC{$\Gamma \Rightarrow A \vee B$}
- \DisplayProof
- &
- \AxiomC{$\Gamma \Rightarrow B$}
- \RightLabel{$R \vee$}
- \UnaryInfC{$\Gamma \Rightarrow A \vee B$}
- \DisplayProof
- \\[3ex]
-\end{tabular}
-\end{center}
-
-
+\begin{multicols}{3}
+	\begin{prooftree}
+		\AXC{$ \Gamma, A \Rightarrow \Delta$}
+		\AXC{$\Gamma, B \Rightarrow \Delta$}
+		\RightLabel{$L \vee_1$}
+		\BIC{$ \Gamma, A \vee B \Rightarrow \Delta$}		
+	\end{prooftree}
+	\columnbreak
+	\begin{prooftree}
+		\AXC{$\Gamma \Rightarrow A$}
+		\RightLabel{$R \vee_2$}
+		\UIC{$\Gamma \Rightarrow A \vee B$}		
+	\end{prooftree}
+	\columnbreak
+	\begin{prooftree}
+		\AXC{$\Gamma \Rightarrow B$}
+		\RightLabel{$R \vee$}
+		\UIC{$\Gamma \Rightarrow A \vee B$}		
+	\end{prooftree}
+\end{multicols}
 
 \begin{flushleft}
 	\textbf{Implication Rules:}
  \end{flushleft}
- \vspace{.001pt}
- \begin{center}
-	\begin{tabular}{c c}
-	\AxiomC{$\Gamma \Rightarrow A$}
-	\AxiomC{$\Gamma, B \Rightarrow \Delta$}
-	\RightLabel{$L \rightarrow$}
-	\BinaryInfC{$\Gamma, \nabla (A \rightarrow B) \Rightarrow \Delta$}
-	\DisplayProof
-	&
-	\AxiomC{$\nabla \Gamma, A \Rightarrow B$}
-	\RightLabel{$R \rightarrow$}
-	\UnaryInfC{$\Gamma \Rightarrow A \rightarrow B$}
-	\DisplayProof
-	\\[3ex]
- \end{tabular}
- \end{center}
+ \begin{multicols}{2}
+	\begin{prooftree}
+		\AXC{$\Gamma \Rightarrow A$}
+		\AXC{$\Gamma, B \Rightarrow \Delta$}
+		\RightLabel{$L \rightarrow$}
+		\BIC{$\Gamma, \nabla (A \rightarrow B) \Rightarrow \Delta$}		
+	\end{prooftree}
+	\columnbreak
+	\begin{prooftree}
+		\AXC{$\nabla \Gamma, A \Rightarrow B$}
+		\RightLabel{$R \rightarrow$}
+		\UIC{$\Gamma \Rightarrow A \rightarrow B$}		
+	\end{prooftree}
+\end{multicols}
 
 \begin{flushleft}
   \textbf{Modal Rule:}
 \end{flushleft}
-\vspace{.001pt}
-\begin{center}
- \begin{tabular}{c}
- \AxiomC{$\Gamma \Rightarrow A$}
- \RightLabel{$N$}
- \UnaryInfC{$\nabla \Gamma \Rightarrow \nabla A$}
- \DisplayProof
- \\[3ex]
-\end{tabular}
-\end{center}
+\begin{prooftree}
+	\AXC{$\Gamma \Rightarrow A$}
+	\RightLabel{$N$}
+	\UIC{$\nabla \Gamma \Rightarrow \nabla A$}
+\end{prooftree}
 
 
 It is worth mentioning that our naming scheme for the systems differs slightly with \cite{amir}. Also notice that the sequent-style systems that are introduced in the mentioned paper use sequences of formulas instead of multisets, and have an explicit exchange rule.
