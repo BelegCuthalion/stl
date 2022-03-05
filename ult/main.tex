@@ -6,19 +6,48 @@
 \title{Interpolation for Logics of Spacetime}
 \author[]{Amirhossein Akbar Tabatabai, Majid Alizadeh, Alireza Mahmoudian}
 \affil[]{ }
-\date{\today}
+\date{March 2, 2022}
 \maketitle
 
-\section{Introduction}
-A generalization of the notion of implication is introduced in \cite{amir}, as a binary operator which internalizes the reflexive and transitive properties of the provability order on the set of all propositions. This generalization gives rise to a classification of some sub-intuitionistic and sub-structural logics with various behaviours of their respecting implication operators. One of its specifications, which is called the logic of \emph{spacetime} in \cite{amir} with the goal of subduing the impredicative nature of the implication. The usual interpretation of an intuitionistic proof for an implication is a structure that converts \emph{all} proofs of its antecedent to some proof for its consequent. This interpretation is impredicative in the sense that we are quantifying over the set of all proofs which we are just defining. The impredicativity of implication clearly shows up when one is using a conditional assumption in an intuitionistic proof, which amounts to an application of the rule of \emph{modus ponens}: What this rule essentially says is that if we have a proof for an implication and a proof of its antecedent at the same time, then we can conclude its consequent. The logic of spacetime remedies this by restricting the use of conditional assumption in the proof such that its modus ponens rule would not take a proof of conditional statement itself, but a proof of modal operator, called $\nabla$, applied to the conditional statement. We can read this application of $\nabla$ as a \emph{delay} in use of implication, and interpret the proof of conditional statement as a function that converts all \emph{later} proofs of its antecedent to some \emph{later} proof for its consequent.
+\begin{abstract}
+	A generalization of the notion of implication is introduced in \cite{amir}, as a binary operator which internalizes the reflexive and transitive properties of the provability order on the set of all propositions. This generalization gives rise to a classification of some sub-intuitionistic and sub-structural logics with various behaviors of their respecting implication operators. One of its specifications, which is called the logic of \emph{spacetime} in \cite{amir} makes a dynamic reading of the Proof Interpretation for conditional statements possible. This reading does not suffer from the well-known impredicativity in the BHK interpretation.
 
-The spacetime logic has a Kripke style semanitcs, via a triple $(W, \leq, R)$ consisting of a Kripke frame $(W, R)$ and a poset $(W, \leq)$, where $\nabla$ is interpreted as the modality that looks backward in the frame.\\
+	In this paper, we will introduc a sequent-style calculus for the logic of spacetime, called $\stl$ along with an equivalent cut-free system, called $\gstl$. Then we will study some properties of thses systems such as subformula property, disjuction property, admissibility of the Visser's rule and existence of imterpolants.
+\end{abstract}
+
+\section{Introduction}
+The usual interpretation of an intuitionistic proof for an implication is a structure that converts \emph{all} proofs of its antecedent to some proof for its consequent. This interpretation is impredicative in the sense that we are quantifying over the set of all proofs, while we are just defining some members of it, which are, the proofs for implication. The impredicativity of implication shows up more clearly when one is using a conditional assumption in an intuitionistic proof, which amounts to an application of the rule of \emph{modus ponens}. What this rule essentially says is that if we have a proof for an implication and a proof of its antecedent at the same time, then we can conclude its consequent.
+
+The logic of spacetime remedies this by restricting the use of conditional assumption; So that the modus ponens rule in the logic of spacetime would not take a proof of conditional statement itself, but a proof of a modal operator, called $\nabla$, applied to the conditional statement. We can read this application of $\nabla$ as a \emph{delay} in use of implication, and interpret the proof of conditional statement as a function that converts all \emph{later} proofs of its antecedent to some \emph{later} proof for its consequent. So we can prove the consequent of a conditional statement, only if we have proved the conditional statement itself \emph{sooner} than the antecedent.\\
+
+The logic of spacetime is represented by a sequent-style system called $\stl$ (known as $\istl$\footnote{Note that in this paper this name is reserved for another system with intuitionistic implication.} in \cite{amir}), which has the same rules as the usual intuitionistic calculus $\mathbf{LJ}$, over the propositional language augumented with a unary connective $\nabla$, but with left and right implication rules replaced with the following rules, respectively.
+
+\begin{multicols}{2}
+	\begin{prooftree}
+		\AXC{$\Gamma \Rightarrow A$}
+		\AXC{$\Gamma, B \Rightarrow \Delta$}
+		\RightLabel{$L \rightarrow$}
+		\BIC{$\Gamma, \nabla (A \rightarrow B) \Rightarrow \Delta$}
+	\end{prooftree}
+	\columnbreak
+	\begin{prooftree}
+		\AXC{$\nabla \Gamma, A \Rightarrow B$}
+		\RightLabel{$R \rightarrow$}
+		\UIC{$\Gamma \Rightarrow A \rightarrow B$}
+	\end{prooftree}
+\end{multicols}
+Furthermore, the system also has a rule to introduce $\nabla$ to both sides of a sequent.
+\begin{prooftree}
+	\AXC{$A \Rightarrow B$}
+	\RightLabel{$\nabla$}
+	\UIC{$\nabla A \Rightarrow \nabla B$}
+\end{prooftree}
+So, generally, $\nabla (A \rightarrow B)$, and not $A \rightarrow B$, will be of use in proving $B$ from $A$.
+
+The logic of spacetime has also an algebraic semantics similar to that of intuitionistic logic, which is complete Heyting algebras with a unary monotone and arbitrary-join-preserving operator $\nabla$. It also has a Kripke style semantics, via a triple $(W, \leq, R)$ consisting of a Kripke frame $(W, R)$ and a poset $(W, \leq)$, where $\nabla$ is interpreted as the modality that looks backward in the frame.\\
 
 In the next section of this paper, we will introduce a sequent style calculus for the spacetime logic, called $\stl$ and introduce an equivalent cut-free system $\gstl$, and then survey some extensions and their respecting semantics, including an extension of $\stl$ with a Heyting implication, called $\istl$, and simillarly, an equivalent cut-free system $\igstl$.
-
-
-In the third section, the cut-elimination theorems for $\stl$ and its extensions will be proved. Then we will use this theorem to deduce impoertant results about $\stl$ and its extensinos, such as subformula property, disjuction property and admisibility of the Visser's rule.
-
+In the third section, the cut-elimination theorems for $\stl$ and its extensions will be proved. Then we will use this theorem to deduce important results about $\stl$ and its extensions, such as subformula property, disjuction property and admissibility of the Visser's rule.
 And in the last section, we will show that some extensions of $\stl$ have interpolation property.
 
 \section{Sequent calculi for the logics of spacetime}
@@ -162,7 +191,7 @@ And in the last section, we will show that some extensions of $\stl$ have interp
 \end{prooftree}
 
 
-It is worth mentioning that our naming scheme for the systems differs slightly with \cite{amir}. Also notice that the sequent-style systems that are introduced in the mentioned paper use sequences of formulas instead of multisets, and have an explicit exchange rule.
+Notice that our naming scheme for the systems differs slightly with \cite{amir}. Also notice that the sequent-style systems that are introduced in the mentioned paper use sequences of formulas instead of multisets, and have an explicit exchange rule.
 
 $\stl$ is shown to be sound and complete with respect to the set of all Kripke frames of the form $(W, \leq, R)$, where $(W, \leq)$ is a poset, and $R$ is binary relation which behaves functorial over $(W, \leq) \times (W, \leq)^{op}$, in the sense that for all $u, v, w, z \in W$ such that $v \leq u$, $w \leq z$ and $u R w$ implies $v R z$. For all connectives except $\nabla$, the forcing relation is defined inductively with respect to $R$, similar to the Kripke semantics for intuitionistic logic. For a formula $\nabla A$, define the forcing relation as follows:
 \begin{center}
