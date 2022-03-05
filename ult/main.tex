@@ -44,8 +44,6 @@ Furthermore, the system also has a rule to introduce $\nabla$ to both sides of a
 \end{prooftree}
 So, generally, $\nabla (A \rightarrow B)$, and not $A \rightarrow B$, will be of use in proving $B$ from $A$.
 
-The logic of spacetime has also an algebraic semantics similar to that of intuitionistic logic, which is complete Heyting algebras with a unary monotone and arbitrary-join-preserving operator $\nabla$. It also has a Kripke style semantics, via a triple $(W, \leq, R)$ consisting of a Kripke frame $(W, R)$ and a poset $(W, \leq)$, where $\nabla$ is interpreted as the modality that looks backward in the frame.\\
-
 In the next section of this paper, we will introduce a sequent style calculus for the spacetime logic, called $\stl$ and introduce an equivalent cut-free system $\gstl$, and then survey some extensions and their respecting semantics, including an extension of $\stl$ with a Heyting implication, called $\istl$, and simillarly, an equivalent cut-free system $\igstl$.
 In the third section, the cut-elimination theorems for $\stl$ and its extensions will be proved. Then we will use this theorem to deduce important results about $\stl$ and its extensions, such as subformula property, disjuction property and admissibility of the Visser's rule.
 And in the last section, we will show that some extensions of $\stl$ have interpolation property.
@@ -192,12 +190,6 @@ We will define the system
 
 
 Notice that our naming scheme for the systems differs slightly with \cite{amir}. Also notice that the sequent-style systems that are introduced in the mentioned paper use sequences of formulas instead of multisets, and have an explicit exchange rule.
-
-$\stl$ is shown to be sound and complete with respect to the set of all Kripke frames of the form $(W, \leq, R)$, where $(W, \leq)$ is a poset, and $R$ is binary relation which behaves functorial over $(W, \leq) \times (W, \leq)^{op}$, in the sense that for all $u, v, w, z \in W$ such that $v \leq u$, $w \leq z$ and $u R w$ implies $v R z$. For all connectives except $\nabla$, the forcing relation is defined inductively with respect to $R$, similar to the Kripke semantics for intuitionistic logic. For a formula $\nabla A$, define the forcing relation as follows:
-\begin{center}
-$w \Vdash \nabla A$ if and only if there exists $u \in W$ where $u R w$ and $w \Vdash A$.
-\end{center}
-
 
 If we also add one or more of the following rules to the system, we will have an \emph{extension of} $\stl$, which are denoted by $\stl(S)$ where $S$ is any combination of these rules:
 
