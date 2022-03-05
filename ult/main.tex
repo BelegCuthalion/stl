@@ -223,7 +223,7 @@ If we also add one or more of the following rules to the system, we will have an
 	Now, we will introduce $\gstl$, which we then show to be equivalent with $\stl$, and also cut-free.
 
 \begin{dfn}
-	Define $\gstl$ over the language $\mathcal{L}$, to be the logic of sequent-style system defined by the same rules as $\stl$, except that the rules $Ex$, $L\wedge_1$, $L\wedge_2$, $L\vee$, $L\rightarrow$, $L\rightarrow$ and $N$ are replaced by the following generalized rules respectively.
+	Define $\gstl$ over the language $\mathcal{L}$, to be the logic of sequent-style system defined by the same rules as $\stl$, except that the rules $Ex$, $L \wedge_1$, $L \wedge_2$, $L\vee$, $L \rightarrow$ and $N$ are replaced by the following generalized rules respectively.
 \end{dfn}
 
 \begin{prooftree}
@@ -259,31 +259,32 @@ If we also add one or more of the following rules to the system, we will have an
 	\RightLabel{$L \rightarrow$}
 	\BIC{$\Gamma, \nabla^{n+1} (A \rightarrow B) \Rightarrow \Delta$}
 \end{prooftree}	
+Notice that all the rules above are just generalizations of their corresponding rules in $\stl$.\\
 
 To show the equivalnce of two systems, we will use the following lemmas. Notice that the proof-trees are constructible in $\stl(S)$ for $S \subseteq \{ L, R, Fa, Fu \}$.
 
-\begin{lem}\label{lem:l-nabla-dist-and} For all $n \geq 0$, $\stl(S) \vdash \nabla^n (A \land B) \Rightarrow \nabla^n A \land \nabla^n B$.
+\begin{lem}\label{lem:l-nabla-dist-and} For all $n \geq 0$, $\stl(S) \vdash \nabla^n (A \wedge B) \Rightarrow \nabla^n A \wedge \nabla^n B$.
 \end{lem}
 \begin{proof}\quad
 	\begin{prooftree}
 		\AXC{}
 		\RightLabel{$Id$}
 		\UIC{$A \Rightarrow A$}
-		\RightLabel{$L\land_1$}
-		\UIC{$A \land B \Rightarrow A$}
+		\RightLabel{$L \wedge_1$}
+		\UIC{$A \wedge B \Rightarrow A$}
 		\RightLabel{$N$} \doubleLine
-		\UIC{$\nabla^n (A \land B) \Rightarrow \nabla^n A$}
+		\UIC{$\nabla^n (A \wedge B) \Rightarrow \nabla^n A$}
 
 		\AXC{}
 		\RightLabel{$Id$}
 		\UIC{$B \Rightarrow B$}
-		\RightLabel{$L\land_2$}
-		\UIC{$A \land B \Rightarrow B$}
+		\RightLabel{$L \wedge_2$}
+		\UIC{$A \wedge B \Rightarrow B$}
 		\RightLabel{$N$} \doubleLine	
-		\UIC{$\nabla^n (A \land B) \Rightarrow \nabla^n B$}
+		\UIC{$\nabla^n (A \wedge B) \Rightarrow \nabla^n B$}
 		
-		\RightLabel{$R\land$}
-		\BIC{$\nabla^n (A \land B) \Rightarrow \nabla^n A \land \nabla^n B$}
+		\RightLabel{$R \wedge$}
+		\BIC{$\nabla^n (A \wedge B) \Rightarrow \nabla^n A \wedge \nabla^n B$}
 	\end{prooftree}
 \end{proof}
 
@@ -299,7 +300,7 @@ To show the equivalnce of two systems, we will use the following lemmas. Notice 
 		\RightLabel{$Id$}
 		\UIC{$A \Rightarrow A$}
 	
-		\RightLabel{$L\rightarrow$}
+		\RightLabel{$L \rightarrow$}
 		\BIC{$\nabla (\top \rightarrow A) \Rightarrow A$}
 	\end{prooftree}
 \end{proof}
@@ -315,65 +316,65 @@ To show the equivalnce of two systems, we will use the following lemmas. Notice 
 		\RightLabel{$Lw$}
 		\UIC{$\nabla A , \top \Rightarrow \nabla A$}
 
-		\RightLabel{$R\rightarrow$}
+		\RightLabel{$R \rightarrow$}
 		\UIC{$A \Rightarrow \top \rightarrow \nabla A$}
 	\end{prooftree}
 \end{proof}
 
-\begin{lem}\label{lem:l-nabla-dist-or} $\stl(S) \vdash \nabla (A \lor B) \Rightarrow \nabla A \lor \nabla B$.
+\begin{lem}\label{lem:l-nabla-dist-or} $\stl(S) \vdash \nabla (A \vee B) \Rightarrow \nabla A \vee \nabla B$.
 \end{lem}
-\begin{proof} Let $\mathcal{D}$ be a proof-tree we can construct for $\nabla (\top \rightarrow (\nabla A \lor \nabla B)) \Rightarrow \nabla A \lor \nabla B$ from Lemma \ref{lem:l-nabla-box}.
+\begin{proof} Let $\mathcal{D}$ be a proof-tree we can construct for $\nabla (\top \rightarrow (\nabla A \vee \nabla B)) \Rightarrow \nabla A \vee \nabla B$ from Lemma \ref{lem:l-nabla-box}.
 
 	\begin{prooftree}
 		\AXC{}
 		\RightLabel{$Id$}
 		\UIC{$\nabla A \Rightarrow \nabla A$}
-		\RightLabel{$R\lor_1$}
-		\UIC{$\nabla A \Rightarrow \nabla A \lor \nabla B$}
+		\RightLabel{$R\vee_1$}
+		\UIC{$\nabla A \Rightarrow \nabla A \vee \nabla B$}
 		\RightLabel{$Lw$}
-		\UIC{$\nabla A , \top \Rightarrow \nabla A \lor \nabla B$}
-		\RightLabel{$R\rightarrow$}
-		\UIC{$A \Rightarrow \top \rightarrow (\nabla A \lor \nabla B)$}
+		\UIC{$\nabla A , \top \Rightarrow \nabla A \vee \nabla B$}
+		\RightLabel{$R \rightarrow$}
+		\UIC{$A \Rightarrow \top \rightarrow (\nabla A \vee \nabla B)$}
 
 		\AXC{}
 		\RightLabel{$Id$}
 		\UIC{$\nabla B \Rightarrow \nabla B$}
-		\RightLabel{$R\lor_2$}
-		\UIC{$\nabla B \Rightarrow \nabla A \lor \nabla B$}
+		\RightLabel{$R\vee_2$}
+		\UIC{$\nabla B \Rightarrow \nabla A \vee \nabla B$}
 		\RightLabel{$Lw$}
-		\UIC{$\nabla B , \top \Rightarrow \nabla A \lor \nabla B$}
-		\RightLabel{$R\rightarrow$}
-		\UIC{$B \Rightarrow \top \rightarrow (\nabla A \lor \nabla B)$}
+		\UIC{$\nabla B , \top \Rightarrow \nabla A \vee \nabla B$}
+		\RightLabel{$R \rightarrow$}
+		\UIC{$B \Rightarrow \top \rightarrow (\nabla A \vee \nabla B)$}
 
-		\RightLabel{$L\lor$}
-		\BIC{$A \lor B \Rightarrow \top \rightarrow (\nabla A \lor \nabla B)$}
+		\RightLabel{$L\vee$}
+		\BIC{$A \vee B \Rightarrow \top \rightarrow (\nabla A \vee \nabla B)$}
 		\RightLabel{$N$}
-		\UIC{$\nabla (A \lor B) \Rightarrow \nabla (\top \rightarrow (\nabla A \lor \nabla B))$}
+		\UIC{$\nabla (A \vee B) \Rightarrow \nabla (\top \rightarrow (\nabla A \vee \nabla B))$}
 
 		\AXC{$\mathcal{D}$}
 
 		\RightLabel{$Cut$}
-		\BIC{$\nabla (A \lor B) \Rightarrow \nabla A \lor \nabla B$}
+		\BIC{$\nabla (A \vee B) \Rightarrow \nabla A \vee \nabla B$}
 	\end{prooftree}
 \end{proof}
 
-\begin{lem}\label{lem:l-nabla-n-dist-or} For all $n \geq 0$, $\stl(S) \vdash \nabla^n (A \lor B) \Rightarrow \nabla^n A \lor \nabla^n B$.
+\begin{lem}\label{lem:l-nabla-n-dist-or} For all $n \geq 0$, $\stl(S) \vdash \nabla^n (A \vee B) \Rightarrow \nabla^n A \vee \nabla^n B$.
 \end{lem}
 \begin{proof} The proof is trivial when $n = 0$. Let $\mathcal{D}_1$ be the proof-tree of Lemma \ref{lem:l-nabla-dist-or}, which proves the case for $n = 1$. For any $n > 1$ we have
 
 	\begin{prooftree}
 		\AXC{$\mathcal{D}_{n-1}$}
 		\noLine
-		\UIC{$\nabla^{n-1} (A \lor B) \Rightarrow \nabla^{n-1} A \lor \nabla^{n-1} B$}
+		\UIC{$\nabla^{n-1} (A \vee B) \Rightarrow \nabla^{n-1} A \vee \nabla^{n-1} B$}
 		\RightLabel{$N$}
-		\UIC{$\nabla^n (A \lor B) \Rightarrow \nabla (\nabla^{n-1} A \lor \nabla^{n-1} B)$}
+		\UIC{$\nabla^n (A \vee B) \Rightarrow \nabla (\nabla^{n-1} A \vee \nabla^{n-1} B)$}
 
 		\AXC{$\mathcal{D}_1$}
 		\noLine
-		\UIC{$\nabla (\nabla^{n-1} A \lor \nabla^{n-1} B) \Rightarrow \nabla^n A \lor \nabla^n B$}
+		\UIC{$\nabla (\nabla^{n-1} A \vee \nabla^{n-1} B) \Rightarrow \nabla^n A \vee \nabla^n B$}
 		
 		\RightLabel{$Cut$} \LeftLabel{$\mathcal{D}_n:$}
-		\BIC{$\nabla^n (A \lor B) \Rightarrow \nabla^n A \lor \nabla^n B$}
+		\BIC{$\nabla^n (A \vee B) \Rightarrow \nabla^n A \vee \nabla^n B$}
 	\end{prooftree}
 \end{proof}
 
@@ -429,11 +430,11 @@ To show the equivalnce of two systems, we will use the following lemmas. Notice 
 		\RightLabel{$Lw$}
 		\UIC{$A , B \Rightarrow B$}
 		
-		\RightLabel{$L\rightarrow$}
+		\RightLabel{$L \rightarrow$}
 		\BIC{$\nabla (A \rightarrow B) , A \Rightarrow B$}
 		\RightLabel{$N^{(n)}$} \doubleLine
 		\UIC{$\nabla^{n+1} (A \rightarrow B) , \nabla^n A \Rightarrow \nabla^n B$}
-		\RightLabel{$R\rightarrow$}
+		\RightLabel{$R \rightarrow$}
 		\UIC{$\nabla^n (A \rightarrow B) \Rightarrow \nabla^n A \rightarrow \nabla^n B$}
 	\end{prooftree}
 \end{proof}
