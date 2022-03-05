@@ -220,7 +220,7 @@ If we also add one or more of the following rules to the system, we will have an
 	\end{prooftree}
 
 
-	Now, we will introduce another system, called $\gstl$, which we then show to be equivalent with $\stl$, and also cut-free.
+	Now, we will introduce $\gstl$, which we then show to be equivalent with $\stl$, and also cut-free.
 
 \begin{dfn}
 	Define $\gstl$ over the language $\mathcal{L}$, to be the logic of sequent-style system defined by the same rules as $\stl$, except that the rules $Ex$, $L\wedge_1$, $L\wedge_2$, $L\vee$, $L\rightarrow$, $L\rightsquigarrow$ and $N$ are replaced by the following generalized rules respectively.
@@ -273,9 +273,183 @@ If we also add one or more of the following rules to the system, we will have an
 	\UIC{$\nabla \Gamma \Rightarrow \nabla \Delta$}
 \end{prooftree}
 
-[two systems are equivalnt]
+To show the equivalnce of two systems, we will use the following lemmas. Notice that the proof-trees are constructible in $\stl(S)$ for $S \subseteq \{ L, R, Fa, Fu \}$.
 
-[extensions]
+\begin{lem}\label{lem:l-nabla-dist-and} For all $n \geq 0$, $\stl(S) \vdash \nabla^n (A \land B) \Rightarrow \nabla^n A \land \nabla^n B$.
+\end{lem}
+\begin{proof}\quad
+	\begin{prooftree}
+		\AXC{}
+		\RightLabel{$Id$}
+		\UIC{$A \Rightarrow A$}
+		\RightLabel{$L\land_1$}
+		\UIC{$A \land B \Rightarrow A$}
+		\RightLabel{$N$} \doubleLine
+		\UIC{$\nabla^n (A \land B) \Rightarrow \nabla^n A$}
+
+		\AXC{}
+		\RightLabel{$Id$}
+		\UIC{$B \Rightarrow B$}
+		\RightLabel{$L\land_2$}
+		\UIC{$A \land B \Rightarrow B$}
+		\RightLabel{$N$} \doubleLine	
+		\UIC{$\nabla^n (A \land B) \Rightarrow \nabla^n B$}
+		
+		\RightLabel{$R\land$}
+		\BIC{$\nabla^n (A \land B) \Rightarrow \nabla^n A \land \nabla^n B$}
+	\end{prooftree}
+\end{proof}
+
+\begin{lem} \label{lem:l-nabla-box} $\stl(S) \vdash \nabla (\top \rightarrow A) \Rightarrow A$.
+\end{lem}
+\begin{proof}\quad
+	\begin{prooftree}
+		\AXC{}
+		\RightLabel{$Ta$}
+		\UIC{$\Rightarrow \top$}
+	
+		\AXC{}
+		\RightLabel{$Id$}
+		\UIC{$A \Rightarrow A$}
+	
+		\RightLabel{$L\rightarrow$}
+		\BIC{$\nabla (\top \rightarrow A) \Rightarrow A$}
+	\end{prooftree}
+\end{proof}
+
+\begin{lem}\label{lem:l-box-nabla} $\stl(S) \vdash A \Rightarrow \top \rightarrow \nabla A$.
+\end{lem}
+\begin{proof}\quad
+	\begin{prooftree}
+		\AXC{}
+		\RightLabel{$Id$}
+		\UIC{$\nabla A \Rightarrow \nabla A$}
+		
+		\RightLabel{$Lw$}
+		\UIC{$\nabla A , \top \Rightarrow \nabla A$}
+
+		\RightLabel{$R\rightarrow$}
+		\UIC{$A \Rightarrow \top \rightarrow \nabla A$}
+	\end{prooftree}
+\end{proof}
+
+\begin{lem}\label{lem:l-nabla-dist-or} $\stl(S) \vdash \nabla (A \lor B) \Rightarrow \nabla A \lor \nabla B$.
+\end{lem}
+\begin{proof} Let $\mathcal{D}$ be a proof-tree we can construct for $\nabla (\top \rightarrow (\nabla A \lor \nabla B)) \Rightarrow \nabla A \lor \nabla B$ from Lemma \ref{lem:l-nabla-box}.
+
+	\begin{prooftree}
+		\AXC{}
+		\RightLabel{$Id$}
+		\UIC{$\nabla A \Rightarrow \nabla A$}
+		\RightLabel{$R\lor_1$}
+		\UIC{$\nabla A \Rightarrow \nabla A \lor \nabla B$}
+		\RightLabel{$Lw$}
+		\UIC{$\nabla A , \top \Rightarrow \nabla A \lor \nabla B$}
+		\RightLabel{$R\rightarrow$}
+		\UIC{$A \Rightarrow \top \rightarrow (\nabla A \lor \nabla B)$}
+
+		\AXC{}
+		\RightLabel{$Id$}
+		\UIC{$\nabla B \Rightarrow \nabla B$}
+		\RightLabel{$R\lor_2$}
+		\UIC{$\nabla B \Rightarrow \nabla A \lor \nabla B$}
+		\RightLabel{$Lw$}
+		\UIC{$\nabla B , \top \Rightarrow \nabla A \lor \nabla B$}
+		\RightLabel{$R\rightarrow$}
+		\UIC{$B \Rightarrow \top \rightarrow (\nabla A \lor \nabla B)$}
+
+		\RightLabel{$L\lor$}
+		\BIC{$A \lor B \Rightarrow \top \rightarrow (\nabla A \lor \nabla B)$}
+		\RightLabel{$N$}
+		\UIC{$\nabla (A \lor B) \Rightarrow \nabla (\top \rightarrow (\nabla A \lor \nabla B))$}
+
+		\AXC{$\mathcal{D}$}
+
+		\RightLabel{$Cut$}
+		\BIC{$\nabla (A \lor B) \Rightarrow \nabla A \lor \nabla B$}
+	\end{prooftree}
+\end{proof}
+
+\begin{lem}\label{lem:l-nabla-n-dist-or} For all $n \geq 0$, $\stl(S) \vdash \nabla^n (A \lor B) \Rightarrow \nabla^n A \lor \nabla^n B$.
+\end{lem}
+\begin{proof} The proof is trivial when $n = 0$. Let $\mathcal{D}_1$ be the proof-tree of Lemma \ref{lem:l-nabla-dist-or}, which proves the case for $n = 1$. For any $n > 1$ we have
+
+	\begin{prooftree}
+		\AXC{$\mathcal{D}_{n-1}$}
+		\noLine
+		\UIC{$\nabla^{n-1} (A \lor B) \Rightarrow \nabla^{n-1} A \lor \nabla^{n-1} B$}
+		\RightLabel{$N$}
+		\UIC{$\nabla^n (A \lor B) \Rightarrow \nabla (\nabla^{n-1} A \lor \nabla^{n-1} B)$}
+
+		\AXC{$\mathcal{D}_1$}
+		\noLine
+		\UIC{$\nabla (\nabla^{n-1} A \lor \nabla^{n-1} B) \Rightarrow \nabla^n A \lor \nabla^n B$}
+		
+		\RightLabel{$Cut$} \LeftLabel{$\mathcal{D}_n:$}
+		\BIC{$\nabla^n (A \lor B) \Rightarrow \nabla^n A \lor \nabla^n B$}
+	\end{prooftree}
+\end{proof}
+
+\begin{lem}\label{lem:l-nabla-bot} $\stl(S) \vdash \nabla \bot \Rightarrow \bot$.
+\end{lem}
+\begin{proof} Let $\mathcal{D}$ be a proof-tree for $\nabla (\top \rightarrow \bot) \Rightarrow \bot$ which we have by Lemma \ref{lem:l-nabla-box}.
+	\begin{prooftree}
+		\AXC{}
+		\RightLabel{$Ex$}
+		\UIC{$\bot \Rightarrow$}
+		\RightLabel{$Rw$}
+		\UIC{$\bot \Rightarrow \top \rightarrow \bot$}
+		\RightLabel{$N$}
+		\UIC{$\nabla \bot \Rightarrow \nabla (\top \rightarrow \bot)$}
+
+		\AXC{$\mathcal{D}$}
+
+		\RightLabel{$Cut$}
+		\BIC{$\nabla \bot \Rightarrow \bot$}
+	\end{prooftree}	
+\end{proof}
+
+\begin{lem}\label{lem:l-nabla-n-bot} For $n > 0$, $\stl(S) \vdash \nabla^n \bot \Rightarrow \bot$.
+\end{lem}
+\begin{proof} We will prove a stronger version: For $n \geq m > 0$, $\stl(S) \vdash \nabla^n \bot \Rightarrow \nabla^{n-m} \bot$. Let $\mathcal{D}_1$ be the proof-tree of Lemma \ref{lem:l-nabla-bot} which handles $n = m = 1$. Using induction on $m$, and denoting the proof-tree for $\nabla^n \bot \Rightarrow \nabla^{n-(m-1)} \bot$ from the induction hypothesis by IH, we have for $n > 1$
+	\begin{prooftree}
+		\AXC{IH}
+		\noLine
+		\UIC{$\nabla^n \bot \Rightarrow \nabla^{n-(m-1)} \bot$}
+
+		\AXC{$\mathcal{D}_1$}
+		\noLine
+		\UIC{$\nabla \bot \Rightarrow \bot$}
+		\doubleLine \RightLabel{$N^{(n-m)}$}
+		\UIC{$\nabla^{n-(m-1)} \bot \Rightarrow \nabla^{n-m} \bot$}
+
+		\RightLabel{$Cut$}
+		\BIC{$\nabla^n \bot \Rightarrow \nabla^{n-m} \bot$}
+	\end{prooftree}
+\end{proof}
+
+\begin{lem}\label{lem:l-nabla-dist-si} For any $n \geq 0$, $\stl(S) \vdash \nabla^n (A \rightarrow B) \Rightarrow \nabla^n A \rightarrow \nabla^n B$.
+\end{lem}
+\begin{proof}\quad
+	\begin{prooftree}
+		\AXC{}
+		\RightLabel{$Id$}
+		\UIC{$A \Rightarrow A$}
+		
+		\AXC{}
+		\RightLabel{$Id$}
+		\UIC{$B \Rightarrow B$}
+		\RightLabel{$Lw$}
+		\UIC{$A , B \Rightarrow B$}
+		
+		\RightLabel{$L\rightarrow$}
+		\BIC{$\nabla (A \rightarrow B) , A \Rightarrow B$}
+		\RightLabel{$N^{(n)}$} \doubleLine
+		\UIC{$\nabla^{n+1} (A \rightarrow B) , \nabla^n A \Rightarrow \nabla^n B$}
+		\RightLabel{$R\rightarrow$}
+		\UIC{$\nabla^n (A \rightarrow B) \Rightarrow \nabla^n A \rightarrow \nabla^n B$}
+	\end{prooftree}
+\end{proof}
 
 [introducing iSTL, the conservative extension with intuitionistic implication]
 
