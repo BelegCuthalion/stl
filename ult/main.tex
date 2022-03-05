@@ -439,6 +439,27 @@ To show the equivalnce of two systems, we will use the following lemmas. Notice 
 	\end{prooftree}
 \end{proof}
 
+
+In the rest of this paper, by the \emph{height of a proof-tree} $\mathcal{D}$, denoted by $h(\mathcal{D})$, we mean the number of rule instances in its longest branch.
+
+The theorem below shows that $\stl$ (and its extensions) deduce exactly the same sequents as $\gstl$ (and its extensions).
+
+\begin{thm}\label{thm:stl-eq-gstl}
+	Let $S \subseteq \{L, R, Fa, Fu\}$. For any sequent $\Gamma \Rightarrow \Delta$ in the language $\mathcal{L}$, $\stl(S) \vdash \Gamma \Rightarrow \Delta$ iff $\gstl(S) \vdash \Gamma \Rightarrow \Delta$.
+\end{thm}
+\begin{proof}
+	One direction easily follows from the fact that all rules of $\stl(S)$ are just instances of $\gstl(S)$'s rules.
+	For the other direction, we will use case analysis for the last rule in the proof-tree of $\Gamma \Rightarrow \Delta$ in $\gstl(S)$, which we call $\mathcal{D}$, and construct a proof-tree for it in $\stl(S)$ in each case.
+	
+	First, observe that $Id$ and $Ta$ are present in $\stl(S)$ and Lemma \ref{lem:l-nabla-n-bot} handles the $Ex$ case.
+	For the other rules, use induction on the length of $\mathcal{D}$; the induction hypothesis will provide a proof-tree in $\stl(S)$ for the subtree(s) of $\mathcal{D}$.
+	For the rules that are common between two systems, just apply the same rule (in $\stl(S)$) on the proof-tree(s) from the induction hypothesis to reach the desired sequent. For example, if $\mathcal{D}$ ends with $R \vee$, it suffices to apply $R \vee$ (of $\stl(S)$) on the proof-tree that we get from the induction hypothesis.
+	In the cases for $\gstl(S)$'s stronger rules, which are $L \wedge_1$, $L \wedge_2$, $L \vee$ and $L \rightarrow$, do the same, and also cut the sequents proved in Lemmas \ref{lem:l-nabla-dist-and}, \ref{lem:l-nabla-dist-or} or \ref{lem:l-nabla-dist-si} into the resulting sequent.
+	The case for $N$ divides into two further cases. One case is when $\Delta = A$ for some formula $A$, which is again handled by applying $N$ on the sequent from the induction hypothesis.
+	The other case is when $\Delta = \{\}$, so we have $\Gamma \Rightarrow$ from the induction hypothesis, on the right of which we first introduce $\bot$ using $Rw$, and then apply $N$.
+	Then we can cut it into the sequent proved in Lemma \ref{lem:l-nabla-bot}, and then into $Ex$, to derive $\nabla \Gamma \Rightarrow$ as was desired.
+\end{proof}
+
 [introducing iSTL, the conservative extension with intuitionistic implication]
 
 [introducing the equivalent cut-free system, iGSTL]
