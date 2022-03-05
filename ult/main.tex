@@ -38,9 +38,9 @@ The logic of spacetime is represented by a sequent-style system called $\stl$ (k
 \end{multicols}
 Furthermore, the system also has a rule to introduce $\nabla$ to both sides of a sequent.
 \begin{prooftree}
-	\AXC{$A \Rightarrow B$}
-	\RightLabel{$\nabla$}
-	\UIC{$\nabla A \Rightarrow \nabla B$}
+	\AXC{$\Gamma \Rightarrow A$}
+	\RightLabel{$N$}
+	\UIC{$\nabla \Gamma \Rightarrow \nabla A$}
 \end{prooftree}
 So, generally, $\nabla (A \rightarrow B)$, and not $A \rightarrow B$, will be of use in proving $B$ from $A$.
 
@@ -51,7 +51,7 @@ In the third section, the cut-elimination theorems for $\stl$ and its extensions
 And in the last section, we will show that some extensions of $\stl$ have interpolation property.
 
 \section{Sequent calculi for the logics of spacetime}
-
+We will define the system
 \begin{dfn}
 	Consider the language $\mathcal{L}=\langle \wedge, \vee, \top, \bot, \nabla, \rightarrow \rangle$. Define $\stl$ as the logic of the sequent-style system defined by the following rules, where in a sequent of the form $\Gamma \Rightarrow \Delta$, the left-hand side is a multiset of formulas $\Gamma$, and the right-hand side $\Delta$ is either a formula or empty.
 \end{dfn}
