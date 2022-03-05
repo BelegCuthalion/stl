@@ -20,7 +20,7 @@ The usual interpretation of an intuitionistic proof for an implication is a stru
 
 The logic of spacetime remedies this by restricting the use of conditional assumption; So that the modus ponens rule in the logic of spacetime would not take a proof of conditional statement itself, but a proof of a modal operator, called $\nabla$, applied to the conditional statement. We can read this application of $\nabla$ as a \emph{delay} in use of implication, and interpret the proof of conditional statement as a function that converts all \emph{later} proofs of its antecedent to some \emph{later} proof for its consequent. So we can prove the consequent of a conditional statement, only if we have proved the conditional statement itself \emph{sooner} than the antecedent.\\
 
-The logic of spacetime is represented by a sequent-style system called $\stl$ (known as $\istl$\footnote{Note that in this paper this name is reserved for another system with intuitionistic implication.} in \cite{amir}), which has the same rules as the usual intuitionistic calculus $\mathbf{LJ}$, over the propositional language augumented with a unary connective $\nabla$, but with left and right implication rules replaced with the following rules, respectively.
+The logic of spacetime is represented by a sequent-style system called $\stl$ (known as $\istl(N)$\footnote{Note that in this paper $\istl$ is reserved for another system with intuitionistic implication.} in \cite{amir}), which has the same rules as the usual intuitionistic calculus $\mathbf{LJ}$, over the propositional language augumented with a unary connective $\nabla$, but with left and right implication rules replaced with the following rules, respectively.
 
 \begin{multicols}{2}
 	\begin{prooftree}
@@ -49,7 +49,7 @@ In the third section, the cut-elimination theorems for $\stl$ and its extensions
 And in the last section, we will show that some extensions of $\stl$ have interpolation property.
 
 \section{Sequent calculi for the logics of spacetime}
-We will define the system
+In this section, will define the systems $\stl$ (defined as $\istl(N)$ in \cite{amir}) and $\gstl$, and show that these two systems are equivalent.
 \begin{dfn}
 	Consider the language $\mathcal{L}=\langle \wedge, \vee, \top, \bot, \nabla, \rightarrow \rangle$. Define $\stl$ as the logic of the sequent-style system defined by the following rules, where in a sequent of the form $\Gamma \Rightarrow \Delta$, the left-hand side is a multiset of formulas $\Gamma$, and the right-hand side $\Delta$ is either a formula or empty.
 \end{dfn}
