@@ -504,6 +504,17 @@ Next, we need to define a measure for the complexity of the $\nabla cut$ rule. W
 	For a proof tree $\mathcal{D}$, $\rho(\mathcal{D})$ is the maximum rank of all of its rule instances.
 \end{dfn}
 
+The next lemma will help in handling of a case in the main theorem.
+
+\begin{lem}\label{lem:gstl-top-redundant} If $\gstl^+(S)$ proves $\Gamma , \{\nabla^{n_i} \top\}_{i \leq l} \Rightarrow \Delta$, then it also proves $\Gamma \Rightarrow \Delta$ with a proof-tree of at most the same rank (for $S \subseteq \{L, R, Fa, Fu\}$).
+\end{lem}
+\begin{proof}
+Suppose $\mathcal{D}$ is a proof-tree for $\Gamma , \{\nabla^{n_i} \top\}_{i \leq l} \Rightarrow \Delta$ in $\gstl^+(S)$ and consider different cases for the last rule of $\mathcal{D}$ with possible subtrees $\mathcal{D}_0$ and $\mathcal{D}_1$.
+By induction on $\mathcal{D}$ we can assume that the theorem holds for $\mathcal{D}_0$ and $\mathcal{D}_1$.
+First, observe that $Ta$ and $Ex$ cases are trivially ruled out. In the caser for $Id$, which implies $l = 0$, we have $\Rightarrow \nabla^{n_0} \top$ by $n_0$ times applications of $N$ on $Ta$. In $Lw$ case, if $l = 0$ and $\nabla^{n_0} \top$ is principal, $\mathcal{D}_0$ itself proves the desired sequent, but if $l > 0$, then the induction hypothesis gives the desired sequent. The cases for $Lc$ or $L$ on some $\nabla^{n_j} \top$  are similar. In all other cases, just apply induction hypothesis on $\mathcal{D}_0$ (and possibly $\mathcal{D}_1$), and then apply the same last rule. Notice that $\nabla Cut$ is not used except in the case for $\nabla Cut$ itself, where it is applied with an instance of the same rank, so the resulting proof-tree will not be of a higher rank than that of $\mathcal{D}$.
+\end{proof}
+
+
 [cut elimination]
 
 \subsection{applications}
