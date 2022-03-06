@@ -460,10 +460,6 @@ The theorem below shows that $\stl$ (and its extensions) deduce exactly the same
 	Then we can cut it into the sequent proved in Lemma \ref{lem:l-nabla-bot}, and then into $Ex$, to derive $\nabla \Gamma \Rightarrow$ as was desired.
 \end{proof}
 
-[introducing iSTL, the conservative extension with intuitionistic implication]
-
-[introducing the equivalent cut-free system, iGSTL]
-
 [diagram]
 
 \section{Cut-elimination theorem}
@@ -514,8 +510,384 @@ By induction on $\mathcal{D}$ we can assume that the theorem holds for $\mathcal
 First, observe that $Ta$ and $Ex$ cases are trivially ruled out. In the caser for $Id$, which implies $l = 0$, we have $\Rightarrow \nabla^{n_0} \top$ by $n_0$ times applications of $N$ on $Ta$. In $Lw$ case, if $l = 0$ and $\nabla^{n_0} \top$ is principal, $\mathcal{D}_0$ itself proves the desired sequent, but if $l > 0$, then the induction hypothesis gives the desired sequent. The cases for $Lc$ or $L$ on some $\nabla^{n_j} \top$  are similar. In all other cases, just apply induction hypothesis on $\mathcal{D}_0$ (and possibly $\mathcal{D}_1$), and then apply the same last rule. Notice that $\nabla Cut$ is not used except in the case for $\nabla Cut$ itself, where it is applied with an instance of the same rank, so the resulting proof-tree will not be of a higher rank than that of $\mathcal{D}$.
 \end{proof}
 
+The following theorem shows that we can imitate any instance of the cut rule in a proof-tree of lower rank.
 
-[cut elimination]
+\begin{thm}\label{thm:ldls-cut-reduction}[cut Reduction]
+If $\gstl^+(S)$ proves $\Gamma \Rightarrow \nabla^m A$ and\\\ $\Sigma , \{\nabla^{n_i} A\}_{i \leq l} \Rightarrow \Delta$ with proof-trees of ranks less than $\rho(A)$, then it also proves $\{\nabla^{n_i} \Gamma\}_{i \leq l} , \nabla^m\Sigma \Rightarrow \nabla^m\Delta$ also with a proof tree of a rank less than $\rho(A)$ (for $S \subseteq \{L, R, Fa, Fu\}$).
+\end{thm}
+\begin{proof}
+	We have two proof-trees
+  \[
+    {\mathcal{D}_0
+    \atop
+    \Gamma \Rightarrow \nabla^m A}
+    \hspace{3em}
+    {\mathcal{D}_1
+    \atop
+    \Sigma , \{\nabla^{n_i} A\}_{i \leq l} \Rightarrow \Delta}
+  \]
+  both of a lower rank than that of $A$, and we want to construct a proof-tree
+  \[\mathcal{D} \atop \{\nabla^{n_i} \Gamma\}_{i \leq l} , \nabla^m \Sigma \Rightarrow \nabla^m \Delta \]
+  without increasing the cut rank.
+
+	The construction takes place in different cases for the last rule that occurs in $\mathcal{D}_0$ and $\mathcal{D}_1$. Notice that the proof of the theorem is essentially the same for any choice of $S$, where $S$ is a subset of $\{L, R, Fa, Fu\}$, modulo the cases that are specific to the rules in $S$. Thus, we will not repeat the cases which are common between all systems for the sake of brevity. Also notice that the resulting proof-tree in each case is constructed using the core system $\gstl^+$, plus the same rule of that case, so it will work for any extension containing that rule.
+
+	In many cases, our construction would depend only on the last rule of one of the subtrees. So it would work no matter what the last rule in the other subtree is. Therefore, it will cover all the cases for the other subtree. These cases constitute the first two parts of the proof. In the third part, we will address the cases where our construction depends on the last rule in \emph{both} subtrees, which are the cases that the cut-burden is altered on both sides. In these cases, the last rule in one of the subtrees determines a specific form for the formulas in the cut-burden, which in turn determines the last rule in the other subtree.
+
+	In first two groups of the cases, we will need induction on the height of one of the subtrees. But in the third part, we will use induction simultaneously on both $\mathcal{D}_0$ and $\mathcal{D}_1$, which goes as follows. For any two proof-trees $\mathcal{D}_0'$ and $\mathcal{D}_1'$ such that $h(\mathcal{D}_0') + h(\mathcal{D}_1') < h(\mathcal{D}_0) + h(\mathcal{D}_1)$, where $\mathcal{D}_0'$ proves $\Gamma' \Rightarrow \nabla^{m'} A'$ and $\mathcal{D}_1'$ proves $\Sigma', \{\nabla^{n'_i} A'\}_{i \leq l} \Rightarrow \Delta'$ for arbitrary $\Gamma'$, $\Sigma'$, $\Delta'$, $A'$, $m'$ and $n_i'$ of length $l'+1$, for which we have $\rho(\mathcal{D}_0'),\rho(\mathcal{D}_1') < \rho(A')$, the induction hypothesis gives us a prooftree, denoted by $\text{IH}(\mathcal{D}_0', \mathcal{D}_1')$ where it matters, that proves $\{\nabla^{n_i'}\Gamma'\}_{i \leq l'}, \nabla^{m'} \Sigma' \Rightarrow \nabla^{m'} \Delta'$, and we will also have $\rho(\text{IH}(\mathcal{D}_0', \mathcal{D}_1')) < \rho(A')$.
+
+	\textbf{Part I.} First, assume that $\mathcal{D}_0$ is an axiom. No matter what would be the last rule instance in $\mathcal{D}_1$, the case for $Id$ is trivial, $Ex$ won't happen and $Ta$ is handled by Lemma \ref{lem:gstl-top-redundant}.
+	Now assume that $\mathcal{D}_0$ ends with an instance of the rules $Lw$, $Lc$, $L \wedge_1$, $L \wedge_2$, $L \vee$, $L \rightarrow$, $\nabla cut$, $N$, $Fu$, $L$ or $R$. In all these cases---again, independent of $\mathcal{D}_1$---it suffices to use induction on the assumption(s) of this rule and $\mathcal{D}_1$ to remove the cut-burden from both subtrees. Then, we can apply the same rule to get the desired sequent. Here we will only mention the cases for $L \wedge_1$, $L \vee$, $L \rightarrow$, $\nabla cut$, $N$ and $Fu$, the last three of which may be of special concern, since they also alter the cut-burden. The other cases are similar.
+
+	$L \wedge_1$: If $\mathcal{D}_0$ ends with $L \wedge_1$, that is
+	\begin{prooftree}
+		\noLine
+		\AXC{$\mathcal{D}_0'$}
+		\UIC{$\Gamma, \nabla^r B \Rightarrow \nabla^m A$}
+		
+		\RightLabel{$L \wedge_1$}
+		\UIC{$\Gamma, \nabla^r (B \wedge C) \Rightarrow \nabla^m A$}
+ \end{prooftree}
+ then by applying $L \wedge_1$ on what we get from induction
+ \begin{prooftree}
+	\noLine
+	\AXC{$\mathcal{D}_0'$}
+	\UIC{$\Gamma, \nabla^r B \Rightarrow \nabla^m A$}
+	
+	\noLine
+	\AXC{$\mathcal{D}_1$}
+	\UIC{$\Sigma , \{\nabla^{n_i} A\}_{i \leq l} \Rightarrow \Delta$}
+	
+	\RightLabel{IH}
+	\BIC{$\{\nabla^{n_i} \Gamma, \nabla^{n_i+r} B\}_{i \leq l}, \nabla^m \Sigma \Rightarrow \nabla^m \Delta$}
+
+	\RightLabel{$L \wedge_1$} \doubleLine
+	\UIC{$\{\nabla^{n_i} \Gamma, \nabla^{n_i+r} (B \wedge C)\}_{i \leq l}, \nabla^m \Sigma \Rightarrow \nabla^m \Delta$}
+ \end{prooftree}
+
+ \noindent $L \vee$: If $\mathcal{D}_0$ ends with $L \vee$
+	 \begin{prooftree}
+		 \noLine
+		 \AXC{$\mathcal{D}_0'$}
+		 \UIC{$\Gamma, \nabla^r B \Rightarrow \nabla^m A$}
+		 
+		 \noLine
+		 \AXC{$\mathcal{D}_0''$}
+		 \UIC{$\Gamma, \nabla^r C \Rightarrow \nabla^m A$}
+		 
+		 \RightLabel{$L \vee$}
+		 \BIC{$\Gamma, \nabla^r (B \vee C) \Rightarrow \nabla^m A$}
+	\end{prooftree}
+	Applying $L \vee$ on the sequents that we get from induction
+	\begin{prooftree}
+    \noLine
+		\AXC{$\mathcal{D}_0'$}
+		\UIC{$\Gamma, \nabla^r B \Rightarrow \nabla^m A$}
+		
+		\noLine
+		\AXC{$\mathcal{D}_1$}
+		\UIC{$\Sigma , \{\nabla^{n_i} A\}_{i \leq l} \Rightarrow \Delta$}
+		
+		\RightLabel{IH}
+		\BIC{$\{\nabla^{n_i} \Gamma, \nabla^{n_i+r} B\}_{i \leq l}, \nabla^m \Sigma \Rightarrow \nabla^m \Delta$}
+		
+
+    \noLine
+		\AXC{$\mathcal{D}_0''$}
+		\UIC{$\Gamma, \nabla^r C \Rightarrow \nabla^m A$}
+		
+		\noLine
+		\AXC{$\mathcal{D}_1$}
+		\UIC{$\Sigma , \{\nabla^{n_i} A\}_{i \leq l} \Rightarrow \Delta$}
+		
+		\RightLabel{IH}
+    \BIC{$\{\nabla^{n_i} \Gamma, \nabla^{n_i+r} C\}_{i \leq l}, \nabla^m \Sigma \Rightarrow \nabla^m \Delta$}
+
+		\RightLabel{$L \vee$}
+		\BIC{$\{\nabla^{n_i} \Gamma, \nabla^{n_i+r} (B \vee C)\}_{i \leq l}, \nabla^m \Sigma \Rightarrow \nabla^m \Delta$}
+	 \end{prooftree}
+
+ 
+\noindent $L \rightarrow$: Suppose $\mathcal{D}_0$ ends with a $L \rightarrow$ as shown below.
+ \begin{prooftree}
+  \noLine
+  \AXC{$\mathcal{D}_0'$}
+  \UIC{$\Gamma \Rightarrow \nabla^r B$}
+  \noLine
+  \AXC{$\mathcal{D}_0''$}
+  \UIC{$\Gamma , \nabla^r C \Rightarrow \nabla^m A$}
+  \RightLabel{$L \rightarrow$}
+  \BIC{$\Gamma , \nabla^{r+1} (B \rightarrow C) \Rightarrow \nabla^m A$}
+ \end{prooftree}
+ Let $IH(\mathcal{D}_0'', \mathcal{D}_1)$ be called $\mathcal{D}'$.
+ \begin{prooftree}
+  \noLine
+  \AXC{$\mathcal{D}_0''$}
+  \UIC{$\Gamma , \nabla^r C \Rightarrow \nabla^m A$}
+  \noLine
+  \AXC{$\mathcal{D}_1$}
+  \UIC{$\Sigma , \{\nabla^{n_i} A\}_{i \leq l} \Rightarrow \Delta$}
+  \RightLabel{IH} \LeftLabel{$\mathcal{D}':~~~~$}
+  \BIC{$\{\nabla^{n_i} \Gamma , \nabla^{n_i+r} C\}_{i \leq l} , \nabla^m \Sigma \Rightarrow \nabla^m \Delta$}
+ \end{prooftree}
+ In order to apply $L \rightarrow$, we must prepare the context in $\mathcal{D}_0'$, for each of $\nabla^{n_i+r}C$'s. Beginning with $j = 0$, first apply $N$ on $\mathcal{D}_0'$ $n_0$ times to get $\nabla^{n_0}\Gamma \Rightarrow \nabla^{n_0+r} B$. Then we can just add the rest of the context by $Lw$.
+ \begin{prooftree}
+  \noLine
+  \AXC{$\mathcal{D}_0'$}
+  \UIC{$\Gamma \Rightarrow \nabla^r B$}
+  \doubleLine \RightLabel{$N$}
+  \UIC{$\nabla^{n_0} \Gamma \Rightarrow \nabla^{n_0+r} B$}
+  \doubleLine \RightLabel{$Lw$}
+  \UIC{$\{\nabla^{n_i} \Gamma\}_{i \leq l}, \{\nabla^{n_i+r}C\}_{i \leq l}^{i \neq 0} , \nabla^m \Sigma \Rightarrow \nabla^{n_0+r} B$}
+ \end{prooftree}
+ Let the outcome of applying $L \rightarrow$ on this sequent and $\mathcal{D}'$ be called $\mathcal{D}'_{n_0}$:
+ \[\mathcal{D}'_{n_0}:~~~~\{\nabla^{n_i} \Gamma\}_{i \leq l}, \{\nabla^{n_i+r}C\}_{i \leq l}^{i \neq 0}, \nabla^{n_0+r+1} (B \rightarrow C) , \nabla^m \Sigma \Rightarrow \nabla^m \Delta\]
+ Now for all $0 < j \leq l$, we construct $\mathcal{D}_{n_j}$ similarly.
+ \begin{prooftree}
+  \noLine
+  \AXC{$\mathcal{D}_0'$}
+  \UIC{$\Gamma \Rightarrow \nabla^r B$}
+  \doubleLine \RightLabel{$N$}
+  \UIC{$\nabla^{n_j} \Gamma \Rightarrow \nabla^{n_j+r} B$}
+  \doubleLine \RightLabel{$Lw$}
+  \UIC{$\{\nabla^{n_i} \Gamma\}_{i \leq l}, \{\nabla^{n_i+r}C\}_{j < i \leq l}, \{ \nabla^{n_i+r+1} (B \rightarrow C) \}_{i < j}, \nabla^m \Sigma \Rightarrow \nabla^{n_j+r} B$}
+ \end{prooftree}
+ Applying $L \rightarrow$ on this sequent and $\mathcal{D}_{n_{j-1}}$ we would get
+ \[\mathcal{D}'_{n_j}:~~~~\{\nabla^{n_i} \Gamma\}_{i \leq l}, \{\nabla^{n_i+r}C\}_{j < i \leq l}, \{ \nabla^{n_i+r+1} (B \rightarrow C) \}_{i \leq j}, \nabla^m \Sigma \Rightarrow \nabla^m \Delta\]
+ $\mathcal{D}_{n_l}$ is exactly what we want:
+ \[\{\nabla^{n_i} \Gamma, \nabla^{n_i+r+1}(B \rightarrow C)\}_{i \leq l}, \nabla^m \Sigma \Rightarrow \nabla^m \Delta\]
+
+
+ $\nabla cut$: Assume $\mathcal{D}_0$ ends with a $\nabla cut$ with cut-data $(A', m', \{n_i'\}_{i \leq l'})$. Recall that by assumption, $A'$ must have a lower rank than $A$.
+ \begin{prooftree}
+   \noLine
+   \AXC{$\mathcal{D}_0'$}
+   \UIC{$\Gamma \Rightarrow \nabla^{m'} A'$}
+   
+   \noLine
+   \AXC{$\mathcal{D}_0''$}
+	 \UIC{$\Pi , \{\nabla^{n_i'} A'\}_{i \leq l'} \Rightarrow \nabla^m A$}
+   
+   \RightLabel{$\nabla cut$}
+   \BIC{$\{\nabla^{n_i'} \Gamma\}_{i \leq l'} , \nabla^{m'} \Pi \Rightarrow \nabla^{m+m'} A$}
+ \end{prooftree}
+ We must construct a proof-tree for $\{\nabla^{n_i + n_j'} \Gamma\}_{j \leq l'}^{i \leq l}, \{\nabla^{n_i+m'} \Pi\}_{i \leq l} , \nabla^{m+m'}\Sigma$ $\Rightarrow \nabla^{m+m'}\Delta$. We can use the induction hypothesis first to remove $A$, and then use a low rank $\nabla cut$ to remove $A'$.
+ \begin{prooftree}
+   \noLine
+   \AXC{$\mathcal{D}_0'$}
+   \UIC{$\Gamma \Rightarrow \nabla^{m'} A'$}
+   
+   \noLine
+   \AXC{$\mathcal{D}_0''$}
+	 \UIC{$\Pi , \{\nabla^{n_i'} A'\}_{i \leq l'} \Rightarrow \nabla^m A$}
+
+   \noLine
+   \AXC{$\mathcal{D}_1$}
+   \UIC{$\Sigma , \{\nabla^{n_i} A\}_{i \leq l} \Rightarrow \Delta$}
+
+   \RightLabel{IH}
+   \BIC{$\{\nabla^{n_i} \Pi\}_{i \leq l} , \{\nabla^{n_i + n_j'} A'\}_{j \leq l'}^{i \leq l} , \nabla^m \Sigma \Rightarrow \nabla^m \Delta$}
+   
+
+   \RightLabel{$\nabla cut$}
+   \BIC{$\{\nabla^{n_i + n_j'} \Gamma\}_{j \leq l'}^{i \leq l}, \{\nabla^{n_i+m'} \Pi\}_{i \leq l} , \nabla^{m+m'}\Sigma$ $\Rightarrow \nabla^{m+m'}\Delta$}
+ \end{prooftree}
+
+ $Rw$: In this case, $\mathcal{D}_0'$ proves $\Gamma \Rightarrow$, so we can simply construct the desired proof-tree using $N$, $Lw$ and $Rw$.
+ \begin{prooftree}
+   \noLine
+   \AXC{$\mathcal{D}_0'$}
+   \UIC{$\Gamma \Rightarrow$}
+   \doubleLine \RightLabel{$N$}
+   \UIC{$\nabla^{n_0} \Gamma \Rightarrow$}
+   \doubleLine \RightLabel{$Lw$}
+   \UIC{$\{\nabla^{n_i} \Gamma\}_{i \leq l} , \nabla^m \Sigma \Rightarrow$}
+   \RightLabel{$Rw$}
+   \UIC{$\{\nabla^{n_i} \Gamma\}_{i \leq l} , \nabla^m \Sigma \Rightarrow \nabla^m \Delta$}
+ \end{prooftree}
+
+ $N$: $\mathcal{D}_0$ proves $\nabla \Gamma \Rightarrow \nabla^{m+1} A$ and $\mathcal{D}_1$ proves $\Sigma, \{\nabla^{n_i} A\}_{i<l} \Rightarrow \Delta$. There are two cases: The cut-data could be $(A, m+1, \{n_i\}_{i \leq l})$, or if for all $i \leq l$ we have $0 < n_i$, then the cut-data could also be $(\nabla A, m, \{n_i-1\}_{i \leq l})$. Induction hypothesis for $\mathcal{D}_0$'s immediate sub-tree and $\mathcal{D}_1$ gives us $\{\nabla^{n_i}\Gamma\}_{i \leq l}, \nabla^m \Sigma \Rightarrow \nabla^m \Delta$, which handles the latter case, and an application of $N$ on this sequent would handle the former.
+
+ $Fu$: It suffices to apply $Fu$ on the result of the induction.\\
+
+ \textbf{Part II.} The rest of the cases for $\mathcal{D}_0$ can't be solved independent of $\mathcal{D}_1$, so in the second part of the cases, we will consider the last rule of $\mathcal{D}_1$, again, where the solution could be constructed independent of $\mathcal{D}_0$. But this time we have less possibilities for the opposite subtree, since we've already solved most of them in the previous part of the proof. In fact the only possible rules as the last rule of $\mathcal{D}_0$ are now $R\star (\star \in \{\wedge, \vee_{1/2}, \rightarrow\})$ and $Fa$.
+
+ Suppose $\mathcal{D}_1$ is an axiom. Again, the case for $Id$ is trivial, $Ta$ won't happen, and $Ex$ is also infeasible, since all possible cases for $\mathcal{D}_0$ alter the right side of the sequent, but none of them are able to introduce $\bot$ on the right side.
+ In the remaining cases, if the cut-data is $(A, m, \{n_i\}_{i \leq l})$, in the cases where none of $\nabla^{n_i} A$'s are altered in the last rule of $\mathcal{D}_1$ modulo their number of $\nabla$'s, the construction is similar to the first part: Applying the same rule on the sequent that we get from the induction hypothesis. But if a member of the cut-burden is principal in the last rule of $\mathcal{D}_1$, which is to be handeld in the last part, we must also use the induction hypothesis for $\mathcal{D}_0$, both with a different cut-data. We now address the second part of the cases.
+ 
+ For the sake of briefness, we will only explain the cases for $L \wedge_1$, $R \vee_1$, $R \rightarrow$ and $N$, the last two of which are of special concern, since we must use induction hypothesis with different $\{n_i\}_{i \leq l}$ in those cases. The rest would be handled similarly.
+
+ $L \wedge$: Assume that $\mathcal{D}_1$ ends with $L \wedge_1$, but no member of the cut-burden is its principal formula.
+ \begin{prooftree}
+	\AXC{$\mathcal{D}_1'$} \noLine
+	\UIC{$\Sigma, \{\nabla^{n_i} A\}_{i \leq l}, \nabla^r B \Rightarrow \Delta$}
+	\RightLabel{$L \wedge_1$}
+	\UIC{$\Sigma, \{\nabla^{n_i} A\}_{i \leq l}, \nabla^r (B \wedge C) \Rightarrow \Delta$}
+ \end{prooftree}
+ From induction hypothesis we have $\{\nabla^{n_i} \Gamma\}_{i \leq l}, \nabla^m \Sigma, \nabla^{r+m} B \Rightarrow \nabla^m \Delta$. By $L \wedge_1$ we have $\{\nabla^{n_i} \Gamma\}_{i \leq l}, \nabla^m \Sigma, \nabla^{r+m} (B \wedge C) \Rightarrow \nabla^m \Delta$.
+
+ $R \vee_1$: Suppose that $\mathcal{D}_1$ ends with $R \vee_1$.
+ \begin{prooftree}
+	\AXC{$\mathcal{D}_1'$} \noLine
+	\UIC{$\Sigma, \{\nabla^{n_i} A\}_{i \leq l} \Rightarrow \nabla^r B$}
+	\RightLabel{$R \vee_1$}
+	\UIC{$\Sigma, \{\nabla^{n_i} A\}_{i \leq l} \Rightarrow \nabla^r (B \vee C)$}
+ \end{prooftree}
+ Again, use the induction hypothesis to get $\{\nabla^{n_i} \Gamma\}_{i \leq l}, \nabla^m\Sigma \Rightarrow \nabla^{r+m} B$, then apply $R \vee_1$ to reach the desired sequent.
+
+$R \rightarrow$: In the case where $\mathcal{D}_1$ ends with an $R \rightarrow$, the cut-burden is altered in the premise.
+\begin{prooftree}
+	\AXC{$\mathcal{D}_1'$} \noLine
+	\UIC{$\nabla\Sigma, \{\nabla^{n_i+1} A\}_{i \leq l}, B \Rightarrow C$}
+	\RightLabel{$R \rightarrow$}
+	\UIC{$\Sigma, \{\nabla^{n_i} A\}_{i \leq l} \Rightarrow B \rightarrow C$}
+ \end{prooftree}
+ The induction hypothesis has a different cut-data, nevertheless, it still commutes with $R \rightarrow$.
+From induction hypothesis, we have $\{\nabla^{n_i+1} \Gamma\}_{i \leq l}, \nabla^{m+1} \Sigma,$ $\nabla^m B \Rightarrow \nabla^m C$. We can simply apply $R \rightarrow$ to get $\{\nabla^{n_i} \Gamma\}_{i \leq l}, \nabla^m \Sigma \Rightarrow \nabla^m (B \rightarrow C)$.
+
+$N$: Suppose $\mathcal{D}_1$ ends with $N$.
+\begin{prooftree}
+	\AXC{$\mathcal{D}_1'$} \noLine
+	\UIC{$\Sigma, \{\nabla^{n_i} A\}_{i \leq l} \Rightarrow \Delta$}
+	\RightLabel{$N$}
+	\UIC{$\nabla \Sigma, \{\nabla^{n_i+1} A\}_{i \leq l} \Rightarrow \nabla \Delta$}
+\end{prooftree}
+If we assume that the cut-data is $(A, m, \{n_i+1\}_{i \leq l})$, from the induction hypothesis we have $\{\nabla^{n_i} \Gamma\}_{i \leq l}, \nabla^m \Sigma \Rightarrow \nabla^m \Delta$. By $N$ we have $\{\nabla^{n_i+1} \Gamma\}_{i \leq l},$ $\nabla^{m+1} \Sigma \Rightarrow \nabla^{m+1} \Delta$, which is the desired sequent.
+But if $m>0$, the cut-data could also be $(\nabla A, m-1, \{n_i\}_{i \leq l})$, so using the induction hypothesis would suffice.
+
+ \textbf{Part III.} Now in the last part of the proof, we will show how the construction takes place in the cases where a member of the cut-burden is principal in the last rule of $\mathcal{D}_1$, which can be either of $L\star (\star \in \{\wedge, \vee_{1/2}, \rightarrow\})$.
+ Any of these rules also determine the rule at the end of the other proof-tree, because $\nabla^m A$ would also be principal in the last rule of $\mathcal{D}_0$. Recall that the only possible rules as the last rule of $\mathcal{D}_0$ are now $R\star (\star \in \{\wedge, \vee_{1/2}, \rightarrow\})$ and $Fa$, which all have a principal formula on the right side of the sequent.
+ 
+ First, notice that $m > 1$ is impossible, since the only rule that introduces $\nabla$ in the right side of a sequent is $Fa$, which also introduces a $\rightarrow$ immediately after the $\nabla$ and implies $m = 1$. So suppose that $m = 1$ and $\mathcal{D}_0$ ends with $Fa$.
+ \begin{prooftree}
+	 \AXC{$\mathcal{D}_0'$}
+	 \noLine
+	 \UIC{$\Gamma, A \Rightarrow B$}
+	 \RightLabel{$Fa$}
+	 \UIC{$\Gamma \Rightarrow \nabla (A \rightarrow B)$}
+ \end{prooftree}
+ The cut-data must be of the form $(A \rightarrow B, 1, \{n_i\}_{i \leq l})$, so the only option for $\mathcal{D}_1$ is $L \rightarrow$, with a principal formula from the cut-burden, like $\nabla^{n_j} (A \rightarrow B)$ for some $j \leq l$ such that $0 < n_j$.
+ \begin{prooftree}
+	 \AXC{$\mathcal{D}_1'$}
+	 \noLine
+	 \UIC{$\Sigma, \{\nabla^{n_i} (A \rightarrow B) \}_{i \leq l}^{i \neq j}, \Rightarrow \nabla^{n_j-1} A$}
+	 \AXC{$\mathcal{D}_1''$}
+	 \noLine
+	 \UIC{$\Sigma, \{\nabla^{n_i} (A \rightarrow B) \}_{i \leq l}^{i \neq j}, \nabla^{n_j-1} B \Rightarrow \Delta$}
+	 \RightLabel{$L \rightarrow$}
+	 \BIC{$\Sigma, \{\nabla^{n_i} (A \rightarrow B)\}_{i \leq l}^{i \neq j}, \nabla^{n_j} (A \rightarrow B) \Rightarrow \Delta$}
+ \end{prooftree}
+ First, apply a low rank $\nabla cut$ (with $(B, 0, \{n_j\})$ as the cut-data) on $\mathcal{D}_0'$ and $IH(\mathcal{D}_0, \mathcal{D}_1'')$. Let the resulting sequent be called $\mathcal{D}'$.
+ \begin{prooftree}
+	 \AXC{$\mathcal{D}_0'$}
+	 \noLine
+	 \UIC{$\Gamma, A \Rightarrow B$}
+	 \AXC{$\mathcal{D}_0$}
+	 \noLine
+	 \UIC{$\Gamma \Rightarrow \nabla (A \rightarrow B)$}
+	 \AXC{$\mathcal{D}_1''$}
+	 \noLine
+	 \UIC{$\Sigma, \{\nabla^{n_i} (A \rightarrow B) \}_{i \leq l}^{i \neq j}, \nabla^{n_j-1} B \Rightarrow \Delta$}
+	 \RightLabel{IH}
+	 \BIC{$\{\nabla^{n_i} \Gamma\}_{i \leq l}^{i \neq j}, \nabla \Sigma, \nabla^{n_j} B \Rightarrow \nabla \Delta$}
+	 \RightLabel{$\nabla cut$} \LeftLabel{$\mathcal{D}':~~~~~$}
+	 \BIC{$\nabla^{n_j} A, \{\nabla^{n_i} \Gamma\}_{i \leq l}, \nabla \Sigma \Rightarrow \nabla \Delta$}
+ \end{prooftree}
+ Then cut $IH(\mathcal{D}_0, \mathcal{D}_1')$ (this time with $(\nabla^{n_j} A, 0, \{0\})$ as the cut-data) into the resulting sequent.
+ \begin{prooftree}
+	\AXC{$\mathcal{D}_0$}
+	\noLine
+	\UIC{$\Gamma \Rightarrow \nabla (A \rightarrow B)$}
+	 \AXC{$\mathcal{D}_1'$}
+	 \noLine
+	 \UIC{$\Sigma, \{\nabla^{n_i} (A \rightarrow B) \}_{i \leq l}^{i \neq j}, \Rightarrow \nabla^{n_j-1} A$}
+	 \RightLabel{IH}
+	 \BIC{$\{\nabla^{n_i} \Gamma\}_{i \leq l}^{i \neq j}, \nabla \Sigma, \Rightarrow \nabla^{n_j} A$}
+
+	 \AXC{$\mathcal{D}'$}
+
+	 \RightLabel{$\nabla cut$}
+	 \BIC{$\{\nabla^{n_i} \Gamma\}_{i \leq l}^{i \neq j}, \{\nabla^{n_i} \Gamma\}_{i \leq l}, (\nabla \Sigma)^2 \Rightarrow \nabla \Delta$}
+	 \doubleLine \RightLabel{$Lc$}
+	 \UIC{$\{\nabla^{n_i} \Gamma\}_{i \leq l}, \nabla \Sigma \Rightarrow \nabla \Delta$}
+ \end{prooftree}
+ And that's the sequent that we wanted.
+ 
+ Now we can assume $m = 0$. Each right-rule for $\mathcal{D}_1$ determines its corresponding left-rule for $\mathcal{D}_0$.
+
+ $R \wedge$ and $L \wedge$: Suppose $\mathcal{D}_0$ ends with $R \wedge$ and $\mathcal{D}_1$ ends with either of $L \wedge_c ~ (c \in \{1,2\})$.
+ \begin{prooftree}
+	 \noLine
+	 \AXC{$\mathcal{D}_0'$}
+	 \UIC{$\Gamma \Rightarrow A_1$}
+	 \noLine
+	 \AXC{$\mathcal{D}_0''$}
+	 \UIC{$\Gamma \Rightarrow A_2$}
+	 \RightLabel{$R \wedge$}
+	 \BIC{$\Gamma \Rightarrow A_1 \wedge A_2$}
+	 
+	 \noLine
+	 \AXC{$\mathcal{D}_1'$}
+	 \UIC{$\Sigma , \{\nabla^{n_i} (A_1 \wedge A_2)\}_{i \leq l}^{i \neq j}, \nabla^{n_j} A_c \Rightarrow \Delta$}
+	 \RightLabel{$L \wedge_1$}
+	 \UIC{$\Sigma , \{\nabla^{n_i} (A_1 \wedge A_2)\}_{i \leq l} \Rightarrow \Delta$}
+	 
+	 \noLine
+	 \BIC{}
+ \end{prooftree}
+ $IH(\mathcal{D}_0, \mathcal{D}_1')$ proves $\{\nabla^{n_i} \Gamma\}_{i \leq l}^{i \neq j}, \Sigma , \nabla^{n_j} A_c \Rightarrow \Delta$. Remove $\nabla^{n_j} A_c$ with a low rank $\nabla cut$ on this sequent and either of $\mathcal{D}_0'$ (if $c = 1$) or $\mathcal{D}_0''$ (if $c = 2$) to get $\{\nabla^{n_i} \Gamma\}_{i \leq l}, \Sigma \Rightarrow \Delta$.
+
+ $R \vee$ and $L \vee$: Suppose that $\mathcal{D}_0$ ends with either of $R \vee_c ~ (c \in \{1,2\})$ and $\mathcal{D}_1$ ends with $L \vee$.
+ \begin{prooftree}
+	 \noLine
+	 \AXC{$\mathcal{D}_0'$}
+	 \UIC{$\Gamma \Rightarrow A_c$}
+	 \RightLabel{$R \vee_c$}
+	 \UIC{$\Gamma \Rightarrow A_1 \vee A_2$}
+ \end{prooftree}
+ \begin{prooftree}
+	\noLine
+	\AXC{$\mathcal{D}_1'$}
+	\UIC{$\Sigma , \{\nabla^{n_i} (A_1 \vee A_2)\}_{i \leq l}^{i \neq j} , \nabla^{n_j} A_1 \Rightarrow \Delta$}
+	\noLine
+	\AXC{$\mathcal{D}_1''$}
+	\UIC{$\Sigma , \{\nabla^{n_i} (A_1 \vee A_2)\}_{i \leq l}^{i \neq j} , \nabla^{n_j} A_2 \Rightarrow \Delta$}
+	\RightLabel{$L \vee$}
+	\BIC{$\Sigma ,  \{\nabla^{n_i} (A_1 \vee A_2)\}_{i \leq l} \Rightarrow \Delta$}
+ \end{prooftree}
+ Using induction hypothesis, first, remove $\{\nabla^{n_i} (A_1 \vee A_2)\}_{i \leq l}^{i \neq j}$ from the subtree of $\mathcal{D}_1$ which has $\nabla^{n_j} A_c$ on its left side (by $IH(\mathcal{D}_0, \mathcal{D}_1')$ for $c = 1$, $IH(\mathcal{D}_0, \mathcal{D}_1'')$ for $c = 2$), to get $\{\nabla^{n_i} \Gamma\}_{i \leq l}^{i \neq j}, \Sigma , \nabla^{n_j} A_c \Rightarrow \Delta$. Then, remove $\nabla^{n_j} A_c$ by a low rank $\nabla cut$ on this sequent and $\mathcal{D}_0'$ to get $\{\nabla^{n_i} \Gamma\}_{i \leq l}, \Sigma \Rightarrow \Delta$.
+
+ $R \rightarrow$ and $L \rightarrow$: Suppose that $\mathcal{D}_0$ and $\mathcal{D}_1$ end with $R \rightarrow$ and $L \rightarrow$ respectively.
+ \begin{prooftree}
+	 \noLine
+	 \AXC{$\mathcal{ D}_0'$}
+	 \UIC{$\nabla \Gamma, A_1 \Rightarrow A_2$}
+	 \RightLabel{$R \rightarrow$}
+	 \UIC{$\Gamma \Rightarrow A_1 \rightarrow A_2$}        
+	 \end{prooftree}
+	 \begin{prooftree}
+	 \noLine
+	 \AXC{$\mathcal{D}_1'$}
+	 \UIC{$\Sigma, \{\nabla^{n_i} (A_1 \rightarrow A_2)\}_{i \leq l}^{i \neq j} \Rightarrow \nabla^{n_j-1} A_1$}
+	 \noLine
+	 \AXC{$\mathcal{D}_1''$}
+	 \UIC{$\Sigma, \{\nabla^{n_i} (A_1 \rightarrow A_2)\}_{i \leq l}^{i \neq j}, \nabla^{n_j-1} A_2 \Rightarrow \Delta$}
+	 \RightLabel{$L \rightarrow$}
+	 \BIC{$\Sigma,  \{\nabla^{n_i} (A_1 \rightarrow A_2)\}_{i \leq l} \Rightarrow \Delta$}
+ \end{prooftree}
+ 
+ $IH(\mathcal{D}_0, \mathcal{D}_1'')$ proves $\{\nabla^{n_i-1} \Gamma\}_{i \leq l}^{i \neq j}, \Sigma, \nabla^{n_j} A_2 \Rightarrow \Delta$. Applying a low rank $\nabla cut$ on $\mathcal{D}_0'$ and $IH(\mathcal{D}_0, \mathcal{D}_1'')$ removes $\nabla^{n_j-1} A_2$ and introduces $\nabla^{n_j-1} \Gamma$ and $\nabla^{n_j-1} A_1$ in the left. On the other hand $IH(\mathcal{D}_0, \mathcal{D}_1')$ proves $\{\nabla^{n_i} \Gamma\}_{i \leq l}^{i \neq j}, \Sigma, \Rightarrow \nabla^{n_j-1} A_1$, which we can use to also remove $\nabla^{n_j-1} A_1$ with another low rank cut. Then it suffices to remove the extra $\{\nabla^{n_i} \Gamma\}_{i \leq l}^{i \neq j}$ and $\Sigma$ with $Lc$.
+
+ $Fa$ and $L \rightarrow$: This is also similar to the $m = 1$ case, except that here the cut-data is $(\nabla (A \rightarrow B), 0, \{n_i\}_{i \leq l})$.
+ \vspace{5mm}
+
+ Now we have a construction for any two possible pair of rules, in $\gstl^+$ and all its extensions. This concludes the proof of the theorem in all cases.
+
+\end{proof}
+
+[introducing iSTL, the conservative extension with intuitionistic implication]
+
+[introducing the equivalent cut-free system, iGSTL]
 
 \subsection{applications}
 [visser rule]
