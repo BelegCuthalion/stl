@@ -1,0 +1,19 @@
+\begin{lem}\label{lem:l-nabla-n-dist-or} For all $n \geq 0$, $\stl(S) \vdash \nabla^n (A \vee B) \Rightarrow \nabla^n A \vee \nabla^n B$.
+\end{lem}
+\begin{proof} The proof is trivial when $n = 0$. Let $\mathcal{D}_1$ be the proof-tree of Lemma \ref{lem:l-nabla-dist-or}, which proves the case for $n = 1$. For any $n > 1$ we have
+
+	\begin{prooftree}
+		\AXC{$\mathcal{D}_{n-1}$}
+		\noLine
+		\UIC{$\nabla^{n-1} (A \vee B) \Rightarrow \nabla^{n-1} A \vee \nabla^{n-1} B$}
+		\RightLabel{$N$}
+		\UIC{$\nabla^n (A \vee B) \Rightarrow \nabla (\nabla^{n-1} A \vee \nabla^{n-1} B)$}
+
+		\AXC{$\mathcal{D}_1$}
+		\noLine
+		\UIC{$\nabla (\nabla^{n-1} A \vee \nabla^{n-1} B) \Rightarrow \nabla^n A \vee \nabla^n B$}
+		
+		\RightLabel{$Cut$} \LeftLabel{$\mathcal{D}_n:$}
+		\BIC{$\nabla^n (A \vee B) \Rightarrow \nabla^n A \vee \nabla^n B$}
+	\end{prooftree}
+\end{proof}

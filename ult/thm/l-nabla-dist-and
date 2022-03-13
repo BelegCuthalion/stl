@@ -1,0 +1,24 @@
+\begin{lem}\label{lem:l-nabla-dist-and} For all $n \geq 0$, $\stl(S) \vdash \nabla^n (A \wedge B) \Rightarrow \nabla^n A \wedge \nabla^n B$.
+\end{lem}
+\begin{proof}\quad
+	\begin{prooftree}
+		\AXC{}
+		\RightLabel{$Id$}
+		\UIC{$A \Rightarrow A$}
+		\RightLabel{$L \wedge_1$}
+		\UIC{$A \wedge B \Rightarrow A$}
+		\RightLabel{$N$} \doubleLine
+		\UIC{$\nabla^n (A \wedge B) \Rightarrow \nabla^n A$}
+
+		\AXC{}
+		\RightLabel{$Id$}
+		\UIC{$B \Rightarrow B$}
+		\RightLabel{$L \wedge_2$}
+		\UIC{$A \wedge B \Rightarrow B$}
+		\RightLabel{$N$} \doubleLine	
+		\UIC{$\nabla^n (A \wedge B) \Rightarrow \nabla^n B$}
+		
+		\RightLabel{$R \wedge$}
+		\BIC{$\nabla^n (A \wedge B) \Rightarrow \nabla^n A \wedge \nabla^n B$}
+	\end{prooftree}
+\end{proof}

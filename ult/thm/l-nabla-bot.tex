@@ -1,0 +1,18 @@
+\begin{lem}\label{lem:l-nabla-bot} $\stl(S) \vdash \nabla \bot \Rightarrow \bot$.
+\end{lem}
+\begin{proof} Let $\mathcal{D}$ be a proof-tree for $\nabla (\top \rightarrow \bot) \Rightarrow \bot$ which we have by Lemma \ref{lem:l-nabla-box}.
+	\begin{prooftree}
+		\AXC{}
+		\RightLabel{$Ex$}
+		\UIC{$\bot \Rightarrow$}
+		\RightLabel{$Rw$}
+		\UIC{$\bot \Rightarrow \top \rightarrow \bot$}
+		\RightLabel{$N$}
+		\UIC{$\nabla \bot \Rightarrow \nabla (\top \rightarrow \bot)$}
+
+		\AXC{$\mathcal{D}$}
+
+		\RightLabel{$Cut$}
+		\BIC{$\nabla \bot \Rightarrow \bot$}
+	\end{prooftree}	
+\end{proof}

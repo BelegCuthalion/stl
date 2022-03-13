@@ -1,0 +1,22 @@
+\begin{lem}\label{lem:l-nabla-dist-si} For any $n \geq 0$, $\stl(S) \vdash \nabla^n (A \rightarrow B) \Rightarrow \nabla^n A \rightarrow \nabla^n B$.
+\end{lem}
+\begin{proof}\quad
+	\begin{prooftree}
+		\AXC{}
+		\RightLabel{$Id$}
+		\UIC{$A \Rightarrow A$}
+		
+		\AXC{}
+		\RightLabel{$Id$}
+		\UIC{$B \Rightarrow B$}
+		\RightLabel{$Lw$}
+		\UIC{$A , B \Rightarrow B$}
+		
+		\RightLabel{$L \rightarrow$}
+		\BIC{$\nabla (A \rightarrow B) , A \Rightarrow B$}
+		\RightLabel{$N^{(n)}$} \doubleLine
+		\UIC{$\nabla^{n+1} (A \rightarrow B) , \nabla^n A \Rightarrow \nabla^n B$}
+		\RightLabel{$R \rightarrow$}
+		\UIC{$\nabla^n (A \rightarrow B) \Rightarrow \nabla^n A \rightarrow \nabla^n B$}
+	\end{prooftree}
+\end{proof}

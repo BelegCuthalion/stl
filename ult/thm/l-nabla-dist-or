@@ -1,0 +1,36 @@
+\begin{lem}\label{lem:l-nabla-dist-or} $\stl(S) \vdash \nabla (A \vee B) \Rightarrow \nabla A \vee \nabla B$.
+\end{lem}
+\begin{proof} Let $\mathcal{D}$ be a proof-tree we can construct for $\nabla (\top \rightarrow (\nabla A \vee \nabla B)) \Rightarrow \nabla A \vee \nabla B$ from Lemma \ref{lem:l-nabla-box}.
+
+	\begin{prooftree}
+		\AXC{}
+		\RightLabel{$Id$}
+		\UIC{$\nabla A \Rightarrow \nabla A$}
+		\RightLabel{$R\vee_1$}
+		\UIC{$\nabla A \Rightarrow \nabla A \vee \nabla B$}
+		\RightLabel{$Lw$}
+		\UIC{$\nabla A , \top \Rightarrow \nabla A \vee \nabla B$}
+		\RightLabel{$R \rightarrow$}
+		\UIC{$A \Rightarrow \top \rightarrow (\nabla A \vee \nabla B)$}
+
+		\AXC{}
+		\RightLabel{$Id$}
+		\UIC{$\nabla B \Rightarrow \nabla B$}
+		\RightLabel{$R\vee_2$}
+		\UIC{$\nabla B \Rightarrow \nabla A \vee \nabla B$}
+		\RightLabel{$Lw$}
+		\UIC{$\nabla B , \top \Rightarrow \nabla A \vee \nabla B$}
+		\RightLabel{$R \rightarrow$}
+		\UIC{$B \Rightarrow \top \rightarrow (\nabla A \vee \nabla B)$}
+
+		\RightLabel{$L\vee$}
+		\BIC{$A \vee B \Rightarrow \top \rightarrow (\nabla A \vee \nabla B)$}
+		\RightLabel{$N$}
+		\UIC{$\nabla (A \vee B) \Rightarrow \nabla (\top \rightarrow (\nabla A \vee \nabla B))$}
+
+		\AXC{$\mathcal{D}$}
+
+		\RightLabel{$Cut$}
+		\BIC{$\nabla (A \vee B) \Rightarrow \nabla A \vee \nabla B$}
+	\end{prooftree}
+\end{proof}

@@ -1,0 +1,15 @@
+\begin{lem}\label{lem:l-box-nabla} $\stl(S) \vdash A \Rightarrow \top \rightarrow \nabla A$.
+\end{lem}
+\begin{proof}\quad
+	\begin{prooftree}
+		\AXC{}
+		\RightLabel{$Id$}
+		\UIC{$\nabla A \Rightarrow \nabla A$}
+		
+		\RightLabel{$Lw$}
+		\UIC{$\nabla A , \top \Rightarrow \nabla A$}
+
+		\RightLabel{$R \rightarrow$}
+		\UIC{$A \Rightarrow \top \rightarrow \nabla A$}
+	\end{prooftree}
+\end{proof}

@@ -1,0 +1,168 @@
+\begin{dfn}\label{stl}
+	Consider the language $\mathcal{L}=\langle \wedge, \vee, \top, \bot, \nabla, \rightarrow, P \rangle$ where $P$ is the set of all atomic propositions. Define $\stl$ as the logic of the sequent-style system defined by the following rules, where in a sequent of the form $\Gamma \Rightarrow \Delta$, the left-hand side is a multiset of formulas $\Gamma$, and the right-hand side $\Delta$ is either a formula or empty.
+\end{dfn}
+
+\begin{flushleft}
+ \textbf{Axioms:}
+\end{flushleft}
+
+\begin{multicols}{3}
+	\begin{prooftree}
+		\AXC{}
+		\RightLabel{$Id$}
+		\UIC{$ A \Rightarrow A$}
+	\end{prooftree}
+	\columnbreak
+	\begin{prooftree}
+		\AXC{}
+		\RightLabel{$Ta$}
+		\UIC{$ \Rightarrow \top$}
+	\end{prooftree}
+	\columnbreak
+	\begin{prooftree}
+		\AXC{}
+		\RightLabel{$Ex$}
+		\UIC{$ \bot \Rightarrow $}		
+	\end{prooftree}
+\end{multicols}
+
+\begin{flushleft}
+ 		\textbf{Structural Rules:}
+\end{flushleft}
+\begin{multicols}{3}
+	\begin{prooftree}
+		\AXC{$ \Gamma \Rightarrow \Delta$}
+		\RightLabel{$L w$}
+		\UIC{$ \Gamma, A \Rightarrow \Delta$}
+	\end{prooftree}
+	\columnbreak
+	\begin{prooftree}
+		\AXC{$ \Gamma \Rightarrow $}
+		\RightLabel{$R w$}
+		 \UIC{$\Gamma \Rightarrow A$}		
+	\end{prooftree}
+	\columnbreak
+	\begin{prooftree}
+		\AXC{$ \Gamma, A, A \Rightarrow \Delta$}
+		\RightLabel{$Lc$}
+		\UIC{$\Gamma, A \Rightarrow \Delta$}		
+	\end{prooftree}
+\end{multicols}
+
+\begin{flushleft}
+ 		\textbf{Cut:}
+\end{flushleft}
+\begin{center}
+	\begin{prooftree}
+		\AXC{$ \Gamma \Rightarrow A$}
+		\AXC{$\Pi, A \Rightarrow \Delta$}
+		\RightLabel{$cut$}
+		\BIC{$ \Pi, \Gamma \Rightarrow \Delta$}
+	\end{prooftree}
+\end{center}
+
+\begin{flushleft}
+ \textbf{Conjunction Rules:}
+\end{flushleft}
+\begin{multicols}{3}
+	\begin{prooftree}
+		\AXC{$ \Gamma, A \Rightarrow \Delta$}
+		\RightLabel{$L \wedge_1$}
+		\UIC{$ \Gamma, A \wedge B \Rightarrow \Delta$}		
+	\end{prooftree}
+	\columnbreak
+	\begin{prooftree}
+		\AXC{$ \Gamma, B \Rightarrow \Delta$}
+		\RightLabel{$L \wedge_2$}
+		\UIC{$\Gamma, A \wedge B \Rightarrow \Delta$}		
+	\end{prooftree}
+	\columnbreak
+	\begin{prooftree}
+		\AXC{$\Gamma \Rightarrow A$}
+		\AXC{$\Gamma \Rightarrow B$}
+		\RightLabel{$R \wedge$}
+		\BIC{$ \Gamma \Rightarrow A \wedge B $}		
+	\end{prooftree}
+\end{multicols}
+
+\begin{flushleft}
+ \textbf{Disjunction Rules:}
+\end{flushleft}
+\begin{multicols}{3}
+	\begin{prooftree}
+		\AXC{$ \Gamma, A \Rightarrow \Delta$}
+		\AXC{$\Gamma, B \Rightarrow \Delta$}
+		\RightLabel{$L \vee_1$}
+		\BIC{$ \Gamma, A \vee B \Rightarrow \Delta$}		
+	\end{prooftree}
+	\columnbreak
+	\begin{prooftree}
+		\AXC{$\Gamma \Rightarrow A$}
+		\RightLabel{$R \vee_2$}
+		\UIC{$\Gamma \Rightarrow A \vee B$}		
+	\end{prooftree}
+	\columnbreak
+	\begin{prooftree}
+		\AXC{$\Gamma \Rightarrow B$}
+		\RightLabel{$R \vee$}
+		\UIC{$\Gamma \Rightarrow A \vee B$}		
+	\end{prooftree}
+\end{multicols}
+
+\begin{flushleft}
+	\textbf{Implication Rules:}
+ \end{flushleft}
+ \begin{multicols}{2}
+	\begin{prooftree}
+		\AXC{$\Gamma \Rightarrow A$}
+		\AXC{$\Gamma, B \Rightarrow \Delta$}
+		\RightLabel{$L \rightarrow$}
+		\BIC{$\Gamma, \nabla (A \rightarrow B) \Rightarrow \Delta$}		
+	\end{prooftree}
+	\columnbreak
+	\begin{prooftree}
+		\AXC{$\nabla \Gamma, A \Rightarrow B$}
+		\RightLabel{$R \rightarrow$}
+		\UIC{$\Gamma \Rightarrow A \rightarrow B$}		
+	\end{prooftree}
+\end{multicols}
+
+\begin{flushleft}
+  \textbf{Modal Rule:}
+\end{flushleft}
+\begin{prooftree}
+	\AXC{$\Gamma \Rightarrow \Delta$}
+	\RightLabel{$N$}
+	\UIC{$\nabla \Gamma \Rightarrow \nabla \Delta$}
+\end{prooftree}
+
+
+Notice that our naming scheme for the systems differs slightly with \cite{amir}. Also notice that the sequent-style systems that are introduced in the mentioned paper use sequences of formulas instead of multisets, and have an explicit exchange rule.
+
+If we also add one or more of the following rules to the system, we will have an \emph{extension of} $\stl$, which are denoted by $\stl(S)$ where $S$ is any combination of these rules:
+
+	\begin{prooftree}
+		\RightLabel{$L$}
+		\AXC{$\Gamma, A \Rightarrow \Delta$}
+		\UIC{$\Gamma, \nabla A \Rightarrow \Delta$}
+	\end{prooftree}
+
+	\begin{prooftree}
+		\RightLabel{$R$}
+		\AXC{$\nabla \Gamma, \Sigma \Rightarrow \Delta$}
+		\UIC{$\Gamma, \Sigma \Rightarrow \Delta$}
+	\end{prooftree}
+
+
+
+	\begin{prooftree}
+		\RightLabel{$Fa$}
+		\AXC{$\Gamma , A \Rightarrow B$}
+		\UIC{$\Gamma \Rightarrow \nabla(A \rightarrow B)$}
+	\end{prooftree}
+
+	\begin{prooftree}
+		\RightLabel{$Fu$}
+		\AXC{$\nabla \Gamma \Rightarrow \nabla A$}
+		\UIC{$\Gamma \Rightarrow A$}
+	\end{prooftree}

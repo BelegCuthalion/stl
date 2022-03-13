@@ -1,0 +1,11 @@
+\begin{dfn}[$\nabla cut$ rule]\label{def:n-cut}
+	Let $S \subseteq \{L, R, Fa, Fu\}$. We denote by $\gstl^+_{/\rightarrow}(S)$ the same systems defined as $\gstl(S)$, except that the $cut$ rule is replaced by the following generalization:
+	\begin{prooftree}
+		\AXC{$\Gamma \Rightarrow \nabla^m A$}
+		\AXC{$\Sigma , \{\nabla^{n_i} A\}_{i \leq l} \Rightarrow \Delta$}
+		\RightLabel{$\nabla cut$}
+		\BIC{$\{\nabla^{n_i} \Gamma\}_{i \leq l} , \nabla^m \Sigma \Rightarrow \nabla^m \Delta$}
+	\end{prooftree}
+	where $\nabla^n$ means $\nabla$ applied $n$ times, $\{\nabla^{n_i} A\}_{i \leq l}$ means $\{\nabla^{n_0} A,\dotsb, \nabla^{n_l} A\}$ and $\{\nabla^{n_i} \Gamma\}_{i \leq l}$ means $\bigcup_{A \in \Gamma} \{\nabla^{n_i} A\}_{i \leq l}$ for some finite sequence of natural numbers $\{n_i\}_{i \leq l}$ of length $l+1$.
+	We will refer to the set $\{\nabla^m A\} \cup \{\nabla^{n_i} A\}_{i \leq l}$ as the \emph{cut-burden} of this $cut$ instance. We will also call the tuple $(A, m, \{n_i\}_{i \leq l})$ the \emph{cut-data} of such instance.
+\end{dfn}

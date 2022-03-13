@@ -1,0 +1,18 @@
+\begin{lem}\label{lem:l-nabla-n-bot} For $n > 0$, $\stl(S) \vdash \nabla^n \bot \Rightarrow \bot$.
+\end{lem}
+\begin{proof} We will prove a stronger version: For $n \geq m > 0$, $\stl(S) \vdash \nabla^n \bot \Rightarrow \nabla^{n-m} \bot$. Let $\mathcal{D}_1$ be the proof-tree of Lemma \ref{lem:l-nabla-bot} which handles $n = m = 1$. Using induction on $m$, and denoting the proof-tree for $\nabla^n \bot \Rightarrow \nabla^{n-(m-1)} \bot$ from the induction hypothesis by IH, we have for $n > 1$
+	\begin{prooftree}
+		\AXC{IH}
+		\noLine
+		\UIC{$\nabla^n \bot \Rightarrow \nabla^{n-(m-1)} \bot$}
+
+		\AXC{$\mathcal{D}_1$}
+		\noLine
+		\UIC{$\nabla \bot \Rightarrow \bot$}
+		\doubleLine \RightLabel{$N^{(n-m)}$}
+		\UIC{$\nabla^{n-(m-1)} \bot \Rightarrow \nabla^{n-m} \bot$}
+
+		\RightLabel{$Cut$}
+		\BIC{$\nabla^n \bot \Rightarrow \nabla^{n-m} \bot$}
+	\end{prooftree}
+\end{proof}
