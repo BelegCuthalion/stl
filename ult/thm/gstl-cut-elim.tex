@@ -1,0 +1,13 @@
+\begin{thm}\label{thm:gstl-cut-elim}[Cut Elimination]
+	For any $\Gamma$ and $\Delta$, if $\Gamma \Rightarrow \Delta$ is provable by $\gstl(S)$, then it is also provable by $\gstl(S)-\{cut\}$ (for $S \subseteq \{ L, R, Fa, Fu \}$).
+\end{thm}
+\begin{proof}
+		First, we will show that for any non-zero-rank proof of $\Gamma \Rightarrow \Delta$ like $\mathcal{D}$ in $\gstl(S)$, there is another proof of the same sequent with a lower rank. Suppose $\mathcal{D}$ has subtree(s) called $\mathcal{D}_0$ (and possibly $\mathcal{D}_1$, if the last rule has two assumptions). Using induction on $h(\mathcal{D})$, the induction hypothesis for $\mathcal{D}_i ~(i \in \{0,1\})$ gives us a proof-tree with the same conclusion, which we call $IH(\mathcal{D}_i)$, but with a lower rank, i.e., $\rho(IH(\mathcal{D}_i)) < \rho(\mathcal{D}_i)$. We now consider two cases for the last rule of $\mathcal{D}$.
+
+	\begin{enumerate}[label=\Roman*]
+		\item If the last rule of $\mathcal{D}$ is of a lower rank than $\mathcal{D}$ itself, i.e., the $cut$ instance in $\mathcal{D}$ with the maximum rank is not the last rule, then we can apply the same last rule on $IH(\mathcal{D}_0)$ (and possibly $\mathcal{D}_1$), to construct a proof of $\Gamma \Rightarrow \Delta$ with a lower rank.
+		
+		\item If the last rule of $\mathcal{D}$ is an instance of $cut$ rule with the same rank as $\mathcal{D}$ itself, then it is indeed the $cut$ instance with the maximum rank. So we can apply Theorem \ref{thm:gstl-cut-reduction} to $IH(\mathcal{D}_0)$ and $IH(\mathcal{D}_1)$ to prove the same sequent as it would be proved by $cut$, but with a lower rank. (Recall that $\nabla cut$ is just a generalization of $cut$, so the theorem applies.)
+	\end{enumerate}
+	So for any proof of $\Gamma \Rightarrow \Delta$ in $\gstl(S)$, we also have a proof of rank $0$, which is cut-free.
+\end{proof}
