@@ -1,0 +1,17 @@
+\begin{dfn}\label{istl}
+	Let $\mathcal{L}_\supset=\langle \wedge, \vee, \top, \bot, \nabla, \rightarrow, \supset, P \rangle$ where $P$ is the set of all atomic propositions. Define $\istl$ as the logic of the sequent-style system defined by the same rules as Definition \ref{stl}, plus the following rules.
+\end{dfn}
+\begin{multicols}{2}
+  \begin{prooftree}
+    \AXC{$\Gamma, B \Rightarrow \Delta$}
+    \AXC{$\Gamma \Rightarrow A$}
+    \RightLabel{$L \supset$}
+    \BIC{$\Gamma, A \supset B \Rightarrow \Delta$}
+  \end{prooftree}
+  \columnbreak
+  \begin{prooftree}
+    \AXC{$\Gamma, A \Rightarrow B$}
+    \RightLabel{$R \supset$}
+    \UIC{$\Gamma \Rightarrow A \supset B$}
+  \end{prooftree}
+\end{multicols}

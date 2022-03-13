@@ -52,7 +52,7 @@ The theorem below shows that $\stl$ (and its extensions) deduce exactly the same
 
 \input{dia/stl}
 
-\section{Cut-elimination theorem}
+\subsection{Cut-elimination theorem}
 Our proof of the admissibility of $cut$ in $\gstl(S)$ does not imply its admissibility in $\stl(S)$. But, as we will see, their equivalence (by theorem \ref{thm:stl-eq-gstl}) will allow us to use proof-theoretic methods for the cut-free system, and then translate its results back into a statement about the original system.
 
 For technical reasons, we will work with a generalized form of the $cut$ rule, which nevertheless satisfies our goal here.
@@ -72,6 +72,12 @@ The next lemma will help in handling of a case in the main theorem.
 The following theorem shows that we can imitate any instance of the cut rule in a proof-tree of lower rank.
 
 \input{thm/gstl-proof-reduction}
+
+
+\subsection{Logic of spacetime with intuitionistic implication}
+A conservative extension of $\stl$ is introduced in the next definiotion. This extension, which is called $\istl$ here, enrisches $\stl$ with intuitionistic implication. $\istl$ is conservative in the sense that adding intuitionistic implication will give no more power to the system in proving propositions in the original language of $\stl$.
+
+\input{dfn/istl}
 
 [introducing iSTL, the conservative extension with intuitionistic implication]
 
