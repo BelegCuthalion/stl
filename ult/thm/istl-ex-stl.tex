@@ -1,0 +1,8 @@
+\begin{thm}
+  For any $\Gamma$ and $\varphi$ in the language $\mathcal{L}$ we have $\stl \vdash \Gamma \Rightarrow \varphi$ if and only if $\istl \vdash \Gamma \Rightarrow \varphi$.
+\end{thm}
+\begin{proof}
+  $(\Rightarrow)$ If $\stl \vdash \Gamma \Rightarrow \varphi$, then obviously $\istl \vdash \Gamma \Rightarrow \varphi$, since $\istl$ is just an extension of $\stl$.
+
+  $(\Leftarrow)$ Assume $\istl \vdash \Gamma \Rightarrow \varphi$ by a proof-tree $\mathcal{D}$. Now, consider different cases for the last rule in $\mathcal{D}$. We will construct a proof-tree for $\varphi$ in $\stl$ in different cases for the last rule in $\mathcal{D}$, using induction on the height of $\mathcal{D}$. All cases are trivial except the cases for $L \supset$ and $R \supset$. But since $\Gamma$ and $\varphi$ are $\mathcal{L}$-formulas, none of them may contain $\supset$, so both these two cases are not feasible.
+\end{proof}

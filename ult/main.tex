@@ -6,7 +6,7 @@
 \title{Interpolation for Logics of Spacetime}
 \author[]{Amirhossein Akbar Tabatabai, Majid Alizadeh, Alireza Mahmoudian}
 \affil[]{ }
-\date{March 2, 2022}
+\date{\today}
 \maketitle
 
 \begin{abstract}
@@ -81,6 +81,18 @@ The next theorem shows that the $cut$ rule is redundant.
 A conservative extension of $\stl$ is introduced in the next definiotion. This extension, which is called $\istl$ here, enrisches $\stl$ with intuitionistic implication. $\istl$ is conservative in the sense that adding intuitionistic implication will give no more power to the system in proving propositions in the original language of $\stl$.
 
 \input{dfn/istl}
+
+The following theorem shows that $\istl$ is just a conservative extension of $\stl$.
+
+\input{thm/istl-ex-stl}
+
+Now, we will introduce a counterpart for $\gstl$ with intuitionistic implication, which we call $\igstl$. In the following, we will also show that theorems \ref{thm:stl-eq-gstl}, \ref{thm:gstl-cut-reduction}, and \ref{thm:gstl-cut-elim} can be easily extended to also contain the cases for rules for intuitionistic implication, yielding the same results for $\istl$ and $\igstl$.
+
+\input{dfn/igstl}
+
+To show the equivalence between $\istl$ and $\igstl$, we need the following lemma.
+
+
 
 [introducing iSTL, the conservative extension with intuitionistic implication]
 

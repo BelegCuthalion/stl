@@ -1,0 +1,9 @@
+\begin{dfn}\label{dfn:igstl}
+	Define $\igstl$ over the language $\mathcal{L}_\supset$, to be the logic of sequent-style system as the logic of the sequent-style system defined by the same rules as $\istl$, as in Definition \ref{dfn:istl}, except the rule $L \supset$, which is replaced with the following rule.
+\end{dfn}
+\begin{prooftree}
+	\AXC{$\Gamma \Rightarrow \nabla^n A$}
+	\AXC{$\Gamma, \nabla^n B \Rightarrow \Delta$}
+	\RightLabel{$L \supset$}
+	\BIC{$\Gamma, \nabla^n (A \supset B) \Rightarrow \Delta$}
+\end{prooftree}
