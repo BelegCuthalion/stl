@@ -1,0 +1,22 @@
+\begin{lem}\label{lem:l-nabla-dist-imp} For any $n \ge 0$, $\mathbf{LDL}(S) \vdash \nabla^n (A \supset B) \Rightarrow \nabla^n A \supset \nabla^n B$.
+\end{lem}
+\begin{proof}\quad
+	\begin{prooftree}
+		\AXC{}
+		\RightLabel{$Id$}
+		\UIC{$A \Rightarrow A$}
+	
+		\AXC{}
+		\RightLabel{$Id$}
+		\UIC{$B \Rightarrow B$}
+		\RightLabel{$Lw$}
+		\UIC{$A , B \Rightarrow B$}
+	
+		\RightLabel{$L \supset$}
+		\BIC{$A \supset B , A \Rightarrow B$}
+		\RightLabel{$N^{(n)}$} \doubleLine
+		\UIC{$\nabla^n (A \supset B) , \nabla^n A \Rightarrow \nabla^n B$}
+		\RightLabel{$R \supset$}
+		\UIC{$\nabla^n (A \supset B) \Rightarrow \nabla^n A \supset \nabla^n B$}
+	\end{prooftree}
+\end{proof}
