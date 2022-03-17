@@ -1,0 +1,7 @@
+\begin{thm}\label{thm:istl-eq-igstl}
+	Let $S \subseteq \{L, R, Fa, Fu\}$. For any sequent $\Gamma \Rightarrow \Delta$ in the language $\mathcal{L}_\supset$, $\istl(S) \vdash \Gamma \Rightarrow \Delta$ iff $\igstl(S) \vdash \Gamma \Rightarrow \Delta$.
+\end{thm}
+\begin{proof}
+	The proof is essentially the same as Theorem \ref{thm:stl-eq-gstl}, with additional cases for intuitionistic implication rules. Again, the left-to-right direction is obvious from the fact that all rules of $\istl(S)$ are just instances of $\igstl(S)$'s rules. For the other direction, we will apply induction on the height of the proof-tree for $\Gamma \Rightarrow \Delta$ in $\igstl(S)$, which we call $\mathcal{D}$. We can construct a proof-tree for $\Gamma \Rightarrow \Delta$ in $\istl(S)$ in different cases for the last rule in $\mathcal{D}$, just as we did for $\stl$ in Theorem \ref{thm:stl-eq-gstl}. Recall that we can use lemmas \ref{lem:l-nabla-dist-and} to \ref{lem:l-nabla-n-bot} for $\istl$ as well.
+	It remains to handle the cases where the last rule in $\mathcal{D}$ is $L \supset$ and $R \supset$. The case for $R \supset$ is obvoius: We have $R \supset$ also in $\istl$, so we can apply it again on the proof-tree from induction hypothesis. In the case for $L \supset$, we have two proof-trees for $\Gamma \Rightarrow \nabla^n A$ and $\Gamma, \nabla^n B \Rightarrow \Delta$. Applying $L \supset$ in $\istl$ proves $\Gamma, \nabla^n A \supset \nabla^n B \Rightarrow \Delta$. Using Lemma \ref{lem:l-nabla-dist-imp} and $cut$, we would have the desired sequent.
+\end{proof}
