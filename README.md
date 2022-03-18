@@ -1,4 +1,4 @@
- - [The Logic of Dynamic Locales](https://github.com/BelegCuthalion/stl/releases/latest/download/ldl.pdf)
+ - [Interpolation for Logics of Spacetime](https://github.com/BelegCuthalion/stl/releases/latest/download/stl.pdf)
 
  - [Cheatsheet](https://github.com/BelegCuthalion/stl/releases/download/cs/ldl-vars.pdf)
 
