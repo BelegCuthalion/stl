@@ -1,0 +1,5 @@
+\begin{lem}\label{lem:igstl-top-redundant} If $\igstl^+(S)$ proves $\Gamma , \{\nabla^{n_i} \top\}_{i \leq l} \Rightarrow \Delta$, then it also proves $\Gamma \Rightarrow \Delta$ with a proof-tree of at most the same rank (for $S \subseteq \{L, R, Fa, Fu\}$).
+\end{lem}
+\begin{proof}
+  The proof is similar to the proof of Lemma \ref{lem:gstl-top-redundant}. Assuming a proof-tree $\mathcal{D}$ for $\Gamma , \{\nabla^{n_i} \top\}_{i \leq l} \Rightarrow \Delta$, we will construct a proof-tree for $\Gamma \Rightarrow \Delta$ in cases for the last rule in $\mathcal{D}$, without increasing the rank. In all cases except $L \supset$ and $R \supset$, the construction takes place using induction on the height of $\mathcal{D}$, just as it was in Lemma \ref{lem:gstl-top-redundant}. The cases for $L \supset$ and $R \supset$ are similar: Just apply the same rule again on the sequent from induction hypothesis. Obviously, this will not increase the rank of the resulting proof-tree.
+\end{proof}
