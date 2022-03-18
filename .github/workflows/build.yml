@@ -3,7 +3,7 @@ name: build
 on:
   push:
     paths:
-    - 'prod/**'
+    - 'ult/**'
 jobs:
   latex-job:
     runs-on: ubuntu-latest
