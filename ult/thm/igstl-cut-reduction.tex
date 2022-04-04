@@ -1,3 +1,23 @@
 \begin{thm}\label{thm:igstl-cut-reduction}[cut Reduction]
   If $\igstl^+(S)$ proves $\Gamma \Rightarrow \nabla^m A$ and\\\ $\Sigma , \{\nabla^{n_i} A\}_{i \leq l} \Rightarrow \Delta$ with proof-trees of ranks less than $\rho(A)$, then it also proves $\{\nabla^{n_i} \Gamma\}_{i \leq l} , \nabla^m\Sigma \Rightarrow \nabla^m\Delta$ with a proof tree of a rank less than $\rho(A)$ (for $S \subseteq \{L, R, Fa, Fu\}$).
 \end{thm}
+\begin{proof}
+  We have two proof-trees for $\Gamma \Rightarrow \nabla^m A$ and $\Sigma , \{\nabla^{n_i} A\}_{i \leq l} \Rightarrow \Delta$. Call them $\mathcal{D}_0$ and $\mathcal{D}_1$ respectively. The proof of the theorem is essentially the same as the proof for Theorem \ref{thm:gstl-cut-reduction}, by case analysis on the last rules in $\mathcal{D}_0$ and $\mathcal{D}_1$, and using induction on the height of both of the proof-trees. It remains to four cases:
+  \begin{enumerate}
+    \item $\mathcal{D}_0$ ends with $L \supset$, no matter which rule $\mathcal{D}_1$ ends with.
+    \item $\mathcal{D}_1$ ends with $R \supset$, no matter which rule $\mathcal{D}_0$ ends with.
+    \item $\mathcal{D}_1$ ends with $L \supset$, and no member of cut-burden is principal in it, no matter which rule $\mathcal{D}_0$ ends with.
+    \item $\mathcal{D}_0$ ends with $R \supset$, which implies $m = 0$ and also implies that $\mathcal{D}_1$ must end with $L \supset$ and a member of the cut-burden must be its principal formula.
+  \end{enumerate}
+  In case 1, $\mathcal{D}_0$ proves $\Gamma, \nabla^r (B \supset C) \Rightarrow \nabla^m A$ for some $r$, and has subtrees $\mathcal{D}_0'$ and $\mathcal{D}_0''$ which prove $\Gamma \Rightarrow \nabla^r B$ and $\Gamma, \nabla^r C \Rightarrow \nabla^m A$, respectively. Use induction hypothesis for $\mathcal{D}_0''$ and $\mathcal{D}_1$ to prove
+  $$\{ \nabla^{n_i} \Gamma, \nabla^{n_i+r} C \}_{i \leq l}, \nabla^m \Sigma \Rightarrow \nabla^m \Delta$$
+  Call this sequent $\mathcal{D}'$. Similar to the case for $L \rightarrow$, we must first apply $N$ for $n_0$ times on $\mathcal{D}_0'$ to get $\nabla^{n_0} \Gamma \Rightarrow \nabla^{n_0+r} B$ then add $\{\nabla^{n_i} \Gamma, \nabla^{n_i+r}C\}_{i \leq l}^{i \neq 0}$ and $\nabla^m \Sigma$ to its lef-hand side using $Lw$, to get
+  $$\{\nabla^{n_i} \Gamma\}_{i \leq l}, \{\nabla^{n_i+r}C\}_{i \leq l}^{i \neq 0} , \nabla^m \Sigma \Rightarrow \nabla^{n_0+r} B$$
+  Now we can apply $L \supset$ on this sequent and $\mathcal{D}'$ to get
+  $$\mathcal{D}'_{n_0}:~~~~\{\nabla^{n_i} \Gamma\}_{i \leq l}, \{\nabla^{n_i+r}C\}_{i \leq l}^{i \neq 0}, \nabla^{n_0+r} (B \supset C) , \nabla^m \Sigma \Rightarrow \nabla^m \Delta$$
+  which we call $\mathcal{D}'_{n_0}$. Now define $\mathcal{D}'_{n_j}$ recursively, for each $0 < j \leq l$, as follows. Start with $\mathcal{D}_0'$. Prove
+  $$\{\nabla^{n_i} \Gamma\}_{i \leq l}, \{\nabla^{n_i+r}C\}_{j < i \leq l}, \{ \nabla^{n_i+r} (B \supset C) \}_{i < j}, \nabla^m \Sigma \Rightarrow \nabla^{n_j+r} B$$
+  using $N$ and $Lw$ consecutively. Apply $L \supset$ on this sequent and $\mathcal{D}'_{n_{j-1}}$ to get
+  $$\mathcal{D}'_{n_j}:~~~~\{\nabla^{n_i} \Gamma\}_{i \leq l}, \{\nabla^{n_i+r}C\}_{j < i \leq l}, \{ \nabla^{n_i+r} (B \supset C) \}_{i \leq j}, \nabla^m \Sigma \Rightarrow \nabla^m \Delta$$
+  $\mathcal{D}_{n_l}$ would be the desired sequent.\\
+\end{proof}
