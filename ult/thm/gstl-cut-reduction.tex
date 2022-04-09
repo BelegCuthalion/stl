@@ -307,47 +307,47 @@
    \begin{prooftree}
      \AXC{$\mathcal{D}_0'$}
      \noLine
-     \UIC{$\Gamma, A \Rightarrow B$}
+     \UIC{$\Gamma, A_1 \Rightarrow A_2$}
      \RightLabel{$Fa$}
-     \UIC{$\Gamma \Rightarrow \nabla (A \rightarrow B)$}
+     \UIC{$\Gamma \Rightarrow \nabla (A_1 \rightarrow A_2)$}
    \end{prooftree}
-   The cut-data must be of the form $(\nabla (A \rightarrow B), \{n_i\}_{i \leq l})$, so the only option for $\mathcal{D}_1$ is $L \rightarrow$, with a principal formula from the cut-burden, like $\nabla^{n_j+1} (A \rightarrow B)$ for some $j \leq l$.
+   The cut-data must be of the form $(\nabla (A_1 \rightarrow A_2), \{n_i\}_{i \leq l})$, so the only option for $\mathcal{D}_1$ is $L \rightarrow$, with a principal formula from the cut-burden, like $\nabla^{n_j+1} (A_1 \rightarrow A_2)$ for some $j \leq l$.
    \begin{prooftree}
      \AXC{$\mathcal{D}_1'$}
      \noLine
-     \UIC{$\Sigma, \{\nabla^{n_i+1} (A \rightarrow B) \}_{i \leq l}^{i \neq j}, \Rightarrow \nabla^{n_j} A$}
+     \UIC{$\Sigma, \{\nabla^{n_i+1} (A_1 \rightarrow A_2) \}_{i \leq l}^{i \neq j}, \Rightarrow \nabla^{n_j} A_1$}
      \AXC{$\mathcal{D}_1''$}
      \noLine
-     \UIC{$\Sigma, \{\nabla^{n_i+1} (A \rightarrow B) \}_{i \leq l}^{i \neq j}, \nabla^{n_j} B \Rightarrow \Delta$}
+     \UIC{$\Sigma, \{\nabla^{n_i+1} (A_1 \rightarrow A_2) \}_{i \leq l}^{i \neq j}, \nabla^{n_j} A_2 \Rightarrow \Delta$}
      \RightLabel{$L \rightarrow$}
-     \BIC{$\Sigma, \{\nabla^{n_i+1} (A \rightarrow B)\}_{i \leq l} \Rightarrow \Delta$}
+     \BIC{$\Sigma, \{\nabla^{n_i+1} (A_1 \rightarrow A_2)\}_{i \leq l} \Rightarrow \Delta$}
    \end{prooftree}
-   First, apply a low rank $\nabla cut$ (with $(B, \{n_j\})$ as the cut-data) on $\mathcal{D}_0'$ and $IH(\mathcal{D}_0, \mathcal{D}_1'')$. Let the resulting sequent be called $\mathcal{D}'$.
+   First, apply a low rank $\nabla cut$ (with $(A_2, \{n_j\})$ as the cut-data) on $\mathcal{D}_0'$ and $IH(\mathcal{D}_0, \mathcal{D}_1'')$. Let the resulting sequent be called $\mathcal{D}'$.
    \begin{prooftree}
      \AXC{$\mathcal{D}_0'$}
      \noLine
-     \UIC{$\Gamma, A \Rightarrow B$}
+     \UIC{$\Gamma, A_1 \Rightarrow A_2$}
      \AXC{$\mathcal{D}_0$}
      \noLine
-     \UIC{$\Gamma \Rightarrow \nabla (A \rightarrow B)$}
+     \UIC{$\Gamma \Rightarrow \nabla (A_1 \rightarrow A_2)$}
      \AXC{$\mathcal{D}_1''$}
      \noLine
-     \UIC{$\Sigma, \{\nabla^{n_i+1} (A \rightarrow B) \}_{i \leq l}^{i \neq j}, \nabla^{n_j} B \Rightarrow \Delta$}
+     \UIC{$\Sigma, \{\nabla^{n_i+1} (A_1 \rightarrow A_2) \}_{i \leq l}^{i \neq j}, \nabla^{n_j} A_2 \Rightarrow \Delta$}
      \RightLabel{IH}
-     \BIC{$\{\nabla^{n_i} \Gamma\}_{i \leq l}^{i \neq j}, \Sigma, \nabla^{n_j} B \Rightarrow \Delta$}
+     \BIC{$\{\nabla^{n_i} \Gamma\}_{i \leq l}^{i \neq j}, \Sigma, \nabla^{n_j} A_2 \Rightarrow \Delta$}
      \RightLabel{$\nabla cut$} \LeftLabel{$\mathcal{D}':~~~~~$}
-     \BIC{$\nabla^{n_j} A, \{\nabla^{n_i} \Gamma\}_{i \leq l}, \Sigma \Rightarrow \Delta$}
+     \BIC{$\nabla^{n_j} A_1, \{\nabla^{n_i} \Gamma\}_{i \leq l}, \Sigma \Rightarrow \Delta$}
    \end{prooftree}
-   Then cut $IH(\mathcal{D}_0, \mathcal{D}_1')$ (this time with $(\nabla^{n_j} A, \{0\})$ as the cut-data) into the resulting sequent.
+   Then cut $IH(\mathcal{D}_0, \mathcal{D}_1')$ (this time with $(\nabla^{n_j} A_1, \{0\})$ as the cut-data) into the resulting sequent.
    \begin{prooftree}
     \AXC{$\mathcal{D}_0$}
     \noLine
-    \UIC{$\Gamma \Rightarrow \nabla (A \rightarrow B)$}
+    \UIC{$\Gamma \Rightarrow \nabla (A_1 \rightarrow A_2)$}
      \AXC{$\mathcal{D}_1'$}
      \noLine
-     \UIC{$\Sigma, \{\nabla^{n_i+1} (A \rightarrow B) \}_{i \leq l}^{i \neq j}, \Rightarrow \nabla^{n_j} A$}
+     \UIC{$\Sigma, \{\nabla^{n_i+1} (A_1 \rightarrow A_2) \}_{i \leq l}^{i \neq j}, \Rightarrow \nabla^{n_j} A_1$}
      \RightLabel{IH}
-     \BIC{$\{\nabla^{n_i} \Gamma\}_{i \leq l}^{i \neq j}, \Sigma, \Rightarrow \nabla^{n_j} A$}
+     \BIC{$\{\nabla^{n_i} \Gamma\}_{i \leq l}^{i \neq j}, \Sigma, \Rightarrow \nabla^{n_j} A_1$}
   
      \AXC{$\mathcal{D}'$}
   
