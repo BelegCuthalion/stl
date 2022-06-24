@@ -1,0 +1,7 @@
+\begin{thm}[Cut Elimination]\label{thm:igstl-cut-elim}
+  For any $\Gamma$ and $\Delta$, if $\igstl(S) \vdash \Gamma \Rightarrow \Delta$ then $\igstl-\{cut\} \vdash \Gamma \Rightarrow \Delta$ (for $S \subseteq \{ L, R, Fa, Fu \}$).
+\end{thm}
+\begin{proof}
+  Our strategy is to reduce the rank of any sequent down to zero, just as we did in the proof of Theorem \ref{thm:gstl-cut-elim}.
+  Suppose $\Gamma \Rightarrow \Delta$ has an $\igstl$ prooftree called $\mathcal{D}$. We claim that if $\rho(\mathcal{D}) \neq 0$, then there must exist some other $\igstl$ prooftree for $\Gamma \Rightarrow \Delta$ called $\mathcal{D}'$, such that $\rho(\mathcal{D}') < \rho(\mathcal{D})$. By induction on the height of $\mathcal{D}$, we can suppose for any prooftree shorter than $\mathcal{D}$, there exists a prooftree with the same conclusion, but a lower rank. Now, consider two cases: First, if the last rule in $\mathcal{D}$ is the $cut$ instance with the highest rank in $\mathcal{D}$, apply Theorem \ref{thm:igstl-cut-reduction} to the low rank prooftree that we get from induction hypothesis for two subtrees of $\mathcal{D}$. In the second case, if the last rule in $\mathcal{D}$ is not the maximum rank $cut$ instance, then just apply this rule on the low rank prooftree that we get from induction hypothese for possible subtrees of $\mathcal{D}$.
+\end{proof}
