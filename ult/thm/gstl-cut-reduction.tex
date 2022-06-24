@@ -1,5 +1,7 @@
-\begin{thm}\label{thm:gstl-cut-reduction}[cut Reduction]
-  If $\gstl^+(S)$ proves $\Gamma \Rightarrow A$ and\\\ $\Sigma , \{\nabla^{n_i} A\}_{i \leq l} \Rightarrow \Delta$ with proof-trees of ranks less than $\rho(A)$, then it also proves $\{\nabla^{n_i} \Gamma\}_{i \leq l} , \Sigma \Rightarrow \Delta$ also with a proof tree of a rank less than $\rho(A)$ (for $S \subseteq \{L, R, Fa, Fu\}$).
+\begin{thm}[cut Reduction]\label{thm:gstl-cut-reduction}
+  If $\gstl^+(S)$ proves $\Gamma \Rightarrow A$ and\\\ $\Sigma , \{\nabla^{n_i} A\}_{i \leq l} \Rightarrow \Delta$ with proof-trees of ranks less than $\rho(A)$, then it also proves $\{\nabla^{n_i} \Gamma\}_{i \leq l} , \Sigma \Rightarrow \Delta$ also with a proof tree of a rank less than $\rho(A)$ (for $S \subseteq \{L, R{\color{red}, Fa, Fu}\}$).
+
+  {\color{red} This proof does not work if $S$ contains $Fa$ or $Fu$.}
   \end{thm}
   \begin{proof}
     We have two proof-trees
@@ -190,7 +192,18 @@
   
    $N$: $\mathcal{D}_0$ proves $\nabla \Gamma \Rightarrow \nabla A$ and $\mathcal{D}_1$ proves $\Sigma, \{\nabla^{n_i} A\}_{i<l} \Rightarrow \Delta$. There are two cases: The cut-data could be $(A, \{n_i\}_{i \leq l})$, or if for all $i \leq l$ we have $0 < n_i$, then the cut-data could also be $(\nabla A, \{n_i-1\}_{i \leq l})$. Induction hypothesis for $\mathcal{D}_0$'s immediate sub-tree and $\mathcal{D}_1$ gives us $\{\nabla^{n_i}\Gamma\}_{i \leq l}, \Sigma \Rightarrow \Delta$, which handles the latter case, and an application of $N$ on this sequent would handle the former.
   
-   {\color{red} $Fu$: It suffices to apply $Fu$ on the result of the induction.}\\
+   {\color{red} $Fu$: This case fails actually. For example in case
+   \begin{multicols}{2}
+    \begin{prooftree}
+      \AXC{$\nabla \Gamma \Rightarrow \nabla A$}
+      \RightLabel{$Fu$}
+      \UIC{$\Gamma \Rightarrow A$}
+    \end{prooftree}
+    \columnbreak
+    $A \Rightarrow \Delta$
+   \end{multicols}
+   we can't use induction hypothesis to cut $A$.
+   }\\
   
    \textbf{Part II.} The rest of the cases for $\mathcal{D}_0$ can't be solved independent of $\mathcal{D}_1$, so in the second part of the cases, we will consider the last rule of $\mathcal{D}_1$, again, where the solution could be constructed independent of $\mathcal{D}_0$. But this time we have less possibilities for the opposite subtree, since we've already solved most of them in the previous part of the proof. In fact the only possible rules as the last rule of $\mathcal{D}_0$ are now $R\star (\star \in \{\wedge, \vee_{1/2}, \rightarrow\})$ and $Fa$.
   
@@ -235,7 +248,8 @@
     \UIC{$\nabla \Sigma, \{\nabla^{n_i+1} A\}_{i \leq l} \Rightarrow \nabla \Delta$}
   \end{prooftree}
   If we assume that the cut-data is $(A, \{n_i+1\}_{i \leq l})$, from the induction hypothesis we have $\{\nabla^{n_i} \Gamma\}_{i \leq l}, \Sigma \Rightarrow \Delta$. By $N$ we have $\{\nabla^{n_i+1} \Gamma\}_{i \leq l},$ $\nabla \Sigma \Rightarrow \nabla \Delta$, which is the desired sequent.
-  {\color{red} Notice the cut-data could not be $(\nabla A, \{n_i\}_{i \leq l})$, since none of possible rules for $\mathcal{D}_0$ would be able to introduce $\nabla$ on the right-hand side.}
+
+  {\color{red} This case failes in presence of $Fa$. Notice the cut-data could then also be $(\nabla A, \{n_i\}_{i \leq l})$.}
   
    \textbf{Part III.} Now in the last part of the proof, we will show how the construction takes place in the cases where a member of the cut-burden is principal in the last rule of $\mathcal{D}_1$, which can be either of $L\star (\star \in \{\wedge, \vee_{1/2}, \rightarrow\})$.
    Any of these rules also determine the rule at the end of the other proof-tree, because $A$ would also be principal in the last rule of $\mathcal{D}_0$. Recall that the only possible rules as the last rule of $\mathcal{D}_0$ are now $R\star (\star \in \{\wedge, \vee_{1/2}, \rightarrow\})$ and $Fa$, which all have a principal formula on the right side of the sequent.
