@@ -1,0 +1,19 @@
+\begin{lem}\label{lem:modus-ponens}
+  $\vdash A , \nabla (A \rightarrow B) \Rightarrow B$.
+\end{lem}
+\begin{proof}\quad
+  \begin{prooftree}
+    \AXC{}
+    \RightLabel{$Id$}
+    \UIC{$A \Rightarrow A$}
+  
+    \AXC{}
+    \RightLabel{$Id$}
+    \UIC{$B \Rightarrow B$}
+    \RightLabel{$Lw$}
+    \UIC{$A , B \Rightarrow B$}
+  
+    \RightLabel{$L \rightarrow$}
+    \BIC{$A , \nabla (A \rightarrow B) \Rightarrow B$}
+  \end{prooftree}  
+\end{proof}
