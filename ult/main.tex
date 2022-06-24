@@ -51,6 +51,7 @@ The theorem below shows that $\stl$ (and its extensions) deduce exactly the same
 \input{thm/stl-eq-gstl}
 
 \input{dia/stl}
+{\color{red} The relation between STL and its extensions to be investigated.}
 
 \subsection{Cut-elimination theorem}
 Our proof of the admissibility of $cut$ in $\gstl(S)$ does not imply its admissibility in $\stl(S)$. But, as we will see, their equivalence (by theorem \ref{thm:stl-eq-gstl}) will allow us to use proof-theoretic methods for the cut-free system, and then translate its results back into a statement about the original system.
@@ -108,18 +109,42 @@ Next theorem is just a generalization of Theorem \ref{thm:gstl-cut-reduction} fo
 
 \input{thm/igstl-cut-reduction}
 
+Now we are ready to eliminate the $cut$ rule from $\igstl$, just as we did for $\gstl$.
 
-\subsection{applications}
-[visser rule]
+\input{thm/igstl-cut-elim}
 
-[disjuction property]
+\subsection{Applications}
+In this section, we will see some direct applications of our cut-elimination results. First, we will show that a generalization of Visser's rule is admissible in our system. To this aim, we would need the following lemmas.
 
-[subformula property]
+Throughout this section, by $\Gamma \vdash A$ we mean there is a proof in $\stl(S)$ of $A$ with possible assumptions from $\Gamma$.
+
+\input{thm/l-mp}
+
+\input{thm/l-impl-elim}
+
+\input{thm/l-conj-context}
+
+\begin{rem}
+	In the following, $\dotdiv$ is the truncated subtraction defined as $a \dotdiv b = max(a-b, 0)$.
+\end{rem}
+
+\input{thm/vissers-rule}
+
+\begin{cor}[Disjuntion property]
+	For all formulas $B$ and $C$, if $\vdash B \vee C$ then either $\vdash B$ or $\vdash C$.
+\end{cor}
+\begin{proof}
+	Just apply Theorem \ref{thm:visser} for $n = 0$.
+\end{proof}
 
 \section{Interpolation theorems}
-[deductive interpolation for iSTL+L]
+{\color{red} Interpolation theorems do not hold if the extension contains $Fa$ or $Fu$, since they assume cut-ellimination results.}
 
-[craig's interpolation for intuitionistic extension]
+In this section, we prove \emph{Craig's interpolation} theorem for $\istl$ and all its extensions, and a weaker version called \emph{deductive interpolation} for any extension of $\stl$ containing $L$. For some formula $A$, by $V(A)$ we mean the set of all atomic variables of $A$ and for a multi-set of formulas $\Gamma$, by $V(\Gamma)$ we denote the set of all atomic variables occuring in some formula in $\Gamma$, i.e. $\bigcup_{A \in \Gamma} V(A)$.
+
+\input{thm/istl-craig}
+
+\input{thm/stl-deductive}
 
 \section{Conclusion and future works}
 

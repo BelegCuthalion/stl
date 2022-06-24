@@ -1,0 +1,21 @@
+\begin{thm}[Generalized Visser rules]\label{thm:visser}
+  Let $\{ l_i \}_{i=1}^n$ be a sequence of natural numbers of length $n$. If $\vdash \Rightarrow \bigwedge_{i=1}^n (\nabla^{l_i} (A_i \rightarrow B_i)) \rightarrow C \lor D$ then either $\vdash \Rightarrow \bigwedge_{i=1}^n (\nabla^{l_i} (A_i \rightarrow B_i)) \rightarrow \nabla^{l_j \dotdiv 1} A_j$ for some $j \in \{ 1 , \dots , n \}$, or $\vdash \Rightarrow \bigwedge_{i=1}^n (\nabla^{l_i} (A_i \rightarrow B_i)) \rightarrow C$, or $\vdash \Rightarrow \bigwedge_{i=1}^n (\nabla^{l_i} (A_i \rightarrow B_i)) \rightarrow D$.
+\end{thm}
+
+\textit{Proof}:
+We have $\bigwedge_{i=1}^n (\nabla^{l_i} (A_i \rightarrow B_i)) \Rightarrow C \lor D$ by \ref{lem:impl-elim}. By $cut$ and \ref{lem:conj-context} we have $\{ \nabla^{l_i} (A_i \rightarrow B_i) \}_{i=1}^n \Rightarrow$ $C \lor D$, which also has a proof like $\mathcal{D}$ in $GSTL^-$ by \ref{thm:stl-eq-gstl} and \ref{thm:gstl-cut-elim}. The last rule in $\mathcal{D}$ can be:
+\begin{itemize}[label=-]
+	\item $R\lor_1$, applied on $\{ \nabla^{l_i} (A_i \rightarrow B_i) \}_{i=1}^n \Rightarrow C$. With enough applications of $L\land_1$, $L\land_2$, $Lc$ and a $R\rightarrow$ we will have $\Rightarrow \bigwedge_{i=1}^n (\nabla^{l_i} (A_i \rightarrow B_i)) \rightarrow C$.
+	
+	\item $R\lor_2$, applied on $\{ \nabla^{l_i} (A_i \rightarrow B_i) \}_{i=1}^n \Rightarrow D$. Same as the previous case, we can derive $\Rightarrow \bigwedge_{i=1}^n (\nabla^{l_i} (A_i \rightarrow B_i)) $ $\rightarrow D$.
+	
+	\item $Rw$, applied on $\{ \nabla^{l_i} (A_i \rightarrow B_i) \}_{i=1}^n \Rightarrow$. A different $Rw$ gives $\{ \nabla^{l_i} (A_i \rightarrow B_i) \}_{i=1}^n \Rightarrow C$. Again, we can get $\Rightarrow \bigwedge_{i=1}^n (\nabla^{l_i} (A_i \rightarrow B_i)) \rightarrow C$.
+	
+	\item $Lw$, applied on $\{ \nabla^{l_i} (A_i \rightarrow B_i) \}_{i=1,i \neq k}^n \Rightarrow C \lor D$ for some $k \in \{ 1 , \dots , n \}$. Let $\mathcal{D}'$ be the immediate subtree of $\mathcal{D}$. By induction on $h(\mathcal{D})$, we can apply induction hypothesis on $\mathcal{D}'$ to get either $\{ \nabla^{l_i} (A_i \rightarrow B_i) \}_{i=1,i \neq k}^n \Rightarrow C$, $\{ \nabla^{l_i} (A_i \rightarrow B_i) \}_{i=1,i \neq k}^n \Rightarrow D$ or $\{ \nabla^{l_i} (A_i \rightarrow B_i) \}_{i=1,i \neq k}^n \Rightarrow \nabla^{l_j \dotdiv 1} A_j$ for some $j \in \{ 1 , \dots , n \} - \{k\}$. Then, after introducing $\nabla^{l_k} A_k \rightarrow B_k$ on the left with $Lw$ again, we can follow the same manner as previous cases to reach any of the desired sequents.
+	
+	\item $Lc$, applied on $\{ \nabla^{l_i} (A_i \rightarrow B_i) \}_{i=1}^n , \nabla^{l_k} (A_k \rightarrow B_k) \Rightarrow C \lor D$ for some $k \in \{ 1 , \dots , n \}$. This is just the same as the $Lw$ case, except this time we must remove the extra $\nabla^{l_k} (A_k \rightarrow B_k)$ with another $Lc$.
+	
+	\item $L\rightarrow$, applied on $\{ \nabla^{l_i} (A_i \rightarrow B_i) \}_{i=1, i \neq j}^n \Rightarrow \nabla^{l_j - 1} A_j$ and $\{ \nabla^{l_i} (A_i \rightarrow B_i) \}_{i=1, i \neq j}^n , \nabla^{l_j - 1} B_j \Rightarrow C \lor D$ for some $j \in \{ 1 , \dots , n \}$. So this implies $n>0$ and $l_j>0$ for at least one such $j$. Again, we can derive $\Rightarrow  \bigwedge_{i=1}^n (\nabla^{l_i} (A_i \rightarrow B_i)) \rightarrow \nabla^{l_j - 1} A_j$ using proper $L\land_{1/2}$, $Lc$ and $R\rightarrow$.
+\end{itemize}
+Notice that no other case is valid, since they all imply different structure for $\mathcal{D}$. Now from theorem \ref{thm:stl-eq-gstl}, all of the desired sequents also have a proof in $\stl$.
+
