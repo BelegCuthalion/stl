@@ -1,0 +1,23 @@
+\begin{lem}\label{lem:conj-context}
+  $\vdash \{ A_i \}_{i=1}^n \Rightarrow \bigwedge_{i=1}^n A_i$, for $n \geq 0$.
+\end{lem}
+
+\begin{proof}
+  For $n = 1$ we have $A_1 \Rightarrow A_1$ by $Id$. By induction on $n$, let IH be the proof tree for $\{ A_n \}_{i=1}^{n-1} \Rightarrow \bigwedge_{i=1}^{n-1}$, which we have from the induction hypothesis. For $n > 1$
+  \begin{prooftree}
+    \AXC{IH}
+    \noLine
+    \UIC{$\{ A_i \}_{i=1}^{n-1} \Rightarrow \bigwedge_{i=1}^{n-1} A_i$}
+    \RightLabel{$Lw$}
+    \UIC{$\{ A_i \}_{i=1}^n \Rightarrow \bigwedge_{i=1}^{n-1} A_i$}
+
+    \AXC{}
+    \RightLabel{$Id$}
+    \UIC{$A_n \Rightarrow A_n$}
+    \doubleLine \RightLabel{$Lw$}
+    \UIC{$\{ A_i \}_{i=1}^n \Rightarrow A_n$}
+
+    \RightLabel{$R\land$}
+    \BIC{$\{ A_i \}_{i=1}^n \Rightarrow \bigwedge_{i=1}^n A_i$}
+  \end{prooftree}
+\end{proof}

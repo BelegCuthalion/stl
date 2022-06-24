@@ -1,0 +1,17 @@
+\begin{lem}\label{lem:impl-elim}
+  $\Rightarrow A \rightarrow B \vdash A \Rightarrow B$.
+\end{lem}
+\begin{proof}\quad
+  \textit{Proof}:
+  \begin{prooftree}
+    \AXC{$\Rightarrow A \rightarrow B$}
+    \RightLabel{$N$}
+    \UIC{$\Rightarrow \nabla (A \rightarrow B)$}
+
+    \AXC{Lemma \ref{lem:modus-ponens}} \noLine
+    \UIC{$A, \nabla (A \rightarrow B) \Rightarrow B$}
+    
+    \RightLabel{$cut$}
+    \BIC{$A \Rightarrow B$}
+  \end{prooftree}
+\end{proof}

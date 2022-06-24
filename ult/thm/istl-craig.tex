@@ -1,0 +1,113 @@
+\begin{thm}[Craig's Interpolation for $\istl$]\label{thm:istl-craig} For any $\Gamma_1$, $\Gamma_2$ and $\Delta$, and for $S \subseteq \{L, R, Fa, Fu\}$, if $\istl(S) \vdash \Gamma_1 , \Gamma_2 \Rightarrow \Delta$, then there is a formula $C$ such that $V(C) \subseteq V(\Gamma_1) \cap V(\Gamma_2 , \Delta)$, $\istl(S) \vdash \Gamma_1 \Rightarrow C$ and $\istl(S) \vdash \Gamma_2 , C \Rightarrow \Delta$.
+\end{thm}
+
+\begin{proof}
+Let $\mathcal{D}$ be a cut-free proof for $\Gamma_1 , \Gamma_2 \Rightarrow \Delta$ in $\igstl(S)$, from Theorems \ref{thm:istl-eq-igstl} and \ref{thm:igstl-cut-elim}. We will find an interpolant which satisfies the statement of the theorem for $\igstl(S)$, nevertheless, it can be translated back to $\istl(S)$, again by Theorem \ref{thm:istl-eq-igstl}.
+
+We will use induction on the length of $\mathcal{D}$: For any smaller proof-tree which proves $\Gamma_1' , \Gamma_2' \Rightarrow \Delta'$, the induction hypothesis (IH) provides an interpolant, which we call $C_{\langle\Gamma_1'; \Gamma_2'; \Delta'\rangle}$, for which the statement of the theorem is true. We now build the desired interpolant $C$, in different cases for the last rule of $\mathcal{D}$. In cases for left-rules, we also need to consider whether the principal formula is in $\Gamma_1$ or $\Gamma_2$ in separate cases.
+\begin{enumerate}
+	\item ($Id$) We have $\Gamma_1,\Gamma_2 = \Delta = A$.
+	\begin{enumerate}
+		\item If $\Gamma_1 = \{\}$ and $\Gamma_2 = A$, then define $C = \top$. So we have $\Rightarrow \top$ by $Ta$ and $A , \top \Rightarrow A$ by $Id$ and $Lw$.
+		
+		\item If $\Gamma_1 = A$ and $\Gamma_2 = \{\}$ then define $C = A$. So we have $A \Rightarrow A$ by $Id$.
+	\end{enumerate}
+	\item ($Ta$) Take $C = \top$.
+	
+	\item ($Ex$) Take $C = \nabla^n \bot$.
+	
+	\item ($Lw$) $\mathcal{D}$ proves $\Gamma_1' , \Gamma_2' , A \Rightarrow \Delta$ and has a sub-proof for $\Gamma_1' , \Gamma_2' \Rightarrow \Delta$, for which IH gives an interpolant $C_{\langle\Gamma_1';\Gamma_2';\Delta\rangle}$ and proofs for $\Gamma_1' \Rightarrow C_{\langle\Gamma_1';\Gamma_2';\Delta\rangle}$ and $\Gamma_2' , C_{\langle\Gamma_1';\Gamma_2';\Delta\rangle} \Rightarrow \Delta$, such that $V(C_{\langle\Gamma_1';\Gamma_2';\Delta\rangle}) \subseteq$ $ V(\Gamma_1') \cap V(\Gamma_2' , \Delta)$.
+	\begin{enumerate}
+		\item If $\Gamma_1 = \Gamma_1'$ and $\Gamma_2 = \Gamma_2' , A$, then take $C = C_{\langle\Gamma_1';\Gamma_2';\Delta\rangle}$. We have  $\Gamma_1' \Rightarrow C$ by IH and $\Gamma_2 , A , C \Rightarrow \Delta$ by $Lw$ and IH. From IH, we also have $V(C) \subseteq V(\Gamma_1') \cap V(\Gamma_2' , A , \Delta)$, since $P$ takes ``$,$'' to ``$\cup$'', which distributes over ``$\cap$'' and is increasing with respect to ``$\subseteq$''.
+		
+		\item If $\Gamma_1 = \Gamma_1' , A$ and $\Gamma_2 = \Gamma_2'$, again take $C = C_{\langle\Gamma_1';\Gamma_2';\Delta\rangle}$. Then we have  $\Gamma_1' , A \Rightarrow C$ by $Lw$ and IH, and $\Gamma_2 , C \Rightarrow \Delta$ by IH. We also have $V(C) \subseteq V(\Gamma_1' , A) \cap V(\Gamma_2' , \Delta)$ by IH and argument similar to the previous case.
+	\end{enumerate}
+
+	\item ($Lc$) $\mathcal{D}$ proves $\Gamma_1' , \Gamma_2' , A \Rightarrow \Delta$ and has a sub-proof for $\Gamma_1' , \Gamma_2' , A , A \Rightarrow \Delta$.
+	\begin{enumerate}
+		\item If $\Gamma_1 = \Gamma_1'$ and $\Gamma_2 = \Gamma_2' , A$, take $C = C_{\langle\Gamma_1';\Gamma_2',A,A;\Delta\rangle}$. Then we have $\Gamma_1' \Rightarrow C$ by IH and $\Gamma_2' , A \Rightarrow \Delta$ by IH and $Lc$. From IH, we also have $V(C) \subseteq V(\Gamma_1') \cap V(\Gamma_2',A,\Delta)$, since $V(\Gamma,X) = V(\Gamma,X,X)$.
+		
+		\item If $\Gamma_1 = \Gamma_1' , A$ and $\Gamma_2 = \Gamma_2'$, take $C = C_{\langle\Gamma_1',A,A;\Gamma_2';\Delta\rangle}$. Then we have $\Gamma_1' , A \Rightarrow C$ by IH and $Lc$, and $\Gamma_2' \Rightarrow \Delta$ by IH. We also have $V(C) \subseteq V(\Gamma_1',A) \cap V(\Gamma_2',\Delta)$ as justified before.
+	\end{enumerate}
+
+	\item[6,7.] ($L\land_i$, {\small$i \in \{1,2\}$}) $\mathcal{D}$ proves $\Gamma_1' , \Gamma_2' , \nabla^n (A_1 \land A_2) \Rightarrow \Delta$ and has a sub-proof for $\Gamma_1' , \Gamma_2' , \nabla^n A_i \Rightarrow \Delta$.
+	\begin{enumerate}
+		\item If $\Gamma_1 = \Gamma_1'$ and $\Gamma_2 = \Gamma_2' , \nabla^n (A_1 \land A_2)$, take $C = C_{\langle\Gamma_1';\Gamma_2',\nabla^n A_i;\Delta\rangle}$. Then we have $\Gamma_1' \Rightarrow C$ by IH and $\Gamma_2' , \nabla^n (A_1 \land A_2) \Rightarrow \Delta$ by IH and $L\land_i$. From IH, we also have $V(C) \subseteq$ $V(\Gamma_1') \cap V(\Gamma_2',\nabla^n(A_1 \land A_2),\Delta)$, since $V(\nabla^n X) = V(X)$ and $P$ takes sub-formula ordering to ``$\subseteq$''.
+		
+		\item If $\Gamma_1 = \Gamma_1' , \nabla^n (A_1 \land A_2)$ and $\Gamma_2 = \Gamma_2'$, take $C = C_{\langle\Gamma_1',\nabla^n A_i;\Gamma_2';\Delta\rangle}$. Then we have $\Gamma_1' , \nabla^n (A_1 \land A_2)$ $\Rightarrow C$ by IH and $L\land_i$. Also from IH we have $\Gamma_2' \Rightarrow \Delta$. We also have $V(C) \subseteq V(\Gamma_1',\nabla^n (A_1 \land A_2))$ $\cap V(\Gamma_2',\Delta)$ as justified in the previous case.
+	\end{enumerate}
+	\setcounter{enumi}{7}
+
+	\item ($R\land$) $\mathcal{D}$ proves $\Gamma_1 , \Gamma_2 \Rightarrow A \land B$ and has sub-proofs for $\Gamma_1 , \Gamma_2 \Rightarrow A$ and $\Gamma_1 , \Gamma_2 \Rightarrow B$.\\
+	Let $C_1 = C_{\langle\Gamma_1;\Gamma_2;A\rangle}$ and $C_2 = C_{\langle\Gamma_1;\Gamma_2;B\rangle}$, and then take $C = C_1 \land C_2$.
+	We have $\Gamma_1 \Rightarrow C_1$ and $\Gamma_1 \Rightarrow C_2$, both from IH. Then by $R\land$ we have $\Gamma_1 \Rightarrow C_1 \land C_2$.
+	We also have $\Gamma_2 , C_1 \Rightarrow A$ and $\Gamma_2 , C_2 \Rightarrow B$, again from IH.
+	We can then derive $\Gamma_2 , C_1 \land C_2 \Rightarrow A$ and $\Gamma_2 , C_1 \land C_2 \Rightarrow B$, respectively by $L\land_1$ and $L\land_2$, and finally  $\Gamma_2 , C_1 \land C_2 \Rightarrow A \land B$ by $R\land$.
+	We also have $V(C_1) \subseteq V(\Gamma_1) \cap V(\Gamma_2 , A)$ and $V(C_2) \subseteq V(\Gamma_1) \cap V(\Gamma_2 , B)$. So $V(C_1 , C_2) \subseteq V(\Gamma_1) \cap V(\Gamma_2 , A , B)$ as it was justified before, and then $V(C_1 \land C_2) \subseteq V(\Gamma_1) \cap V(\Gamma_2 , A \land B)$.
+	
+	\item ($L\lor$) $\mathcal{D}$ proves $\Gamma_1' , \Gamma_2' , \nabla^n (A \lor B) \Rightarrow \Delta$ and has sub-proofs for $\Gamma_1' , \Gamma_2' , \nabla^n A \Rightarrow \Delta$ and $\Gamma_1' , \Gamma_2' , \nabla^n B \Rightarrow \Delta$.
+	\begin{enumerate}
+		\item If $\Gamma_1 = \Gamma_1'$ and $\Gamma_2 = \Gamma_2' , \nabla^n (A \lor B)$, let $C_1 = C_{\langle\Gamma_1';\Gamma_2',\nabla^n A;\Delta\rangle}$ and $C_2 = C_{\langle\Gamma_1';\Gamma_2',\nabla^n B;\Delta\rangle}$, and then take $C = C_1 \land C_2$.
+		We have $\Gamma_1' \Rightarrow C_1 \land C_2$ from IH and $R\land$.
+		From IH, by $L\land_1$ and $L\land_2$ we can derive $\Gamma_2' , \nabla^n A , C_1 \land C_2 \Rightarrow \Delta$ and $\Gamma_2' , \nabla^n B , C_1 \land C_2 \Rightarrow \Delta$ respectively, to which we apply $L\lor$ to get to $\Gamma_2' , \nabla^n (A \lor B) , C_1 \land C_2 \Rightarrow \Delta$.
+		From IH, we also have $V(C_1) \subseteq V(\Gamma_1') \cap V(\Gamma_2' , \nabla^n A , \Delta)$ and $V(C_2) \subseteq V(\Gamma_1') \cap V(\Gamma_2' , \nabla^n B , \Delta)$. Just like the previous case, we can deduce that $V(C_1 \land C_2) \subseteq V(\Gamma_1') \cap V(\Gamma_2' , \nabla^n (A \land B) , \Delta)$.
+
+		\item If $\Gamma_1 = \Gamma_1' , \nabla^n (A \lor B)$ and $\Gamma_2 = \Gamma_2'$, let $C_1 = C_{\langle\Gamma_1',\nabla^n A;\Gamma_2';\Delta\rangle}$ and $C_2 = C_{\langle\Gamma_1',\nabla^n B;\Gamma_2';\Delta\rangle}$, and then take $C = C_1 \lor C_2$.
+		From IH, by $R\lor_1$ and $R\lor_2$ we can derive $\Gamma_1' , \nabla^n A \Rightarrow C_1 \lor C_2$ and $\Gamma_1' , \nabla^n B \Rightarrow C_1 \lor C_2$ respectively, to which we apply $L\lor$ to get to $\Gamma_1' , \nabla^n (A \lor B) \Rightarrow C_1 \lor C_2$.
+		We have $\Gamma_2' , C_1 \lor C_2 \Rightarrow \Delta$ from IH and $L\lor$.
+		From IH, we also have $V(C_1) \subseteq V(\Gamma_1' , \nabla^n A) \cap$ $V(\Gamma_2' , \Delta)$ and $V(C_2) \subseteq V(\Gamma_1' , \nabla^n B) \cap V(\Gamma_2' , \Delta)$. Just like the previous case, we can deduce that $V(C_1 \lor C_2) \subseteq V(\Gamma_1' , \nabla^n (A \land B)) \cap V(\Gamma_2' , \Delta)$.
+	\end{enumerate}
+
+	\item[10,11.] ($R\lor_i$, {\small$i \in \{1,2\}$}) $\mathcal{D}$ proves $\Gamma_1 , \Gamma_2 \Rightarrow A_1 \lor A_2$ and has a sub-proof for $\Gamma_1 , \Gamma_2 \Rightarrow A_i$. Take $C = C_{\langle\Gamma_1;\Gamma_2;A_i\rangle}$. Then we have $\Gamma_1 \Rightarrow C$ from IH and $\Gamma_2 , C \Rightarrow A_1 \lor A_2$ from IH and $R\lor_i$.
+	From IH, we also have $V(C) \subseteq V(\Gamma_1) \cap V(\Gamma_2 , A_1 \lor A_2)$, as was justified before.
+	\setcounter{enumi}{11}
+	
+	\item ($L\supset$) $\mathcal{D}$ proves $\Gamma_1' , \Gamma_2' , \nabla^n (A \supset B) \Rightarrow \Delta$ and has sub-proofs for $\Gamma_1' , \Gamma_2' \Rightarrow \nabla^n A$ and $\Gamma_1' , \Gamma_2' , \nabla^n B \Rightarrow \Delta$.
+	\begin{enumerate}
+		\item If $\Gamma_1 = \Gamma_1'$ and $\Gamma_2 = \Gamma_2' , \nabla^n (A \supset B)$, let $C_1 = C_{\langle\Gamma_1';\Gamma_2';\nabla^n A\rangle}$ and $C_2 = C_{\langle\Gamma_1';\Gamma_2',\nabla^n B;\Delta\rangle}$, and take $C = C_1 \land C_2$.
+		We have $\Gamma_1' \Rightarrow C_1 \land C_2$ from IH and $R\land$.
+		From IH, by $L\land_1$ and $L\land_2$ we can derive $\Gamma_2' , C_1 \land C_2 \Rightarrow \nabla^n A$ and $\Gamma_2' , \nabla^n B , C_1 \land C_2 \Rightarrow \Delta$ respectively, to which we apply $L\supset$ to get $\Gamma_2' , \nabla^n (A \supset B) , C_1 \land C_2 \Rightarrow \Delta$.
+		From IH, we also have $V(C_1) \subseteq V(\Gamma_1') \cap$ $V(\Gamma_2' , \nabla^n A)$ and $V(C_2) \subseteq V(\Gamma_1') \cap V(\Gamma_2' , \nabla^n B , \Delta)$. This implies $V(C_1 \land C_2) \subseteq V(\Gamma_1') \cap V(\Gamma_2' , \nabla^n (A \supset B) , \Delta)$.
+
+		\item If $\Gamma_1 = \Gamma_1' , \nabla^n (A \supset B)$ and $\Gamma_2 = \Gamma_2'$, let $C_1 = C_{\langle\Gamma_2';\Gamma_1';\nabla^n A\rangle}$ and $C_2 = C_{\langle\Gamma_1',\nabla^n B;\Gamma_2';\Delta\rangle}$, and take $C = C_1 \supset C_2$.
+		From IH we have $\Gamma_1' , C_1 \Rightarrow \nabla^n A$ and $\Gamma_1' , \nabla^n B , C_1 \Rightarrow C_2$, with a $Lw$ to introduce $C_1$ to the left. From $L\supset$ we get $\Gamma_1 , \nabla^n (A \supset B) , C_1 \Rightarrow C_2$, to which we can apply $R\supset$ to get $\Gamma_1' , \nabla^n (A \supset B) \Rightarrow C_1 \supset C_2$.
+
+		From IH, we have also $\Gamma_2' \Rightarrow C_1$ and $\Gamma_2' , C_2 \Rightarrow \Delta$, from which we can derive $\Gamma_2' , C_1 \supset C_2 \Rightarrow \Delta$ by an application of $L\supset$. IH also states that $V(C_1) \subseteq V(\Gamma_2') \cap V(\Gamma_1' , \nabla^n A)$ and $V(C_2) \subseteq V(\Gamma_1' , \nabla^n B) \cap V(\Gamma_2' , \Delta)$. Then $V(C_1 \supset C_2) \subseteq V(\Gamma_1' , \nabla^n (A \supset B)) \cap V(\Gamma_2' , \Delta)$.
+	\end{enumerate}
+
+	\item ($R\supset$) $\mathcal{D}$ proves $\Gamma_1 , \Gamma_2 \Rightarrow A \supset B$ and has a sub-proof for $\Gamma_1 , \Gamma_2 , A \Rightarrow B$. Let $C = C_{\langle\Gamma_1;\Gamma_2,A;B\rangle}$. So we have $\Gamma_1 \Rightarrow C$ and $\Gamma_2 , C \Rightarrow A \supset B$ from IH and an application of $R\supset$.
+	We also have $V(C) \subseteq V(\Gamma_1) \cap V(\Gamma_2 , A \supset B)$ from IH and the fact that $P$ preserves sub-formula ordering in $\subseteq$.
+
+	\item ($L\rightarrow$) This case is similar to $L\supset$. $\mathcal{D}$ proves $\Gamma_1' , \Gamma_2' , \nabla^{n+1} (A \rightarrow B) \Rightarrow \Delta$ and has sub-proofs for $\Gamma_1' , \Gamma_2' \Rightarrow \nabla^n A$ and $\Gamma_1' , \Gamma_2' , \nabla^n B \Rightarrow \Delta$.
+	\begin{enumerate}
+		\item If $\Gamma_1 = \Gamma_1'$ and $\Gamma_2 = \Gamma_2' , \nabla^{n+1} (A \rightarrow B)$, let $C_1 = C_{\langle\Gamma_1';\Gamma_2';\nabla^n A\rangle}$ and $C_2 = C_{\langle\Gamma_1';\Gamma_2',\nabla^n B;\Delta\rangle}$, and take $C = C_1 \land C_2$.
+		We have $\Gamma_1' \Rightarrow C_1 \land C_2$ from IH and $R\land$.
+		From IH, by $L\land_1$ and $L\land_2$ we can derive $\Gamma_2' , C_1 \land C_2 \Rightarrow \nabla^n A$ and $\Gamma_2' , \nabla^n B , C_1 \land C_2 \Rightarrow \Delta$ respectively, to which we apply $L\rightarrow$ to get to $\Gamma_2' , \nabla^{n+1} (A \rightarrow B) , C_1 \land C_2 \Rightarrow \Delta$.
+		From IH, we also have $V(C_1) \subseteq V(\Gamma_1') \cap$ $V(\Gamma_2' , \nabla^n A)$ and $V(C_2) \subseteq V(\Gamma_1') \cap V(\Gamma_2' , \nabla^n B , \Delta)$, which implies $V(C_1 \land C_2) \subseteq V(\Gamma_1') \cap V(\Gamma_2' , \nabla^{n+1} (A \rightarrow B) , \Delta)$.
+
+		\item If $\Gamma_1 = \Gamma_1' , \nabla^{n+1} (A \rightarrow B)$ and $\Gamma_2 = \Gamma_2'$, let $C_1 = C_{\langle\Gamma_2';\Gamma_1';\nabla^n A\rangle}$ and $C_2 = C_{\langle\Gamma_1',\nabla^n B;\Gamma_2';\Delta\rangle}$, and take $C = C_1 \supset C_2$.
+		From IH we have $\Gamma_1' , C_1 \Rightarrow \nabla^n A$. Also from IH, with a $Lw$ to add $C_1$ to the left, we have $\Gamma_1' , \nabla^n B , C_1 \Rightarrow C_2$. By $L\rightarrow$ and $R\supset$ we get $\Gamma_1' , \nabla^{n+1} (A \rightarrow B) \Rightarrow C_1 \supset C_2$.
+		We also have $\Gamma'_2, C_1 \supset C_2 \Rightarrow \Delta$ from IH and $L\supset$. Again from IH, we have $V(C_1) \subseteq V(\Gamma_2') \cap V(\Gamma_1' , \nabla^n A)$ and $V(C_2) \subseteq V(\Gamma_1' , \nabla^n B) \cap V(\Gamma_2' , \Delta)$, thus $V(C_1 \supset C_2) \subseteq V(\Gamma_1' , \nabla^{n+1} (A \supset B)) \cap V(\Gamma_2' , \Delta)$.
+	\end{enumerate}
+
+	\item ($R\rightarrow$) This is also similar to the $R\supset$ case, except that here $\mathcal{D}$'s sub-proof proves $\nabla \Gamma_1 , \nabla \Gamma_2 , A \Rightarrow B$. Let $C' = C_{\langle\nabla\Gamma_1;\nabla\Gamma_2,A;B\rangle}$ amd take $C = \top \rightarrow C'$. So we have $\nabla \Gamma_1 \Rightarrow C'$ from IH, at the right of which we can introduce $\top$ by $Lw$, and then apply $R\rightarrow$ to get $\Gamma_1 \Rightarrow \top \rightarrow C'$. From IH, we also have $\nabla \Gamma_2, A, C' \Rightarrow B$. On the other hand, we have $\nabla (\top \rightarrow C') \Rightarrow C'$ by applying $L\rightarrow$ on $\Rightarrow \top$ and $C' \Rightarrow C'$. Using this sequent and $Cut$, we can replace $C'$ with $\nabla (\top \rightarrow C')$ in the former sequent to get $\nabla \Gamma_2 , A , \nabla (\top \rightarrow C') \Rightarrow B$. By $R\rightarrow$ we would get $\Gamma_2 , \top \supset C' \Rightarrow A \rightarrow B$.
+	We also have $V(\top \rightarrow C) \subseteq V(\Gamma_1) \cap V(\Gamma_2 , A \rightarrow B)$ from IH and the fact that $P$ preserves sub-formula ordering in $\subseteq$ and $\top$ does not introduce new atomic formulas.
+
+	\item ($N$) $\mathcal{D}$ proves $\nabla \Gamma_1 , \nabla \Gamma_2 \Rightarrow \nabla \Delta$ and has a sub-proof for $\Gamma_1 , \Gamma_2 \Rightarrow \Delta$. Just take $C = C(\Gamma_1;\Gamma_2;\Delta)$ and apply $N$ on the sequents from IH. The variable condition is also trivial.
+	
+	\item ($L$) $\mathcal{D}$ proves $\Gamma_1' , \Gamma_2' , \nabla A \Rightarrow \Delta$ and has a sub-proof for $\Gamma_1' , \Gamma_2' , A \Rightarrow \Delta$.
+	\begin{enumerate}
+		\item If $\Gamma_1 = \Gamma_1'$ and $\Gamma_2 = \Gamma_2' , \nabla A$, take $C = C_{\langle\Gamma_1';\Gamma_2',A;\Delta\rangle}$. Then we have $\Gamma_1' \Rightarrow C$ by IH and $\Gamma_2' , \nabla A \Rightarrow \Delta$ by IH and $L$. From IH, it's also trivial that $V(C) \subseteq V(\Gamma_1') \cap V(\Gamma_2',\nabla A,\Delta)$.
+		
+		\item If $\Gamma_1 = \Gamma_1' , \nabla A$ and $\Gamma_2 = \Gamma_2'$, take $C = C_{\langle\Gamma_1',A;\Gamma_2';\Delta\rangle}$. Then we have $\Gamma_1' , \nabla A \Rightarrow C$ by IH and $L$, and $\Gamma_2' \Rightarrow \Delta$ by IH. We also have $V(C) \subseteq V(\Gamma_1', \nabla A) \cap V(\Gamma_2',\Delta)$
+	\end{enumerate}
+
+	\item ($R$) Assume $\Gamma_1 = \Pi_1, \Sigma_1$ and $\Gamma_2 = \Pi_2, \Sigma_2$. $\mathcal{D}$ proves $\Pi_1, \Sigma_1, \Pi_2, \Sigma_2 \Rightarrow \Delta$ and has a sub-proof for $\Pi_1, \nabla\Sigma_1, \Pi_2, \nabla\Sigma_2 \Rightarrow \Delta$.
+	Take $C =$\\ $C_{\langle\Pi_1\nabla\Sigma_1;\Pi_2\nabla\Sigma_2;\Delta\rangle}$. Then from IH and $R$ we have $\Pi_1, \Sigma_1 \Rightarrow C$ and $\Pi_2, \Sigma_2, C \Rightarrow \Delta$. We also have $V(C) \subseteq V(\Pi_1,\Sigma_1) \cap V(\Pi_2,\Sigma_2,\Delta)$, since $\nabla$ does not introduce new atomic formulas and we can drop it.
+
+	\item ($Fa$) This is similar to the $R\supset$ case. $\mathcal{D}$ proves $\Gamma_1 , \Gamma_2 \Rightarrow \nabla(A \rightarrow B)$ and has a sub-proof for $\Gamma_1 , \Gamma_2 , A \Rightarrow B$. Let $C = C_{\langle\Gamma_1;\Gamma_2,A;B\rangle}$. So we have $\Gamma_1 \Rightarrow C$ and $\Gamma_2 , C \Rightarrow \nabla (A \rightarrow B)$ from IH and an application of $Fa$.
+	It is easy to deduce $V(C) \subseteq V(\Gamma_1) \cap V(\Gamma_2 , \nabla (A \rightarrow B))$ from IH.
+
+	\item ($Fu$) $\mathcal{D}$ proves $\Gamma_1, \Gamma_2 \Rightarrow \Delta$ and has a sub-proof for $\nabla \Gamma_1, \nabla \Gamma_2 \Rightarrow \nabla \Delta$. Let $C' = C_{\langle\nabla\Gamma_1;\nabla\Gamma_2;\nabla\Delta\rangle}$ and take $C = \top \rightarrow C'$. We can derive $\Gamma_1 \Rightarrow \top \rightarrow C'$ by $Lw$ and $R\rightarrow$ on the sequent that we get from IH. On the other hand, Lemma \ref{lem:l-nabla-box} gives us $\nabla (\top \rightarrow C') \Rightarrow C'$, which can be cut into $\nabla \Gamma_2, C' \Rightarrow \nabla \Delta$, to get $\nabla \Gamma_2, \nabla (\top \rightarrow C') \Rightarrow \nabla \Delta$. By $Fu$ we have $\Gamma_2, \top \rightarrow C' \Rightarrow \Delta$. The variable condition also holds, since $V(C') = V(\top \rightarrow C')$.
+\end{enumerate}
+\end{proof}

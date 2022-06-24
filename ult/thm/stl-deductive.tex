@@ -1,0 +1,139 @@
+\subsection{Interpolation for $\stl$}
+We can not prove the same result for the fragment $\stl$, since we ought to use $\supset$ to construct the interpolant in the  $L\rightarrow$ case of the last theorem. But if we add the rule $L$ to this fragment, we can prove a weaker form of interpolation using $\rightarrow$, as we will do in this section.
+Throughout this section, when we use plain $\vdash$ symbol without specifying the deductive system, we mean deduction in $\stl(S, L)$ where $S \subseteq \{L\supset, R\supset, R, Fu, Fa\}$. So by $\Gamma' \Rightarrow \Delta' \vdash \Gamma \Rightarrow \Delta$ we mean that $\Gamma \Rightarrow \Delta$ is provable in $\stl(S)+\{\Gamma' \Rightarrow \Delta'\}$.
+\begin{lem}
+	\label{lem:vdash} $\Rightarrow A \vdash \Gamma \Rightarrow \Delta$ if and only if $\Gamma, \nabla^n A \Rightarrow \Delta$, for some $n$.
+\end{lem}
+\begin{proof}
+	I. Suppose we have $\Gamma, \nabla^n A \Rightarrow \Delta$ for some $n$. Assuning $\Rightarrow A$, we can first prove $\Rightarrow \nabla^n A$ by $n$ applications of $N$, and then $Cut$ it into $\Gamma, \nabla^n A \Rightarrow \Delta$ to get $\Gamma \Rightarrow \Delta$.
+
+	II. For the other direction, suppose $\Gamma \Rightarrow \Delta$ has a proof-tree like $\mathcal{D}$ in $\stl(S,L)+\{\Rightarrow A\}$. It suffices to prove $\nabla^n A, \Gamma \Rightarrow \Delta$ for some $n$ in $\stl(S,L)$. By induction on the length of $\mathcal{D}$, we can assume that the statement of the theorem holds for the possible subtree(s) of $\mathcal{D}$.
+
+	Now for different cases for the last rule of $\mathcal{D}$, we will construct the desired proof. In all cases, the possible immediate subtrees of $\mathcal{D}$ are called $\mathcal{D}_0$ and $\mathcal{D}_1$.
+	
+	If $\mathcal{D}$ is just $\Rightarrow A$, then $\Gamma$ and $\Delta$ must be $\{\}$ and $A$ respectively. So we would have $A \Rightarrow A$ by $Id$ with $n = 0$.
+
+	If $\mathcal{D}$ is any of the axioms $Id$, $Ta$ or $Ex$, then we can add $A$ to the left side of the same axioms to construct the desired sequent with $n = 0$.
+
+	If $\mathcal{D}$ ends with any of the rules with one assumption, which are $Lw$, $Lc$,$Rw$, $L\land_1$, $L\land_2$, $R\lor_1$, $R\lor_2$, $N$, $L$, $R$ or $Fa$, just apply the same rule on IH($\mathcal{D}_0$).
+
+	If $\mathcal{D}$ ends with $Cut$, we can also do the same, applying $Cut$ on IH($\mathcal{D}_0$) and IH($\mathcal{D}_1$), since $Cut$ is a context-free rule.
+
+	For the context-sensitive rules with two assumptions, which are $R\land$, $L\lor$, and $L\rightarrow$, we must first equalize the number of $\nabla$'s on $A$ in the left side of the sequents that we get from IH, then we can apply the same rule.
+
+	If $\mathcal{D}$ ends with $R\rightarrow$ or $Fu$, we can do the same only if there is at least one $\nabla$ on $A$ in the left side of the sequent that we get from IH. Otherwise we can just add it with $L$, and then apply $R\rightarrow$ or $Fu$.
+\end{proof}
+
+The deductive interpolation is stated in the next corollary. First we need to prove a slightly stronger version for technical reasons.
+
+\begin{thm}\label{thm:ldls-dedint}
+	For any $\Gamma_1$, $\Gamma_2$ and $\Delta$, if $\vdash \Gamma_1 , \Gamma_2 \Rightarrow \Delta$ then there is a formula $C$ and natural numbers $m_1$ and $m_2$ such that
+	\begin{enumerate}[label=(\arabic**)]
+		\item $\vdash \nabla^{m_1} \Gamma_1 \Rightarrow C$,
+		\item $\vdash \nabla^{m_2} \Gamma_2 , C \Rightarrow \Delta$,
+		\item $V(C) \subseteq V(\Gamma_1) \cap V(\Gamma_2,\Delta)$, and
+	\end{enumerate}
+\end{thm}
+\begin{proof}
+	By theorem \ref{thm:gstl-cut-elim}, we can assume that $\Gamma_1, \Gamma_2 \Rightarrow \Delta$ has a cut-free proof-tree like $\mathcal{D}$. Now using induction on the length of $\mathcal{D}$, we can assume that the stronger statement holds for the assumption(s) of $\mathcal{D}$ like $\Gamma_1', \Gamma_2' \Rightarrow \Delta'$ by an interpolant that we call $C_{\langle\Gamma_1';\Gamma_2';\Delta'\rangle}$.
+	Now construct proper $C$ for different cases for the last rule of $\mathcal{D}$. In each case, the immediate subtrees of $\mathcal{D}$ are denoted by $\mathcal{D}_i (i \in \{0,1\})$.
+	\begin{enumerate}
+		\item ($Id$) We have $\Gamma_1,\Gamma_2 = \Delta = A$ for some formula $A$.
+		\begin{enumerate}
+			\item If $\Gamma_1 = \{\}$ and $\Gamma_2 = A$, then take $C = \top$. So we have $\Rightarrow \top$ by $Ta$ and $A , \top \Rightarrow A$ by $Id$ and $Lw$.
+
+			\item If $\Gamma_1 = A$ and $\Gamma_2 = \{\}$, take $C = A$, and we have $A \Rightarrow A$ by $Id$.
+		\end{enumerate}
+		\item ($Ta$) Take $C = \top$.
+
+		\item ($Ex$) Take $C = \nabla^n \bot$.
+
+		\item ($Lw$) $\mathcal{D}$ proves $\Gamma_1' , \Gamma_2' , A \Rightarrow \Delta$ and has a sub-proof for $\Gamma_1' , \Gamma_2' \Rightarrow \Delta$, for which IH gives an interpolant $C_{\langle\Gamma_1';\Gamma_2';\Delta\rangle}$, natural numbers $m_1$ and $m_2$ and proofs for $\nabla^{m_1} \Gamma_1' \Rightarrow C_{\langle\Gamma_1';\Gamma_2';\Delta\rangle}$ and $\nabla^{m_2} \Gamma_2 , C_{\langle\Gamma_1';\Gamma_2';\Delta\rangle} \Rightarrow \Delta$, such that $V(C_{\langle\Gamma_1';\Gamma_2';\Delta\rangle}) \subseteq$ $ V(\Gamma_1') \cap V(\Gamma_2' , \Delta)$.
+		\begin{enumerate}
+			\item If $\Gamma_1 = \Gamma_1'$ and $\Gamma_2 = \Gamma_2' , A$, take $C = C_{\langle\Gamma_1';\Gamma_2';\Delta\rangle}$. Then by IH we have  $\nabla^{m_1} \Gamma_1' \Rightarrow C$ and $\nabla^{m_2} \Gamma_2' , A , C \Rightarrow \Delta$ by $Lw$ and IH. From IH, we also have $V(C) \subseteq V(\Gamma_1') \cap V(\Gamma_2' , A , \Delta)$, since $P$ takes ``$,$'' to ``$\cup$'', which distributes over ``$\cap$'' and is increasing with respect to ``$\subseteq$''.
+
+			\item If $\Gamma_1 = \Gamma_1' , A$ and $\Gamma_2 = \Gamma_2'$, again take $C = C_{\langle\Gamma_1';\Gamma_2';\Delta\rangle}$. Then we have  $\nabla^{m_1} \Gamma_1' , A \Rightarrow C$ by $Lw$ and IH, and $\nabla^{m_2} \Gamma_2' , C \Rightarrow \Delta$ by IH. We also have $V(C) \subseteq V(\Gamma_1' , A) \cap V(\Gamma_2' , \Delta)$ by IH and argument similar to the previous case.
+		\end{enumerate}
+
+		\item ($Lc$) $\mathcal{D}$ proves $\Gamma_1' , \Gamma_2' , A \Rightarrow \Delta$ and has a sub-proof for $\Gamma_1' , \Gamma_2' , A , A \Rightarrow \Delta$.
+		\begin{enumerate}
+			\item If $\Gamma_1 = \Gamma_1'$ and $\Gamma_2 = \Gamma_2' , A$, take $C = C_{\langle\Gamma_1';\Gamma_2',A,A;\Delta\rangle}$. Then we have $\nabla^{m_1} \Gamma_1' \Rightarrow C$ by IH and $\nabla^{m_2}\Gamma_2' , \nabla^{m_2} A , C \Rightarrow \Delta$ by IH and $Lc$. From IH, we can also deduce $V(C) \subseteq V(\Gamma_1') \cap V(\Gamma_2',A,\Delta)$ similarly.
+			
+			\item If $\Gamma_1 = \Gamma_1' , A$ and $\Gamma_2 = \Gamma_2'$, take $C = C_{\langle\Gamma_1',A,A;\Gamma_2';\Delta\rangle}$. Then we have $\nabla^{m_1} \Gamma_1', \nabla^{m_1} A \Rightarrow C$ by IH and $Lc$, and $\nabla^{m_2} \Gamma_2' , C \Rightarrow \Delta$ by IH. We also have $V(C) \subseteq V(\Gamma_1',A) \cap$ $V(\Gamma_2',\Delta)$ as justified before.
+		\end{enumerate}
+
+		\item[6,7.] ($L\land_i$, {\small$i \in \{1,2\}$}) $\mathcal{D}$ proves $\Gamma_1' , \Gamma_2' , \nabla^n (A_1 \land A_2) \Rightarrow \Delta$ and has a sub-proof for $\Gamma_1' , \Gamma_2' , \nabla^n A_i \Rightarrow \Delta$.
+		\begin{enumerate}
+			\item If $\Gamma_1 = \Gamma_1'$ and $\Gamma_2 = \Gamma_2' , \nabla^n (A_1 \land A_2)$, take $C = C_{\langle\Gamma_1';\Gamma_2',\nabla^n A_i;\Delta\rangle}$. Then we have $\nabla^{m_1} \Gamma_1' \Rightarrow C$ by IH and $\nabla^{m_2} \Gamma_2' , \nabla^{n+m_2} (A_1 \land A_2), C \Rightarrow \Delta$ by IH and $L\land_i$. From IH, we also have $V(C) \subseteq$ $V(\Gamma_1') \cap V(\Gamma_2',\nabla^n(A_1 \land A_2),\Delta)$, since $V(\nabla^n X) = V(X)$ and $P$ takes sub-formula ordering to ``$\subseteq$''.
+			
+			\item If $\Gamma_1 = \Gamma_1' , \nabla^n (A_1 \land A_2)$ and $\Gamma_2 = \Gamma_2'$, take $C = C_{\langle\Gamma_1',\nabla^n A_i;\Gamma_2';\Delta\rangle}$. Then we have $\nabla^{m_1} \Gamma_1',\nabla^{n+m_1} (A_1 \wedge A_2) \Rightarrow C$ by IH and $L\wedge_i$. Also from IH we have $\nabla^{m_2} \Gamma_2', C \Rightarrow \Delta$. We also have $V(C) \subseteq V(\Gamma_1',\nabla^n (A_1 \land A_2))$ $\cap V(\Gamma_2',\Delta)$ as justified in the previous case.
+		\end{enumerate}
+		\setcounter{enumi}{7}
+
+		\item ($R\land$) $\mathcal{D}$ proves $\Gamma_1 , \Gamma_2 \Rightarrow A \land B$ and has sub-proofs for $\Gamma_1 , \Gamma_2 \Rightarrow A$ and $\Gamma_1 , \Gamma_2 \Rightarrow B$.
+		Let $C_1 = C_{\langle\Gamma_1;\Gamma_2;A\rangle}$ and $C_2 = C_{\langle\Gamma_1;\Gamma_2;B\rangle}$, and then take $C = C_1 \land C_2$.
+		We have $\nabla^{m_1'} \Gamma_1 \Rightarrow C_1$ and $\nabla^{m_1''} \Gamma_1 \Rightarrow C_2$, both from IH, to which we apply proper number of $L$'s and equalize their contexts to be able to derive $\nabla^{m_1} \Gamma_1 \Rightarrow C_1 \wedge C_2$ by $R\wedge$ for some $m_1$.
+		We also have $\nabla^{m_2'} \Gamma_2 , C_1 \Rightarrow A$ and $\nabla^{m_2''} \Gamma_2 , C_2 \Rightarrow B$, again from IH.
+		We can then derive $\nabla^{m_2'} \Gamma_2 , C_1 \land C_2 \Rightarrow A$ and $\nabla^{m_2''} \Gamma_2 , C_1 \land C_2 \Rightarrow B$, respectively by $L\land_1$ and $L\land_2$, and finally  $\nabla^{m_2} \Gamma_2 , C_1 \land C_2 \Rightarrow A \land B$ by $L$ and $R\land$.
+		We also have $V(C_1) \subseteq V(\Gamma_1) \cap V(\Gamma_2 , A)$ and $V(C_2) \subseteq V(\Gamma_1) \cap V(\Gamma_2 , B)$. So $V(C_1 \land C_2) \subseteq V(\Gamma_1) \cap V(\Gamma_2 , A \land B)$ as it was justified before.
+
+		\item ($L\lor$) $\mathcal{D}$ proves $\Gamma_1' , \Gamma_2' , \nabla^n (A \lor B) \Rightarrow \Delta$ and has sub-proofs for $\Gamma_1' , \Gamma_2' , \nabla^n A \Rightarrow \Delta$ and $\Gamma_1' , \Gamma_2' ,$ $\nabla^n B \Rightarrow \Delta$.
+		\begin{enumerate}
+			\item If $\Gamma_1 = \Gamma_1'$ and $\Gamma_2 = \Gamma_2' , \nabla^n (A \lor B)$, let $C_1 = C_{\langle\Gamma_1';\Gamma_2',\nabla^n A;\Delta\rangle}$ and $C_2 = C_{\langle\Gamma_1';\Gamma_2',\nabla^n B;\Delta\rangle}$, and then take $C = C_1 \land C_2$.
+			We have $\nabla^{m_1'} \Gamma_1' \Rightarrow C_1$ and $\nabla^{m_1''} \Gamma_1' \Rightarrow C_2$ from IH, to which we apply $R\land$ after equalizing their contexts with $L$, to get $\nabla^{m_1} \Gamma_1' \Rightarrow C_1 \land C_2$ for some $m_1$.
+			From IH, by $L\land_1$ and $L\land_2$ we can derive $\nabla^{m_2'}\Gamma_2' , \nabla^n A , C_1 \land C_2 \Rightarrow \Delta$ and $\nabla^{m_2''} \Gamma_2' , \nabla^n B , C_1 \land C_2 \Rightarrow \Delta$ respectively, to which we apply $L$ and $L\lor$ to get to $\nabla^{m_2} \Gamma_2' , \nabla^n (A \lor B) , C_1 \land C_2 \Rightarrow \Delta$.
+			From IH, we also have $V(C_1) \subseteq V(\Gamma_1') \cap V(\Gamma_2' , \nabla^n A , \Delta)$ and $V(C_2) \subseteq V(\Gamma_1') \cap V(\Gamma_2' , \nabla^n B , \Delta)$. Just like the previous case, we can deduce that $V(C_1 \land C_2) \subseteq V(\Gamma_1') \cap V(\Gamma_2' , \nabla^n (A \land B) , \Delta)$.
+
+			\item If $\Gamma_1 = \Gamma_1' , \nabla^n (A \lor B)$ and $\Gamma_2 = \Gamma_2'$, let $C_1 = C_{\langle\Gamma_1',\nabla^n A;\Gamma_2';\Delta\rangle}$ and $C_2 = C_{\langle\Gamma_1',\nabla^n B;\Gamma_2';\Delta\rangle}$, and then take $C = C_1 \lor C_2$.
+			From IH, by $R\lor_1$ and $R\lor_2$ we can derive $\nabla^{m_1'} \Gamma_1',\nabla^{n+m_1'} A \Rightarrow C_1 \lor C_2$ and $\nabla^{m_1''} \Gamma_1', \nabla^{n+m_1''} B \Rightarrow C_1 \lor C_2$ respectively, to which we apply $L$ and $L\vee$ to get to $\nabla^{m_1} \Gamma_1', \nabla^{n+m_1} (A \lor B) \Rightarrow C_1 \lor C_2$ for some $m_1$.
+			From IH, we also have $\nabla^{m_2} \Gamma_2' , C_1 \lor C_2 \Rightarrow \Delta$ with $L$ and $L\lor$.
+			Also $V(C_1) \subseteq V(\Gamma_1' , \nabla^n A) \cap$ $V(\Gamma_2' , \Delta)$ and $V(C_2) \subseteq V(\Gamma_1' , \nabla^n B) \cap V(\Gamma_2' , \Delta)$. Just like the previous case, we can deduce that $V(C_1 \lor C_2) \subseteq V(\Gamma_1' , \nabla^n (A \land B)) \cap V(\Gamma_2' , \Delta)$.
+		\end{enumerate}
+
+		\item[10,11.] ($R\lor_i$, {\small$i \in \{1,2\}$}) $\mathcal{D}$ proves $\Gamma_1 , \Gamma_2 \Rightarrow A_1 \lor A_2$ and has a sub-proof for $\Gamma_1 , \Gamma_2 \Rightarrow A_i$. Take $C = C_{\langle\Gamma_1;\Gamma_2;A_i\rangle}$. Then we have $\nabla^m \Gamma_1 \Rightarrow C$ from IH/ and $\nabla^{m_2} \Gamma_2 , C \Rightarrow A_1 \lor A_2$ from IH and $R\lor_i$.
+		From IH, we also have $V(C) \subseteq V(\Gamma_1) \cap V(\Gamma_2 , A_1 \lor A_2)$, as was justified before.
+		\setcounter{enumi}{11}
+
+		\item ($L\rightarrow$) $\mathcal{D}$ proves $\Gamma_1' , \Gamma_2' , \nabla^{n+1} (A \rightarrow B) \Rightarrow \Delta$ and has sub-proofs for $\Gamma_1' , \Gamma_2' \Rightarrow \nabla^n A$ and $\Gamma_1' , \Gamma_2' , \nabla^n B \Rightarrow \Delta$.
+		\begin{enumerate}
+			\item If $\Gamma_1 = \Gamma_1'$ and $\Gamma_2 = \Gamma_2' , \nabla^{n+1} (A \rightarrow B)$, let $C_1 = C_{\langle\Gamma_1';\Gamma_2';\nabla^n A\rangle}$ and $C_2 = C_{\langle\Gamma_1';\Gamma_2',\nabla^n B;\Delta\rangle}$.
+			We have $\nabla^{m_1} \Gamma_1' \Rightarrow C_1 \land C_2$ from IH and $R\land$.
+			From IH we can derive $\nabla^{m_2'} \Gamma_2' , C_1 \land C_2 \Rightarrow \nabla^n A$ and $\nabla^{m_2''} \Gamma_2' , \nabla^{n+m_2''} B , C_1 \land C_2 \Rightarrow \Delta$, by $L\land_1$ and $L\land_2$ respectively. Applying $N$ for $m_2''$ times on the former sequent, and also applying $L$ for $m_2''$ times on $\nabla^{m_2'} \Gamma_2'$ and $m_2''$ times on $C_1 \wedge C_2$ in the latter sequent, we would get $\nabla^{m_2'+m_2''} \Gamma_2' , \nabla^{m_2''} (C_1 \land C_2) \Rightarrow \nabla^{n+m_2''} A$ and $\nabla^{m_2'+m_2''} \Gamma_2' , \nabla^{n+m_2''} B , \nabla^{m_2''} (C_1 \land C_2) \Rightarrow \Delta$, on which we can apply $L\rightarrow$ to derive $\nabla^{m_2'+m_2''} \Gamma_2' , \nabla^{n+m_2''+1} (A \rightarrow B) , \nabla^{m_2''} (C_1 \land C_2) \Rightarrow \Delta$. So we will take $C = \nabla^{m_2''}(C_1 \wedge C_2)$.
+			From IH, we also have $V(C_1) \subseteq V(\Gamma_1') \cap$ $V(\Gamma_2' , \nabla^n A)$ and $V(C_2) \subseteq V(\Gamma_1') \cap V(\Gamma_2' , \nabla^n B , \Delta)$. This implies $V(\nabla^{m_2''}(C_1 \land C_2)) \subseteq V(\Gamma_1') \cap V(\Gamma_2' , \nabla^{n+1} (A \rightarrow B) , \Delta)$.
+
+			\item If $\Gamma_1 = \Gamma_1' , \nabla^{n+1} (A \rightarrow B)$ and $\Gamma_2 = \Gamma_2'$, let $C_1 = C_{\langle\Gamma_2';\Gamma_1';\nabla^n A\rangle}$ and $C_2 = C_{\langle\Gamma_1',\nabla^n B;\Gamma_2';\Delta\rangle}$.
+			From IH we have $\nabla^{m_1'} \Gamma_1', \nabla^{m_1'} C_1 \Rightarrow \nabla^{n+m_1'} A$ and $\nabla^{m_1''} \Gamma_1',\nabla^{n+m_1''} B \Rightarrow C_2$. Like the previous case, we can first equalize their contexts using $N$, $L$ and $Lw$, and then apply a $L\rightarrow$ to get $\nabla^{m_1} \Gamma_1',\nabla^{n+m_1+1}(A \rightarrow B) , \nabla^{m_1} C_1 \Rightarrow C_2$ where $m_1 = m_1'+m_1''$. We can make sure that the context has at least one $\nabla$ using $L$, and then move $\nabla^{m_1} C_1$ to the right, using $R\rightarrow$, and have $\nabla^{m_1} \Gamma_1',\nabla^{n+m_1+1}(A \rightarrow B) \Rightarrow \nabla^{m_1} C_1 \rightarrow C_2$. Finally, we can apply $N$ to also add a $\nabla$ to the right side.
+			From IH we also have $\nabla^{m_2'} \Gamma_2' \Rightarrow C_1$ and $\nabla^{m_2''} \Gamma_2' , C_2 \Rightarrow \Delta$. By propers applications of $N$ and $L$ turn these sequents to $\nabla^{m_1+m_2} \Gamma_2' \Rightarrow \nabla^{m_1} C_1$ and $\nabla^{m_1+m_2} \Gamma_2' , C_2 \Rightarrow \Delta$, where $m_2 = m_2'+m_2''$. Then by $L\rightarrow$ we have $\nabla^{m_1+m_2} \Gamma_2' , \nabla (\nabla^{m_1} C_1 \rightarrow C_2) \Rightarrow \Delta$. So we can take $C = \nabla (\nabla^{m_1} C_1 \rightarrow C_2)$. We also have from IH $V(C_1) \subseteq V(\Gamma_2') \cap V(\Gamma_1' , \nabla^n A)$ and $V(C_2) \subseteq V(\Gamma_1' , \nabla^n B) \cap V(\Gamma_2' , \Delta)$. Then $V(\nabla (C_1 \rightarrow C_2)) \subseteq V(\Gamma_1' , \nabla^{n+1} (A \rightarrow B)) \cap V(\Gamma_2' , \Delta)$.
+		\end{enumerate}
+
+		\item ($R\rightarrow$) $\mathcal{D}$ proves $\Gamma_1, \Gamma_2 \Rightarrow A \rightarrow B$ and has a sub-proof for $\nabla \Gamma_1, \nabla \Gamma_2, A \Rightarrow B$. Take $C = C_{\langle\nabla\Gamma_1;\nabla\Gamma_2,A;B\rangle}$. We would have $\nabla^{m_1+1}\Gamma_1 \Rightarrow C$ from IH and $\nabla^{m_2}\Gamma_2, C \Rightarrow A \rightarrow B$ from IH, $L$ and $R\rightarrow$. From IH, we also have $V(C) \subseteq V(\nabla\Gamma_1) \cap V(\nabla\Gamma_2,A,B)$. It is easy to see that this implies $V(C) \subseteq V(\Gamma_1) \cap V(\Gamma_2,A \rightarrow B)$.
+
+		\item ($N$) $\mathcal{D}$ proves $\nabla \Gamma_1 , \nabla \Gamma_2 \Rightarrow \nabla \Delta$ and has a sub-proof for $\Gamma_1 , \Gamma_2 \Rightarrow \Delta$. Just take $C = \nabla C_{\langle\Gamma_1;\Gamma_2;\Delta\rangle}$ and apply $N$ on the sequents from IH. The variable condition is also trivial from IH.
+		
+		\item ($L$) $\mathcal{D}$ proves $\Gamma_1' , \Gamma_2' , \nabla A \Rightarrow \Delta$ and has a sub-proof for $\Gamma_1' , \Gamma_2' , A \Rightarrow \Delta$.
+		\begin{enumerate}
+			\item If $\Gamma_1 = \Gamma_1'$ and $\Gamma_2 = \Gamma_2' , A$, take $C = C_{\langle\Gamma_1';\Gamma_2',A;\Delta\rangle}$. Then we have $\nabla^{m_1} \Gamma_1' \Rightarrow C$ by IH and $\nabla^{m_2}\Gamma_2' , \nabla A \Rightarrow \Delta$ by IH and $L$. From IH, we can also deduce $V(C) \subseteq V(\Gamma_1') \cap V(\Gamma_2',\nabla A,\Delta)$, since $\nabla$ does not introduce new propositional variables.
+			
+			\item If $\Gamma_1 = \Gamma_1' , A$ and $\Gamma_2 = \Gamma_2'$, take $C = C_{\langle\Gamma_1',A;\Gamma_2';\Delta\rangle}$. Then we have $\nabla^{m_1}\Gamma_1', \nabla^{m_1+1}A \Rightarrow C$ by IH and $L$, and $\nabla^{m_2}\Gamma_2' \Rightarrow \Delta$ by IH. We also have $V(C) \subseteq V(\Gamma_1',A) \cap$ $V(\Gamma_2',\Delta)$ as justified before.
+		\end{enumerate}
+
+		\item ($R$) Assume $\Gamma_1 = \Pi_1, \Sigma_1$ and $\Gamma_2 = \Pi_2, \Sigma_2$. $\mathcal{D}$ proves $\Pi_1, \Sigma_1, \Pi_2, \Sigma_2 \Rightarrow \Delta$ and has a sub-proof for $\Pi_1, \nabla\Sigma_1, \Pi_2, \nabla\Sigma_2 \Rightarrow \Delta$.
+		We can take $C_{\langle\Pi_1\nabla\Sigma_1;\Pi_2\nabla\Sigma_2;\Delta\rangle}$ as the desired interpolant $C$, because we have $\nabla^{m_1}\Pi_1,$ $\nabla^{m_1}\Sigma_1 \Rightarrow C$ and $\nabla^{m_2}\Pi_2, \nabla^{m_2}\Sigma_2, C \Rightarrow \Delta$ from IH, so it is also an interpolant for $\mathcal{D}$. We also have $V(C) \subseteq V(\Pi_1,\Sigma_1) \cap V(\Pi_2,\Sigma_2,\Delta)$, since $\nabla$ does not introduce new atomic formulas and we can drop it.
+
+		\item ($Fa$) $\mathcal{D}$ proves $\Gamma_1 , \Gamma_2 \Rightarrow \nabla(A \rightarrow B)$ and has a sub-proof for $\Gamma_1 , \Gamma_2 , A \Rightarrow B$. Let $C = C_{\langle\Gamma_1;\Gamma_2,A;B\rangle}$. So we have $\nabla^{m_1}\Gamma_1 \Rightarrow C$ and $\nabla^{m_2}\Gamma_2 , C \Rightarrow \nabla (A \rightarrow B)$ from IH and an application of $Fa$.
+		It is easy to deduce $V(C) \subseteq V(\Gamma_1) \cap V(\Gamma_2 , \nabla (A \rightarrow B))$ from IH.
+
+		\item ($Fu$) $\mathcal{D}$ proves $\Gamma_1, \Gamma_2 \Rightarrow \Delta$ and has a sub-proof for $\nabla \Gamma_1, \nabla \Gamma_2 \Rightarrow \nabla \Delta$. Take $C = C_{\langle\nabla\Gamma_1;\nabla\Gamma_2;\nabla\Delta\rangle}$. We have $\nabla^{m_1+1}\Gamma_1 \Rightarrow C$ from IH. We also have $\nabla^{m_2+1} \Gamma_2, C \Rightarrow \nabla \Delta$ from IH. We can derive $\nabla^{m_2} \Gamma_2, C \Rightarrow \Delta$ by $L$ and $Fu$. The variable condition is also resulted from IH.
+	\end{enumerate}
+\end{proof}
+
+\begin{cor}[Deductive Interpolation for $\stl$] For any $\Delta'$ and $\Delta$, if $\Rightarrow \Delta' \vdash\ \Rightarrow \Delta$ then there exists a formula $C$ such that
+	\begin{enumerate}[label=(\arabic*)]
+		\item $\Rightarrow \Delta' \vdash\ \Rightarrow C$,
+		\item $\Rightarrow C \vdash\ \Rightarrow \Delta$ and
+		\item $V(C) \subseteq V(\Delta') \cap V(\Delta)$.
+	\end{enumerate}
+\end{cor}
+\begin{proof}
+	In case $\Delta' = \{\}$, just take $C = \bot$. Now let's assume $\Delta' = A$ for some formula $A$. First, convert the proof-tree for $\Rightarrow A \vdash \Rightarrow \Delta$ to $\nabla^n A \Rightarrow \Delta$ for some $n$ using Lemma \ref{lem:vdash}, and then use Theorem \ref{thm:ldls-dedint} with $\Gamma_1 = \{\nabla^n A \}$ and $\Gamma_2 = \{\}$. Notice that we can translate results $(\mathit{1}^*)$ and $(\mathit{2}^*)$ from Theorem \ref{thm:ldls-dedint} back to $(\mathit{1})$ and $(\mathit{2})$ respectively, using the other direction of Lemma \ref{lem:vdash}.
+\end{proof}
