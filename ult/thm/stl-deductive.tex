@@ -26,7 +26,7 @@ Throughout this section, when we use plain $\vdash$ symbol without specifying th
 
 The deductive interpolation is stated in the next corollary. First we need to prove a slightly stronger version for technical reasons.
 
-\begin{thm}\label{thm:ldls-dedint}
+\begin{thm}\label{thm:stl-dedint}
 	For any $\Gamma_1$, $\Gamma_2$ and $\Delta$, if $\vdash \Gamma_1 , \Gamma_2 \Rightarrow \Delta$ then there is a formula $C$ and natural numbers $m_1$ and $m_2$ such that
 	\begin{enumerate}[label=(\arabic**)]
 		\item $\vdash \nabla^{m_1} \Gamma_1 \Rightarrow C$,
@@ -50,7 +50,7 @@ The deductive interpolation is stated in the next corollary. First we need to pr
 
 		\item ($Lw$) $\mathcal{D}$ proves $\Gamma_1' , \Gamma_2' , A \Rightarrow \Delta$ and has a sub-proof for $\Gamma_1' , \Gamma_2' \Rightarrow \Delta$, for which IH gives an interpolant $C_{\langle\Gamma_1';\Gamma_2';\Delta\rangle}$, natural numbers $m_1$ and $m_2$ and proofs for $\nabla^{m_1} \Gamma_1' \Rightarrow C_{\langle\Gamma_1';\Gamma_2';\Delta\rangle}$ and $\nabla^{m_2} \Gamma_2 , C_{\langle\Gamma_1';\Gamma_2';\Delta\rangle} \Rightarrow \Delta$, such that $V(C_{\langle\Gamma_1';\Gamma_2';\Delta\rangle}) \subseteq$ $ V(\Gamma_1') \cap V(\Gamma_2' , \Delta)$.
 		\begin{enumerate}
-			\item If $\Gamma_1 = \Gamma_1'$ and $\Gamma_2 = \Gamma_2' , A$, take $C = C_{\langle\Gamma_1';\Gamma_2';\Delta\rangle}$. Then by IH we have  $\nabla^{m_1} \Gamma_1' \Rightarrow C$ and $\nabla^{m_2} \Gamma_2' , A , C \Rightarrow \Delta$ by $Lw$ and IH. From IH, we also have $V(C) \subseteq V(\Gamma_1') \cap V(\Gamma_2' , A , \Delta)$, since $P$ takes ``$,$'' to ``$\cup$'', which distributes over ``$\cap$'' and is increasing with respect to ``$\subseteq$''.
+			\item If $\Gamma_1 = \Gamma_1'$ and $\Gamma_2 = \Gamma_2' , A$, take $C = C_{\langle\Gamma_1';\Gamma_2';\Delta\rangle}$. Then by IH we have  $\nabla^{m_1} \Gamma_1' \Rightarrow C$ and $\nabla^{m_2} \Gamma_2' , A , C \Rightarrow \Delta$ by $Lw$ and IH. From IH, we also have $V(C) \subseteq V(\Gamma_1') \cap V(\Gamma_2' , A , \Delta)$, since $V$ takes ``$,$'' to ``$\cup$'', which distributes over ``$\cap$'' and is increasing with respect to ``$\subseteq$''.
 
 			\item If $\Gamma_1 = \Gamma_1' , A$ and $\Gamma_2 = \Gamma_2'$, again take $C = C_{\langle\Gamma_1';\Gamma_2';\Delta\rangle}$. Then we have  $\nabla^{m_1} \Gamma_1' , A \Rightarrow C$ by $Lw$ and IH, and $\nabla^{m_2} \Gamma_2' , C \Rightarrow \Delta$ by IH. We also have $V(C) \subseteq V(\Gamma_1' , A) \cap V(\Gamma_2' , \Delta)$ by IH and argument similar to the previous case.
 		\end{enumerate}
@@ -127,7 +127,7 @@ The deductive interpolation is stated in the next corollary. First we need to pr
 	\end{enumerate}
 \end{proof}
 
-\begin{cor}[Deductive Interpolation for $\stl$] For any $\Delta'$ and $\Delta$, if $\Rightarrow \Delta' \vdash\ \Rightarrow \Delta$ then there exists a formula $C$ such that
+\begin{cor}[Deductive Interpolation for $\stl$]\label{cor:stl-dedint} For any $\Delta'$ and $\Delta$, if $\Rightarrow \Delta' \vdash\ \Rightarrow \Delta$ then there exists a formula $C$ such that
 	\begin{enumerate}[label=(\arabic*)]
 		\item $\Rightarrow \Delta' \vdash\ \Rightarrow C$,
 		\item $\Rightarrow C \vdash\ \Rightarrow \Delta$ and
@@ -135,5 +135,5 @@ The deductive interpolation is stated in the next corollary. First we need to pr
 	\end{enumerate}
 \end{cor}
 \begin{proof}
-	In case $\Delta' = \{\}$, just take $C = \bot$. Now let's assume $\Delta' = A$ for some formula $A$. First, convert the proof-tree for $\Rightarrow A \vdash \Rightarrow \Delta$ to $\nabla^n A \Rightarrow \Delta$ for some $n$ using Lemma \ref{lem:vdash}, and then use Theorem \ref{thm:ldls-dedint} with $\Gamma_1 = \{\nabla^n A \}$ and $\Gamma_2 = \{\}$. Notice that we can translate results $(\mathit{1}^*)$ and $(\mathit{2}^*)$ from Theorem \ref{thm:ldls-dedint} back to $(\mathit{1})$ and $(\mathit{2})$ respectively, using the other direction of Lemma \ref{lem:vdash}.
+	In case $\Delta' = \{\}$, just take $C = \bot$. Now let's assume $\Delta' = A$ for some formula $A$. First, convert the proof-tree for $\Rightarrow A \vdash \Rightarrow \Delta$ to $\nabla^n A \Rightarrow \Delta$ for some $n$ using Lemma \ref{lem:vdash}, and then use Theorem \ref{thm:stl-dedint} with $\Gamma_1 = \{\nabla^n A \}$ and $\Gamma_2 = \{\}$. Notice that we can translate results $(\mathit{1}^*)$ and $(\mathit{2}^*)$ from Theorem \ref{thm:stl-dedint} back to $(\mathit{1})$ and $(\mathit{2})$ respectively, using the other direction of Lemma \ref{lem:vdash}.
 \end{proof}
