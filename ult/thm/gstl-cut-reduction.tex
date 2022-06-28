@@ -16,14 +16,18 @@
   
     The construction takes place in different cases for the last rule that occurs in $\mathcal{D}_0$ and $\mathcal{D}_1$. Notice that the proof of the theorem is essentially the same for any choice of $S$, where $S$ is a subset of $\{L, R, Fa, Fu\}$, modulo the cases that are specific to the rules in $S$. Thus, for the sake of brevity, we will not repeat the cases which are common between all systems. Also notice that the resulting proof-tree in each case is constructed using the core system $\gstl^+$, plus the same rule of that case, so it will work for any extension containing that rule.
   
-    In many cases, our construction would depend only on the last rule of one of the subtrees and it would work, no matter what the last rule in the other subtree is. Therefore, any of these cases will also cover all the cases for the other subtree. These cases constitute the first two parts of the proof. In the third part, we will address the cases where our construction depends on the last rule in \emph{both} subtrees, which are the cases that the cut-burden is altered on both sides. In these cases, the last rule in one of the subtrees determines a specific form for the formulas in the cut-burden, which will determine the last rule in the other subtree.
+    The cases are divided into three parts. In the first two parts, our construction would depend only on the last rule of one of the subtrees, and it would work, no matter what the last rule in the other subtree is. Therefore, any of these cases will also cover all the cases for the other subtree. In the third part, we will address the cases where our construction depends on the last rule in \emph{both} subtrees, which are the cases that the cut-burden is altered on both sides. In these cases, the last rule in one of the subtrees determines a specific form for the formulas in the cut-burden, which will determine the last rule in the other subtree.
   
-    In first two groups of the cases, we will need induction on the height of one of the subtrees. But in the third part, we will use induction simultaneously on both $\mathcal{D}_0$ and $\mathcal{D}_1$, which goes as follows. For any two proof-trees $\mathcal{D}_0'$ and $\mathcal{D}_1'$ such that $h(\mathcal{D}_0') + h(\mathcal{D}_1') < h(\mathcal{D}_0) + h(\mathcal{D}_1)$, where $\mathcal{D}_0'$ proves $\Gamma' \Rightarrow A'$ and $\mathcal{D}_1'$ proves $\Sigma', \{\nabla^{n'_i} A'\}_{i \leq l} \Rightarrow \Delta'$ for arbitrary $\Gamma'$, $\Sigma'$, $\Delta'$, $A'$ and $n_i'$ of length $l'+1$, for which we have $\rho(\mathcal{D}_0'),\rho(\mathcal{D}_1') < \rho(A')$, the induction hypothesis gives us a prooftree, denoted by $\text{IH}(\mathcal{D}_0', \mathcal{D}_1')$ where it matters, that proves $\{\nabla^{n_i'}\Gamma'\}_{i \leq l'}, \Sigma' \Rightarrow \Delta'$, and we will also have $\rho(\text{IH}(\mathcal{D}_0', \mathcal{D}_1')) < \rho(A')$.
+    In first two parts of the cases, we will need induction hypothesis only for premises of one of the subtrees. But in the third part, we need to use induction hypotesis for premises in both $\mathcal{D}_0$ and $\mathcal{D}_1$. So we will apply induction on $h(\mathcal{D}_0) + h(\mathcal{D}_1)$, generalizing all other parameters, and the induction hypothesis would be as follows: For any two proof-trees $\mathcal{D}_0'$ and $\mathcal{D}_1'$ such that $h(\mathcal{D}_0') + h(\mathcal{D}_1') < h(\mathcal{D}_0) + h(\mathcal{D}_1)$, where $\mathcal{D}_0'$ proves $\Gamma' \Rightarrow A'$ and $\mathcal{D}_1'$ proves $\Sigma', \{\nabla^{n'_i} A'\}_{i \leq l} \Rightarrow \Delta'$ for arbitrary $\Gamma'$, $\Sigma'$, $\Delta'$, $A'$ and $n_i'$ of length $l'+1$, for which we have $\rho(\mathcal{D}_0'),\rho(\mathcal{D}_1') < \rho(A')$, the induction hypothesis gives us a prooftree, denoted by $\text{IH}(\mathcal{D}_0', \mathcal{D}_1')$, which proves $\{\nabla^{n_i'}\Gamma'\}_{i \leq l'}, \Sigma' \Rightarrow \Delta'$, and we will also have $\rho(\text{IH}(\mathcal{D}_0', \mathcal{D}_1')) < \rho(A')$.
   
-    \textbf{Part I.} First, assume that $\mathcal{D}_0$ is an axiom. No matter what would be the last rule instance in $\mathcal{D}_1$, the case for $Id$ is trivial, $Ex$ won't happen and $Ta$ is handled by Lemma \ref{lem:gstl-top-redundant}.
-    Now assume that $\mathcal{D}_0$ ends with an instance of the rules $Lw$, $Lc$, $Rw$, $L \wedge_1$, $L \wedge_2$, $L \vee$, $L \rightarrow$, $\nabla cut$, $N$, $Fu$, $L$ or $R$. In all these cases---again, independent of $\mathcal{D}_1$---it suffices to use induction on the assumption(s) of this rule and $\mathcal{D}_1$ to remove the cut-burden from both subtrees. Then, we can apply the same rule to get the desired sequent. Here we will only mention the cases for $L \wedge_1$, $L \vee$, $L \rightarrow$, $\nabla cut$, $Rw$, $N$ and $Fu$, the last three of which may be of special concern, since they also alter the cut-burden. The other cases are similar.
+    Now, in any of the following cases, suppose $\mathcal{D}_0$ and $\mathcal{D}_1$ end with one of the rule of $\gstl+(S)$, and construct the proof-tree $\mathcal{D}$ accordingly.
+
+    \textbf{Part I.} First, assume that $\mathcal{D}_0$ is an axiom and $\mathcal{D}_1$ end with any rule. The case for $Id$ would be trivial, $Ex$ won't happen and $Ta$ is handled by Lemma \ref{lem:gstl-top-redundant}.
+    Now, assume that $\mathcal{D}_0$ ends with an instance of the rule $T$, for $T \in \{ Lw, Lc, Rw, L \wedge_1, L \wedge_2, L \vee, L \rightarrow, \nabla cut, N, Fu, L, R \}$. In all these cases---again, independent of $\mathcal{D}_1$---it suffices to use induction on the assumption(s) of this rule and $\mathcal{D}_1$ to remove the cut-burden from both subtrees. Then, we can apply the same rule $T$ to get the desired sequent. Here we will only mention the cases for $L \wedge_1$, $L \vee$, $L \rightarrow$, $\nabla cut$, $Rw$, $N$ and $Fu$, the last three of which may be of special concern, since they also alter the cut-burden. The other cases are similarly handled, and none of the affect the cut-burden.\\
   
-    $L \wedge_1$: If $\mathcal{D}_0$ ends with $L \wedge_1$, that is
+    \noindent\textbf{$\mathcal{D}_0$ ends with $L \wedge_1$}:
+
+    If $\mathcal{D}_0$ ends with $L \wedge_1$, that is
     \begin{prooftree}
       \noLine
       \AXC{$\mathcal{D}_0'$}
@@ -47,9 +51,12 @@
   
     \RightLabel{$L \wedge_1$} \doubleLine
     \UIC{$\{\nabla^{n_i} \Gamma, \nabla^{n_i+r} (B \wedge C)\}_{i \leq l}, \Sigma \Rightarrow \Delta$}
-   \end{prooftree}
+   \end{prooftree}\quad\\
   
-   \noindent $L \vee$: If $\mathcal{D}_0$ ends with $L \vee$
+   
+  \noindent\textbf{$\mathcal{D}_0$ ends with $L \vee$}:
+
+    If $\mathcal{D}_0$ ends with $L \vee$
      \begin{prooftree}
        \noLine
        \AXC{$\mathcal{D}_0'$}
@@ -89,10 +96,12 @@
   
       \RightLabel{$L \vee$}
       \BIC{$\{\nabla^{n_i} \Gamma, \nabla^{n_i+r} (B \vee C)\}_{i \leq l}, \Sigma \Rightarrow \Delta$}
-     \end{prooftree}
+     \end{prooftree}\quad\\
   
    
-  \noindent $L \rightarrow$: Suppose $\mathcal{D}_0$ ends with a $L \rightarrow$ as shown below.
+  \noindent\textbf{$\mathcal{D}_0$ ends with $L \rightarrow$}:
+  
+  Suppose $\mathcal{D}_0$ ends with a $L \rightarrow$ as shown below.
    \begin{prooftree}
     \noLine
     \AXC{$\mathcal{D}_0'$}
@@ -140,9 +149,12 @@
    \[\mathcal{D}'_{n_j}:~~~~\{\nabla^{n_i} \Gamma\}_{i \leq l}, \{\nabla^{n_i+r}C\}_{j < i \leq l}, \{ \nabla^{n_i+r+1} (B \rightarrow C) \}_{i \leq j}, \Sigma \Rightarrow \Delta\]
    $\mathcal{D}_{n_l}$ is exactly what we want:
    \[\{\nabla^{n_i} \Gamma, \nabla^{n_i+r+1}(B \rightarrow C)\}_{i \leq l}, \Sigma \Rightarrow \Delta\]
+  \quad\\
   
-  
-   $\nabla cut$: Assume $\mathcal{D}_0$ ends with a $\nabla cut$ with cut-data $(A', \{n_i'\}_{i \leq l'})$. Recall that by assumption, $A'$ must have a lower rank than $A$.
+
+  \noindent\textbf{$\mathcal{D}_0$ ends with $\nabla cut$}:
+
+  Assume $\mathcal{D}_0$ ends with a $\nabla cut$ with cut-data $(A', \{n_i'\}_{i \leq l'})$. Recall that by assumption, $A'$ must have a lower rank than $A$.
    \begin{prooftree}
      \noLine
      \AXC{$\mathcal{D}_0'$}
@@ -175,9 +187,11 @@
   
      \RightLabel{$\nabla cut$}
      \BIC{$\{\nabla^{n_i + n_j'} \Gamma\}_{j \leq l'}^{i \leq l}, \{\nabla^{n_i} \Pi\}_{i \leq l}, \Sigma$ $\Rightarrow \Delta$}
-   \end{prooftree}
+   \end{prooftree}\quad\\
   
-   $Rw$: In this case, $\mathcal{D}_0'$ proves $\Gamma \Rightarrow$, so we can simply construct the desired proof-tree using $N$, $Lw$ and $Rw$.
+   \noindent\textbf{$\mathcal{D}_0$ ends with $Rw$}:
+
+   In this case, $\mathcal{D}_0'$ proves $\Gamma \Rightarrow$, so we can simply construct the desired proof-tree using $N$, $Lw$ and $Rw$.
    \begin{prooftree}
      \noLine
      \AXC{$\mathcal{D}_0'$}
@@ -188,9 +202,12 @@
      \UIC{$\{\nabla^{n_i} \Gamma\}_{i \leq l} , \Sigma \Rightarrow$}
      \RightLabel{$Rw$}
      \UIC{$\{\nabla^{n_i} \Gamma\}_{i \leq l} , \Sigma \Rightarrow \Delta$}
-   \end{prooftree}
+   \end{prooftree}\quad\\
   
-   $N$: $\mathcal{D}_0$ proves $\nabla \Gamma \Rightarrow \nabla A$ and $\mathcal{D}_1$ proves $\Sigma, \{\nabla^{n_i} A\}_{i<l} \Rightarrow \Delta$. There are two cases: The cut-data could be $(A, \{n_i\}_{i \leq l})$, or if for all $i \leq l$ we have $0 < n_i$, then the cut-data could also be $(\nabla A, \{n_i-1\}_{i \leq l})$. Induction hypothesis for $\mathcal{D}_0$'s immediate sub-tree and $\mathcal{D}_1$ gives us $\{\nabla^{n_i}\Gamma\}_{i \leq l}, \Sigma \Rightarrow \Delta$, which handles the latter case, and an application of $N$ on this sequent would handle the former.
+
+  \noindent\textbf{$\mathcal{D}_0$ ends with $N$}:
+
+   $\mathcal{D}_0$ proves $\nabla \Gamma \Rightarrow \nabla A$ and $\mathcal{D}_1$ proves $\Sigma, \{\nabla^{n_i} A\}_{i<l} \Rightarrow \Delta$. There are two cases: The cut-data could be $(A, \{n_i\}_{i \leq l})$, or if for all $i \leq l$ we have $0 < n_i$, then the cut-data could also be $(\nabla A, \{n_i-1\}_{i \leq l})$. Induction hypothesis for $\mathcal{D}_0$'s immediate sub-tree and $\mathcal{D}_1$ gives us $\{\nabla^{n_i}\Gamma\}_{i \leq l}, \Sigma \Rightarrow \Delta$, which handles the latter case, and an application of $N$ on this sequent would handle the former.
   
    {\color{red} $Fu$: This case fails actually. For example in case
    \begin{multicols}{2}
@@ -210,9 +227,12 @@
    Suppose $\mathcal{D}_1$ is an axiom. Again, the case for $Id$ is trivial, $Ta$ won't happen, and $Ex$ is also infeasible, since all possible cases for $\mathcal{D}_0$ alter the right side of the sequent, but none of them are able to introduce $\bot$ on the right side.
    In the remaining cases, if the cut-data is $(A, \{n_i\}_{i \leq l})$, in the cases where no member of the cut-burden is altered in the last rule of $\mathcal{D}_1$ modulo its number of $\nabla$'s, the construction is similar to the first part: Applying the same rule on the sequent that we get from the induction hypothesis. But if a member of the cut-burden is principal in the last rule of $\mathcal{D}_1$, which is to be handeld in the last part, we must also use the induction hypothesis for $\mathcal{D}_0$, both with a different cut-data. We now address the second part of the cases.
    
-   For the sake of briefness, we will only explain the cases for $L \wedge_1$, $R \vee_1$, $R \rightarrow$ and $N$, the last two of which are of special concern, since we must use induction hypothesis with different cut-data in those cases. The rest would be handled similarly.
+   For the sake of briefness, we will only explain the cases for $L \wedge_1$, $R \vee_1$, $R \rightarrow$ and $N$, the last two of which are of special concern, since we must use induction hypothesis with different cut-data in those cases. The rest would be handled similarly.\\
   
-   $L \wedge$: Assume that $\mathcal{D}_1$ ends with $L \wedge_1$, but no member of the cut-burden is its principal formula.
+   
+   \noindent\textbf{$\mathcal{D}_1$ ends with $L \wedge$}:
+
+   Assume that $\mathcal{D}_1$ ends with $L \wedge_1$, but no member of the cut-burden is its principal formula.
    \begin{prooftree}
     \AXC{$\mathcal{D}_1'$} \noLine
     \UIC{$\Sigma, \{\nabla^{n_i} A\}_{i \leq l}, \nabla^r B \Rightarrow \Delta$}
@@ -228,9 +248,11 @@
     \RightLabel{$R \vee_1$}
     \UIC{$\Sigma, \{\nabla^{n_i} A\}_{i \leq l} \Rightarrow B \vee C$}
    \end{prooftree}
-   Again, use the induction hypothesis to get $\{\nabla^{n_i} \Gamma\}_{i \leq l}, \Sigma \Rightarrow B$, then apply $R \vee_1$ to reach the desired sequent.
+   Again, use the induction hypothesis to get $\{\nabla^{n_i} \Gamma\}_{i \leq l}, \Sigma \Rightarrow B$, then apply $R \vee_1$ to reach the desired sequent.\\
   
-  $R \rightarrow$: In the case where $\mathcal{D}_1$ ends with an $R \rightarrow$, the cut-burden is altered in the premise.
+  \noindent\textbf{$\mathcal{D}_1$ ends with $R \rightarrow$}:
+  
+  In the case where $\mathcal{D}_1$ ends with an $R \rightarrow$, the cut-burden is altered in the premise.
   \begin{prooftree}
     \AXC{$\mathcal{D}_1'$} \noLine
     \UIC{$\nabla\Sigma, \{\nabla^{n_i+1} A\}_{i \leq l}, B \Rightarrow C$}
@@ -238,9 +260,11 @@
     \UIC{$\Sigma, \{\nabla^{n_i} A\}_{i \leq l} \Rightarrow B \rightarrow C$}
    \end{prooftree}
    The induction hypothesis has a different cut-data, nevertheless, it still commutes with $R \rightarrow$.
-  From induction hypothesis, we have $\{\nabla^{n_i+1} \Gamma\}_{i \leq l}, \nabla \Sigma, B \Rightarrow C$. We can simply apply $R \rightarrow$ to get $\{\nabla^{n_i} \Gamma\}_{i \leq l}, \Sigma \Rightarrow B \rightarrow C$.
+  From induction hypothesis, we have $\{\nabla^{n_i+1} \Gamma\}_{i \leq l}, \nabla \Sigma, B \Rightarrow C$. We can simply apply $R \rightarrow$ to get $\{\nabla^{n_i} \Gamma\}_{i \leq l}, \Sigma \Rightarrow B \rightarrow C$.\\
   
-  $N$: Suppose $\mathcal{D}_1$ ends with $N$.
+  \noindent\textbf{$\mathcal{D}_1$ ends with $N$}:
+  
+  Suppose $\mathcal{D}_1$ ends with $N$.
   \begin{prooftree}
     \AXC{$\mathcal{D}_1'$} \noLine
     \UIC{$\Sigma, \{\nabla^{n_i} A\}_{i \leq l} \Rightarrow \Delta$}
@@ -252,9 +276,11 @@
   {\color{red} This case failes in presence of $Fa$. Notice the cut-data could then also be $(\nabla A, \{n_i\}_{i \leq l})$.}
   
    \textbf{Part III.} Now in the last part of the proof, we will show how the construction takes place in the cases where a member of the cut-burden is principal in the last rule of $\mathcal{D}_1$, which can be either of $L\star (\star \in \{\wedge, \vee_{1/2}, \rightarrow\})$.
-   Any of these rules also determine the rule at the end of the other proof-tree, because $A$ would also be principal in the last rule of $\mathcal{D}_0$. Recall that the only possible rules as the last rule of $\mathcal{D}_0$ are now $R\star (\star \in \{\wedge, \vee_{1/2}, \rightarrow\})$ and $Fa$, which all have a principal formula on the right side of the sequent.
+   Any of these rules also determine the rule at the end of the other proof-tree, because the formula $A$ would also be principal in the last rule of $\mathcal{D}_0$. Recall that the only possible rules as the last rule of $\mathcal{D}_0$ are now $R\star (\star \in \{\wedge, \vee_{1/2}, \rightarrow\})$ and $Fa$, which all have a principal formula on the right side of the sequent.\\
 
-   $R \wedge$ and $L \wedge$: Suppose $\mathcal{D}_0$ ends with $R \wedge$ and $\mathcal{D}_1$ ends with either of $L \wedge_c ~ (c \in \{1,2\})$.
+  \noindent\textbf{$\mathcal{D}_0$ ends with $R \wedge$ and $\mathcal{D}_1$ ends with $L \wedge$}:
+
+  Suppose $\mathcal{D}_0$ ends with $R \wedge$ and $\mathcal{D}_1$ ends with either of $L \wedge_c ~ (c \in \{1,2\})$.
    \begin{prooftree}
      \noLine
      \AXC{$\mathcal{D}_0'$}
@@ -274,9 +300,11 @@
      \noLine
      \BIC{}
    \end{prooftree}
-   $IH(\mathcal{D}_0, \mathcal{D}_1')$ proves $\{\nabla^{n_i} \Gamma\}_{i \leq l}^{i \neq j}, \Sigma , \nabla^{n_j} A_c \Rightarrow \Delta$. Remove $\nabla^{n_j} A_c$ with a low rank $\nabla cut$ on this sequent and either of $\mathcal{D}_0'$ (if $c = 1$) or $\mathcal{D}_0''$ (if $c = 2$) to get $\{\nabla^{n_i} \Gamma\}_{i \leq l}, \Sigma \Rightarrow \Delta$.
+   $IH(\mathcal{D}_0, \mathcal{D}_1')$ proves $\{\nabla^{n_i} \Gamma\}_{i \leq l}^{i \neq j}, \Sigma , \nabla^{n_j} A_c \Rightarrow \Delta$. Remove $\nabla^{n_j} A_c$ with a low rank $\nabla cut$ on this sequent and either of $\mathcal{D}_0'$ (if $c = 1$) or $\mathcal{D}_0''$ (if $c = 2$) to get $\{\nabla^{n_i} \Gamma\}_{i \leq l}, \Sigma \Rightarrow \Delta$.\\
   
-   $R \vee$ and $L \vee$: Suppose that $\mathcal{D}_0$ ends with either of $R \vee_c ~ (c \in \{1,2\})$ and $\mathcal{D}_1$ ends with $L \vee$.
+   \noindent\textbf{$\mathcal{D}_0$ ends with $R \vee$ and $\mathcal{D}_1$ ends with $L \vee$}:
+   
+  Suppose that $\mathcal{D}_0$ ends with either of $R \vee_c ~ (c \in \{1,2\})$ and $\mathcal{D}_1$ ends with $L \vee$.
    \begin{prooftree}
      \noLine
      \AXC{$\mathcal{D}_0'$}
@@ -294,9 +322,11 @@
     \RightLabel{$L \vee$}
     \BIC{$\Sigma ,  \{\nabla^{n_i} (A_1 \vee A_2)\}_{i \leq l} \Rightarrow \Delta$}
    \end{prooftree}
-   Using induction hypothesis, first, remove $\{\nabla^{n_i} (A_1 \vee A_2)\}_{i \leq l}^{i \neq j}$ from the subtree of $\mathcal{D}_1$ which has $\nabla^{n_j} A_c$ on its left side (by $IH(\mathcal{D}_0, \mathcal{D}_1')$ for $c = 1$, $IH(\mathcal{D}_0, \mathcal{D}_1'')$ for $c = 2$), to get $\{\nabla^{n_i} \Gamma\}_{i \leq l}^{i \neq j}, \Sigma , \nabla^{n_j} A_c \Rightarrow \Delta$. Then, remove $\nabla^{n_j} A_c$ by a low rank $\nabla cut$ on this sequent and $\mathcal{D}_0'$ to get $\{\nabla^{n_i} \Gamma\}_{i \leq l}, \Sigma \Rightarrow \Delta$.
-  
-   $R \rightarrow$ and $L \rightarrow$: Suppose that $\mathcal{D}_0$ and $\mathcal{D}_1$ end with $R \rightarrow$ and $L \rightarrow$ respectively. So there must be $j \leq l$ such that $n_j > 0$.
+   Using induction hypothesis, first, remove $\{\nabla^{n_i} (A_1 \vee A_2)\}_{i \leq l}^{i \neq j}$ from the subtree of $\mathcal{D}_1$ which has $\nabla^{n_j} A_c$ on its left side (by $IH(\mathcal{D}_0, \mathcal{D}_1')$ for $c = 1$, $IH(\mathcal{D}_0, \mathcal{D}_1'')$ for $c = 2$), to get $\{\nabla^{n_i} \Gamma\}_{i \leq l}^{i \neq j}, \Sigma , \nabla^{n_j} A_c \Rightarrow \Delta$. Then, remove $\nabla^{n_j} A_c$ by a low rank $\nabla cut$ on this sequent and $\mathcal{D}_0'$ to get $\{\nabla^{n_i} \Gamma\}_{i \leq l}, \Sigma \Rightarrow \Delta$.\\
+
+  \noindent\textbf{$\mathcal{D}_0$ ends with $R \rightarrow$ and $\mathcal{D}_1$ ends with $L \rightarrow$}:
+
+  Suppose that $\mathcal{D}_0$ and $\mathcal{D}_1$ end with $R \rightarrow$ and $L \rightarrow$ respectively. So there must be $j \leq l$ such that $n_j > 0$.
    \begin{prooftree}
      \noLine
      \AXC{$\mathcal{ D}_0'$}
@@ -315,9 +345,11 @@
      \BIC{$\Sigma,  \{\nabla^{n_i} (A_1 \rightarrow A_2)\}_{i \leq l} \Rightarrow \Delta$}
    \end{prooftree}
    
-   $IH(\mathcal{D}_0, \mathcal{D}_1'')$ proves $\{\nabla^{n_i} \Gamma\}_{i \leq l}^{i \neq j}, \Sigma, \nabla^{n_j-1} A_2 \Rightarrow \Delta$. Applying a low rank $\nabla cut$ on $\mathcal{D}_0'$ and $IH(\mathcal{D}_0, \mathcal{D}_1'')$ removes $\nabla^{n_j-1} A_2$ and introduces $\nabla^{n_j } \Gamma$ and $\nabla^{n_j-1} A_1$ in the left. On the other hand $IH(\mathcal{D}_0, \mathcal{D}_1')$ proves $\{\nabla^{n_i} \Gamma\}_{i \leq l}^{i \neq j}, \Sigma, \Rightarrow \nabla^{n_j-1} A_1$, which we can use to also remove $\nabla^{n_j-1} A_1$ with another low rank cut. Then it suffices to remove the extra $\{\nabla^{n_i} \Gamma\}_{i \leq l}^{i \neq j}$ and $\Sigma$ with $Lc$.
+   $IH(\mathcal{D}_0, \mathcal{D}_1'')$ proves $\{\nabla^{n_i} \Gamma\}_{i \leq l}^{i \neq j}, \Sigma, \nabla^{n_j-1} A_2 \Rightarrow \Delta$. Applying a low rank $\nabla cut$ on $\mathcal{D}_0'$ and $IH(\mathcal{D}_0, \mathcal{D}_1'')$ removes $\nabla^{n_j-1} A_2$ and introduces $\nabla^{n_j } \Gamma$ and $\nabla^{n_j-1} A_1$ in the left. On the other hand $IH(\mathcal{D}_0, \mathcal{D}_1')$ proves $\{\nabla^{n_i} \Gamma\}_{i \leq l}^{i \neq j}, \Sigma, \Rightarrow \nabla^{n_j-1} A_1$, which we can use to also remove $\nabla^{n_j-1} A_1$ with another low rank cut. Then it suffices to remove the extra $\{\nabla^{n_i} \Gamma\}_{i \leq l}^{i \neq j}$ and $\Sigma$ with $Lc$.\\
   
-   $Fa$ and $L \rightarrow$: Suppose $\mathcal{D}_0$ ends with $Fa$ and $\mathcal{D}_1$ ends with $L \rightarrow$.
+  \noindent\textbf{$\mathcal{D}_0$ ends with $Fa$ and $\mathcal{D}_1$ ends with $L \wedge$}:
+
+  Suppose $\mathcal{D}_0$ ends with $Fa$ and $\mathcal{D}_1$ ends with $L \rightarrow$.
    \begin{prooftree}
      \AXC{$\mathcal{D}_0'$}
      \noLine
