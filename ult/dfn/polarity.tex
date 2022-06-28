@@ -1,0 +1,10 @@
+\begin{dfn}\label{dfn:polarity}
+  Suppose $A$ is formula in the language $\mathcal{L}$ and $B$ is a subformula of $A$. Define the \emph{polarity} of an occurence of $B$ in some occurence of $A$ by mutual induction as follows.
+  \begin{enumerate}
+    \item If $A = B$ then $B$ has \emph{positive} polarity, of simply, is \emph{positive} in any positive occurence of $A$, and has \emph{negative} polarity, or simply, is \emph{negative} in any negative occurence of $A$.
+    \item If $A$ is of the form $B \rightarrow C$, then $B$ is \emph{negative} in any positive occurence of $A$, and is \emph{positive} in any negative occurence of $A$.
+    \item If $A$ is of the form $B \wedge C$, $C \wedge B$, $B \vee C$, $C \vee B$, $C \rightarrow B$ or $\nabla B$, then $B$ is \emph{positive} in any positive occurence of $A$, and is \emph{negative} in any negative occurence of $A$.
+  \end{enumerate}
+
+  We will denote the set of all atomic formulas with some positive occurrence in a formula $A$ by $V^+(A)$, and the set of all atomic formulas with some negative occurrence in $A$ by $V^-(A)$
+\end{dfn}
