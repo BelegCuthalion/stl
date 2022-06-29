@@ -21,7 +21,7 @@ In this section, will define the systems $\stl$ (defined as $\istl(N)$ in \cite{
 
 \input{dfn/stl}
 
-Now, we will introduce $\gstl$, which we then show to be equivalent with $\stl$, and also cut-free.
+Now, we will introduce $\gstl$, which we then show to be equivalent with $\stl$, and also cut-free. In the rest of this paper, we will use the short hand $\nabla^n A$ for $\nabla (\nabla^{n-1} A)$, for $n > 0$, where $\nabla^0 A$ is $A$.
 
 \input{dfn/gstl}
 
@@ -50,7 +50,6 @@ The theorem below shows that $\stl$ (and its extensions) deduce exactly the same
 
 \input{thm/stl-eq-gstl}
 
-\input{dia/stl}
 {\color{red} The relation between STL and its extensions to be investigated.}
 
 \subsection{Cut-elimination theorem}
@@ -70,7 +69,7 @@ The next lemma will help in handling of a case in the main theorem.
 
 \input{thm/gstl-top-redundant}
 
-The following theorem shows that we can imitate any instance of the cut rule in a proof-tree of lower rank. The general idea is to construct the proof-tree for the conclusion of a $cut$ instance, without using the same $cut$ rule explicitly.
+The following theorem shows that we can imitate any instance of the cut rule in a proof-tree of lower rank.
 
 \input{thm/gstl-cut-reduction}
 
@@ -149,6 +148,12 @@ In this section, we prove \emph{Craig's interpolation} theorem for $\istl$ and a
 \section{Conclusion and future works}
 
 \section{Acknowledgement}
+
+\section{Appendix}
+\subsection{Lattice of extensions of $\mathbf{STL}$}
+\input{dia/stl}
+
+\subsection{Detailed proofs}
 
 \bibliographystyle{abbrv}
 \bibliography{refs}
