@@ -154,6 +154,16 @@ In this section, we prove \emph{Craig's interpolation} theorem for $\istl$ and a
 
 \input{thm/stl-deductive}
 
+\subsection{Lyndon Interpolation}
+
+We can easily check that our previous construction of interpolants for both $\istl$ and $\stl$ also satisfy Lyndon's definition \cite{Lyndon1959AnIT}. First, we need the following definition. The notion of the \emph{polarity} for an occurence of a subformula in some formula, simply tells if the subformula is in the antecedent of some implication for an even number of times or not.
+
+\input{dfn/polarity}
+
+So, for example, we have $p \in V^+((p \rightarrow q) \rightarrow r)$ and $p \in V^-((p \rightarrow q) \wedge r)$.
+
+\input{thm/stl-lyndon}
+
 \section{Conclusion and future works}
 
 \section{Acknowledgement}
