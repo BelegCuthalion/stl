@@ -1,12 +1,9 @@
-\[\begin{tikzcd}
-	&& IPC \\
-	Fu & L && R & Fa \\
-	\\
-	&& STL
-	\arrow[from=4-3, to=2-1]
-	\arrow[from=2-4, to=1-3]
-	\arrow[from=2-2, to=1-3]
-	\arrow[from=4-3, to=2-2]
-	\arrow[from=4-3, to=2-4]
-	\arrow[from=4-3, to=2-5]
-\end{tikzcd}\]
+% https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZAFgBoBWAXVJADcBDAGwFcYkQBlAFQBkQBfUuky58hFAE5SAZmp0mrdgDFmAoSAzY8BIgAYZchizaIQS+muFaxRAGwGaRxaYBKAfQA6HnBDSWNItriyAAcDvLG7O5eAEYQOP6aojooAOykAEyGCiYg7sBePmix8fyJgTZppACM2ZGu5dYpyNU1dc4gfIJWycHkme25LsSNvUTSA4457Dwj3QFNwWS1U-Wdw6NBRGS6g+wAkgAKAMICcjBQAObwRKAAZgBOEAC2SPogPkgTIHAAFlh3BKIXTzR4vN40T6IYigp6vYGQiBIaqw8EIj5IxAZVHw95QkI4r6IpDkQnQ4mIUnqMHw-oYpC2Ml4zESJkU1JkqT0xDVEHUuFIMLc3lk9LClH8tH2cX8Sj8IA
+\begin{tikzcd}
+	&                &  &               & IPC                                                                                                      &               &                   &                        &                   &    \\
+	& L \arrow[rrru] &  &               & LR4                                                                                                      &               &                   & R \arrow[lllu]         &                   &    \\
+	&                &  & L4 \arrow[ru] &                                                                                                          & R4 \arrow[lu] &                   & R_{\top\bot} \arrow[u] &                   &    \\
+Fa &                &  &               &                                                                                                          &               & R_\top \arrow[ru] &                        & R_\bot \arrow[lu] & Fu \\
+	&                &  &               &                                                                                                          &               &                   &                        &                   &    \\
+	&                &  &               & STL \arrow[rruu] \arrow[rrrruu] \arrow[rrrrruu] \arrow[lllluu] \arrow[ruuu] \arrow[luuu] \arrow[llluuuu] &               &                   &                        &                   &   
+\end{tikzcd}
