@@ -143,28 +143,31 @@ Notice that our naming scheme for the systems differs slightly with \cite{amir}.
 
 If we also add one or more of the following rules to the system, we will have an \emph{extension of} $\stl$, which are denoted by $\stl(S)$ where $S$ is any combination of these rules:
 
-	\begin{prooftree}
+\begin{multicols}{2}
+	\begin{prooftree}\flushright
 		\RightLabel{$L$}
 		\AXC{$\Gamma, A \Rightarrow \Delta$}
 		\UIC{$\Gamma, \nabla A \Rightarrow \Delta$}
 	\end{prooftree}
-
-	\begin{prooftree}
+	\columnbreak
+	\begin{prooftree}\flushleft
 		\RightLabel{$R$}
 		\AXC{$\nabla \Gamma, \Sigma \Rightarrow \Delta$}
 		\UIC{$\Gamma, \Sigma \Rightarrow \Delta$}
 	\end{prooftree}
+\end{multicols}
 
 
-
-	\begin{prooftree}
+\begin{multicols}{2}
+	\begin{prooftree}\flushright
 		\RightLabel{$Fa$}
 		\AXC{$\Gamma , A \Rightarrow B$}
 		\UIC{$\Gamma \Rightarrow \nabla(A \rightarrow B)$}
 	\end{prooftree}
-
-	\begin{prooftree}
+	\columnbreak
+	\begin{prooftree}\flushleft
 		\RightLabel{$Fu$}
 		\AXC{$\nabla \Gamma \Rightarrow \nabla A$}
 		\UIC{$\Gamma \Rightarrow A$}
 	\end{prooftree}
+\end{multicols}
